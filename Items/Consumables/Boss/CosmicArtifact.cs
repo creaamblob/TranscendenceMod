@@ -1,0 +1,39 @@
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
+using TranscendenceMod.Items.Consumables.Placeables.SpaceBiome;
+using TranscendenceMod.Items.Materials;
+using TranscendenceMod.Miscannellous.Rarities;
+
+namespace TranscendenceMod.Items.Consumables.Boss
+{
+    public class CosmicArtifact : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            ItemID.Sets.ItemNoGravity[Type] = true;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        public override void SetDefaults()
+        {
+            Item.width = 12;
+            Item.height = 18;
+
+            Item.value = Item.buyPrice(gold: 25);
+            Item.rare = ModContent.RarityType<MidnightBlue>();
+        }
+        public override Color? GetAlpha(Color lightColor) => Color.White;
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddIngredient(ModContent.ItemType<AetherRootItem>(), 18)
+            .AddIngredient(ModContent.ItemType<PulverizedPlanet>(), 16)
+            .AddIngredient(ItemID.LunarOre, 12)
+            .AddIngredient(ItemID.FallenStar, 4)
+            .AddTile(TileID.LunarCraftingStation)
+            .Register();
+        }
+    }
+}
