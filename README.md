@@ -6,3 +6,4 @@ Current Content:
 https://creaamblob.github.io/CreanBL.github.io/Code/CreationsFolder/TranscendentMod.html
 
 # !! NOT MULTIPLAYER COMPATIBLE AT ALL !!
+# !! NOT VIABLE FOR A FULLPLAYTHROUGH RIGHT NOW !!
