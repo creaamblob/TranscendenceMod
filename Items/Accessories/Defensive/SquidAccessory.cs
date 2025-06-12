@@ -37,7 +37,7 @@ namespace TranscendenceMod.Items.Accessories.Defensive
             .AddRecipeGroup(RecipeGroupID.IronBar, 7)
             .AddIngredient(ItemID.LogicSensor_Water, 2)
             .AddIngredient(ModContent.ItemType<Lightning>(), 5)
-            .AddTile(TileID.LunarCraftingStation)
+            .AddTile(TileID.MythrilAnvil)
             .Register();
         }
     }

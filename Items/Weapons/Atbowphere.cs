@@ -34,7 +34,7 @@ namespace TranscendenceMod.Items.Weapons
             Item.mana = 35;
 
             Item.knockBack = 2;
-            Item.value = Item.buyPrice(gold: 50);
+            Item.value = Item.sellPrice(gold: 20);
             Item.rare = ItemRarityID.Yellow;
             Item.autoReuse = true;
             Item.noMelee = true;

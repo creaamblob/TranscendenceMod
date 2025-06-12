@@ -6,6 +6,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using TranscendenceMod.Items.Materials.MobDrops;
 using TranscendenceMod.Miscannellous;
 using TranscendenceMod.Miscannellous.Biomes;
 
@@ -24,7 +25,7 @@ namespace TranscendenceMod.NPCs.PreHard
 
         public override void SetDefaults()
         {
-            NPC.lifeMax = NPC.downedMoonlord ? 4125 : Main.hardMode ? 220 : NPC.downedBoss2 ? 110 : 25;
+            NPC.lifeMax = NPC.downedMoonlord ? 4125 : Main.hardMode ? 220 : NPC.downedBoss2 ? 55 : 25;
             NPC.defense = 10;
             NPC.damage = NPC.downedMoonlord ? 120 : Main.hardMode ? 60 : 20;
             NPC.knockBackResist = 0.25f;
@@ -48,6 +49,7 @@ namespace TranscendenceMod.NPCs.PreHard
         {
             npcLoot.Add(ItemDropRule.Common(ItemID.Gel, 1, 2, 4));
             npcLoot.Add(ItemDropRule.Common(ItemID.AshBlock, 2, 1, 3));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VolcanicRemains>(), 4, 1, 2));
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
@@ -61,7 +63,7 @@ namespace TranscendenceMod.NPCs.PreHard
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            TranscendenceUtils.DrawTrailNPC(NPC, Color.White, 1f, Texture, false, true, 1.5f, new Vector2(0, 4));
+            TranscendenceUtils.DrawTrailNPC(NPC, Color.White, 1f, Texture, false, true, 1f, new Vector2(0, 4));
             return base.PreDraw(spriteBatch, screenPos, drawColor);
         }
         public override void AI()

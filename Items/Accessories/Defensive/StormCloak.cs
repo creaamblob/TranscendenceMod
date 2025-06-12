@@ -30,8 +30,8 @@ namespace TranscendenceMod.Items.Accessories.Defensive
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient(ModContent.ItemType<SquidAccessory>())
             .AddIngredient(ItemID.StarCloak)
+            .AddIngredient(ModContent.ItemType<SquidAccessory>())
             .AddIngredient(ItemID.GiantHarpyFeather, 2)
             .AddIngredient(ItemID.RainCloud, 25)
             .AddTile(TileID.TinkerersWorkbench)

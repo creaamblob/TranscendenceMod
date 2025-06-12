@@ -36,7 +36,7 @@ namespace TranscendenceMod.Items.Weapons
             Item.noMelee = true;
             Item.useAmmo = ModContent.ItemType<Starlite>();
 
-            Item.value = Item.buyPrice(gold: 50);
+            Item.value = Item.sellPrice(gold: 25);
             Item.rare = ModContent.RarityType<ModdedPurple>();
             Item.shoot = ProjectileID.PurificationPowder;
             Item.shootSpeed = 20f;

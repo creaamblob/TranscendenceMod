@@ -47,7 +47,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
             Item.shoot = projectile;
             Item.shootSpeed = 7;
 
-            Item.value = Item.buyPrice(gold: 75);
+            Item.value = Item.sellPrice(gold: 50);
             Item.rare = ModContent.RarityType<Brown>();
 
             Item.UseSound = new SoundStyle("TranscendenceMod/Miscannellous/Assets/Sounds/Weapons/MuramasaSwing")

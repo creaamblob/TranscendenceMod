@@ -32,7 +32,7 @@ namespace TranscendenceMod.Items.Weapons.Summoner
             Item.UseSound = SoundID.Item44;
 
             Item.mana = 25;
-            Item.value = Item.buyPrice(gold: 5);
+            Item.value = Item.sellPrice(gold: 5);
             Item.rare = ItemRarityID.Blue;
 
             Item.shoot = ModContent.ProjectileType<CannonSentry>();

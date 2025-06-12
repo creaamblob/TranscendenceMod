@@ -17,7 +17,6 @@ namespace TranscendenceMod.Items.Consumables.Placeables
         {
             Item.value = Item.sellPrice(gold: 25);
             Item.rare = ModContent.RarityType<Brown>();
-            Item.accessory = true;
             Item.DefaultToPlaceableTile(ModContent.TileType<NucleusSummoner>());
         }
     }

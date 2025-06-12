@@ -39,7 +39,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
             Item.shoot = projectile;
             Item.shootSpeed = 13;
 
-            Item.value = Item.buyPrice(silver: 40);
+            Item.value = Item.sellPrice(silver: 75);
             Item.rare = ItemRarityID.Green;
 
             Item.GetGlobalItem<ModifiersItem>().BlacksmithGiantHandleAllowed = true;

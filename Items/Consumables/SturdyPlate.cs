@@ -33,7 +33,7 @@ namespace TranscendenceMod.Items.Consumables
             {
                 if (player.GetModPlayer<TranscendencePlayer>().SturdyPlateTimer < (30 * 60 * 60))
                 {
-                    player.GetModPlayer<TranscendencePlayer>().SturdyPlateTimer += 3 * 60 * 60;
+                    player.GetModPlayer<TranscendencePlayer>().SturdyPlateTimer += 5 * 60 * 60;
                 }
                 for (int i = 0; i < 30; i++)
                 {

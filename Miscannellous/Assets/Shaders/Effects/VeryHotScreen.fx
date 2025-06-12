@@ -23,10 +23,7 @@ float2 uZoom;
 
 float4 Sinewave(float2 coords : TEXCOORD0) : COLOR0
 {
-    float2 imgCoords = (coords * uScreenResolution - uSourceRect.xy) / float2(550, 550);
-    imgCoords.x += uTime * 0.1;
-    float4 distortion = tex2D(uImage1, imgCoords);
-    float4 color = tex2D(uImage0, coords + (distortion.r * 0.0075 * uOpacity));
+    float4 color = tex2D(uImage0, coords);
     
     color.rbg = lerp(color.rbg, float3(1, 0, 0.3), color.rgb * 1.5 * uOpacity);
     

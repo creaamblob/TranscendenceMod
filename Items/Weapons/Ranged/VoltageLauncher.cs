@@ -39,7 +39,7 @@ namespace TranscendenceMod.Items.Weapons.Ranged
             Item.height = 12;
             Item.noMelee = true;
 
-            Item.value = Item.buyPrice(gold: 25);
+            Item.value = Item.sellPrice(gold: 25);
             Item.rare = ModContent.RarityType<Brown>();
 
         }
@@ -57,7 +57,7 @@ namespace TranscendenceMod.Items.Weapons.Ranged
             .AddIngredient(ItemID.ElectrosphereLauncher)
             .AddIngredient(ItemID.LunarBar, 20)
             .AddIngredient(ModContent.ItemType<ElectricalComponent>(), 2)
-            .AddIngredient(ModContent.ItemType<Lightning>(), 20)
+            .AddIngredient(ModContent.ItemType<Lightning>(), 14)
             .AddTile(TileID.LunarCraftingStation)
             .Register();
         }

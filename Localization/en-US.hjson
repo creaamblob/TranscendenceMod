@@ -49,12 +49,12 @@ Mods: {
 
 			SunwarePickaxe: {
 				Tooltip: Summons an orb of light when mining a tile
-				DisplayName: Sunware Pickaxe
+				DisplayName: Sunburnt Pickaxe
 			}
 
 			SunBar: {
 				Tooltip: ""
-				DisplayName: Sunware Bar
+				DisplayName: Sunburnt Bar
 			}
 
 			Shadowflame: {
@@ -1262,8 +1262,8 @@ Mods: {
 				DisplayName: Sturdy Plate
 				Tooltip:
 					'''
-					Improves your equipment's defense by 33% for 3 minutes
-					The duration can be stacked up to 60 minutes
+					Improves your equipment's defense by 6 for 5 minutes
+					The duration can be stacked up to 30 minutes
 					'''
 			}
 
@@ -2533,6 +2533,11 @@ Mods: {
 				DisplayName: Scavenger Chisel
 				Tooltip: ""
 			}
+
+			VolcanicRemains: {
+				DisplayName: Volcanic Remains
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -3077,16 +3082,18 @@ Mods: {
 					After the creator passed away, the sword absorbed it's soul and became sentient.
 					'''
 				StormEel: A snake shaped fish capable of stunning their prey by zapping them with hundreds of volts.
-				VolcanicSlime: A slime exposed to the intense heats of the Underground Volcano. Sets ablaze anything that it touches.
+				VolcanicSlime: A slime exposed to the intense heats of the volcanic layer. Sets ablaze anything that it touches.
 				EmpyreanSlime: A mass of nebula resembling a slime. It consumes anything that it collides with.
 				VenomMosquito: An extremely venomous variant of mosquitoes that can poison one's bloodstream with only one bite.
 				Mosquito: An annoying insect that leeches blood from other creatures to survive.
 				EarthernScourge: An earthly serpent that tunnels through the volcanic layers of the underground. Feasts on hellstone and human flesh.
 				Scorpio: An apparition created by the stars reflecting light on the crystals.
 				FrostSerpent: A majestic icy serpent, crafted from the most pristine ice hunks and enchanted by the most powerful magicians in the land.
-				BoneShark: LimboEyes: People who were driven mad by the endless darkness of Limbo slowly mutated into horrible beasts. These creatures are one of the few in Limbo that still have the ability to see.
+				BoneShark: An unfortunate shark torn apart by the lunatic red glow of the Blood Moon.
+				LimboEyes: People who were driven mad by the endless darkness of Limbo slowly mutated into horrible beasts. These creatures are one of the few in Limbo that still have the ability to see.
 				CosmicGazer: A more refined variant of the Starsighter. Capable of shooting condensed rays of nebula.
-				Snowman: A friendly snowman residing in the depths of the Tundra. Sells winter themed items.
+				Snowman: A friendly snowman residing in the depths of the Tundra. Not a part of the snowman mafia.
+				VolcanicBat: A reanimated corpse of a bat that was buried under the volcanic rocks.
 			}
 
 			Tooltips: {
@@ -3503,6 +3510,7 @@ Mods: {
 			LimboEyes.DisplayName: Limbo Eyes
 			CosmicGazer.DisplayName: Cosmic Gazer
 			HealHeart.DisplayName: Heal Heart
+			VolcanicBat.DisplayName: Volcanic Bat
 		}
 
 		Buffs: {

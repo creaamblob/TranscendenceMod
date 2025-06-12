@@ -354,6 +354,9 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            TooltipLine equip = tooltips.Find(y => y.Name == "Defense");
+            int parryIndex = equip is null ? 1 : tooltips.IndexOf(equip) + 1;
+
             if (ShieldParryCD != 0)
             {
                 ModKeybind mkb = TranscendenceWorld.Guard;
@@ -369,9 +372,8 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                         var generic = new TooltipLine(Mod, "ShieldGeneric", Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Shields", ShieldParryLeniency));
                         var cd = new TooltipLine(Mod, "ShieldParryCD", Language.GetTextValue("Mods.TranscendenceMod.Messages.ParryCD", ShieldParryCD / 60f));
 
-                        TooltipLine equip = tooltips.Find(y => y.Name == "Defense");
-                        tooltips.Insert(equip is null ? 1 : tooltips.IndexOf(equip) + 1, generic);
-                        tooltips.Insert(tooltips.Count - 2, cd);
+                        tooltips.Insert(parryIndex, generic);
+                        tooltips.Insert(parryIndex + 1, cd);
 
                         TooltipLine line = tooltips.FirstOrDefault(x => x.Mod == "TranscendenceMod" && x.Text.Contains("(Unbound Key)"));
                         if (line != null)
@@ -383,7 +385,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
             if (ShieldParryLeniency != 0)
             {
                 var len = new TooltipLine(Mod, "ShieldParryLeniency", Language.GetTextValue("Mods.TranscendenceMod.Messages.ParryLeniency", 130 - ShieldParryLeniency * 2));
-                tooltips.Insert(tooltips.Count - 2, len);
+                tooltips.Insert(parryIndex + 1, len);
             }
 
             if (item.type == ItemID.BeetleShell)
@@ -425,7 +427,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
         {
             if (item.defense > 0 && player.GetModPlayer<TranscendencePlayer>().SturdyPlateTimer > 0)
             {
-                player.statDefense += item.defense < 6 ? 2 : item.defense / 3;
+                player.statDefense += 6;
             }
         }
         public override void UpdateAccessory(Item Item, Player player, bool hideVisual)

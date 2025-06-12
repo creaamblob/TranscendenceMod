@@ -41,7 +41,7 @@ namespace TranscendenceMod.Items.Weapons
             Item.channel = true;
             Item.noUseGraphic = true;
 
-            Item.value = Item.buyPrice(gold: 50);
+            Item.value = Item.sellPrice(gold: 50);
             Item.rare = ModContent.RarityType<MidnightBlue>();
 
         }

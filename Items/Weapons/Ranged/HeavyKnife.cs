@@ -29,6 +29,7 @@ namespace TranscendenceMod.Items.Weapons.Ranged
             Item.width = 10;
             Item.height = 16;
 
+            Item.value = Item.buyPrice(silver: 75);
             Item.rare = ItemRarityID.Blue;
             Item.UseSound = SoundID.Item1;
 

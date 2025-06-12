@@ -32,7 +32,7 @@ namespace TranscendenceMod.Items.Weapons.Magic
             Item.autoReuse = true;
             Item.noMelee = true;
 
-            Item.value = Item.buyPrice(gold: 2, silver: 75);
+            Item.value = Item.sellPrice(gold: 3, silver: 75);
             Item.rare = ItemRarityID.LightRed;
             Item.shoot = proj;
             Item.shootSpeed = 20;

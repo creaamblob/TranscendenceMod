@@ -33,7 +33,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
             Item.noMelee = true;
             Item.noUseGraphic = true;
             Item.knockBack = 2;
-            Item.value = Item.buyPrice(gold: 20);
+            Item.value = Item.sellPrice(gold: 12, silver: 50);
             Item.rare = ItemRarityID.Cyan;
             Item.UseSound = SoundID.Item60;
             Item.autoReuse = true;

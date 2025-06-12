@@ -30,7 +30,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
 
             Item.shoot = projectile;
 
-            Item.value = Item.buyPrice(gold: 5);
+            Item.value = Item.sellPrice(gold: 2);
             Item.rare = ItemRarityID.Blue;
 
             Item.noUseGraphic = true;

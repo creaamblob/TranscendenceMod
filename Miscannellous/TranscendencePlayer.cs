@@ -1239,30 +1239,8 @@ namespace TranscendenceMod
         {
             if (ZoneVolcano)
             {
-                // The filter doesn't work for some reason if a shader isn't active, I don't know why
-                var eff = ModContent.Request<Effect>("TranscendenceMod/Miscannellous/Assets/Shaders/Effects/SeraphOutlineShader", AssetRequestMode.ImmediateLoad).Value;
-
-                eff.Parameters["uRotation"].SetValue(1f);
-                eff.Parameters["uTime"].SetValue(1f);
-                eff.Parameters["uDirection"].SetValue(1f);
-                eff.Parameters["uSaturation"].SetValue(1f);
-                eff.Parameters["uOpacity"].SetValue(1f);
-
-
-                Main.spriteBatch.Begin(default, BlendState.Additive, Main.DefaultSamplerState, default, default, eff);
-
-                // Draw a shadered pixel offscreen
-                Main.spriteBatch.Draw(TextureAssets.BlackTile.Value, new Vector2(-50), Color.White);
-
-                Texture2D heatSprite = ModContent.Request<Texture2D>(TranscendenceMod.ASSET_PATH + "/Perlin2").Value;
-
                 Filters.Scene.Activate("TranscendenceMod:HotScreen");
-                Filters.Scene["TranscendenceMod:HotScreen"].GetShader().UseImage(heatSprite, 1);
-                Filters.Scene["TranscendenceMod:HotScreen"].GetShader().UseIntensity(Main.GlobalTimeWrappedHourly);
                 HotTimer = 15;
-
-
-                Main.spriteBatch.End();
             }
 
             if (ParryTimer < 0)
@@ -2142,15 +2120,9 @@ namespace TranscendenceMod
             if (TranscendenceWorld.RetLensKeybind.JustReleased) NucleusLensKeybind = false;
 
             /*Parrying*/
-            if (TranscendenceWorld.Guard.JustPressed && Parry != 0 && ParryTimer == 0 && !BrokenShield && !CannotUseItems)
+            if (TranscendenceWorld.Guard.JustPressed && Parry != 0 && ParryTimer == 0 && !BrokenShield)
             {
-                ShieldGuard = true;
-                ParryTimer = ParryAmount;
-
-                if (DualBall)
-                    Projectile.NewProjectile(Player.GetSource_FromThis(), Player.Center, Vector2.Zero, ModContent.ProjectileType<ParryVisual>(), 0, 0, Player.whoAmI, ModContent.ItemType<BallOfDuality>());
-
-                /*Activate Golem Transformation*/
+                /*Deactivate Golem Transformation*/
                 if (InsideGolem)
                 {
                     InsideGolem = false;
@@ -2165,6 +2137,15 @@ namespace TranscendenceMod
                     if (BeetleShield) BeetleCD = 60;
                     if (TurtleShield) TurtleCD = 60;
                     if (OrangeShell || PurpleShell) GiantShellCD = 60;
+                }
+
+                if (!CannotUseItems)
+                {
+                    ShieldGuard = true;
+                    ParryTimer = ParryAmount;
+
+                    if (DualBall)
+                        Projectile.NewProjectile(Player.GetSource_FromThis(), Player.Center, Vector2.Zero, ModContent.ProjectileType<ParryVisual>(), 0, 0, Player.whoAmI, ModContent.ItemType<BallOfDuality>());
                 }
             }
             if (TranscendenceWorld.Guard.JustReleased)

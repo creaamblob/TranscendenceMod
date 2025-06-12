@@ -37,7 +37,7 @@ namespace TranscendenceMod.Items.Weapons.Magic
             Item.useStyle = ItemUseStyleID.Shoot;
 
             Item.autoReuse = true;
-            Item.value = Item.buyPrice(gold: 15);
+            Item.value = Item.buyPrice(gold: 10);
             Item.rare = ItemRarityID.Yellow;
             Item.shoot = proj2;
             Item.shootSpeed = 1;

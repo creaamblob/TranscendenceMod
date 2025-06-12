@@ -27,7 +27,7 @@ namespace TranscendenceMod.Items.Weapons.Ranged
             Item.useTime = 7;
             Item.useAnimation = 7;
             Item.knockBack = 3;
-            Item.value = Item.buyPrice(gold: 10);
+            Item.value = Item.sellPrice(gold: 20);
             Item.rare = ModContent.RarityType<Brown>();
             Item.UseSound = SoundID.Item5;
             Item.autoReuse = true;

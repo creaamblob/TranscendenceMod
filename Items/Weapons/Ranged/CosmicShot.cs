@@ -38,7 +38,7 @@ namespace TranscendenceMod.Items.Weapons.Ranged
 
             Item.noMelee = true;
 
-            Item.value = Item.buyPrice(gold: 25);
+            Item.value = Item.sellPrice(gold: 15);
             Item.rare = ModContent.RarityType<ModdedPurple>();
 
         }

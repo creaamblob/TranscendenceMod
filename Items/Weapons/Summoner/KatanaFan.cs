@@ -32,7 +32,7 @@ namespace TranscendenceMod.Items.Weapons.Summoner
             Item.useAnimation = 25;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.mana = 15;
-            Item.value = Item.buyPrice(gold: 17, silver: 50);
+            Item.value = Item.sellPrice(gold: 17, silver: 50);
             Item.rare = ModContent.RarityType<Brown>();
             Item.UseSound = SoundID.Item44;
             Item.noMelee = true;

@@ -30,6 +30,7 @@ using TranscendenceMod.Tiles.BigTiles.Furniture;
 using TranscendenceMod.NPCs.Boss.Nucleus;
 using TranscendenceMod.Miscanellous.MiscSystems;
 using TranscendenceMod.Items;
+using TranscendenceMod.Items.Materials.MobDrops;
 
 namespace TranscendenceMod
 {
@@ -296,22 +297,6 @@ namespace TranscendenceMod
         }
         public override void AddRecipes()
         {
-            Recipe nShellCorr = Recipe.Create(ItemID.NeptunesShell);
-            nShellCorr.AddIngredient(ItemID.ArcticDivingGear);
-            nShellCorr.AddIngredient(ItemID.Coral, 20);
-            nShellCorr.AddIngredient(ItemID.SharkFin, 10);
-            nShellCorr.AddIngredient(ItemID.ShadowScale, 5);
-            nShellCorr.AddTile(ModContent.TileType<Oceation>());
-            nShellCorr.Register();
-
-            Recipe nShellCrim = Recipe.Create(ItemID.NeptunesShell);
-            nShellCrim.AddIngredient(ItemID.ArcticDivingGear);
-            nShellCrim.AddIngredient(ItemID.Coral, 20);
-            nShellCrim.AddIngredient(ItemID.SharkFin, 10);
-            nShellCrim.AddIngredient(ItemID.TissueSample, 5);
-            nShellCrim.AddTile(ModContent.TileType<Oceation>());
-            nShellCrim.Register();
-
             Recipe leather = Recipe.Create(ItemID.Leather);
             leather.AddIngredient(ItemID.Vertebrae, 5);
             leather.AddTile(TileID.WorkBenches);
@@ -486,6 +471,12 @@ namespace TranscendenceMod
 
                 if (recipe.createItem.type == ItemID.Fertilizer)
                     recipe.RemoveIngredient(ItemID.Bone);
+
+                if (recipe.createItem.type == ItemID.HellstoneBar)
+                {
+                    recipe.RemoveIngredient(ItemID.Obsidian);
+                    recipe.AddIngredient(ModContent.ItemType<VolcanicRemains>());
+                }
 
                 //Tier-shift Zenith to Post-Seraph
                 if (recipe.createItem.type == ItemID.Zenith)

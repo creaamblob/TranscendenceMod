@@ -40,7 +40,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
             Item.noUseGraphic = true;
             Item.noMelee = true;
 
-            Item.value = Item.buyPrice(gold: 10);
+            Item.value = Item.sellPrice(gold: 10);
             Item.rare = ModContent.RarityType<ModdedPurple>();
             Item.crit = 18;
 

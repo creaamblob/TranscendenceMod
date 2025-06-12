@@ -30,7 +30,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
             Item.UseSound = SoundID.Item1;
 
             Item.knockBack = 1.75f;
-            Item.value = Item.buyPrice(gold: 25);
+            Item.value = Item.sellPrice(gold: 5);
             Item.rare = ModContent.RarityType<ModdedPurple>();
             Item.noUseGraphic = true;
             Item.noMelee = true;

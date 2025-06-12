@@ -33,7 +33,7 @@ namespace TranscendenceMod.Items.Weapons.Summoner
             Item.noUseGraphic = true;
             Item.autoReuse = true;
 
-            Item.value = Item.buyPrice(gold: 75);
+            Item.value = Item.sellPrice(gold: 35);
             Item.rare = ModContent.RarityType<MidnightBlue>();
             Item.shoot = ModContent.ProjectileType<StarfieldWhip>();
             Item.shootSpeed = 4f;

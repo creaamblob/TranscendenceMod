@@ -37,7 +37,7 @@ namespace TranscendenceMod.Items.Weapons.Magic
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.Item60;
 
-            Item.value = Item.buyPrice(gold: 17, silver: 50);
+            Item.value = Item.sellPrice(gold: 17, silver: 50);
             Item.rare = ModContent.RarityType<Brown>();
             Item.shoot = proj;
             Item.shootSpeed = 5f;

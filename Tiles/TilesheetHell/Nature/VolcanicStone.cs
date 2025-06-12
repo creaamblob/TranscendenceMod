@@ -10,7 +10,6 @@ namespace TranscendenceMod.Tiles.TilesheetHell.Nature
 {
     public class VolcanicStone : ModTile
     {
-        public override string Texture => $"Terraria/Images/Tiles_1";
         public override void SetStaticDefaults()
         {
             Main.tileSolid[Type] = true;
@@ -63,7 +62,7 @@ namespace TranscendenceMod.Tiles.TilesheetHell.Nature
             {
                 Main.spriteBatch.Draw(sprite, pos + new Vector2(0, 8), new Rectangle(safe.TileFrameX, safe.TileFrameY, 16, 8), col, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             }
-            return false;
+            return true;
         }
         public override void FloorVisuals(Player player)
         {

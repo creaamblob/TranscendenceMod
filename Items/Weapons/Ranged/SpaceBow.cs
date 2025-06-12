@@ -39,7 +39,7 @@ namespace TranscendenceMod.Items.Weapons.Ranged
             Item.useAnimation = 25;
             Item.reuseDelay = 30;
 
-            Item.value = Item.buyPrice(gold: 25);
+            Item.value = Item.sellPrice(gold: 35);
             Item.rare = ModContent.RarityType<MidnightBlue>();
             Item.noMelee = true;
             Item.noUseGraphic = true;

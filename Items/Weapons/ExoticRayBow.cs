@@ -38,7 +38,7 @@ namespace TranscendenceMod.Items.Weapons
             Item.mana = 100;
 
             Item.knockBack = 2;
-            Item.value = Item.buyPrice(gold: 80);
+            Item.value = Item.sellPrice(gold: 50);
             Item.rare = ModContent.RarityType<Brown>();
             Item.UseSound = SoundID.Item9;
             Item.autoReuse = true;

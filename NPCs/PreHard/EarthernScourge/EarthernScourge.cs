@@ -9,6 +9,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using TranscendenceMod.Buffs;
+using TranscendenceMod.Items.Materials.MobDrops;
 using TranscendenceMod.Miscannellous;
 using TranscendenceMod.Miscannellous.Biomes;
 using TranscendenceMod.Miscannellous.GlobalStuff;
@@ -46,7 +47,7 @@ namespace TranscendenceMod.NPCs.PreHard.EarthernScourge
 
         public override void SetDefaults()
         {
-            NPC.lifeMax = Main.hardMode ? 1785 : NPC.downedBoss3 ? 220 : 65;
+            NPC.lifeMax = Main.hardMode ? 885 : NPC.downedBoss3 ? 120 : 65;
             NPC.defense = 0;
             NPC.damage = Main.hardMode ? 135 : NPC.downedBoss3 ? 65 : 40;
             NPC.knockBackResist = 0;
@@ -68,7 +69,7 @@ namespace TranscendenceMod.NPCs.PreHard.EarthernScourge
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ItemID.StoneBlock, 1, 5, 12));
-            npcLoot.Add(ItemDropRule.Common(ItemID.Fireblossom, 1, 2, 5));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VolcanicRemains>(), 2, 2, 3));
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
@@ -162,7 +163,7 @@ namespace TranscendenceMod.NPCs.PreHard.EarthernScourge
         }
         public override void SetDefaults()
         {
-            NPC.lifeMax = Main.hardMode ? 8540 : 620;
+            NPC.lifeMax = 5;
             NPC.damage = 35;
             NPC.knockBackResist = 0;
             NPC.takenDamageMultiplier = 0.33f;
@@ -214,7 +215,7 @@ namespace TranscendenceMod.NPCs.PreHard.EarthernScourge
         }
         public override void SetDefaults()
         {
-            NPC.lifeMax = Main.hardMode ? 8540 : 620;
+            NPC.lifeMax = 5;
             NPC.damage = 35;
             NPC.knockBackResist = 0;
 
