@@ -9,7 +9,7 @@ namespace TranscendenceMod.Items.Accessories.Offensive
     {
         public override void SetStaticDefaults()
         {
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
         {
@@ -17,7 +17,7 @@ namespace TranscendenceMod.Items.Accessories.Offensive
             Item.width = 34;
 
             Item.accessory = true;
-            Item.value = Item.buyPrice(gold: 60);
+            Item.value = Item.sellPrice(gold: 15);
             Item.rare = ItemRarityID.Red;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)

@@ -23,7 +23,7 @@ namespace TranscendenceMod.Items.Consumables
             Item.consumable = true;
             Item.maxStack = 9999;
 
-            Item.value = Item.buyPrice(gold: 2);
+            Item.value = Item.sellPrice(silver: 50);
             Item.rare = ItemRarityID.Green;
             Item.UseSound = SoundID.Item37;
         }
@@ -35,7 +35,7 @@ namespace TranscendenceMod.Items.Consumables
                 {
                     player.GetModPlayer<TranscendencePlayer>().SturdyPlateTimer += 5 * 60 * 60;
                 }
-                for (int i = 0; i < 30; i++)
+                for (int i = 0; i < 20; i++)
                 {
                     Dust.NewDustPerfect(player.Center, DustID.PlatinumCoin, Main.rand.NextVector2Circular(7.5f, 15));
                 }

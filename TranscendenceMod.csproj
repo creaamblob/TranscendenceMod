@@ -14,7 +14,7 @@
   <ItemGroup>
 
     <Reference Include="StructureHelper">
-      <HintPath>..\..\..\..\..\..\..\Downloads\StructureHelper.dll</HintPath>
+      <HintPath>Miscannellous\lib\StructureHelper.dll</HintPath>
     </Reference>
     
   </ItemGroup>

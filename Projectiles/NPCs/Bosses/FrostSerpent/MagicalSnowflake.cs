@@ -45,8 +45,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.FrostSerpent
         }
         public override bool PreDraw(ref Color lightColor)
         {
-            TranscendenceUtils.DrawEntity(Projectile, Color.Blue * 0.66f, 4f * Projectile.scale, "bloom", 0, Projectile.Center, null);
-            TranscendenceUtils.DrawEntity(Projectile, Color.Aqua, 1.5f * Projectile.scale, "bloom", 0, Projectile.Center, null);
+            TranscendenceUtils.DrawEntity(Projectile, Color.Blue * 0.66f, 3f * Projectile.scale, "bloom", 0, Projectile.Center, null);
 
             TranscendenceUtils.VeryBasicProjOutline(Projectile, Texture, 2, 1f, 1f, 1f, 1f, false);
 

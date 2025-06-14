@@ -3,9 +3,8 @@ namespace TranscendenceMod
     public enum SeraphAttacks : byte
     {
         Intro, Stare, Despawn, Stall, DesperationEnter, DeathAnim,
-        HomingStars, Supernova, BirthOfAStar, StellarFirestorm, GalaxyShardDash, NebulaMatter, RoyalFlash, PillarsOfCreation, Earth, MeteorShower,
-        BreathingStar, CosmicPathway, SupernovaP2, EventHorizon, SwordSlam, BigCrunch, Moons, PillarsP2, CosmicMirror, StarShapes, DivineSpear,
-        MeteorAbyss, OrionsAssault, LightspeedBall, SpaceTime, SupernovaP3, Desperation
+        HomingStars, Supernova, BirthOfAStar, StellarFirestorm, GalaxyShardDash, NebulaMatter, RoyalFlash, PillarsOfCreation, MeteorShower, SupernovaP2,
+        BreathingStar, EventHorizon, SwordSlam, BigCrunch, Moons, DivineSpear, TrackingBlades, RemoteBlast, SpaceTime
     }
     public enum DragonAttacks : byte
     {

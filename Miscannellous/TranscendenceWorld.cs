@@ -165,7 +165,7 @@ namespace TranscendenceMod
             if (Main.LocalPlayer.GetModPlayer<TranscendencePlayer>().ZoneStar && !Main.LocalPlayer.GetModPlayer<TranscendencePlayer>().ZoneLimbo)
             {
                 fade = Main.LocalPlayer.GetModPlayer<TranscendencePlayer>().StarFade;
-                col = Color.White;
+                col = Color.Magenta * 0.66f;
             }
 
             if (fade > 0)
@@ -441,21 +441,6 @@ namespace TranscendenceMod
         public override void PostWorldGen()
         {
             base.PostWorldGen();
-
-            //Reflood the Dungeon
-            for (int i = 5; i < (Main.maxTilesX - 5); i++)
-            {
-                for (int j = 5; j < (Main.maxTilesY - 5); j++)
-                {
-                    Tile tile = Main.tile[i, j];
-
-                    if (!tile.HasTile && TranscendenceUtils.IsADungeonWall(tile))
-                    {
-                        if (tile.LiquidType == LiquidID.Lava)
-                            tile.LiquidType = LiquidID.Water;
-                    }
-                }
-            }
         }
         public override void ModifyLightingBrightness(ref float scale)
         {

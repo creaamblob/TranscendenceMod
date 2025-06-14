@@ -44,7 +44,7 @@ namespace TranscendenceMod.Dusts
             sb.End();
             sb.Begin(default, BlendState.AlphaBlend, Main.DefaultSamplerState, default, default, null, Main.GameViewMatrix.TransformationMatrix);
 
-            sb.Draw(sprite2, dust.position + Main.rand.NextVector2Square(-2, 2) - Main.screenPosition, null, Color.White, 0, sprite2.Size() * 0.5f, dust.scale, SpriteEffects.None, 0);
+            sb.Draw(sprite2, dust.position + Main.rand.NextVector2Square(-2, 2) - Main.screenPosition, null, Color.White, 0, sprite2.Size() * 0.5f, dust.scale * 1.5f, SpriteEffects.None, 0);
             return false;
         }
     }

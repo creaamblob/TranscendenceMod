@@ -31,7 +31,7 @@ namespace TranscendenceMod.Tiles.BigTiles.Furniture
         }
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            TranscendenceUtils.BigTileGlowmask(i, j, Texture + "_Glow", new Vector2(72 / 2));
+            TranscendenceUtils.BigTileGlowmask(i, j, Texture + "_Glow", Vector2.Zero);
         }
         public override bool CanExplode(int i, int j) => false;
     }

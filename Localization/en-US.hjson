@@ -1212,15 +1212,6 @@ Mods: {
 					'''
 			}
 
-			HealthyJewel: {
-				DisplayName: Pristine Jewel
-				Tooltip:
-					'''
-					Parrying is more lenient
-					You heal for 20 health upon parrying
-					'''
-			}
-
 			HeavyKnife: {
 				DisplayName: Heavy Knife
 				Tooltip: ""
@@ -1534,20 +1525,9 @@ Mods: {
 				Tooltip: ""
 			}
 
-			SeraphSacrifice: {
-				DisplayName: Grand Seraphic Crystal
-				Tooltip:
-					'''
-					[c/6d09a7:A fitting sacrifice for the Angel.]
-					[c/c21cb3:Place on the altar, pour the powder] [i:TranscendenceMod/StarPowder][c/c21cb3: on it]
-					[c/c21cb3:and bring the Angel] [i:TranscendenceMod/SeraphHeadRevealed][c/c21cb3: into this world.]
-					[c/ff0000:PROCEED WITH CAUTION!! ]
-					'''
-			}
-
 			CrystalItem: {
 				DisplayName: Seraphic Crystal
-				Tooltip: "[c/6d09a7:A shiny crystal infused with the Angel's power]"
+				Tooltip: "[c/6d09a7:A shiny crystal infused with angelic power]"
 			}
 
 			SuperDrill: {
@@ -1571,7 +1551,7 @@ Mods: {
 			}
 
 			SeraphsSeeker: {
-				DisplayName: Seraphs Seeker
+				DisplayName: Seraph's Seeker
 				Tooltip: ""
 			}
 
@@ -2002,17 +1982,6 @@ Mods: {
 					'''
 			}
 
-			FrozenSacrifice: {
-				DisplayName: Frozen Sacrifice
-				Tooltip:
-					'''
-					[c/6d09a7:Awakens the Seraph's true form]
-					[c/c21cb3:Place on the altar, pour the powder] [i:TranscendenceMod/StarPowder][c/c21cb3: on it]
-					[c/c21cb3:and bring the Angel] [i:TranscendenceMod/SeraphHeadRevealed][c/c21cb3: into this world.]
-					[c/ff0000:PROCEED WITH EXTREME CAUTION!!!!]
-					'''
-			}
-
 			FrostMonolithItem: {
 				DisplayName: Frost Monolith
 				Tooltip: ""
@@ -2106,42 +2075,6 @@ Mods: {
 					'''
 					Tills dirt into soil
 					Right Click to fire a sickle that breaks nearby fully grown crops
-					'''
-			}
-
-			DivineFrankincense: {
-				DisplayName: Frankincense
-				Tooltip:
-					'''
-					Engages the [c/ffa900:Celestial Seraph] in combat when placed on the Celestial Altar with [i:TranscendenceMod/DivineGold] and [i:TranscendenceMod/DivineMyrrh]
-					[c/ff0000:PROCEED WITH CAUTION!!]
-					'''
-			}
-
-			DivineGold: {
-				DisplayName: Divine Gold
-				Tooltip:
-					'''
-					Engages the [c/ffa900:Celestial Seraph] in combat when placed on the Celestial Altar with [i:TranscendenceMod/DivineMyrrh] and [i:TranscendenceMod/DivineFrankincense]
-					[c/ff0000:PROCEED WITH CAUTION!!]
-					'''
-			}
-
-			DivineMyrrh: {
-				DisplayName: Myrrh
-				Tooltip:
-					'''
-					Engages the [c/ffa900:Celestial Seraph] in combat when placed on the Celestial Altar with [i:TranscendenceMod/DivineGold] and [i:TranscendenceMod/DivineFrankincense]
-					[c/ff0000:PROCEED WITH CAUTION!!]
-					'''
-			}
-
-			SaintsCross: {
-				DisplayName: Saint's Cross
-				Tooltip:
-					'''
-					Engages the [c/ffa900:Celestial Seraph] in combat when placed on the Celestial Altar
-					[c/ff0000:PROCEED WITH CAUTION!!]
 					'''
 			}
 
@@ -2538,6 +2471,20 @@ Mods: {
 				DisplayName: Volcanic Remains
 				Tooltip: ""
 			}
+
+			RingOfBravery: {
+				DisplayName: Ring of Bravery
+				Tooltip:
+					'''
+					Max number of minions increased by 1
+					Whip speed increased by 25%
+					'''
+			}
+
+			HealthyJewel: {
+				DisplayName: Healthy Jewel
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -2899,10 +2846,18 @@ Mods: {
 			BigCrunchStarSpawn.DisplayName: Big Crunch Star
 			ArtificialSun.DisplayName: Artificial Sun
 			HeavenlyKunaiProj.DisplayName: Heavenly Kunai Proj
+			SewerHoopFountain.DisplayName: Sewer Hoop Fountain
+			PristineBlade.DisplayName: Pristine Blade
+			ImpurityBlast.DisplayName: Impurity Blast
+			RemoteBlastTelegraph.DisplayName: Remote Blast Telegraph
+			P2SupernovaBlackhole.DisplayName: P2 Supernova Blackhole
+			P2SupernovaProj.DisplayName: P2 Supernova Proj
+			P2SupernovaSun.DisplayName: P2 Supernova Sun
 		}
 
 		SeraphAttackNames: {
 			BirthOfAStar: Birth of a Star
+			BirthOfAStarP2: Revolving Stars of Life
 			RainP1: Cthulhu's Firestorm
 			RainP2: Fractal Inferno
 			HomingP1: Total Purification
@@ -2919,6 +2874,9 @@ Mods: {
 			BigCrunch: Big Bang and Big Crunch
 			DivineSpear: Divine Spear of the Seraph
 			RoyalFlash: Royal Flash
+			TrackingBlades: Most Refined and Pristine Blades
+			RemoteBlast: Impurity Revealed Within
+			SupernovaP2: Death of a Star
 		}
 
 		Messages: {
@@ -3027,10 +2985,10 @@ Mods: {
 			}
 
 			SeraphBossDialog: {
-				RematchIntro: Ready to go again?
+				Intro: Ready to go?
 
 				Phase3: {
-					1: Let us see what you are TRULY made of.
+					1: Let's see what you are TRULY made of.
 					2: Do NOT let me down now.
 					3: IS THAT THE BEST YOU'VE GOT!?
 					4: Now THIS is a fight worthy of God's Will!
@@ -3042,11 +3000,7 @@ Mods: {
 			}
 
 			Bestiary: {
-				SpaceBoss:
-					'''
-					A mysterious cosmic creature turned angel.
-					Currently one of the highest ranking angel in Heaven, capable of possessing the power of God and the cosmos.
-					'''
+				SpaceBoss: One of the highest ranking angels in Heaven, capable of possessing the power of God and the cosmos.
 				Nucleus:
 					'''
 					This bio-mechanical marvel officially labeled as 'Project 1020-CTHL Nucleus' was created as the core of the mechanical reconstruction of Cthulhu.
@@ -3282,8 +3236,8 @@ Mods: {
 					Jolly:
 						'''
 						-[C/ee2b0f:Jolly] [C/1ad860:Modifier]-
-						* [C/5c915d:Grants you +2% max health for every 1500 points reached in the Frost Moon event]
-						* [C/fe7c7c:You will lose 10% of your defense outside of the Tundra biome]
+						* [C/5c915d:Grants you +0.5% max health for every 2000 points reached in the Frost Moon event]
+						* [C/fe7c7c:You will lose 5% of your defense outside of the Tundra biome]
 						[C/353e50:These effects scale with each armor piece]
 						Can be applied to Armor
 						'''

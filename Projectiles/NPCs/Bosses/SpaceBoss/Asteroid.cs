@@ -43,7 +43,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
         }
         public override void PostDraw(Color lightColor)
         {
-            TranscendenceUtils.DrawEntity(Projectile, lightColor * 0.8f, Projectile.scale, $"{Texture}", Projectile.rotation, Projectile.Center, null);
+            TranscendenceUtils.DrawEntity(Projectile, Color.White, Projectile.scale, $"{Texture}", Projectile.rotation, Projectile.Center, null);
         }
         public override bool PreDraw(ref Color lightColor)
         {

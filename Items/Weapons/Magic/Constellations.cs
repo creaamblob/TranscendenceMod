@@ -24,10 +24,10 @@ namespace TranscendenceMod.Items.Weapons.Magic
         public override void SetDefaults()
         {
             Item.DamageType = DamageClass.Magic;
-            Item.damage = 155;
+            Item.damage = 185;
             Item.mana = 20;
             Item.knockBack = 5f;
-            Item.crit = 10;
+            Item.crit = 15;
             Item.noUseGraphic = true;
 
             Item.width = 12;
@@ -36,7 +36,7 @@ namespace TranscendenceMod.Items.Weapons.Magic
 
             Item.useTime = 5;
             Item.useAnimation = 30;
-            Item.reuseDelay = 45;
+            Item.reuseDelay = 30;
             Item.useStyle = ItemUseStyleID.Shoot;
 
             Item.autoReuse = true;

@@ -129,14 +129,10 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                     spriteBatch.Draw(ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/GlowBloomNoBG").Value, new Rectangle((int)(line.X - (width * 0.9375f)), line.Y - 12, width * 3, 45), color);
                     spriteBatch.Draw(ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/GlowBloomNoBG").Value, new Rectangle((int)(line.X - (width * 0.9375f)), line.Y - 12, width * 3, 45), color);
                 }
+
                 //Draw the shadered text
                 ChatManager.DrawColorCodedStringShadow(spriteBatch, FontAssets.MouseText.Value, line.Text, new Vector2(line.X, line.Y), Color.White, 0, Vector2.Zero, Vector2.One, -1, item.rare == ModContent.RarityType<Brown>() ? 4 : 2);
                 
-                //Restart spritebatch once again with the shader not active
-                spriteBatch.End();
-                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState,
-                    spriteBatch.GraphicsDevice.DepthStencilState, spriteBatch.GraphicsDevice.RasterizerState, null, Main.UIScaleMatrix);
-
                 if (item.rare == ModContent.RarityType<MidnightBlue>() || SeraphDifficultyItem)
                 {
                     spriteBatch.End();
@@ -172,13 +168,14 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                         spriteBatch.Draw(star, new Rectangle((int)starPositions[i].X, (int)starPositions[i].Y, size, size),
                             null, Color.White, starsRot[i], star.Size() * 0.5f, SpriteEffects.None, 0);
                     }
-
-                    spriteBatch.End();
-                    spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, spriteBatch.GraphicsDevice.SamplerStates[0],
-                        spriteBatch.GraphicsDevice.DepthStencilState, spriteBatch.GraphicsDevice.RasterizerState, null, Main.UIScaleMatrix);
                 }
-                //Draw border before restarting spritebatch, because otherwise it will get overridden by the shader
+
+                spriteBatch.End();
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState,
+                    spriteBatch.GraphicsDevice.DepthStencilState, spriteBatch.GraphicsDevice.RasterizerState, null, Main.UIScaleMatrix);
+
                 ChatManager.DrawColorCodedStringShadow(spriteBatch, FontAssets.MouseText.Value, line.Text, new Vector2(line.X, line.Y), col, 0, Vector2.Zero, Vector2.One);
+
 
                 ChatManager.DrawColorCodedString(spriteBatch, FontAssets.MouseText.Value, line.Text, new Vector2(line.X, line.Y), color3, 0, Vector2.Zero, Vector2.One);
             }

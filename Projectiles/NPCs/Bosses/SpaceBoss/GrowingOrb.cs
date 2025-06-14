@@ -34,15 +34,16 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             if (targetHitbox.Distance(Projectile.Center) < (10f * Projectile.scale) && Projectile.active) return true;
             else return false;
         }
-        public override void PostDraw(Color lightColor)
+        public override bool PreDraw(ref Color lightColor)
         {
             TranscendenceUtils.DrawEntity(Projectile, Color.OrangeRed, Projectile.scale * 0.7f,
                 "bloom", 0, Projectile.Center, null);
 
-            TranscendenceUtils.DrawEntity(Projectile, Color.White, Projectile.scale,
+            TranscendenceUtils.DrawEntity(Projectile, Color.White, Projectile.scale * 0.8f,
                     $"{Texture}", 0, Projectile.Center, null);
+
+            return false;
         }
-        public override bool PreDraw(ref Color lightColor) => false;
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
         }

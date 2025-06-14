@@ -37,18 +37,15 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
         public override void OnKill(int timeLeft)
         {
         }
-        public override void PostDraw(Color lightColor)
+        public override bool PreDraw(ref Color lightColor)
         {
             TranscendenceUtils.DrawEntity(Projectile, Color.DeepSkyBlue, Projectile.scale * 0.7f,
                 "bloom", 0, Projectile.Center, null);
 
             TranscendenceUtils.DrawEntity(Projectile, Color.White, Projectile.scale * 0.8f,
                     $"{Texture}", 0, Projectile.Center, null);
-        }
-        public override bool PreDraw(ref Color lightColor) => false;
-        public override void OnHitPlayer(Player target, Player.HurtInfo info)
-        {
 
+            return false;
         }
         public override void AI()
         {

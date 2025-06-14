@@ -312,7 +312,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
         {
             if (npc.boss && TimeSpent > 15)
             {
-                DialogUI.SpawnDialog("Time Spent: " + (TimeSpent / 60).ToString() + "s " + " (" + (TimeSpent / 60 / 60).ToString() + " minutes)", npc.Center, 450, Color.Red);
+                DialogUI.SpawnDialog("Time Spent: " + (TimeSpent / 60).ToString() + "s", npc.Center, 450, Color.Red);
             }
 
             if (npc.type == NPCID.DD2Betsy && !TranscendenceWorld.DownedOOA)
@@ -405,7 +405,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                 return false;
 
             target.TryGetModPlayer(out TranscendencePlayer modPlayer);
-            if (modPlayer != null && npc.active && base.CanHitPlayer(npc, target, ref cooldownSlot) && npc != null && modPlayer.InsideShell == 0 && !modPlayer.InsideGolem && npc.Hitbox.Intersects(target.Hitbox) && (modPlayer.Parry == 1
+            if (modPlayer != null && npc.active && base.CanHitPlayer(npc, target, ref cooldownSlot) && !npc.dontTakeDamage && npc != null && modPlayer.InsideShell == 0 && !modPlayer.InsideGolem && npc.Hitbox.Intersects(target.Hitbox) && (modPlayer.Parry == 1
                 && modPlayer.ParryTimer > 0 && modPlayer.ParryTimer < 10
                 && modPlayer.ParryTimerCD > modPlayer.ParryCD || modPlayer.SwordTimer > 0 && modPlayer.ParryTimerCD > 30))
             {
@@ -441,7 +441,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                 return false;
             }
 
-            if (modPlayer != null && npc.active && base.CanHitPlayer(npc, target, ref cooldownSlot) && npc != null && modPlayer.InsideShell == 0 && !modPlayer.InsideGolem && npc.Hitbox.Intersects(target.Hitbox)
+            if (modPlayer != null && npc.active && base.CanHitPlayer(npc, target, ref cooldownSlot) && !npc.dontTakeDamage && npc != null && modPlayer.InsideShell == 0 && !modPlayer.InsideGolem && npc.Hitbox.Intersects(target.Hitbox)
                 && modPlayer.Parry > 1 && modPlayer.ParryTimer > 0 && (modPlayer.ParryTimer < 10 ||
                 modPlayer.ParryTimer > (modPlayer.ParryAmount - 10)) && modPlayer.ParryTimerCD > modPlayer.ParryCD)
             {

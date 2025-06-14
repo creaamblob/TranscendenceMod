@@ -39,9 +39,9 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Muramasa
 
             Lighting.AddLight(Projectile.Center, 0, 0.4f, 0.8f);
 
-            if (++Projectile.ai[2] > 50)
+            if (++Projectile.ai[2] > 45 )
             {
-                Projectile.velocity.X *= 1.05f;
+                Projectile.velocity *= 1.075f;
             }
         }
         public override bool PreDraw(ref Color lightColor)

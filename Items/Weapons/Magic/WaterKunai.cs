@@ -20,14 +20,14 @@ namespace TranscendenceMod.Items.Weapons.Magic
         {
             Item.DamageType = DamageClass.Magic;
             Item.damage = 20;
-            Item.mana = 5;
-            Item.knockBack = 3;
+            Item.mana = 8;
+            Item.knockBack = 2f;
 
             Item.width = 15;
             Item.height = 27;
 
-            Item.useTime = 15;
-            Item.useAnimation = 15;
+            Item.useTime = 10;
+            Item.useAnimation = 10;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.noMelee = true;
             Item.noUseGraphic = true;

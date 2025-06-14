@@ -43,15 +43,30 @@ namespace TranscendenceMod.Miscannellous.Skies
                         starsVel[i].Y = 15f;
                     }
 
-                    starsColour[i] = Color.DeepSkyBlue;
-                    if (Main.rand.NextBool(3))
-                        starsColour[i] = Color.Aqua;
-                    if (Main.rand.NextBool(4))
-                        starsColour[i] = Color.HotPink;
-                    if (Main.rand.NextBool(4))
-                        starsColour[i] = Color.Lime;
-                    if (Main.rand.NextBool(6))
-                        starsColour[i] = Color.Yellow;
+                    bool PrideMonth = DateTime.Now.Month == 6;
+                    Main.NewText(DateTime.Now.Day);
+                    if (PrideMonth)
+                    {
+                        switch (Main.rand.Next(0, 3))
+                        {
+                            case 0: starsColour[i] = Color.Aqua; break;
+                            case 1: starsColour[i] = Color.Pink; break;
+                            case 2: starsColour[i] = Color.White; break;
+                        }
+                    }
+                    else
+                    {
+                        starsColour[i] = Color.DeepSkyBlue;
+                        if (Main.rand.NextBool(3))
+                            starsColour[i] = Color.Aqua;
+                        if (Main.rand.NextBool(4))
+                            starsColour[i] = Color.HotPink;
+                        if (Main.rand.NextBool(4))
+                            starsColour[i] = Color.Lime;
+                        if (Main.rand.NextBool(6))
+                            starsColour[i] = Color.Yellow;
+                    }
+
 
                     starsRot[i] = Main.rand.NextFloat(-0.2f, 0.2f);
                 }
@@ -77,12 +92,7 @@ namespace TranscendenceMod.Miscannellous.Skies
             {
                 NPC npc = Main.npc[npC];
                 if (npc != null && npc.type == ModContent.NPCType<CelestialSeraph>() && npc.ModNPC is CelestialSeraph boss && boss != null)
-                {
-                    if (boss.Attack == SeraphAttacks.Desperation || boss.Attack == SeraphAttacks.EventHorizon)
-                        return Color.Lerp(Color.DarkGray * 0.0075f, inColor, 1 - fadeIn);
-
-                    else return Color.Lerp(TranscendenceWorld.CosmicPurple * 0.4f, inColor, 1 - fadeIn);
-                }
+                    return Color.Lerp(TranscendenceWorld.CosmicPurple * 0.4f, inColor, 1 - fadeIn);
             }
             return base.OnTileColor(inColor);
         }
@@ -100,6 +110,8 @@ namespace TranscendenceMod.Miscannellous.Skies
                 if (npc != null && npc.type == ModContent.NPCType<CelestialSeraph>() && npc.ModNPC is CelestialSeraph boss && boss != null)
                 {
                     Texture2D sprite = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/OrionNebula").Value;
+
+
                     Texture2D star = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/GlowBloom").Value;
                     Texture2D star2 = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/StarEffect").Value;
 
@@ -109,9 +121,11 @@ namespace TranscendenceMod.Miscannellous.Skies
 
                     if (maxDepth >= 0 && minDepth < 0 && boss.Phase != 4)
                     {
+                        Vector3 col = new Vector3(0.75f, 0, 1f);
+
                         //Draw the vignette
                         var eff = ModContent.Request<Effect>("TranscendenceMod/Miscannellous/Assets/Shaders/Effects/SeraphSkyShader", AssetRequestMode.ImmediateLoad).Value;
-                        eff.Parameters["uColor"].SetValue(new Vector3(0.75f, 0, 1f) * fadeIn);
+                        eff.Parameters["uColor"].SetValue(col * fadeIn);
 
                         eff.Parameters["uOpacity"].SetValue(8f * fadeIn);
                         eff.Parameters["uImageSize0"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight) * 0.5f);
@@ -184,9 +198,8 @@ namespace TranscendenceMod.Miscannellous.Skies
 
                     spriteBatch.End();
                     spriteBatch.Begin(default, BlendState.NonPremultiplied, default, default, default, null);
-
-                    if (boss.Attack != SeraphAttacks.Earth)
-                        spriteBatch.Draw(TextureAssets.BlackTile.Value, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight),
+                    
+                    spriteBatch.Draw(TextureAssets.BlackTile.Value, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight),
                             null, Color.Black * 0.75f * boss.skyFade);
 
 

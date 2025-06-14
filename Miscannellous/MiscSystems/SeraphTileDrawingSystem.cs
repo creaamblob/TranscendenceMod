@@ -1,18 +1,21 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Net.Http.Headers;
+using System.Reflection;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Drawing;
 using Terraria.Graphics.Light;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TranscendenceMod.NPCs.Boss.Seraph;
 
 namespace TranscendenceMod.Miscanellous.MiscSystems
 {
     public class SeraphTileDrawingSystem : ModSystem
     {
         public static int PhaseThroughTimer;
-        public bool PhaseThrough => PhaseThroughTimer > 0;
+        public static bool PhaseThrough => PhaseThroughTimer > 0 && !Main.LocalPlayer.dead;
         public override void Load()
         {
             //Draw boundaries
@@ -48,10 +51,14 @@ namespace TranscendenceMod.Miscanellous.MiscSystems
             On_TileDrawing.Draw += On_TileDrawing_Draw;
             On_Player.CanSeeShimmerEffects += On_Player_CanSeeShimmerEffects;
 
-            //Misc
+            //Framing
             On_Framing.GetTileSafely_int_int += On_Framing_GetTileSafely_int_int;
             On_WorldGen.Reframe += On_WorldGen_Reframe;
             On_Framing.SelfFrame8Way += On_Framing_SelfFrame8Way;
+            BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static;
+            MonoModHooks.Add(typeof(TileLoader).GetMethod("TileFrame", flags), new tf(FramingFix));
+
+            //Lighting
             On_Lighting.Brightness += On_Lighting_Brightness;
             On_LegacyLighting.GetColor += On_LegacyLighting_GetColor;
             On_LightMap.BlurPass += On_LightMap_BlurPass;
@@ -80,6 +87,16 @@ namespace TranscendenceMod.Miscanellous.MiscSystems
             On_Main.IsTileBiomeSightable_int_int_ushort_short_short_refColor += On_Main_IsTileBiomeSightable_int_int_ushort_short_short_refColor;
             On_Projectile.CutTilesAt += On_Projectile_CutTilesAt;
             On_DoorOpeningHelper.LookForDoorsToOpen += On_DoorOpeningHelper_LookForDoorsToOpen;
+        }
+
+        public delegate bool tf(tf2 orig, int i, int j, int self, ref bool reset, ref bool noBreak);
+        public delegate bool tf2(int i, int j, int self, ref bool reset, ref bool noBreak);
+
+        private static bool FramingFix(tf2 orig, int i, int j, int self, ref bool reset, ref bool noBreak)
+        {
+            if (!PhaseThrough)
+                return orig(i, j, self, ref reset, ref noBreak);
+            else return false;
         }
 
         private void On_Player_UpdateTouchingTiles(On_Player.orig_UpdateTouchingTiles orig, Player self)
@@ -460,7 +477,16 @@ namespace TranscendenceMod.Miscanellous.MiscSystems
         public void DrawSeraphBoundaries()
         {
             SpriteBatch spriteBatch = Main.spriteBatch;
-            if (PhaseThrough)
+
+            NPC npc = null;
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                NPC n = Main.npc[i];
+                if (n != null && n.active && n.ModNPC is CelestialSeraph)
+                    npc = n;
+            }
+
+            if (PhaseThrough && npc != null && npc.active && npc.ai[1] > 1)
             {
                 Texture2D block = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/SeraphBoundary").Value;
 

@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.Chat;
 using Terraria.DataStructures;
@@ -73,7 +74,7 @@ namespace TranscendenceMod.Tiles.BigTiles
                 return;
 
             Vector2 worldPos = p.ToWorldCoordinates(24f, 64f);
-            Vector2 drawPos = worldPos + offScreen - Main.screenPosition - new Vector2(0f, 80f);
+            Vector2 drawPos = worldPos + offScreen - Main.screenPosition - new Vector2(0f, 90f + (float)Math.Sin(TranscendenceWorld.UniversalRotation * 2f) * 4f);
 
             Texture2D art = ModContent.Request<Texture2D>("TranscendenceMod/Items/Consumables/Boss/CosmicArtifact").Value;
 
@@ -109,16 +110,6 @@ namespace TranscendenceMod.Tiles.BigTiles
                     }
                 }
 
-                string stringer = Language.GetTextValue("Mods.TranscendenceMod.Messages.SomethingMaliciousIsBrewing");
-                if (Main.netMode == NetmodeID.SinglePlayer)
-                {
-                    Main.NewText(stringer, 175, 75, 255);
-                }
-                else if (Main.netMode == NetmodeID.MultiplayerClient)
-                {
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey(stringer), new Color(175, 75, 255), -1);
-                }
-
                 PlacedSacrifice = false;
                 return true;
             }
@@ -134,7 +125,9 @@ namespace TranscendenceMod.Tiles.BigTiles
             Player player = Main.LocalPlayer;
             player.cursorItemIconEnabled = true;
 
-            player.cursorItemIconID = TranscendenceWorld.EncouteredSeraph ? ModContent.ItemType<SeraphHeadRevealed>() : ModContent.ItemType<SeraphHeadBlackOut>();
+            player.cursorItemIconID = !PlacedSacrifice ? ModContent.ItemType<CosmicArtifact>() :
+                TranscendenceWorld.EncouteredSeraph ? ModContent.ItemType<SeraphHeadRevealed>() :
+                ModContent.ItemType<SeraphHeadBlackOut>();
         }
     }
 }

@@ -56,15 +56,12 @@ namespace TranscendenceMod.Projectiles.Weapons.Magic
             if (player.channel)
                 Projectile.timeLeft = 5;
 
-            Vector2 pos2 = revolvePos + Vector2.One.RotatedBy(Projectile.rotation * -4f) * 100;
+            Vector2 pos2 = revolvePos + Vector2.One.RotatedBy(Projectile.rotation * -2f) * 100;
             Vector2 pos3 = pos2 + Vector2.One.RotatedBy(Projectile.rotation * 2.5f) * 50;
             Projectile.Center = pos3;
         }
         public override bool PreDraw(ref Color lightColor)
         {
-            TranscendenceUtils.DrawEntity(Projectile, Color.White, 1f, "TranscendenceMod/Projectiles/Weapons/Magic/Earth", Projectile.rotation / 25f, revolvePos, null);
-            TranscendenceUtils.DrawEntity(Projectile, Color.White, 3f, $"{Texture}", Projectile.rotation / 2f, Projectile.Center, null);
-
             for (int i = 0; i < 128; i++)
             {
                 Vector2 pos2 = Vector2.One.RotatedBy((MathHelper.TwoPi * i / 128f) + (TranscendenceWorld.UniversalRotation * 1.1f));
@@ -75,6 +72,10 @@ namespace TranscendenceMod.Projectiles.Weapons.Magic
                     TranscendenceUtils.DrawEntity(Projectile, Color.DarkGray * 0.25f, 0.5f, "TranscendenceMod/Miscannellous/Assets/Circle", 0, pos + new Vector2(pos2.X * area, pos2.Y * (area / 2f)), null);
                 }
             }
+
+            TranscendenceUtils.DrawEntity(Projectile, Color.White, 1f, "TranscendenceMod/Projectiles/Weapons/Magic/Earth", Projectile.rotation / 25f, revolvePos, null);
+            TranscendenceUtils.DrawEntity(Projectile, Color.White, 3f, $"{Texture}", Projectile.rotation / 2f, Projectile.Center, null);
+
             return false;
         }
     }

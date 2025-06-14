@@ -12,6 +12,7 @@ using TranscendenceMod.Items.Consumables.Placeables;
 using TranscendenceMod.Items.Modifiers;
 using System.Collections.Generic;
 using TranscendenceMod.Tiles.TilesheetHell.Nature;
+using Terraria.DataStructures;
 
 namespace TranscendenceMod.Miscannellous
 {
@@ -151,7 +152,7 @@ namespace TranscendenceMod.Miscannellous
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = "Flooding the Dungeon";
+            progress.Message = "Spicing up the Dungeon";
 
             for (int i = 5; i < (Main.maxTilesX - 5); i++)
             {
@@ -172,10 +173,6 @@ namespace TranscendenceMod.Miscannellous
                                 WorldGen.PlaceTile(i, j - 1, ModContent.TileType<CrateMagnetTile>());
                         }
                     }
-
-                    if (tile.LiquidAmount == 0 && !tile.HasTile && TranscendenceUtils.IsADungeonWall(tile) && Main.rand.NextBool(10))
-                        WorldGen.PlaceLiquid(i, j, (byte)LiquidID.Water, 255);
-
                 }
             }
         }
@@ -532,10 +529,10 @@ namespace TranscendenceMod.Miscannellous
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
             progress.Message = "Building the Cosmic Cathedral";
-            int sx = TranscendenceWorld.sx;
+            int sx = (int)(Main.maxTilesX / 3.75f);
             int sy = 135;
 
-            //StructureHelper.Generator.GenerateStructure("Miscannellous/CosmicChurch", new Point16(sx - 30, (sy - 78) - 12), TranscendenceMod.Instance);
+            StructureHelper.API.Generator.GenerateStructure("Miscannellous/CosmicChurch", new Point16(sx - 30, (sy - 78) - 15), TranscendenceMod.Instance, false, true);
         }
     }
     public class CosmicValleyGenPass : GenPass
@@ -551,40 +548,12 @@ namespace TranscendenceMod.Miscannellous
             int spy = 410;
             TranscendenceWorld.sx = sx;
 
-            GenVars.structures.AddProtectedStructure(new Rectangle(sx - 500, 0, 1000, 350));
-
             //Flattening ground in preparation for the forest below the Space Biome
             WorldUtils.Gen(new Point(sx - 400, 5), new Shapes.Rectangle(800, 490), new Actions.Clear());
             WorldUtils.Gen(new Point(sx - 440, spy), new Shapes.Rectangle(885, 180), new Actions.SetTile(TileID.Dirt));
 
-            /*for (int a = sx - 380; a < (sx + 380); a++)
-            {
-                for (int c = 140; c < 680; c++) //C++ Reference???!??!?!
-                {
-                    if (Main.tile[a, c].TileType == TileID.Dirt && !Main.tile[a, c - 5].HasTile && Main.rand.NextBool(42))
-                    {
-                        WorldGen.TileRunner(a, c + 10, 15, 20, TileID.Stone);
-                    }
-
-                    if (Main.tile[a, c].TileType == TileID.Dirt && Main.rand.NextBool(62))
-                    {
-                        int ore = 7;
-                        switch (Main.rand.Next(0, 4))
-                        {
-                            case 0: ore = WorldGen.SavedOreTiers.Copper; break;
-                            case 1: ore = WorldGen.SavedOreTiers.Iron; break;
-                            case 2: ore = WorldGen.SavedOreTiers.Silver; break;
-                            case 3: ore = WorldGen.SavedOreTiers.Gold; break;
-                        }
-                        WorldGen.TileRunner(a, c + 10, 5, 20, ore);
-                    }
-                }
-            }*/
             WorldUtils.Gen(new Point(sx - 394, spy), new Shapes.Rectangle(794, 120), new Actions.PlaceTile(TileID.Dirt));
             WorldUtils.Gen(new Point(sx - 250, spy - 150), new Shapes.Rectangle(500, 200), new Actions.Clear());
-
-            //The deepest part
-            //WorldUtils.Gen(new Point(sx, spy + 85), new Shapes.Circle(150, 100), new Actions.Clear());
 
             WorldGen.SquareTileFrame(sx, spy);
             NetMessage.SendTileSquare(-1, sx, spy, 250);

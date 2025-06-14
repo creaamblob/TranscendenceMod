@@ -70,34 +70,19 @@ namespace TranscendenceMod.Miscannellous.UI
                     Rectangle rec = new Rectangle((int)(drawParams.BarCenter.X - 80), (int)(drawParams.BarCenter.Y - 36), sprite.Width, sprite.Height);
                     Rectangle rec2 = new Rectangle((int)(drawParams.BarCenter.X + 146), (int)(drawParams.BarCenter.Y - 36), sprite2.Width, sprite2.Height);
 
-                    if (!boss.PlayerWasHit)
-                    {
-                        spriteBatch.Draw(sprite, rec, Color.White);
 
-                        if (boss.NoHit)
-                            spriteBatch.Draw(TextureAssets.Heart2.Value, rec, Color.White);
-                    }
                     Color master = new Color(Main.masterColor, Main.masterColor * 0.4f, 0.3f);
                     if (boss.Enraged || boss.Phase > 2)
                     {
                         spriteBatch.Draw(sprite2, rec2, master);
                     }
-                    float size = boss.CurrentAttack.Length > 40 ? 0.475f : boss.CurrentAttack.Length > 30 ? 0.5f : 0.75f;
+                    float size = boss.CurrentAttack.Length > 40 ? 0.5f : boss.CurrentAttack.Length > 30 ? 0.66f : 0.75f;
                     float yMod = boss.CurrentAttack.Length > 30 ? -2 : 0;
 
-                    float time = (float)((boss.AttackDuration - boss.Timer_AI) + 5) / 60f;
-                    time = (float)Math.Round(time + 0.11f, 2);
-                    string timeString = "";
-
-                    Texture2D sprite3 = TextureAssets.Item[time < 5 ? ItemID.GoldWatch : ItemID.PlatinumWatch].Value;
-                    Rectangle rec3 = new Rectangle((int)(drawParams.BarCenter.X + 214), (int)(drawParams.BarCenter.Y - 40), sprite3.Width, sprite3.Height);
-                    spriteBatch.Draw(sprite3, rec3, Color.White);
 
                     ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.MouseText.Value, boss.CurrentAttack,
                         drawParams.BarCenter - new Vector2(52, 32 + yMod), Color.Gold, 0, Vector2.Zero, new Vector2(size));
 
-                    ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.MouseText.Value, timeString,
-                        drawParams.BarCenter - new Vector2(-172, 32), time < 5 ? master : Color.Gold, 0, Vector2.Zero, new Vector2(0.75f));
                 }
             }
             Rectangle icon = new Rectangle((int)(drawParams.BarCenter.X - (276 * Main.UIScale)), (int)(drawParams.BarCenter.X - (18 * Main.UIScale)), drawParams.IconTexture.Width, drawParams.IconTexture.Height);

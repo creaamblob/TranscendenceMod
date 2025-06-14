@@ -80,6 +80,7 @@ namespace TranscendenceMod
         public bool ChiselPotEquipped;
         public bool EverglowingCrownEquipped;
         public bool NohitMode;
+        public bool RingOfBravery;
 
         public bool Possessing;
         public int PossessingTimer;
@@ -381,7 +382,6 @@ namespace TranscendenceMod
             if (FlashBangTimer > 0)
             {
                 FlashBangTimer--;
-                FBa = 1f;
             }
             if (InverseTimer > 0) InverseTimer--;
             if (HotTimer > 0) HotTimer--;
@@ -391,26 +391,20 @@ namespace TranscendenceMod
 
             if (Main.netMode != NetmodeID.Server)
             {
-                if (Filters.Scene["TranscendenceMod:ScreenFlip"].IsActive() && FlipTimer == 0) Filters.Scene["TranscendenceMod:ScreenFlip"].Deactivate();
-                if (Filters.Scene["TranscendenceMod:ColdScreen"].IsActive() && ColdTimer == 0) Filters.Scene["TranscendenceMod:ColdScreen"].Deactivate();
-                if (Filters.Scene["TranscendenceMod:HotScreen"].IsActive() && HotTimer == 0) Filters.Scene["TranscendenceMod:HotScreen"].Deactivate();
-                if (Filters.Scene["TranscendenceMod:SaturationShader"].IsActive() && SaturationTimer == 0) Filters.Scene["TranscendenceMod:SaturationShader"].Deactivate();
-                if (Filters.Scene["TranscendenceMod:DesaturationShader"].IsActive() && DesaturationTimer == 0) Filters.Scene["TranscendenceMod:DesaturationShader"].Deactivate();
-                if (Filters.Scene["TranscendenceMod:Static"].IsActive() && StaticTimer == 0) Filters.Scene["TranscendenceMod:Static"].Deactivate();
+                if (Filters.Scene["TranscendenceMod:ScreenFlip"].IsActive() && (FlipTimer == 0 || Player.dead)) Filters.Scene["TranscendenceMod:ScreenFlip"].Deactivate();
+                if (Filters.Scene["TranscendenceMod:ColdScreen"].IsActive() && (ColdTimer == 0 || Player.dead)) Filters.Scene["TranscendenceMod:ColdScreen"].Deactivate();
+                if (Filters.Scene["TranscendenceMod:HotScreen"].IsActive() && (HotTimer == 0 || Player.dead)) Filters.Scene["TranscendenceMod:HotScreen"].Deactivate();
+                if (Filters.Scene["TranscendenceMod:SaturationShader"].IsActive() && (SaturationTimer == 0 || Player.dead)) Filters.Scene["TranscendenceMod:SaturationShader"].Deactivate();
+                if (Filters.Scene["TranscendenceMod:DesaturationShader"].IsActive() && (DesaturationTimer == 0 || Player.dead)) Filters.Scene["TranscendenceMod:DesaturationShader"].Deactivate();
+                if (Filters.Scene["TranscendenceMod:Static"].IsActive() && (StaticTimer == 0 || Player.dead)) Filters.Scene["TranscendenceMod:Static"].Deactivate();
 
                 if (!Filters.Scene["TranscendenceMod:FlashbangShader"].IsActive())
                     Filters.Scene.Activate("TranscendenceMod:FlashbangShader");
 
-                Filters.Scene["TranscendenceMod:FlashbangShader"].GetShader().UseOpacity(FBa);
+                if (Filters.Scene["TranscendenceMod:FlashbangShader"].IsActive() && (FlashBangTimer == 0 || Player.dead))
+                    Filters.Scene["TranscendenceMod:FlashbangShader"].GetShader().UseOpacity(0f);
 
-                if (Filters.Scene["TranscendenceMod:FlashbangShader"].IsActive() && FlashBangTimer == 0)
-                {
-                    if (FBa > 0.1f)
-                        FBa = MathHelper.Lerp(FBa, 0f, 1f / 30f);
-                    else FBa = 0f;
-                }
-
-                if (Filters.Scene["TranscendenceMod:InverseShader"].IsActive() && InverseTimer == 0) Filters.Scene["TranscendenceMod:InverseShader"].Deactivate();
+                if (Filters.Scene["TranscendenceMod:InverseShader"].IsActive() && (InverseTimer == 0 || Player.dead)) Filters.Scene["TranscendenceMod:InverseShader"].Deactivate();
                 if (Filters.Scene["TranscendenceMod:ScreenVignette"].IsActive() && ScreenVignetteTimer == 0) Filters.Scene["TranscendenceMod:ScreenVignette"].Deactivate();
             }
         }
@@ -424,6 +418,7 @@ namespace TranscendenceMod
             FrozenMaw = false;
             DraconicFury = false;
             SunMelt = false;
+            RingOfBravery = false;
 
             ShaderShit();
 
@@ -691,6 +686,7 @@ namespace TranscendenceMod
         public override void UpdateDead()
         {
             base.UpdateDead();
+            ShaderShit();
 
             FishTrans = 0;
 
@@ -771,6 +767,10 @@ namespace TranscendenceMod
         }
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
+            if (NPC.AnyNPCs(ModContent.NPCType<CelestialSeraph>()))
+                Player.Center = new Vector2(TranscendenceWorld.SpaceTempleX, 97 * 16);
+            SeraphTileDrawingSystem.PhaseThroughTimer = 0;
+
             ShellCrumbleCD = 2700;
 
             if (Player.GetModPlayer<NucleusGame>().Active)
@@ -1709,11 +1709,11 @@ namespace TranscendenceMod
 
             if (Jolly > 0)
             {
-                int score = (int)(FrostMoonHS / 1500f);
+                int score = (int)(FrostMoonHS / 2000f);
                 for (int i = 0; i < score; i++)
-                    Player.statLifeMax2 += (int)((Player.statLifeMax2 / 50f) * Jolly);
+                    Player.statLifeMax2 += (int)((Player.statLifeMax2 / 200f) * Jolly);
                 if (!Player.ZoneSnow)
-                    Player.statDefense -= (int)(Player.statDefense / 10f) * Jolly;
+                    Player.statDefense -= (int)(Player.statDefense / 20f) * Jolly;
             }
 
             if (VoidNecklaceAlpha > 1f)
@@ -1778,15 +1778,10 @@ namespace TranscendenceMod
                 }
             }
 
-            if (Main.dayTime)
-                CanSpawnLesserSeraph = true;
-
-            int seraphMini = ModContent.NPCType<LesserSeraph>();
-            bool rightTime = !Main.dayTime && Main.time > ((Main.nightLength / 2) - 250) && Main.time < ((Main.nightLength / 2) + 4000);
-            if (ZoneStar && rightTime && !NPC.AnyNPCs(seraphMini) && CanSpawnLesserSeraph && NPC.downedMoonlord)
+            if (RingOfBravery)
             {
-                NPC.NewNPC(Player.GetSource_FromAI(), (int)Player.Center.X, (int)(Player.Center.Y - 500), seraphMini);
-                CanSpawnLesserSeraph = false;
+                Player.maxMinions += 1;
+                Player.GetAttackSpeed(DamageClass.SummonMeleeSpeed) += 0.25f;
             }
 
             VampireHealAmount = (int)(Player.statLifeMax2 * 0.35f) - (Player.statDefense / 2);
@@ -2048,7 +2043,7 @@ namespace TranscendenceMod
                     ZoneSpaceTempleTimer = 5;
                     Main.musicFade[Main.curMusic] = 0.15f;
                 }
-                Player.noBuilding = true;
+                //Player.noBuilding = true;
                 Player.wireOperationsCooldown = 1;
             }
 

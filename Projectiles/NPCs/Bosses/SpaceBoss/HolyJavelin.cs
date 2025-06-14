@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -50,8 +51,16 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
         }
         public override bool PreDraw(ref Color lightColor)
         {
-            TranscendenceUtils.DrawTrailProj(Projectile, Color.Gold * 0.66f, Projectile.scale, "TranscendenceMod/Miscannellous/Assets/Trail", false, true, 2f, Vector2.Zero);
-            TranscendenceUtils.DrawTrailProj(Projectile, Color.White, Projectile.scale / 2f, "TranscendenceMod/Miscannellous/Assets/Trail", false, true, 2f, Vector2.Zero);
+            SpriteBatch spriteBatch = Main.spriteBatch;
+
+            TranscendenceUtils.RestartSB(spriteBatch, BlendState.Additive, null);
+
+
+            TranscendenceUtils.DrawTrailProj(Projectile, Color.Gold, Projectile.scale, Texture, false, true, 3f, Vector2.Zero);
+
+
+            TranscendenceUtils.RestartSB(spriteBatch, BlendState.AlphaBlend, null);
+
 
             TranscendenceUtils.VeryBasicProjOutline(Projectile, Texture, 2f, 1f, 1f, 1f, 1f, false);
             TranscendenceUtils.DrawEntity(Projectile, Color.White, Projectile.scale, Texture, Projectile.rotation, Projectile.Center, null);

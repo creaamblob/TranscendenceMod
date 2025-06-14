@@ -68,7 +68,7 @@ namespace TranscendenceMod
                     break;
 
                 case DashType.Molten:
-                    dashSpeed = 14f;
+                    dashSpeed = 18f;
                     dashCD = 15;
                     dashTime = 10;
                     dashBounce = 2;

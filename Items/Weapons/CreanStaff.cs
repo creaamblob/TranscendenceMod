@@ -59,7 +59,7 @@ namespace TranscendenceMod.Items.Weapons
             .AddIngredient(ItemID.RainbowRod)
             .AddIngredient(ModContent.ItemType<SpritersBrush>())
             .AddIngredient(ItemID.SoulofFlight, 125)
-            .AddIngredient(ItemID.FallenStar, 50)
+            .AddIngredient(ItemID.SoulofLight, 50)
             .AddIngredient(ItemID.Cog, 25)
             .AddIngredient(ItemID.LunarOre, 5)
             .AddTile(TileID.LunarCraftingStation)
@@ -152,7 +152,7 @@ namespace TranscendenceMod.Items.Weapons
 
                 if (player.controlUseItem && Projectile.ai[2] == 0)
                 {
-                    SoundEngine.PlaySound(SoundID.Item84, Projectile.Center);
+                    SoundEngine.PlaySound(SoundID.Item67, Projectile.Center);
 
                     float speed = TranscendenceWorld.DownedWindDragon ? 6f : 3f;
                     Projectile.NewProjectile(Projectile.GetSource_FromAI(), vec, vel * speed, ModContent.ProjectileType<CreanLaser>(), player.HeldItem.damage / 2, Projectile.knockBack, player.whoAmI, 0f, 0f, 1f);

@@ -23,7 +23,7 @@ namespace TranscendenceMod.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Item.DamageType = DamageClass.Ranged;
-            Item.damage = 235;
+            Item.damage = 245;
             Item.knockBack = 0.5f;
             Item.crit = 10;
             Item.channel = true;
@@ -56,7 +56,7 @@ namespace TranscendenceMod.Items.Weapons.Ranged
             CreateRecipe()
             .AddIngredient(ItemID.ElectrosphereLauncher)
             .AddIngredient(ItemID.LunarBar, 20)
-            .AddIngredient(ModContent.ItemType<ElectricalComponent>(), 2)
+            .AddIngredient(ModContent.ItemType<ElectricalComponent>())
             .AddIngredient(ModContent.ItemType<Lightning>(), 14)
             .AddTile(TileID.LunarCraftingStation)
             .Register();

@@ -128,7 +128,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
                 boss.ShieldLife = NPC.life;
                 NoCollision = NPC.dontTakeDamage || boss.Attack == SeraphAttacks.GalaxyShardDash || boss.Attack == SeraphAttacks.Supernova || boss.Attack == SeraphAttacks.StellarFirestorm || boss.Attack == SeraphAttacks.RoyalFlash;
 
-                if (boss.Attack == SeraphAttacks.CosmicMirror || GrandFinale || npc.ai[1] < 2)
+                if (GrandFinale || npc.ai[1] < 2)
                     NPC.dontTakeDamage = true;
                 else
                 {

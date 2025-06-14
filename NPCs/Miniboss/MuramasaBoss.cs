@@ -11,9 +11,11 @@ using Terraria.ModLoader;
 using TranscendenceMod.Items.Accessories.Other;
 using TranscendenceMod.Items.Materials;
 using TranscendenceMod.Items.Weapons.Magic;
+using TranscendenceMod.Items.Weapons.Melee;
 using TranscendenceMod.Miscannellous;
 using TranscendenceMod.Miscannellous.GlobalStuff;
 using TranscendenceMod.Projectiles.NPCs.Bosses.Muramasa;
+using TranscendenceMod.Items.Weapons.Ranged;
 
 namespace TranscendenceMod.NPCs.Miniboss
 {
@@ -35,8 +37,8 @@ namespace TranscendenceMod.NPCs.Miniboss
         public override void SetDefaults()
         {
             /*Stats*/
-            NPC.lifeMax = TranscendenceWorld.DownedWindDragon ? 32250 : NPC.downedPlantBoss ? 9520 : 855;
-            NPC.defense = TranscendenceWorld.DownedWindDragon ? 20 : NPC.downedPlantBoss ? 15 : 5;
+            NPC.lifeMax = TranscendenceWorld.DownedWindDragon ? 32250 : NPC.downedPlantBoss ? 9520 : 1755;
+            NPC.defense = TranscendenceWorld.DownedWindDragon ? 20 : NPC.downedPlantBoss ? 20 : 10;
             NPC.damage = TranscendenceWorld.DownedWindDragon ? 80 : NPC.downedPlantBoss ? 60 : 40;
             NPC.value = TranscendenceWorld.DownedWindDragon ? Item.buyPrice(gold: 35) : NPC.downedPlantBoss ? Item.buyPrice(gold: 17, silver: 50) : Item.buyPrice(gold: 5);
             NPC.width = TranscendenceWorld.DownedWindDragon ? 58 : 64;
@@ -57,10 +59,14 @@ namespace TranscendenceMod.NPCs.Miniboss
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ItemID.Muramasa));
-            npcLoot.Add(ItemDropRule.OneFromOptions(1, ModContent.ItemType<WaterKunai>(), ModContent.ItemType<LeatherGlove>()));
-            npcLoot.Add(ItemDropRule.Common(ItemID.GoldenKey, 1, 2, 6));
-            npcLoot.Add(ItemDropRule.ByCondition(new DragonDropRule(), ModContent.ItemType<PoseidonsTide>(), 1, 4, 6));
+            npcLoot.Add(ItemDropRule.OneFromOptions(1,
+                ModContent.ItemType<SewerHoop>(),
+                ModContent.ItemType<CobaltWaterGun>(),
+                ModContent.ItemType<WaterKunai>(),
+                ModContent.ItemType<LeatherGlove>()));
+
+            npcLoot.Add(ItemDropRule.Common(ItemID.GoldenKey, 1, 2, 4));
+            npcLoot.Add(ItemDropRule.ByCondition(new DragonDropRule(), ModContent.ItemType<PoseidonsTide>(), 1, 4, 8));
         }
         public override bool CanHitPlayer(Player target, ref int cooldownSlot)
         {
@@ -97,6 +103,7 @@ namespace TranscendenceMod.NPCs.Miniboss
                 NPC.ai[1]++;
                 NPC.velocity = Vector2.Zero;
                 FoundPos = false;
+                NPC.ai[0] = 0;
                 NPC.ai[3] = 0;
                 Timer = 0;
             }
@@ -152,7 +159,7 @@ namespace TranscendenceMod.NPCs.Miniboss
                         if (Collision.SolidCollision(NPC.Center - new Vector2(8), 16, 16) && Timer > 115)
                         {
                             SoundEngine.PlaySound(SoundID.DD2_MonkStaffGroundImpact, NPC.Center);
-                            TranscendenceUtils.BasicShotgun(NPC.GetSource_FromAI(), NPC.Center, DashPos * -6f, ModContent.ProjectileType<MuramasaDeathLaser>(), 25, 2, 3, 7.5f, 1f, -1, 0, MathHelper.PiOver4, 1);
+                            TranscendenceUtils.ProjectileRing(NPC, 12, NPC.GetSource_FromAI(), NPC.Center, ModContent.ProjectileType<MuramasaDeathLaser>(), 30, 2f, 1f, 1f, 0f, 0.75f, -1, Main.rand.NextFloat(MathHelper.TwoPi));
 
                             NPC.velocity = Vector2.Zero;
                             NPC.ai[3] = 1;
@@ -164,8 +171,8 @@ namespace TranscendenceMod.NPCs.Miniboss
             void ComeHere()
             {
                 Duration = 150;
-                Vector2 pos = NPC.Center + Vector2.One.RotatedBy(MathHelper.ToRadians(Timer * 7.5f)) * (650 - Timer);
-                Vector2 pos2 = NPC.Center + Vector2.One.RotatedBy(-MathHelper.ToRadians(Timer * 7.5f)) * (550 - (Timer * 0.75f));
+                Vector2 pos = NPC.Center + Vector2.One.RotatedBy(MathHelper.ToRadians(Timer * 7.5f)) * (550 - Timer);
+                Vector2 pos2 = NPC.Center + Vector2.One.RotatedBy(-MathHelper.ToRadians(Timer * 7.5f)) * (450 - (Timer * 0.75f));
                 NPC.rotation += 0.5f;
 
                 if (Timer < 75)
@@ -207,7 +214,7 @@ namespace TranscendenceMod.NPCs.Miniboss
 
             void Slam()
             {
-                Duration = 300;
+                Duration = 350;
 
                 if (Timer < 45)
                 {
@@ -243,18 +250,17 @@ namespace TranscendenceMod.NPCs.Miniboss
                     }
                     else
                     {
-                        if (Timer % 30 == 0)
+                        if (++NPC.ai[0] < 60 && Timer % 15 == 0)
                         {
                             float rand = Main.rand.NextFloat(-25f, 25f);
                             int rand2 = Main.rand.Next(2, 9);
+                            
+                            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.DirectionTo(player.Center) * 4f, ModContent.ProjectileType<MuramasaSlash>(), 20, 2, -1, 0, 0, 2);
 
-                            for (int i = 0; i < 22; i++)
-                            {
-                                if (i < (rand2 - 2) || i > (rand2 + 2))
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center - new Vector2(0, rand + (35 * i)), new Vector2(NPC.direction * 5, 0), ModContent.ProjectileType<MuramasaSlash>(), 20, 2, -1, 0, 0, 2);
-                            }
                             SoundEngine.PlaySound(SoundID.Item71 with { MaxInstances = 0}, NPC.Center);
                         }
+                        if (NPC.ai[0] > 90)
+                            NPC.ai[0] = 0;
                     }
                 }
             }

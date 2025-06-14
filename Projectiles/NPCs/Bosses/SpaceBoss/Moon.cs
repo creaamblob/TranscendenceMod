@@ -103,11 +103,11 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
                 if (player == null || !player.active)
                     return;
 
-                if (player.Distance(Projectile.Center) < (520f * 0.5f * Projectile.scale) && Projectile.localAI[1] > 110 && Projectile.localAI[2] > (130 - cd))
+                /*if (player.Distance(Projectile.Center) < (520f * 0.5f * Projectile.scale) && Projectile.localAI[1] > 110 && Projectile.localAI[2] > (130 - cd))
                 {
                     player.SetImmuneTimeForAllTypes(15);
                     player.velocity = Projectile.velocity;
-                }
+                }*/
 
                 if (Projectile.localAI[2] > (80 - cd) && Projectile.localAI[2] < (115 - cd))
                 {

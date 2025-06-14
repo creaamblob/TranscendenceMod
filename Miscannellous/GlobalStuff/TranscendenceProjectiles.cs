@@ -259,20 +259,20 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                 projectile.type == ProjectileID.RocketIV || projectile.type == ProjectileID.RocketII || projectile.type == ProjectileID.MiniNukeGrenadeII
                 || projectile.type == ProjectileID.MiniNukeMineII || projectile.type == ProjectileID.MiniNukeRocketII || projectile.type == ProjectileID.MiniNukeSnowmanRocketII
                 || projectile.type == ProjectileID.RocketSnowmanII || projectile.type == ProjectileID.RocketSnowmanIV
-                || projectile.type == ProjectileID.MiniNukeMineII || projectile.type == ProjectileID.ClusterFragmentsII ||
-                projectile.type == ProjectileID.GrenadeII || projectile.type == ProjectileID.ProximityMineIV ||
-                projectile.type == ProjectileID.RocketSnowmanII || projectile.type == ProjectileID.RocketSnowmanIV ||
-                projectile.type == ProjectileID.ProximityMineIV || projectile.type == ProjectileID.Celeb2RocketExplosive
+                || projectile.type == ProjectileID.MiniNukeMineII || projectile.type == ProjectileID.ClusterFragmentsI
+                || projectile.type == ProjectileID.GrenadeII || projectile.type == ProjectileID.ProximityMineIV
+                || projectile.type == ProjectileID.RocketSnowmanII || projectile.type == ProjectileID.RocketSnowmanIV
+                || projectile.type == ProjectileID.ProximityMineIV || projectile.type == ProjectileID.Celeb2RocketExplosive
                 || projectile.type == ProjectileID.Celeb2RocketExplosiveLarge || projectile.type == ProjectileID.GrenadeIV 
                 || projectile.type == ProjectileID.ClusterMineII || projectile.type == ProjectileID.ClusterRocketII
                 || projectile.type == ProjectileID.LavaBomb || projectile.type == ProjectileID.LavaGrenade
                 || projectile.type == ProjectileID.LavaMine || projectile.type == ProjectileID.LavaSnowmanRocket
                 || projectile.type == ProjectileID.LavaRocket || projectile.type == ProjectileID.WetBomb || projectile.type == ProjectileID.WetGrenade
-                || projectile.type == ProjectileID.WetRocket || projectile.type == ProjectileID.WetMine || projectile.type == ProjectileID.WetSnowmanRocket ||
-                projectile.type == ProjectileID.HoneyBomb || projectile.type == ProjectileID.HoneyGrenade || projectile.type == ProjectileID.HoneyMine ||
-                projectile.type == ProjectileID.HoneyRocket || projectile.type == ProjectileID.HoneySnowmanRocket || projectile.type == ProjectileID.DirtBomb
-                || projectile.type == ProjectileID.DirtStickyBomb || projectile.type == ProjectileID.BombFish ||
-                projectile.type == ProjectileID.BombSkeletronPrime && Main.getGoodWorld || projectile.type == ProjectileID.Explosives
+                || projectile.type == ProjectileID.WetRocket || projectile.type == ProjectileID.WetMine || projectile.type == ProjectileID.WetSnowmanRocket
+                || projectile.type == ProjectileID.HoneyBomb || projectile.type == ProjectileID.HoneyGrenade || projectile.type == ProjectileID.HoneyMine
+                || projectile.type == ProjectileID.HoneyRocket || projectile.type == ProjectileID.HoneySnowmanRocket || projectile.type == ProjectileID.DirtBomb
+                || projectile.type == ProjectileID.DirtStickyBomb || projectile.type == ProjectileID.BombFish
+                || projectile.type == ProjectileID.BombSkeletronPrime && (Main.getGoodWorld || Main.zenithWorld) || projectile.type == ProjectileID.Explosives
                 || projectile.type == ModContent.ProjectileType<MiningDustProj>() || projectile.type == ModContent.ProjectileType<SuperBoom>() || projectile.type == ModContent.ProjectileType<SuperCreation>()
                 || projectile.type == ModContent.ProjectileType<SuperBombProj_Brick>() || projectile.type == ModContent.ProjectileType<SuperBombProj_Brick_Sticky>()
                 || projectile.type == ModContent.ProjectileType<SuperBombProj_Sticky>() || projectile.type == ModContent.ProjectileType<SuperBombProj_Bouncy>() || projectile.type == ModContent.ProjectileType<SuperBombProj>())

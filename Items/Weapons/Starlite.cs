@@ -30,7 +30,6 @@ namespace TranscendenceMod.Items.Weapons
         {
             CreateRecipe(24)
             .AddIngredient(ItemID.FallenStar, 2)
-            .AddIngredient(ItemID.SunplateBlock, 1)
             .AddTile(TileID.SkyMill)
             .Register();
         }

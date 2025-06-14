@@ -12,7 +12,7 @@ namespace TranscendenceMod.Projectiles.Weapons.Melee
             Projectile.width = 30;
             Projectile.height = 30;
 
-            Projectile.timeLeft = 240;
+            Projectile.timeLeft = 3600;
             Projectile.aiStyle = -1;
 
             Projectile.penetrate = -1;
@@ -32,7 +32,7 @@ namespace TranscendenceMod.Projectiles.Weapons.Melee
 
             Projectile.rotation += 0.5f;
 
-            if (++Projectile.ai[2] > 30)
+            if (++Projectile.ai[2] > 45)
                 Projectile.ai[1] = 1;
 
             if (Projectile.ai[1] == 1)
@@ -45,6 +45,12 @@ namespace TranscendenceMod.Projectiles.Weapons.Melee
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Projectile.ai[1] = 1;
+
+            int fount = ModContent.ProjectileType<SewerHoopFountain>();
+
+            if (Main.player[Projectile.owner].ownedProjectileCounts[fount] < 3)
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, fount, Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
+
             base.OnHitNPC(target, hit, damageDone);
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
