@@ -1,0 +1,21 @@
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\tModLoader.targets" />
+  <PropertyGroup>
+    <AssemblyName>TranscendenceMod</AssemblyName>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Remove=".vs\**" />
+    <Compile Remove=".vs\**" />
+    <EmbeddedResource Remove=".vs\**" />
+    <None Remove=".vs\**" />
+  </ItemGroup>
+  <ItemGroup>
+
+    <Reference Include="StructureHelper">
+      <HintPath>Miscannellous\lib\StructureHelper.dll</HintPath>
+    </Reference>
+    
+  </ItemGroup>
+</Project>
