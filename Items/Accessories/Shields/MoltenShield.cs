@@ -5,8 +5,6 @@ namespace TranscendenceMod.Items.Accessories.Shields
 {
     public class MoltenShield : BaseShield
     {
-        public override int ParryType => 1;
-
         public override int Leniency => 40;
 
         public override int Cooldown => 90;

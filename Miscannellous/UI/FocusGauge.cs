@@ -23,12 +23,12 @@ namespace TranscendenceMod.Miscannellous.UI
 
             Player player = Main.LocalPlayer;
 
-            Vector2 pos = player.Center - Main.screenPosition;
+            Vector2 pos = new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f + 5f * Main.UIScale);
 
-            if (player != null && player.active && player.TryGetModPlayer(out TranscendencePlayer modPlayer) && modPlayer != null && modPlayer.Parry > 0)
+            if (player != null && player.active && player.TryGetModPlayer(out TranscendencePlayer modPlayer) && modPlayer != null && modPlayer.HasParry)
             {
                 int x = (int)pos.X;
-                int y = (int)(pos.Y + 75 + player.gfxOffY);
+                int y = (int)(pos.Y + (75 + player.gfxOffY) * Main.UIScale);
 
                 int width = (int)MathHelper.Lerp(0, 64, modPlayer.Focus / modPlayer.MaxFocus);
 
@@ -43,10 +43,6 @@ namespace TranscendenceMod.Miscannellous.UI
                 if (Hover)
                 {
                     Main.hoverItemName = Language.GetTextValue("Mods.TranscendenceMod.Messages.FocusUI") + $" ({Math.Round(modPlayer.Focus, 0)}/{modPlayer.MaxFocus})";
-
-                    Main.LocalPlayer.mouseInterface = true;
-                    Main.mouseText = true;
-
                 }
             }
         }

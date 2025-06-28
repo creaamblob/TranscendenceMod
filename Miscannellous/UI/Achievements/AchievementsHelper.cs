@@ -63,7 +63,7 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
                 CompleteAchievement(TaskIDs.Begin);
             }
 
-            if (Main.LocalPlayer.GetModPlayer<TranscendencePlayer>().Parry > 0 && !ParryUnlock)
+            if (Main.LocalPlayer.GetModPlayer<TranscendencePlayer>().HasParry && !ParryUnlock)
             {
                 ParryUnlock = true;
                 CompleteAchievement(TaskIDs.Parry);

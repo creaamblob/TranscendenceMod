@@ -6,8 +6,6 @@ namespace TranscendenceMod.Items.Accessories.Shields
 {
     public class JungleShield1 : BaseShield
     {
-        public override int ParryType => 2;
-
         public override int Leniency => 35;
 
         public override int Cooldown => 120;

@@ -7,8 +7,6 @@ namespace TranscendenceMod.Items.Accessories.Shields
     [AutoloadEquip(EquipType.Shield)]
     public class PalladiumShield : BaseShield
     {
-        public override int ParryType => 2;
-
         public override int Leniency => 40;
 
         public override int Cooldown => 120;

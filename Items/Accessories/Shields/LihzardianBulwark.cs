@@ -6,8 +6,6 @@ namespace TranscendenceMod.Items.Accessories.Shields
 {
     public class LihzardianBulwark : BaseShield
     {
-        public override int ParryType => 2;
-
         public override int Leniency => 35;
 
         public override int Cooldown => 90;

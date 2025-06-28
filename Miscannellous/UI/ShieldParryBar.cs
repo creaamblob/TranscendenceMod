@@ -23,8 +23,7 @@ namespace TranscendenceMod.Miscannellous.UI
 
             Player player = Main.LocalPlayer;
 
-            Vector2 pos = player.Center - Main.screenPosition;
-            bool Hover = Main.MouseWorld.Between(pos + Main.screenPosition + new Vector2(-sprite.Width / 2, 50), pos + Main.screenPosition + new Vector2(sprite.Width / 2, 50 + sprite.Height / 2f));
+            Vector2 pos = new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
 
             bool onCD = player.GetModPlayer<TranscendencePlayer>().ParryTimerCD < player.GetModPlayer<TranscendencePlayer>().ParryCD;
             int timer = (int)(player.GetModPlayer<TranscendencePlayer>().ParryTimer);
@@ -37,41 +36,42 @@ namespace TranscendenceMod.Miscannellous.UI
                 Main.LocalPlayer.mouseInterface = true;
             }
 
-            if (player != null && player.active && player.GetModPlayer<TranscendencePlayer>().Parry > 0)
+            if (player != null && player.active && player.TryGetModPlayer(out TranscendencePlayer modPlayer) && modPlayer.HasParry)
             {
                 int x = (int)pos.X;
-                int y = (int)(pos.Y + 5 + player.gfxOffY);
+                int y = (int)(pos.Y + (55 + player.gfxOffY) * Main.UIScale);
 
-                int width = (int)MathHelper.Lerp(0, 52, timer / (float)player.GetModPlayer<TranscendencePlayer>().ParryAmount);
-                float cd = player.GetModPlayer<TranscendencePlayer>().ParryTimerCD < 0 ? -1f : 1;
-                int width2 = (int)MathHelper.Lerp(0, 52, (player.GetModPlayer<TranscendencePlayer>().ParryTimerCD * cd) / (float)player.GetModPlayer<TranscendencePlayer>().ParryCD);
 
-                Rectangle rec = new Rectangle(x - (sprite.Width / 2), y + 45, sprite.Width, sprite.Height);
-                Rectangle rec2 = new Rectangle(x - 26, y + 53, onCD ? width2 : width, 8);
+                int width = (int)MathHelper.Lerp(0, 52, timer / (float)modPlayer.ParryAmount);
+                float cd = modPlayer.ParryTimerCD < 0 ? -1f : 1;
+                int width2 = (int)MathHelper.Lerp(0, 52, (modPlayer.ParryTimerCD * cd) / (float)modPlayer.ParryCD);
+                bool noFocus = modPlayer.Focus < modPlayer.ParryFocusCost;
 
-                Color c = player.GetModPlayer<TranscendencePlayer>().BrokenShield ? Color.Red : onCD ? Color.White : timer < 5 ? Color.Lime : Color.Red;
+                x -= sprite.Width / 2;
+                Rectangle rec = new Rectangle(x, y, sprite.Width, sprite.Height);
+                Rectangle rec2 = new Rectangle(x + 16, y + 8, onCD ? width2 : width, 8);
 
-                spriteBatch.Draw(sprite, rec, player.GetModPlayer<TranscendencePlayer>().BrokenShield ? Color.DarkRed : Color.White);
+                Color c = modPlayer.BrokenShield ? Color.Red : noFocus ? new Color(50, 50, 50) : onCD ? Color.White : timer <= 5 ? Color.Lime : Color.Red;
+
+                spriteBatch.Draw(sprite, rec, modPlayer.BrokenShield ? Color.DarkRed : noFocus ? new Color(100, 100, 100) : Color.White);
                 spriteBatch.Draw(sprite2, rec, c);
 
                 spriteBatch.Draw(TextureAssets.BlackTile.Value, rec2, c);
 
-                bool showParticles = timer > 0 || onCD || player.GetModPlayer<TranscendencePlayer>().BrokenShield;
-                if (player.GetModPlayer<TranscendencePlayer>().ParryTimerCD > 1 && showParticles)
+                bool Hover = Main.MouseWorld.Between(new Vector2(x, y) + Main.screenPosition, new Vector2(x, y) + Main.screenPosition + new Vector2(sprite.Width, sprite.Height));
+
+                bool showParticles = timer > 0 || onCD || modPlayer.BrokenShield;
+                if (modPlayer.ParryTimerCD > 1 && showParticles)
                 {
                     for (int i = 0; i < 8; i++)
                     {
-                        spriteBatch.Draw(TextureAssets.BlackTile.Value, new Vector2(x - 26 + (onCD ? width2 : width), y + 57) + Main.rand.NextVector2Circular(4f, 8f), null, c, 0f, TextureAssets.BlackTile.Value.Size() * 0.5f, 0.175f, SpriteEffects.None, 0f);
+                        spriteBatch.Draw(TextureAssets.BlackTile.Value, new Vector2(x + 16 + (onCD ? width2 : width), y + 12) + Main.rand.NextVector2Circular(4f, 8f), null, c, 0f, TextureAssets.BlackTile.Value.Size() * 0.5f, 0.175f, SpriteEffects.None, 0f);
                     }
                 }
 
                 if (Hover)
                 {
                     Main.hoverItemName = Language.GetTextValue("Mods.TranscendenceMod.Messages.ParryUI");
-
-                    Main.LocalPlayer.mouseInterface = true;
-                    Main.mouseText = true;
-
                 }
             }
         }

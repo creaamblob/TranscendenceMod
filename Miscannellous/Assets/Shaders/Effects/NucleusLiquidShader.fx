@@ -61,7 +61,7 @@ float4 Sinewave(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
             return float4(1, 1, 1, 1);
     }
     
-    color.rgba = round(color.rgba * (3 - 1)) / (3 - 1);
+    color.rgba = round(color.rgba * (9 - 1)) / (9 - 1);
     
     return color;
 }

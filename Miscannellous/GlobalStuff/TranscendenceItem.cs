@@ -366,7 +366,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                         StringBuilder sb = new StringBuilder(10);
                         sb.Append(keys[0]);
 
-                        var generic = new TooltipLine(Mod, "ShieldGeneric", Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Shields", ShieldParryLeniency));
+                        var generic = new TooltipLine(Mod, "ShieldGeneric", Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Shields", ShieldParryLeniency, Main.LocalPlayer.GetModPlayer<TranscendencePlayer>().ParryFocusCost));
                         var cd = new TooltipLine(Mod, "ShieldParryCD", Language.GetTextValue("Mods.TranscendenceMod.Messages.ParryCD", ShieldParryCD / 60f));
 
                         tooltips.Insert(parryIndex, generic);

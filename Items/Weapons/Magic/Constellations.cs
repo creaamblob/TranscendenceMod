@@ -69,10 +69,6 @@ namespace TranscendenceMod.Items.Weapons.Magic
             }
             return player.altFunctionUse != 2 && player.ownedProjectileCounts[proj2] < 25;
         }
-        public override bool AltFunctionUse(Player player)
-        {
-            return true;
-        }
         public override void HoldItem(Player player)
         {
             if (player.ownedProjectileCounts[proj] == 0)

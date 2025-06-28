@@ -352,53 +352,16 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
         }
         public override bool CanHitPlayer(NPC npc, Player target, ref int cooldownSlot)
         {
-            if (npc.lifeMax == 250 && npc.friendly)
-                return true;
             if (SuckedInNecklace > 0)
                 return false;
-            if (npc.aiStyle == NPCAIStyleID.Caster || npc.type == NPCID.PlanterasHook ||npc.type == NPCID.MoonLordHand || npc.type == NPCID.MoonLordHead || npc.type == NPCID.MoonLordFreeEye)
-                return false;
 
-            target.TryGetModPlayer(out TranscendencePlayer modPlayer);
-            if (modPlayer != null && npc.active && base.CanHitPlayer(npc, target, ref cooldownSlot) && !npc.dontTakeDamage && npc != null && modPlayer.InsideShell == 0 && !modPlayer.InsideGolem && npc.Hitbox.Intersects(target.Hitbox) && (modPlayer.Parry == 1
-                && modPlayer.ParryTimer > 0 && modPlayer.ParryTimer < 10
-                && modPlayer.ParryTimerCD > modPlayer.ParryCD || modPlayer.SwordTimer > 0 && modPlayer.ParryTimerCD > 30))
+            // Parrying
+            if (npc.active && base.CanHitPlayer(npc, target, ref cooldownSlot) && npc.Hitbox.Intersects(target.Hitbox) && !npc.dontTakeDamage && npc != null && TranscendenceUtils.GeneralParryConditions(target))
             {
-                SoundEngine.PlaySound(SoundID.DrumCymbal2, target.Center);
-                target.SetImmuneTimeForAllTypes(45);
-                target.velocity.X -= 6 * target.direction;
-                target.AddBuff(BuffID.Dazed, 90);
+                target.TryGetModPlayer(out TranscendencePlayer modPlayer);
+                if (modPlayer == null)
+                    return base.CanHitPlayer(npc, target, ref cooldownSlot);
 
-                Projectile.NewProjectile(target.GetSource_FromThis(), target.Center, Vector2.Zero, ModContent.ProjectileType<ParryVisual>(), 0, 0, target.whoAmI, target.GetModPlayer<TranscendencePlayer>().ShieldID);
-
-                if (modPlayer.EolAegis)
-                {
-                    TranscendenceUtils.ProjectileRing(target, 9, target.GetSource_FromAI(), target.Center, ModContent.ProjectileType<EolShieldLaser>(), 160, 0, 2, 0, 0, 1, target.whoAmI, 0);
-                    TranscendenceUtils.ProjectileRing(target, 9, target.GetSource_FromAI(), target.Center, ModContent.ProjectileType<EolShieldLaser>(), 160, 0, 2, 0, 0, -1, target.whoAmI, 0);
-                    SoundEngine.PlaySound(SoundID.Item33 with { MaxInstances = 0 }, target.Center);
-                }
-
-                if (modPlayer.HealthyJewel)
-                    target.Heal(20);
-
-                DialogUI.SpawnDialog(Language.GetTextValue("Mods.TranscendenceMod.Messages.Parry"), target.Top, 60, Color.Gold);
-
-                modPlayer.StardustShieldParries++;
-                modPlayer.CultistForcefieldParries++;
-                modPlayer.ParryTimerCD = 0;
-                modPlayer.ParryTimer = 0;
-                npc.SimpleStrikeNPC(target.statDefense * 3, npc.direction, false, 3, DamageClass.Generic);
-                
-                if (!modPlayer.DualBall)
-                    modPlayer.ShieldBreak(120);
-
-                return false;
-            }
-
-            if (modPlayer != null && npc.active && base.CanHitPlayer(npc, target, ref cooldownSlot) && !npc.dontTakeDamage && npc != null && modPlayer.InsideShell == 0 && !modPlayer.InsideGolem && npc.Hitbox.Intersects(target.Hitbox)
-                && modPlayer.Parry > 1 && modPlayer.ParryTimer > 0 && (modPlayer.ParryTimer < 10 ||
-                modPlayer.ParryTimer > (modPlayer.ParryAmount - 10)) && modPlayer.ParryTimerCD > modPlayer.ParryCD)
-            {
                 DialogUI.SpawnDialog(Language.GetTextValue("Mods.TranscendenceMod.Messages.Parry"), target.Top, 60, Color.Gold);
 
                 Projectile.NewProjectile(target.GetSource_FromThis(), target.Center, Vector2.Zero, ModContent.ProjectileType<ParryVisual>(), 0, 0, target.whoAmI, target.GetModPlayer<TranscendencePlayer>().ShieldID);
@@ -407,23 +370,14 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                     target.AddBuff(BuffID.RapidHealing, 240);
 
                 target.SetImmuneTimeForAllTypes(45);
-                target.velocity.X += 2f * target.direction;
                 SoundEngine.PlaySound(SoundID.DrumCymbal2, target.Center);
 
                 int dmg = npc.damage < 250 ? npc.damage * 3 : 750;
-                npc.SimpleStrikeNPC(dmg, target.direction, false, 5, DamageClass.Generic);
+                npc.SimpleStrikeNPC(dmg, target.direction, false, 4f, DamageClass.Generic);
 
-                if (modPlayer.HealthyJewel)
-                    target.Heal(20);
-
-                modPlayer.StardustShieldParries++;
-                modPlayer.CultistForcefieldParries++;
                 modPlayer.ParryTimer = 0;
                 modPlayer.ParryTimerCD = 0;
-                modPlayer.Focus -= 35f;
-
-                if (!modPlayer.DualBall)
-                    target.AddBuff(ModContent.BuffType<ShieldBreak>(), 120);
+                modPlayer.Focus -= modPlayer.ParryFocusCost;
 
                 return false;
             }

@@ -5,8 +5,6 @@ namespace TranscendenceMod.Items.Accessories.Shields
 {
     public class GiantShellOrange : BaseShield
     {
-        public override int ParryType => 1;
-
         public override int Leniency => 45;
 
         public override int Cooldown => 90;

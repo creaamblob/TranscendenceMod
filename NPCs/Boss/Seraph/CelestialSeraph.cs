@@ -232,7 +232,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
         public override void SetDefaults()
         {
             /*Stats*/
-            NPC.lifeMax = 755 * 1000;
+            NPC.lifeMax = 925 * 1000;
             NPC.defense = 30;
             NPC.damage = 190;
             NPC.takenDamageMultiplier = 1;
@@ -864,7 +864,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
                         if (Phase == 2)
                             pos = NPC.Center + Vector2.One.RotatedByRandom(MathHelper.TwoPi) * Main.rand.NextFloat(0f, 500f);
                         int am2 = Phase == 2 ? j : 0;
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, Vector2.Zero, mist, 90, 1, -1, Phase == 2 ? -1.75f : 1.75f, NPC.whoAmI, am2);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, Vector2.Zero, mist, 90, 1, -1, Phase == 2 ? -1.75f : 2.325f, NPC.whoAmI, am2);
                     }
                 }
 
@@ -1792,7 +1792,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
 
             if (ProjectileCD[0] > 0 && ProjectileCD[0] % 5 == 0)
             {
-                TranscendenceUtils.ProjectileRing(NPC, 3, NPC.GetSource_FromAI(), NPC.Center - new Vector2(0, 88), ModContent.ProjectileType<GenericDivineLaser>(), 90, 0f, 1f, -75f, NPC.whoAmI, ProjectileCD[0] < 26 ? 2.5f : 10f, -1, TranscendenceWorld.UniversalRotation * 2f, 2);
+                TranscendenceUtils.ProjectileRing(NPC, 3, NPC.GetSource_FromAI(), NPC.Center - new Vector2(0, 88), ModContent.ProjectileType<GenericDivineLaser>(), 80, 0f, 1f, -75f, NPC.whoAmI, ProjectileCD[0] < 36 ? 2.5f : 7.5f, -1, TranscendenceWorld.UniversalRotation * 2f, 2);
             }
         }
 

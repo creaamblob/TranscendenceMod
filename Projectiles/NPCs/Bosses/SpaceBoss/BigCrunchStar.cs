@@ -85,9 +85,9 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             TranscendenceUtils.DrawEntity(projectile, col * 0.75f, 1f + size, TranscendenceMod.ASSET_PATH + "/GlowBloom", projectile.rotation, projectile.Center, null);
             TranscendenceUtils.DrawEntity(projectile, Color.White * 0.75f * (1 - fade), 0.5f + size, TranscendenceMod.ASSET_PATH + "/GlowBloom", projectile.rotation, projectile.Center, null);
 
-            TranscendenceUtils.RestartSB(spriteBatch, BlendState.Additive, null);
-
             TranscendenceUtils.DrawEntity(projectile, col, projectile.scale * 1.25f, starSprite, projectile.rotation, projectile.Center, null);
+
+            TranscendenceUtils.RestartSB(spriteBatch, BlendState.AlphaBlend, null);
         }
     }
 }

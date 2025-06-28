@@ -54,6 +54,17 @@ namespace TranscendenceMod.Miscannellous
                 tile.WallType == WallID.PinkDungeonUnsafe;
         }
 
+        public static bool GeneralParryConditions(Player player)
+        {
+            player.TryGetModPlayer(out TranscendencePlayer mp);
+            if (mp == null)
+                return false;
+
+            return mp.InsideShell == 0 && !mp.InsideGolem && mp.HasParry
+                && mp.ParryTimer > 0 && mp.ParryTimer <= 5
+                && mp.ParryTimerCD > mp.ParryCD;
+        }
+
         public static void DrawItemGlowmask(Item Item, float rotat, float size, string texture)
         {
             Texture2D GlowMask = ModContent.Request<Texture2D>($"{texture}_Glow").Value;

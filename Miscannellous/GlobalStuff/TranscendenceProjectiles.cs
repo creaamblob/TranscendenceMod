@@ -69,11 +69,9 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
             return projectile.type == ProjectileID.EyeFire || projectile.type == ProjectileID.DD2BetsyFlameBreath
                 || projectile.type == ProjectileID.FairyQueenSunDance || projectile.type == ProjectileID.HallowBossLastingRainbow || ModUnparryable;
         }
-        public bool parryConditions(Projectile projectile, Player target, int parryWindow)
+        public bool parryConditions(Projectile projectile, Player target)
         {
-            return projectile.hostile && projectile.damage > 0 && !Unparryable(projectile) && target.GetModPlayer<TranscendencePlayer>().InsideShell == 0 && !target.GetModPlayer<TranscendencePlayer>().InsideGolem && target.GetModPlayer<TranscendencePlayer>().Parry > 0
-                && target.GetModPlayer<TranscendencePlayer>().ParryTimer > 0 && target.GetModPlayer<TranscendencePlayer>().ParryTimer < parryWindow
-                && target.GetModPlayer<TranscendencePlayer>().ParryTimerCD > target.GetModPlayer<TranscendencePlayer>().ParryCD;
+            return projectile.hostile && projectile.damage > 0 && !Unparryable(projectile) && TranscendenceUtils.GeneralParryConditions(target);
         }
         public override bool CanHitPlayer(Projectile projectile, Player target)
         {
@@ -92,7 +90,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
             if (projectile.type == ProjectileID.PhantasmalBolt && Timer < 120 && projectile.ai[2] != 6574)
                 return false;
 
-            if (parryConditions(projectile, target, 5) && base.CanHitPlayer(projectile, target))
+            if (parryConditions(projectile, target) && base.CanHitPlayer(projectile, target))
             {
                 DoParry(target, projectile);
                 return false;
@@ -105,7 +103,8 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
         public void DoParry(Player target, Projectile projectile)
         {
             target.TryGetModPlayer(out TranscendencePlayer modplayer);
-            bool tier3 = modplayer.Parry == 3;
+            if (modplayer == null)
+                return;
 
             DialogUI.SpawnDialog(Language.GetTextValue("Mods.TranscendenceMod.Messages.Parry"), target.Top, 60, Color.Gold);
 
@@ -118,7 +117,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                 SoundEngine.PlaySound(SoundID.Item33 with { MaxInstances = 0 }, target.Center);
             }
 
-            if (CanBeErased && tier3 && projectile.damage < 500 && projectile.velocity.Length() > 2)
+            if (CanBeErased && projectile.damage < 500 && projectile.velocity.Length() > 2)
             {
                 projectile.velocity = -projectile.velocity;
                 projectile.friendly = true;
@@ -128,20 +127,12 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
             target.velocity = Vector2.Zero;
             SoundEngine.PlaySound(SoundID.DrumCymbal2, target.Center);
 
-            if (modplayer.HealthyJewel)
-                target.Heal(20);
-
-            modplayer.StardustShieldParries++;
-            modplayer.CultistForcefieldParries++;
-
             modplayer.ParryTimer = 0;
             modplayer.ParryTimerCD = 0;
-            modplayer.ShieldIFrames = tier3 ? 90 : 60;
+            modplayer.ShieldIFrames = 60;
             modplayer.Focus -= 35f;
             
-            target.SetImmuneTimeForAllTypes(tier3 ? 60 : 45);
-            if (!modplayer.DualBall)
-                target.AddBuff(ModContent.BuffType<ShieldBreak>(), 120);
+            target.SetImmuneTimeForAllTypes(45);
         }
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
@@ -322,15 +313,14 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                 ProjectileID.Sets.TrailCacheLength[projectile.type] = 20;
                 ProjectileID.Sets.TrailingMode[projectile.type] = 2;
 
-                if (Timer > 8)
+                if (Timer > 5)
                 {
                     spriteBatch.End();
                     spriteBatch.Begin(default, BlendState.Additive, Main.DefaultSamplerState, default, default, null, Main.GameViewMatrix.TransformationMatrix);
 
-                    TranscendenceUtils.DrawTrailProj(projectile, new Color(120, 15, 60), 2f, "TranscendenceMod/Miscannellous/Assets/Trail2", false, true, 1.5f, Vector2.Zero, true, 0);
-                    TranscendenceUtils.DrawTrailProj(projectile, Color.OrangeRed, 1.5f, "TranscendenceMod/Miscannellous/Assets/Trail2", false, true, 1f, Vector2.Zero, true, 0);
-                    TranscendenceUtils.DrawTrailProj(projectile, Color.OrangeRed, 1.5f, "TranscendenceMod/Miscannellous/Assets/Trail2", false, true, 1f, Vector2.Zero, true, 0);
-                    TranscendenceUtils.DrawTrailProj(projectile, Color.White, 1f, "TranscendenceMod/Miscannellous/Assets/Trail2", false, true, 1.25f, Vector2.Zero, true, 0);
+                    TranscendenceUtils.DrawTrailProj(projectile, new Color(120, 15, 60), 2f, "TranscendenceMod/Miscannellous/Assets/Trail2", false, true, 1f, Vector2.Zero, true, 0);
+                    TranscendenceUtils.DrawTrailProj(projectile, Color.Red, 1.75f, "TranscendenceMod/Miscannellous/Assets/Trail2", false, true, 1f, Vector2.Zero, true, 0);
+                    TranscendenceUtils.DrawTrailProj(projectile, Color.Yellow, 1.5f, "TranscendenceMod/Miscannellous/Assets/Trail2", false, true, 1f, Vector2.Zero, true, 0);
 
                     spriteBatch.End();
                     spriteBatch.Begin(default, BlendState.AlphaBlend, Main.DefaultSamplerState, default, default, null, Main.GameViewMatrix.TransformationMatrix);

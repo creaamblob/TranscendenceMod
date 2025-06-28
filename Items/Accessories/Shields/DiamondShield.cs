@@ -7,8 +7,6 @@ namespace TranscendenceMod.Items.Accessories.Shields
     [AutoloadEquip(EquipType.Shield)]
     public class DiamondShield : BaseShield
     {
-        public override int ParryType => 1;
-
         public override int Leniency => 35;
 
         public override int Cooldown => 150;

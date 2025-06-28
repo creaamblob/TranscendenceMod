@@ -11,8 +11,6 @@ namespace TranscendenceMod.Items.Accessories.Shields
     [AutoloadEquip(EquipType.Shield)]
     public class CelestialAegis : BaseShield
     {
-        public override int ParryType => 3;
-
         public override int Leniency => 20;
 
         public override int Cooldown => 50;

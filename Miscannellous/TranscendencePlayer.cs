@@ -170,10 +170,7 @@ namespace TranscendenceMod
 
 
         /*Shields*/
-        /// <summary>
-        /// 1 = Weak, 2 = Strong, 3 = Strong + Projectile Deflect
-        /// </summary>
-        public int Parry;
+        public bool HasParry;
         public int ParryAmount;
         public int ParryCD;
         public int ParryTimer;
@@ -182,6 +179,7 @@ namespace TranscendenceMod
         public float Focus;
         public float MaxFocus = 100f;
         public float FocusGatherSpeed = 0.05f;
+        public float ParryFocusCost = 35f;
 
         public int TurtleCD;
         public int BeetleCD;
@@ -430,7 +428,7 @@ namespace TranscendenceMod
         }
         public override void ResetEffects()
         {
-
+            ParryFocusCost = 35f;
             MysticCards = 0;
             Jolly = 0;
             SilkyEgg = 0;
@@ -669,7 +667,7 @@ namespace TranscendenceMod
             HasEolProjectile = false;
             AstronautHelmet = false;
             ApolloHelmet = false;
-            Parry = 0;
+            HasParry = false;
             BatteryAcc = 0;
             if (BatteryCooldown > 0)
                 BatteryCooldown--;
@@ -929,6 +927,9 @@ namespace TranscendenceMod
 
             if (SunMelt)
                 Player.velocity *= 0.5f;
+
+            if (DualBall && ParryTimer > 0)
+                Player.velocity *= 0.66f;
         }
         public override bool ConsumableDodge(Player.HurtInfo info)
         {
@@ -1155,14 +1156,15 @@ namespace TranscendenceMod
             HitTimer = 5;
             if (InsideShell == 0 && !InsideGolem)
             {
-                int increases = 0;
+                float decreases = 40;
 
                 if (StardustShield)
-                    increases += 60;
+                    decreases += 20f;
 
                 if (CultistForcefield)
-                    increases += 60;
-                ShieldBreak(info.Damage + increases);
+                    decreases += 20f;
+
+                Focus -= decreases;
             }
 
             if (SilkyEgg > 0)
@@ -1325,24 +1327,14 @@ namespace TranscendenceMod
 
             if (ParryTimerCD < ParryCD)
             {
-                if (!BrokenShield)
+                if (!BrokenShield && Focus >= ParryFocusCost)
                     ParryTimerCD++;
             }
             else ParryTimerCD = ParryCD + 1;
             if (ParryTimer > 0)
             {
-                if (ParryTimer > 5 || TranscendenceWorld.Timer % 3 == 0)
-                    ParryTimer -= ParryTimer > 7 ? 2 : 1;
-
-                if (HealthyJewel && ParryTimer == 7)
-                    Projectile.NewProjectile(Player.GetSource_FromThis(), Player.Center, Vector2.Zero, ModContent.ProjectileType<ParryVisual>(), 0, 0, Player.whoAmI, ModContent.ItemType<HealthyJewel>());
-
-                if (DualBall)
-                {
-                    Player.velocity = Vector2.Zero;
-                    Player.position = Player.oldPosition;
-                    Player.gravity *= 0f;
-                }
+                if (ParryTimer > 5 || TranscendenceWorld.Timer % 2 == 0)
+                    ParryTimer -= ParryTimer > 5 ? 2 : 1;
             }
 
             if (CosmoShardTimer > 0)
@@ -1437,6 +1429,7 @@ namespace TranscendenceMod
                     }
                 }
             }
+
             if (Focus < MaxFocus)
             {
                 if (!BrokenShield)
@@ -2249,7 +2242,7 @@ namespace TranscendenceMod
             if (TranscendenceWorld.RetLensKeybind.JustPressed) NucleusLensKeybind = !NucleusLensKeybind;
 
             /*Parrying*/
-            if (TranscendenceWorld.Guard.JustPressed && Parry != 0 && ParryTimer == 0 && !BrokenShield)
+            if (TranscendenceWorld.Guard.JustPressed && HasParry && ParryTimer == 0)
             {
                 /*Deactivate Golem Transformation*/
                 if (InsideGolem)
@@ -2268,7 +2261,7 @@ namespace TranscendenceMod
                     if (OrangeShell || PurpleShell) GiantShellCD = 60;
                 }
 
-                if (!CannotUseItems)
+                if (!CannotUseItems && !BrokenShield && Focus >= ParryFocusCost)
                 {
                     ShieldGuard = true;
                     ParryTimer = ParryAmount;

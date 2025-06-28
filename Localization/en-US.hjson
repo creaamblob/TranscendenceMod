@@ -1183,7 +1183,7 @@ Mods: {
 				Tooltip:
 					'''
 					You will take 50% less damage when you are raising your shield
-					You will take a second longer to regain your focus after being hit
+					You will lose 50% more focus upon being hit
 					'''
 			}
 
@@ -1378,7 +1378,7 @@ Mods: {
 				Tooltip:
 					'''
 					You will take 62,5% less damage when you are raising your shield
-					You will take a second longer to regain your focus after being hit
+					You will lose 50% more focus upon being hit
 					'''
 			}
 
@@ -1635,8 +1635,8 @@ Mods: {
 				DisplayName: Orb of Flow
 				Tooltip:
 					'''
-					You don't lose focus upon parrying
-					Raising your shield will immobilize you and drain your mana for the duration of the parry
+					Focus cost reduced by 50%
+					Raising your shield will slow you down for the duration of the parry
 					'''
 			}
 
@@ -2816,16 +2816,15 @@ Mods: {
 		}
 
 		SeraphAttackNames: {
-			BirthOfAStar: Astral Disc
+			BirthOfAStar: Starborn Miracle
 			BirthOfAStarP2: Birth of a Star
 			RainP1: Cthulhu's Firestorm
 			RainP2: Fractal Inferno
-			HomingP1: Total Purification
-			HomingP2: Elegant Purification
+			HomingP1: Astral Purification
+			HomingP2: Absolute Purification
 			Supernova: Claymore Supernova
 			Blackhole: Null Maelstrom
 			SwordSlamP2: Rending Blade of Heaven
-			NebulaMatterP1: Nebula Matter
 			NebulaMatterP2: Ultra Nebula Mantle
 			MeteorAbyss: Meteor Abyss
 			Moon: Impact Field
@@ -3200,8 +3199,9 @@ Mods: {
 				Shields:
 					'''
 					[c/586475:Pressing (Unbound Key) will make you raise your shield for {0} frames.]
-					[c/586475:Getting hit by an enemy or a projectile within the last 10 frames will parry the attack, dealing damage to the foe and ignoring damage taken.]
-					[c/586475:You will lose focus upon parrying or getting hit, making you unable to parry again for a short time.]
+					[c/586475:Getting hit by an enemy or a projectile within the last 5 frames will parry the attack, dealing damage to the foe and ignoring damage taken.]
+					[c/586475:You will lose {1} focus upon parrying]
+					[c/586475:Not having enough focus will prevent you from parrying]
 					'''
 
 				Modifiers: {
@@ -3757,7 +3757,7 @@ Mods: {
 
 			ShieldBreak: {
 				DisplayName: Guard Down
-				Description: Cannot parry
+				Description: Cannot parry or gain focus
 			}
 
 			CrystalRadiationProt: {

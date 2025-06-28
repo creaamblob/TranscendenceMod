@@ -8,8 +8,6 @@ namespace TranscendenceMod.Items.Accessories.Shields
 {
     public class ChromaticAegis : BaseShield
     {
-        public override int ParryType => 3;
-
         public override int Leniency => 25;
 
         public override int Cooldown => 120;

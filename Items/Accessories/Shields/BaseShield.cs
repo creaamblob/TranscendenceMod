@@ -7,10 +7,6 @@ namespace TranscendenceMod.Items.Accessories.Shields
 {
     public abstract class BaseShield : ModItem
     {
-        /// <summary>
-        /// 1 = Weak, 2 = Strong, 3 = Strong + Projectile Deflect
-        /// </summary>
-        public abstract int ParryType { get; }
         public abstract int Leniency { get; }
         public abstract int Cooldown { get; }
         public abstract int DefenseAmount { get; }
@@ -23,6 +19,7 @@ namespace TranscendenceMod.Items.Accessories.Shields
         {
             Item.accessory = true;
             Item.defense = DefenseAmount;
+
             Item.GetGlobalItem<TranscendenceItem>().ShieldParryLeniency = Leniency;
             Item.GetGlobalItem<TranscendenceItem>().ShieldParryCD = Cooldown;
         }
@@ -36,7 +33,7 @@ namespace TranscendenceMod.Items.Accessories.Shields
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<TranscendencePlayer>().Parry = ParryType;
+            player.GetModPlayer<TranscendencePlayer>().HasParry = true;
             player.GetModPlayer<TranscendencePlayer>().ShieldID = Item.type;
         }
     }
