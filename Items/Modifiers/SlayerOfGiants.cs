@@ -1,0 +1,24 @@
+using Terraria;
+using Terraria.ID;
+using Terraria.Localization;
+
+namespace TranscendenceMod.Items.Modifiers
+{
+    public class SlayerOfGiants : BaseModifier
+    {
+        public override int RequiredItem => ItemID.LunarBar;
+        public override int RequiredAmount => 5;
+        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.GiantSlayer");
+        public override ModifierIDs ModifierType => ModifierIDs.GiantSlaying;
+        public override bool CanBeApplied(Item item) => item.headSlot > 0 || item.bodySlot > 0 || item.legSlot > 0;
+
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            Item.width = 22;
+            Item.height = 22;
+            Item.value = Item.buyPrice(gold: 25);
+            Item.rare = ItemRarityID.Red;
+        }
+    }
+}
