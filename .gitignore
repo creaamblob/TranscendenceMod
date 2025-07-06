@@ -1,0 +1,15 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+bin/
+obj/
+.vs/
+.vscode/
+.ini/
+/.vs
+/.vscode
+/.ini
+[Bb]in/
+[Oo]bj/
+Desktop.ini

@@ -1,0 +1,3849 @@
+Mods: {
+	TranscendenceMod: {
+		Items: {
+			ThrowingPebble: {
+				Tooltip: Ignores 5 points of enemy Defense
+				DisplayName: Rock
+			}
+
+			Terracane: {
+				Tooltip:
+					'''
+					Dealing fatal damage to enemies makes them drop coins
+					Has a chance to inflict Midas
+					'''
+				DisplayName: Financial Devastation
+			}
+
+			PumpkinYoyo: {
+				DisplayName: Grand Harvest
+				Tooltip:
+					'''
+					Feeds you for 7 seconds after swinging
+					Sticks to enemies
+					'''
+			}
+
+			HardmodeAnvil: Hardmode Ore Anvil
+			HardmodeForge: Hardmode Ore Furnace
+
+			GoldenHarpy: {
+				Tooltip: ""
+				DisplayName: Golden Eagle
+			}
+
+			Dreadshot: {
+				Tooltip: Hold Right Click to charge a shot
+				DisplayName: Dreadshot
+			}
+
+			ThePickaxe: {
+				Tooltip: ""
+				DisplayName: Diamond Pickaxe
+			}
+
+			TheHammer: {
+				Tooltip: ""
+				DisplayName: Mini Hammer
+			}
+
+			SunwarePickaxe: {
+				Tooltip: Summons an orb of light when mining a tile
+				DisplayName: Sunburnt Pickaxe
+			}
+
+			SunBar: {
+				Tooltip: ""
+				DisplayName: Sunburnt Bar
+			}
+
+			Shadowflame: {
+				Tooltip: Contains enough dark power to drive one insane
+				DisplayName: Shadowflame
+			}
+
+			AncientCultist: {
+				Tooltip: "'Green Bill. - 2022'"
+				DisplayName: Ancient Cultist
+			}
+
+			OceationItem: {
+				DisplayName: Oceation
+				Tooltip: Allows you to craft sea themed items
+			}
+
+			CelestialSeraphBag: {
+				DisplayName: Treasure Bag (Celestial Seraph)
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			FaeTrophyItem: {
+				DisplayName: Celestial Seraph Trophy
+				Tooltip: ""
+			}
+
+			FaeMask: {
+				DisplayName: Celestial Seraph Mask
+				Tooltip: ""
+			}
+
+			DivineBow: {
+				DisplayName: Paranormal Bow
+				Tooltip:
+					'''
+					Converts arrows into spirits that home in on nearby enemies
+					Can be used in the Spiritual Realm
+					'''
+			}
+
+			AetherRootItem: {
+				DisplayName: Ethereal Root
+				Tooltip: ""
+			}
+
+			TheSummit: {
+				DisplayName: Summit [WIP]
+				Tooltip: One of the ultimate weapons forged from everything you've obtained on this journey
+			}
+
+			ShimmerBullet: {
+				DisplayName: Shimmer Bullet
+				Tooltip: Phases through walls
+			}
+
+			PulverizedPlanet: {
+				DisplayName: Divine Residue
+				Tooltip: "[c/6d09a7:The remains of celestial beings]"
+			}
+
+			eoltransform: {
+				Tooltip:
+					'''
+					Transforms you into the Princess of Light
+					Releases gravity affected aimed suns when an enemy is near
+					Hold (Unbound Key) outside of lacewing form to fire a laser
+					You cannot use items while firing the laser
+					Press the mount button and (Unbound Key) at the same time to transform into a lacewing
+					As a lacewing:
+					* [C/5c915d:Deal 50% more damage]
+					* [C/5c915d:Have a tiny hitbox and infinite flight]
+					* [C/fe7c7c:Cannot use items (Can still use summons and passives)]
+					* [C/fe7c7c:You will die in a single hit]
+					'''
+				DisplayName: Everglowing Tiara
+			}
+
+			ShimmerChunk: {
+				DisplayName: Cosmic Chunk
+				Tooltip: "[c/6d09a7:An unbreakable mineral used by the angels]"
+			}
+
+			CelestialSeraphStaff: {
+				DisplayName: Bright Galaxy Staff
+				Tooltip:
+					'''
+					Summons a miniature galaxy to obliterate enemies
+					The galaxy becomes bigger and faster the more you summon
+					Right Click to turn the galaxy into a shield that can block up to 8 projectiles
+					The shield has a 15 second cooldown after breaking
+					'''
+			}
+
+			CosmicHelm: {
+				Tooltip:
+					'''
+					20% inceased damage and critical strike chance
+					Maxium mana increased by 175
+					'''
+				DisplayName: Riftwalker Helmet
+			}
+
+			CosmicChestplate: {
+				Tooltip:
+					'''
+					Reduces damage taken by 18%
+					Increases your whip range by 20% and max number of minions by 1
+					'''
+				DisplayName: Riftwalker Chestplate
+			}
+
+			CosmicBoots: {
+				Tooltip: 25% increased movement speed and max run speed
+				DisplayName: Riftwalker Leggings
+			}
+
+			EnchantedHopper: {
+				Tooltip: ""
+				DisplayName: Enchanted Nighthopper
+			}
+
+			PillarsOfCreation: {
+				Tooltip: Summons a Cthulunado to tear apart and drown your enemies
+				DisplayName: Tome o' Flood
+			}
+
+			WhiteDwarf: {
+				Tooltip:
+					'''
+					Periodically explodes
+					Continuously hitting an enemy will make the explosions happen more frequently
+					Turns into a black hole after hitting the enemy many times
+					'''
+				DisplayName: Dying Star on a String
+			}
+
+			Backfirer: {
+				Tooltip: Ludicrous Recoil
+				DisplayName: Backfirer
+			}
+
+			Starfield: {
+				DisplayName: Meteor Crusher
+				Tooltip: 15 summon tag damage
+			}
+
+			VampireToothNecklace: {
+				DisplayName: Vampire Tooth Necklace
+				Tooltip:
+					'''
+					Hitting enemies increases the [c/FF0000:Blood Gauge],
+					When the blood gauge is full, press (Unbound Key) to heal for [c/FF0000:(Healed Amount)] life [c/586475:(Max Life * 0.35 - Defense / 2)]
+					Getting hit decreases the meter by 20%
+					'''
+			}
+
+			SpaceBow: {
+				Tooltip:
+					'''
+					Hold Left Click to charge the bow, release to shoot a helix
+					Charging for two seconds will shoot more helixes
+					Ignores 20 enemy defense
+					'''
+				DisplayName: Orion's Assault
+			}
+
+			Shield: {
+				Tooltip: ""
+				DisplayName: Basic Shield
+			}
+
+			JungleShield2: {
+				Tooltip:
+					'''
+					Pressing the Parry key and DOWN at the same time will make you hide inside the shell, making you take 90% less damage, increased knockback and inability to use items
+					Being hit in this form will damage the shell, increasing taken damage by 15%, this effect stacks infinitely
+					The shell will repair itself after 45 seconds of not being getting hit on the shell
+					You can view the repair status in the inventory
+					Movement speed and jump height reduced by 33%
+					Great for taking high damage hits every once in a while
+					'Not to be confused with Beetle Shell'
+					'''
+				DisplayName: Beetleshell
+			}
+
+			JungleShield1: {
+				Tooltip: Pressing the Parry key and DOWN at the same time will make you hide inside the shell, making you take 50% less damage and unable to move or attack
+				DisplayName: Tortoise Shell
+			}
+
+			ShimmerLightDye: {
+				Tooltip:
+					'''
+					[C/20f076:-:- Developer Item -:-]
+					[C/618090:-:- CreanBL -:-]
+					'''
+				DisplayName: Moonlit Sea Dye
+			}
+
+			SpaceBossWings: {
+				DisplayName: Riftwalker Wings
+				Tooltip:
+					'''
+					Allows flight and slow fall
+					Press Down to toggle hover
+					Press Up to deactivate hover
+					Hold Up to boost faster!
+					Grants immunity to low gravity environments
+					'''
+			}
+
+			TinkererQueenSlime: {
+				Tooltip: ""
+				DisplayName: Monarchical Javelin
+			}
+
+			MothronLamp: {
+				Tooltip: ""
+				DisplayName: Moth Lamp
+			}
+
+			LuminiteStake: {
+				Tooltip:
+					'''
+					Releases homing lunar plasma upon hitting enemies
+					'For combat with the highest of stakes'
+					'''
+				DisplayName: Luminite Stake
+			}
+
+			GalaxySaber: {
+				Tooltip:
+					'''
+					Right Click to throw the sword
+					The sword sticks on the ground until you call it back by Right Clicking again
+					'''
+				DisplayName: Galaxies' Saber
+			}
+
+			ExoticRayBow: {
+				Tooltip:
+					'''
+					Hold Left Click to charge the bow
+					Release to shoot elemental arrows that stick to enemies and create elemental shards that damage foes
+					'''
+				DisplayName: Rainbow Ray Bow
+			}
+
+			DevWeapon: {
+				Tooltip:
+					'''
+					Drags enemies and depletes 2% of their health
+					[c/FF0000:-:- Playtesting Item -:-]
+					'''
+				DisplayName: Tome of Twilight Spirits
+			}
+
+			LivingOrganicMatter: {
+				DisplayName: Living Organic Matter
+				Tooltip: ""
+			}
+
+			MosquitoLeg: {
+				DisplayName: Mosquito Leg
+				Tooltip: ""
+			}
+
+			MosquitoSword: {
+				DisplayName: Mosquito's Bite
+				Tooltip:
+					'''
+					Best used for pranking townsfolk
+					Hitting enemies releases homing venomous clouds
+					Critical strikes heal you by a tenth of the damage dealt and inflict enemies with Lush Fury
+					Lush Fury slows down enemies and drains their health by a fatal amount
+					'Smells like cilantro'
+					'''
+			}
+
+			Lightning: {
+				Tooltip: ""
+				DisplayName: Lightning
+			}
+
+			MoonlordIcon: {
+				DisplayName: Moonlord Icon
+				Tooltip: ""
+			}
+
+			DivineAlloy: {
+				DisplayName: Divine Alloy
+				Tooltip: ""
+			}
+
+			SpaceVaccuum: {
+				DisplayName: Space Vaccuum
+				Tooltip: ""
+			}
+
+			SpaceBossWings_Old: {
+				DisplayName: Ancient Stellar Wings
+				Tooltip: Allows flight and slow fall
+			}
+
+			ShimmerFaeWings: {
+				DisplayName: Pre-Historic Stellar Wings
+				Tooltip: Allows flight and slow fall
+			}
+
+			OnyxBandage: {
+				DisplayName: Onyx Bandage
+				Tooltip:
+					'''
+					Converts DoT into life regeneration
+					and [c/ff0000:other negative effects]
+					'''
+			}
+
+			DeepwaterRippers: {
+				DisplayName: Deepwater Rippers
+				Tooltip: Releases a bloody frenzy of cuts
+			}
+
+			NightBelt: {
+				Tooltip: ""
+				DisplayName: Time Dial
+			}
+
+			SquidAccessory: {
+				DisplayName: Ultra-Charged Battery
+				Tooltip:
+					'''
+					Getting hit will zap nearby enemy projectiles
+					Zapped projectiles will be destroyed and will have a chance to drop Mana
+					'''
+			}
+
+			StormCloak: {
+				DisplayName: Rain Cloak
+				Tooltip:
+					'''
+					Summons wind blasts from the sky and
+					increases length of invincibility after taking damage
+					Getting hit will zap nearby enemy projectiles
+					Zapped projectiles will be destroyed and will have a chance to drop Mana
+					'''
+			}
+
+			WindDragonsClaw: {
+				DisplayName: Wind Dragon's Claw
+				Tooltip: ""
+			}
+
+			StormBow: {
+				DisplayName: Storm Bow
+				Tooltip: ""
+			}
+
+			Firework: {
+				DisplayName: Firework
+				Tooltip:
+					'''
+					Fires a firework rocket upon attacking
+					Has a 4 second cooldown
+					'''
+			}
+
+			SeraphRelic: {
+				DisplayName: Celestial Seraph Relic
+				Tooltip: ""
+			}
+
+			SeraphRelicItem: {
+				DisplayName: Celestial Seraph Relic
+				Tooltip: ""
+			}
+
+			ShadowflameSword: {
+				DisplayName: Shadowflame Sword
+				Tooltip: ""
+			}
+
+			TrapdoorPlatformItem: {
+				DisplayName: Trapdoor Platform
+				Tooltip: Right Click to open and close
+			}
+
+			HardmetalBar: {
+				DisplayName: Hardmetal Bar
+				Tooltip: ""
+			}
+
+			HardmetalAxe: {
+				DisplayName: Hardmetal Axe
+				Tooltip: ""
+			}
+
+			HardmetalPickaxe: {
+				DisplayName: Hardmetal Pickaxe
+				Tooltip: ""
+			}
+
+			HardMetalSlasher: {
+				DisplayName: Hardmetal Dagger
+				Tooltip:
+					'''
+					Every fifth attack will deal more damage
+					Poisons enemies on hits
+					'''
+			}
+
+			StellarSpear: {
+				DisplayName: Astralius Divina
+				Tooltip: "[c/6d09a7:A popular weapon used by angels]"
+			}
+
+			StarcraftedNecklace: {
+				DisplayName: Starcrafted Necklace
+				Tooltip: ""
+			}
+
+			LostHead: {
+				DisplayName: Lost Head
+				Tooltip: ""
+			}
+
+			WaterKunai: {
+				DisplayName: Water Kunai
+				Tooltip:
+					'''
+					Throws out slow kunais that launch at your cursor's direction
+					Right Click to launch every active kunai
+					'''
+			}
+
+			MuramasaUpgrade: {
+				DisplayName: Flashtide Edge
+				Tooltip: "'How ya doin' Muramasa?'"
+			}
+
+			UpgradedMuramasa: {
+				DisplayName: Twilight Shore Katana
+				Tooltip:
+					'''
+					Penetrates enemy armor
+					Right Click to charge a powerful water slash
+					Left Click when fully charged to lunge forward at high speeds
+					'''
+			}
+
+			SurvivorKnife: {
+				Tooltip:
+					'''
+					Killing enemies has a chance to drop helpful items
+					Possible Items:
+					[i:TranscendenceMod/Meat]
+					[i:TranscendenceMod/ScavengerChisel]
+					[i:TranscendenceMod/SturdyPlate]
+					3 [i:Dynamite]
+					[i:TranscendenceMod/VineGun] + 10 [i:VineRopeCoil]
+					'''
+				DisplayName: Survivor's Knife
+			}
+
+			StrikeFromTheBushes: {
+				DisplayName: Strike From The Bushes
+				Tooltip:
+					'''
+					Shoots extremely strong and fast bullets that hit the target near instantly
+					High Recoil
+					'''
+			}
+
+			DoubleEdgedSword: {
+				DisplayName: Double Edged Sword
+				Tooltip:
+					'''
+					[c/ff002a:Red blade inflicts Hellfire and Ichor]
+					[c/0373fc:Blue blade inflicts Frostbite and Oiled]
+					Right Click to swap modes
+					'''
+			}
+
+			RuneStaff: {
+				DisplayName: The Runic Wizard's Great Scepter
+				Tooltip: Shoots magical runes that dance around the screen
+			}
+
+			HardmetalCrossbow: {
+				DisplayName: Hardmetal Crossbow
+				Tooltip: ""
+			}
+
+			SeraphMonolithItem: {
+				DisplayName: Stellar Monolith
+				Tooltip: "'Open a pocket dimension within this realm.'"
+			}
+
+			SpaceRockItem: {
+				DisplayName: Ascendant Rock
+				Tooltip: ""
+			}
+
+			LivingBullet: {
+				DisplayName: Living Bullet
+				Tooltip:
+					'''
+					Grows into a tree upon collision with an enemy or a tile
+					'Money doesn't grow on trees, but these bullets do!'
+					'''
+			}
+
+			SuspiciousLookingEmergencyButton: {
+				DisplayName: Suspicious Looking Emergency Button
+				Tooltip:
+					'''
+					[c/FF0000: STOP POSTING ABOUT AMONG US! I'M TIRED OF SEEING IT! MY FRIENDS ON TIKTOK SEND ME MEMES, ON DISCORD IT'S FUCKING MEMES! I WAS IN A SERVER, RIGHT?]
+					[c/FF0000:AND ALL OF THE CHANNELS ARE JUST AMONG US STUFF. I SHOWED MY CHAMPION UNDERWEAR TO MY GIRLFRIEND AND THE LOGO, I FLIPPED IT AND SAID]
+					[c/FF0000:'Hey babe, when the underwear is sus!' HAHA, DING DING DING DING DING DING DING, DING-DING-DING! I FUCKING LOOKED AT A TRASHCAN AND I SAID,]
+					[c/FF0000:'That's a bit sussy!' I LOOKED AT MY PENIS, I THINK OF AN ASTRONAUTS HELMET AND I GO, 'Penis? More like pen-sus!' Aaaaaaargh!]
+					'''
+			}
+
+			DiamondShield: {
+				DisplayName: Diamond Shield
+				Tooltip: ""
+			}
+
+			BlackholeMod: {
+				DisplayName: Pocket Blackhole
+				Tooltip: ""
+			}
+
+			SpazzingEye: {
+				DisplayName: Spazzing Eye
+				Tooltip: ""
+			}
+
+			Constellations: {
+				DisplayName: Constellations
+				Tooltip: ""
+			}
+
+			JungleShovel: {
+				DisplayName: Jungle Shovel
+				Tooltip:
+					'''
+					Digs in a larger area than the Gravedigger's Shovel
+					Only breaks mud, silt, living mahogany leaves, honey and hive
+					'Carve out an arena for the powerful Jungle Creature in a blink of an eye'
+					'''
+			}
+
+			QuantumSlicer: {
+				DisplayName: Quantum Slicer
+				Tooltip:
+					'''
+					Briefly slices enemies before returning
+					Right Click to awaken the slicer, making it explosive and extending it's range and increasing damage by 425%, but it loses it's ability to slice enemies
+					If you awaken while the slicer is returning and hasn't hit an enemy, it's explosion will deal way more damage!
+					'''
+			}
+
+			SculptureRupture: {
+				DisplayName: Sculpture Rupture
+				Tooltip:
+					'''
+					Swinging the weapon charges the gauge
+					At full gauge, you will create sculptures that launch at your cursor
+					'''
+			}
+
+			ExtraTerrestrialPlatformItem: {
+				DisplayName: Extra Terrestrial Platform
+				Tooltip: ""
+			}
+
+			ExtraTerrestrialCandleItem: {
+				DisplayName: Extra Terrestrial Candle
+				Tooltip: ""
+			}
+
+			ExtraTerrestrialWorkBenchItem: {
+				DisplayName: Extra Terrestrial Work Bench
+				Tooltip: ""
+			}
+
+			VineGun: {
+				DisplayName: Vine Gun
+				Tooltip: Shoots Rope Coils of any type
+			}
+
+			ExtraTerrestrialReward: {
+				DisplayName: Extra Terrestrial Reward Chest
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			CrystalReward: {
+				DisplayName: Crystal Reward Chest
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			HeavenlyReward: {
+				DisplayName: Heavenly Reward Chest
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			ExtraTerrestrialBrew: {
+				DisplayName: Extra Terrestrial Brew
+				Tooltip: Decrease gravity by 20%, but also increase maxium mana by 150
+			}
+
+			StarcraftedBooze: {
+				DisplayName: Ethereal Root Beer
+				Tooltip: ""
+			}
+
+			ExtraTerrestrialPotItem: {
+				DisplayName: Extra Terrestrial Cooking Pot
+				Tooltip: ""
+			}
+
+			SpaceRockWallItem: {
+				DisplayName: Ascendant Rock Wall
+				Tooltip: ""
+			}
+
+			CosmicGrassSeed: {
+				DisplayName: Cosmic Grass Seeds
+				Tooltip: ""
+			}
+
+			StarcraftedStew: {
+				DisplayName: Starcrafted Stew
+				Tooltip: ""
+			}
+
+			Timedial: {
+				DisplayName: Time Dial
+				Tooltip:
+					'''
+					Bring to the Cosmic Archmage to unlock their time manipulation ability
+					[c/6d09a7:A priceless artifact capable of manipulating the time. Only a select few know how to use it.]
+					'''
+			}
+
+			ConstantDial: {
+				DisplayName: Constant Time Fragment
+				Tooltip: ""
+			}
+
+			EtheriaDial: {
+				DisplayName: Etheria Time Fragment
+				Tooltip: ""
+			}
+
+			BrickFromTheFourthWall: {
+				DisplayName: Brick from the Fourth Wall
+				Tooltip: A cool decoration in the game 'Terraria'!
+			}
+
+			ExtraTerrestrialLoomItem: {
+				DisplayName: Extra Terrestrial Loom
+				Tooltip: ""
+			}
+
+			ExtraTerrestrialString: {
+				DisplayName: Cosmic String
+				Tooltip: ""
+			}
+
+			FabricOfReality: {
+				DisplayName: Fabric Of Reality
+				Tooltip: ""
+			}
+
+			RealitySmasher: {
+				DisplayName: Reality Smasher
+				Tooltip:
+					'''
+					Tears a hole in space time
+					One time use
+					'''
+			}
+
+			CosmosShardLauncher: {
+				DisplayName: Cosmos Shard Launcher
+				Tooltip:
+					'''
+					Has two states, a rocket launcher state and a flamethrower state
+					You shoot explosive shards in rocket launcher state and shooting downwards will make you perform a Rocket Jump
+					While in flamethrower state, you convert gel into condensed nebula capable of shredding enemies
+					Right click to change states
+					'''
+			}
+
+			Starfruit: {
+				DisplayName: Starfruit
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PermanentlyIncreasesMaxLifeBy}
+					Can be eaten up to 20 times
+					'A luxurious delicacy among the angels'
+					'''
+			}
+
+			ShimmerBlossom: {
+				DisplayName: Shimmer Blossom
+				Tooltip: ""
+			}
+
+			ShimmerBlossomBouquet: {
+				DisplayName: Shimmer Blossom Bouquet
+				Tooltip: Shoots bouncing bouquets that create explosions on tile collision
+			}
+
+			SkullMod: {
+				DisplayName: Dead Man's Skull
+				Tooltip: ""
+			}
+
+			BucketOfBolts: {
+				DisplayName: Bucket Of Bolts
+				Tooltip: ""
+			}
+
+			DungeonShield: {
+				DisplayName: Dungeon Shield
+				Tooltip: ""
+			}
+
+			SlayerOfGiants: {
+				DisplayName: Slayer Of Giants
+				Tooltip: ""
+			}
+
+			CaveWood: {
+				DisplayName: Dusty Wood
+				Tooltip: ""
+			}
+
+			FlailingHook: {
+				DisplayName: Flailing Hook
+				Tooltip:
+					'''
+					Hold Left Click to charge the hook, release to throw it
+					Left click again when attached to a block to pull the hook back to you
+					'It's like a grappling hook, but it's also like a flail!'
+					'''
+			}
+
+			LeatherGlove: {
+				DisplayName: Leather Glove
+				Tooltip: Right Click while holding your pickaxe or axe to throw them
+			}
+
+			Shoes: {
+				DisplayName: Shoes
+				Tooltip:
+					'''
+					Makes you walk faster
+					Your character tilts a little bit when moving
+					'''
+			}
+
+			StarGun: {
+				DisplayName: Galactic Gun
+				Tooltip: Uses Starlite as ammo
+			}
+
+			StarLauncher: {
+				DisplayName: Gamma-Ray Riffle
+				Tooltip:
+					'''
+					Shoots a Gamma-Ray
+					Uses Starlite as ammo
+					'''
+			}
+
+			StarMegaLauncher: {
+				DisplayName: Plasma Eruption Cannon
+				Tooltip:
+					'''
+					Creates a star that erupts into condensed pillars of plasma
+					Uses Starlite as ammo
+					'''
+			}
+
+			LifeFruitArenaItem: {
+				DisplayName: Fruit Totem
+				Tooltip: Max Life is increased by 15
+			}
+
+			EvasionStone: {
+				DisplayName: Guardian's Stone
+				Tooltip:
+					'''
+					Grants you a protective stone barrier
+					The stone heals for 20% of your max health upon breaking
+					You can start repairing it by grazing enough enemy projectiles
+					Getting hit greatly hinders the repairing process
+					'''
+			}
+
+			FracturedTarget: {
+				DisplayName: Fractured Target
+				Tooltip: -
+			}
+
+			HardmetalOre: {
+				DisplayName: Hardmetal Ore
+				Tooltip: ""
+			}
+
+			BaseballBat: {
+				DisplayName: Baseball Bat
+				Tooltip: Deals more knockback the longer you charge it
+			}
+
+			Potato: {
+				DisplayName: Potato
+				Tooltip: ""
+			}
+
+			HardmetalSpike: {
+				DisplayName: Hardmetal Spike
+				Tooltip: ""
+			}
+
+			testhoe: {
+				DisplayName: Ordinary Hoe
+				Tooltip: Tills dirt into soil
+			}
+
+			SpikedBaseballBat: {
+				DisplayName: Spiked Baseball Bat
+				Tooltip: Deals more knockback the longer you charge it
+			}
+
+			PotatoSeed: {
+				DisplayName: Potato Seeds
+				Tooltip: ""
+			}
+
+			Carrot: {
+				DisplayName: Carrot
+				Tooltip: ""
+			}
+
+			CarrotSeeds: {
+				DisplayName: Carrot Seeds
+				Tooltip: ""
+			}
+
+			VoidAxe: {
+				DisplayName: Galaxy Crystal Axe
+				Tooltip:
+					'''
+					Swings an extremely heavy and sharp axe that deals more damage and grows bigger the longer you charge it
+					180% axe power
+					'''
+			}
+
+			AirPiercerBroomItem: {
+				DisplayName: Air Piercing Broom
+				Tooltip: Summons a rideable Wind Broom
+			}
+
+			CorruptedWanderingKit: {
+				DisplayName: Cursed Grimoire of Cthulhu
+				Tooltip:
+					'''
+					Grants the wearer insane mobility and transformation powers
+					Works as a pair of Wings and Terraspark Boots
+					Press Down to toggle hover
+					Press Up to deactivate hover
+					Hold Down and (Unbound Key) to fall extremely quickly
+					Hold Up to boost faster!
+					Killing enemies will leave their body in place, allowing you to transform into them by pressing (Unbound Key) near them
+					Possessed enemies can be moved by pressing the movement buttons, or the Jump button if it's a flying enemy
+					You can stop possessing the enemy by pressing (Unbound Key) again
+					You can only possess enemies that are after you and you cannot possess for more than 3 seconds during a boss battle
+					'I ain't reading allat'
+					'''
+			}
+
+			SunBlade: {
+				DisplayName: Blade of the Sun
+				Tooltip:
+					'''
+					Shoots beams that dissipate after travelling a short distance
+					The beams become weaker upon going through tiles
+					'''
+			}
+
+			Lumimyrsky: {
+				DisplayName: Lumimyrsky
+				Tooltip: ""
+			}
+
+			SeraphPetItem: {
+				DisplayName: Fractured Planet
+				Tooltip: Summons a Star Angel
+			}
+
+			KatanaFan: {
+				DisplayName: Katana Fan
+				Tooltip: Summons a possessed water blade to protect you
+			}
+
+			Eclipse: {
+				DisplayName: Eclipse
+				Tooltip: ""
+			}
+
+			LunarGauntlet: {
+				DisplayName: Lunar Gauntlet
+				Tooltip:
+					'''
+					Increases melee knockback and the size of melee weapons
+					15% increased melee damage and speed
+					Enables auto swing for melee weapons
+					'''
+			}
+
+			BrainOfAnnihilation: {
+				DisplayName: Brain Of Annihilation
+				Tooltip:
+					'''
+					Damage and critical strike chance multiplied by 1.2x
+					Max health increased by 50
+					Getting hit will create a massive explosion that deals insane damage enemies
+					Being hit while under half health will also give you a buff that heals you for 5% of your max health every 3 seconds, but you will take 50% more damage
+					Buff Potions have doubled duration
+					'''
+			}
+
+			ArchitechsHammer: {
+				DisplayName: Architech's Hammer
+				Tooltip:
+					'''
+					Hammers tiles
+					Right Click to swap angles
+					'''
+			}
+
+			PortalBox: {
+				DisplayName: Instellar Transmission Box
+				Tooltip:
+					'''
+					Stores an array of 3 locations
+					Left Click to save a location
+					Right Click to change the index
+					You can teleport to the 
+					[c/6d09a7:A common tool used by lesser angels to quickly warp around Heaven]
+					'''
+			}
+
+			LegCutter: {
+				DisplayName: Leg Cutter
+				Tooltip:
+					'''
+					Hides your legs
+					'Smells a bit like flowers and amphibians'
+					'''
+			}
+
+			AtmospheragonScale: {
+				DisplayName: Atmospheragon Scale
+				Tooltip: ""
+			}
+
+			Eternal: {
+				DisplayName: Eternity
+				Tooltip:
+					'''
+					Disables damage deviation and Critical strikes
+					Critical strike chance is converted into damage
+					[c/0578e2:Never changing, as it should be...]
+					'''
+			}
+
+			SoulShard: {
+				DisplayName: Soul Shard
+				Tooltip: ""
+			}
+
+			UltraChargedCharger: {
+				DisplayName: Ultra Charged Charger
+				Tooltip: ""
+			}
+
+			FlowerEssence: {
+				DisplayName: Flowery Essence
+				Tooltip: A magical essence with excellent brewing capabilities
+			}
+
+			BloodyVial: {
+				DisplayName: Bloody Vial [WIP]
+				Tooltip: ""
+			}
+
+			HoverMagicTableConvert: {
+				DisplayName: --Conversion-- [WIP]
+				Tooltip:
+					'''
+					Moves an element to your weapon from an item's primary element.
+					The placement is based on which element slot you put it in.
+					For example, putting a [i:TranscendenceMod/BloodyVial] ([i:TranscendenceMod/EarthMagic][i:TranscendenceMod/WaterMagic][i:TranscendenceMod/PsychicMagic][i:TranscendenceMod/EmptyMagic][i:TranscendenceMod/EmptyMagic]) in the Water slot will turn your weapon's second element into [i:TranscendenceMod/EarthMagic].
+
+					Consumes the catalyst's primary element and a gold coin for every element slot used.
+					The amount of gold coins required scales with progression and is multiplied by 1.75x for every weapon in an element slot and 2.25x for every non-element item (materials for example).
+					The consumed primary element gets replaced by the next element.
+
+					Right Click the button to view the total cost.
+					'''
+			}
+
+			BloodyMaggot: {
+				DisplayName: Bloody Maggot [WIP]
+				Tooltip: Can be used to apply an unique element to your magic weapon
+			}
+
+			AbsolutePurity: {
+				DisplayName: Absolute Purity
+				Tooltip: Cleanses any modifier from an item
+			}
+
+			HardmetalHelmet: {
+				DisplayName: Hardmetal Helmet
+				Tooltip: ""
+			}
+
+			ElementalBow: {
+				DisplayName: Elemental Bow
+				Tooltip:
+					'''
+					Hold Left Click to charge the bow
+					Shoots an elemental arrow that is applied with one of the 5 elements:
+					[c/68391d:Earth]: Slows down enemies
+					[c/1476ae:Water]: Applies ichor to enemies
+					[c/e3360f:Fire]: Applies Incinerated to enemies, which makes them lose life constantly
+					Applying gasoline to incinerated enemies will make it spread to enemies near it
+					[c/ff0097:Psychic]: Confuses enemies
+					[c/ffc500:Celestial]: Rains down stars from above
+					'''
+			}
+
+			CannonballStaff: {
+				DisplayName: Cannonball Staff
+				Tooltip:
+					'''
+					Summons a cannon to shoot at your enemies
+					Right Click to relocate the cannon
+					'''
+			}
+
+			Atbowphere: {
+				DisplayName: Atbowsphere
+				Tooltip:
+					'''
+					Hold Left Click to charge the bow
+					Shoot 3 elemental arrows that bounce off surfaces and emit energy bursts upon hitting enemies
+					Touching energy bursts will give you mana
+					'''
+			}
+
+			CarbonBar: {
+				DisplayName: Carbon Bar
+				Tooltip: ""
+			}
+
+			CarbonOre: {
+				DisplayName: Carbon Ore
+				Tooltip: ""
+			}
+
+			ElectricalComponent: {
+				DisplayName: Electrical Component
+				Tooltip: ""
+			}
+
+			SteelAlloy: {
+				DisplayName: Steel Alloy
+				Tooltip: ""
+			}
+
+			GiantAnchor: {
+				DisplayName: Giant Anchor
+				Tooltip:
+					'''
+					Throwns down a gigantic anchor that pulls you towards it
+					Can be used to negate fall damage
+					'''
+			}
+
+			DoubleBladedSpear: {
+				DisplayName: Double Bladed Spear
+				Tooltip: ""
+			}
+
+			HeavyBoulder: {
+				DisplayName: Heavy Boulder
+				Tooltip:
+					'''
+					Starts the Boulder Typhoon event
+					Cannot be used when a boss is alive
+					'''
+			}
+
+			StardustShieldGenerator: {
+				DisplayName: Cosmic Forcefield Generator
+				Tooltip:
+					'''
+					You will take 50% less damage when you are raising your shield
+					You will lose 50% more focus upon being hit
+					'''
+			}
+
+			MarbleCompass: {
+				DisplayName: Marble Compass
+				Tooltip:
+					'''
+					Finds the furthest marble biome in your direction
+					Left-Click to find a location
+					'''
+			}
+
+			SpritersBrush: {
+				DisplayName: Spriter's Brush
+				Tooltip:
+					'''
+					Has a three attack combo
+					The final attack will shoot bouncy paint that you can bounce on
+					'''
+			}
+
+			HeavyKnife: {
+				DisplayName: Heavy Knife
+				Tooltip: ""
+			}
+
+			ShimmerCompass: {
+				DisplayName: Aetheral Compass
+				Tooltip:
+					'''
+					Points towards to the Aether biome
+					Left-Click to find a location
+					'''
+			}
+
+			SolarPoweredCompass: {
+				DisplayName: Lihzard Compass
+				Tooltip:
+					'''
+					Finds the Lihzard Temple
+					Left-Click to find a location
+					'''
+			}
+
+			Meat: {
+				DisplayName: Meat
+				Tooltip: ""
+			}
+
+			Fan: {
+				DisplayName: Fan
+				Tooltip:
+					'''
+					Pushes players, enemies and items away
+					Right Click to switch directions
+					'''
+			}
+
+			SturdyPlate: {
+				DisplayName: Sturdy Plate
+				Tooltip:
+					'''
+					Improves your equipment's defense by 6 for 5 minutes
+					The duration can be stacked up to 30 minutes
+					'''
+			}
+
+			Compass: {
+				DisplayName: Compass
+				Tooltip: Points towards your Spawn Point
+			}
+
+			BladeOfReflection: {
+				DisplayName: Blade Of Reflection
+				Tooltip: Summons a reflection to aid you in combat
+			}
+
+			BaseHoe: {
+				DisplayName: Base Hoe
+				Tooltip: Tills dirt into soil
+			}
+
+			WheatSeed: {
+				DisplayName: Wheat Seeds
+				Tooltip: ""
+			}
+
+			Wheat: {
+				DisplayName: Wheat
+				Tooltip: ""
+			}
+
+			Stargazer: {
+				DisplayName: Pocket Cosmic Gazer
+				Tooltip: Fires a laser in the opposite direction where you are moving
+			}
+
+			Starlite: {
+				DisplayName: Starlite
+				Tooltip:
+					'''
+					Used as an ammo for certain weapons
+					'You could make a river out of these!'
+					'''
+			}
+
+			MuramasaHeadBlackout: {
+				DisplayName: Muramasa Head Blackout
+				Tooltip: ""
+			}
+
+			MuramasaHeadRevealed: {
+				DisplayName: Muramasa Head Revealed
+				Tooltip: ""
+			}
+
+			SeraphHeadBlackOut: {
+				DisplayName: Seraph Head Black Out
+				Tooltip: ""
+			}
+
+			SeraphHeadRevealed: {
+				DisplayName: Seraph Head Revealed
+				Tooltip: ""
+			}
+
+			AtmospheronHeadBlackout: {
+				DisplayName: Atmospheron Head Blackout
+				Tooltip: ""
+			}
+
+			AtmospheronHeadRevealed: {
+				DisplayName: Atmospheron Head Revealed
+				Tooltip: ""
+			}
+
+			SantaReveal: {
+				DisplayName: Santa Reveal
+				Tooltip: ""
+			}
+
+			RodOfRelocation: {
+				DisplayName: Wand Of Return
+				Tooltip:
+					'''
+					Using this item places a marker on your position
+					Right Clicking makes you teleport to the marker
+					'''
+				WarpPoint: Return Point
+			}
+
+			BasicSword: {
+				DisplayName: Basic Sword
+				Tooltip: Getting hit by an enemy within 10 frames of swinging the sword will parry the attack
+			}
+
+			LingeringInferno: {
+				DisplayName: Lingering Inferno
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PermanentlyIncreasesMaxManaBy}
+					May only be used once
+					'''
+			}
+
+			ForgottenInferno: {
+				DisplayName: Forgotten Inferno
+				Tooltip: "[c/902442:An empty chalice formed from the flawless defeat of a gigantic flesh barrier]"
+			}
+
+			StarPowder: {
+				DisplayName: Star Powder
+				Tooltip:
+					'''
+					[c/6d09a7:A powder used to sanctify the sacrifice for the ritual]
+					[c/6d09a7:Once the sacrifice is blessed, Right Click the altar to begin the ritual]
+					'''
+			}
+
+			PalladiumShield: {
+				DisplayName: Palladium Shield
+				Tooltip:
+					'''
+					Allows the ability to dash into enemies
+					Double tap a direction
+					Successful parries grant rapid life regeneration for 4 seconds
+					'''
+			}
+
+			ForcefieldOfTheImpendingDoom: {
+				DisplayName: Forcefield of the Impending Doom
+				Tooltip:
+					'''
+					You will take 62,5% less damage when you are raising your shield
+					You will lose 50% more focus upon being hit
+					'''
+			}
+
+			GiantShellOrange: {
+				DisplayName: Giant Shell (Orange)
+				Tooltip:
+					'''
+					Pressing the Parry key and DOWN at the same time will make you hide inside the shell, making you take 30% less damage and unable to move or use items
+					Movement speed reduced by 15%
+					'How am I even supposed fit inside this?'
+					'''
+			}
+
+			GiantShellPurple: {
+				DisplayName: Giant Shell (Purple)
+				Tooltip:
+					'''
+					Pressing the Parry key and DOWN at the same time will make you hide inside the shell, making you take 40% less damage and unable to move or use items
+					Enemies take damage when attacking you
+					Movement speed reduced by 15%
+					'How am I even supposed fit inside this?'
+					'''
+			}
+
+			CobaltWaterGun: {
+				DisplayName: Cobalt Water Gun
+				Tooltip: Sprays liquid cobalt alongside shooting bullets
+			}
+
+			CelestialAegis: {
+				DisplayName: Celestial Aegis
+				Tooltip:
+					'''
+					Allows the ability to ram into enemies
+					Double tap a direction
+					'''
+			}
+
+			ToxicArrow: {
+				DisplayName: Toxic Arrow
+				Tooltip: ""
+			}
+
+			CultistScroll: {
+				DisplayName: Occultic Scroll of Insanity
+				Tooltip: ""
+			}
+
+			CelestialDye: {
+				DisplayName: Celestial Dye
+				Tooltip: ""
+			}
+
+			LightningRod: {
+				DisplayName: Lightning Rod
+				Tooltip: The chains zap enemies, dealing noticeable damage
+			}
+
+			CatacombExplorerPowder: {
+				DisplayName: Catacomb Explorer's Powder
+				Tooltip: "[c/a43d13:Destroys spikes and reveals hidden passages within the Dungeon]"
+			}
+
+			MiningPowder: {
+				DisplayName: Mining Powder
+				Tooltip: "[c/a43d13:Damages tiles in it's way]"
+			}
+
+			SuperBomb: {
+				DisplayName: Super Bomb
+				Tooltip:
+					'''
+					Large Blast Radius
+					Scales with Pickaxe Power
+					'''
+			}
+
+			SuperBomb_Bouncy: {
+				DisplayName: Super Bouncy Bomb
+				Tooltip:
+					'''
+					Large Blast Radius
+					Scales with Pickaxe Power
+					Bounces on surfaces
+					'''
+			}
+
+			SuperBomb_Sticky: {
+				DisplayName: Super Sticky Bomb
+				Tooltip:
+					'''
+					Large Blast Radius
+					Scales with Pickaxe Power
+					Sticks to surfaces
+					'''
+			}
+
+			SuperBomb_Brick: {
+				DisplayName: Reverse Super Bomb
+				Tooltip:
+					'''
+					Large Blast Radius
+					Places tiles within your inventory
+					Selects [C/ffb700:favorited] items in order from the Top-Right of the inventory to Bottom-Left
+					Right-Click to use walls instead of tiles
+					'''
+			}
+
+			SuperBomb_Brick_Sticky: {
+				DisplayName: Sticky Reverse Super Bomb
+				Tooltip:
+					'''
+					Large Blast Radius
+					Places tiles within your inventory
+					Selects [C/ffb700:favorited] items in order from the Top-Right of the inventory to Bottom-Left
+					Right-Click to use walls instead of tiles
+					'''
+			}
+
+			TempleArrow: {
+				DisplayName: Temple Arrow
+				Tooltip: Summons golem heads that shoot lasers towards the cursor
+			}
+
+			MosquitoVenom: {
+				DisplayName: Mosquito Venom
+				Tooltip: ""
+			}
+
+			CrystalItem: {
+				DisplayName: Angelic Crystal
+				Tooltip: "[c/6d09a7:A shiny crystal infused with angelic power]"
+			}
+
+			SuperDrill: {
+				DisplayName: Super Drill
+				Tooltip: ""
+			}
+
+			Skyyo: {
+				DisplayName: Skyyo
+				Tooltip: ""
+			}
+
+			StarcraftedForgeItem: {
+				DisplayName: Starcrafted Forge
+				Tooltip: Can be used for very advanced crafting
+			}
+
+			StarcraftedAlloy: {
+				DisplayName: Starcrafted Alloy
+				Tooltip: ""
+			}
+
+			SeraphsSeeker: {
+				DisplayName: Seraph's Seeker
+				Tooltip: ""
+			}
+
+			CrystalCrate: {
+				DisplayName: Crystal Crate
+				Tooltip: ""
+			}
+
+			SeraphicCrate: {
+				DisplayName: Seraphic Crate
+				Tooltip: ""
+			}
+
+			OrbitalFish: {
+				DisplayName: Cosmic Cone Fish
+				Tooltip: ""
+			}
+
+			BlackholeFish: {
+				DisplayName: Blackhole Fish
+				Tooltip: ""
+			}
+
+			CrateMagnet: {
+				DisplayName: Crate Magnet
+				Tooltip: ""
+			}
+
+			EnchantedOrb: {
+				DisplayName: Enchanted Orb
+				Tooltip: ""
+			}
+
+			ExtendedPickaxeHead: {
+				DisplayName: Extended Pickaxe Head
+				Tooltip: ""
+			}
+
+			GiantHandle: {
+				DisplayName: Giant Handle
+				Tooltip: ""
+			}
+
+			StormVial: {
+				DisplayName: Voltage Container
+				Tooltip: ""
+			}
+
+			VoltageLauncher: {
+				DisplayName: Voltage Launcher
+				Tooltip:
+					'''
+					Shoots an electric beam that doesn't pierce, but deals high damage
+					Uses Voltage Containers as ammo
+					'''
+			}
+
+			HolyScroll: {
+				DisplayName: Angelic Scroll
+				Tooltip: ""
+			}
+
+			HardmetalChestplate: {
+				DisplayName: Hardmetal Chestplate
+				Tooltip: ""
+			}
+
+			HardmetalLeggings: {
+				DisplayName: Hardmetal Leggings
+				Tooltip: ""
+			}
+
+			WetTome: {
+				DisplayName: Power Washer
+				Tooltip: Summons a controllable cthulhunado to rend apart your foes
+			}
+
+			MangroveWings: {
+				DisplayName: Mangrove Wings
+				Tooltip: Allows flight and slow fall
+			}
+
+			VoidNecklace: {
+				DisplayName: Void Necklace
+				Tooltip:
+					'''
+					Turns into a blackhole that sucks in nearby weak [c/586475:(Below 17500 max life)] enemies, instantly killing them
+					Only works at max health
+					'''
+			}
+
+			BallOfDuality: {
+				DisplayName: Orb of Flow
+				Tooltip:
+					'''
+					Focus cost reduced by 50%
+					Raising your shield will slow you down for the duration of the parry
+					'''
+			}
+
+			ExtraTerrestrialChairItem: {
+				DisplayName: Extra Terrestrial Chair
+				Tooltip: ""
+			}
+
+			MountaintopGlacier: {
+				DisplayName: Mountaintop Glacier
+				Tooltip:
+					'''
+					Does a 7-swing combo that ends with a powerful spear thrust
+					Inflicts Frostbite
+					'''
+			}
+
+			FrostSerpentBag: {
+				DisplayName: Treasure Bag (Frost Serpent)
+				Tooltip: ""
+			}
+
+			Snowshot: {
+				DisplayName: Snowshot
+				Tooltip: Shoots heavy arrows that erupt into frost arrows
+			}
+
+			ClockworkCog: {
+				DisplayName: Clockwork Cog
+				Tooltip: ""
+			}
+
+			TinkererPhone: {
+				DisplayName: Blacksmith's Phone
+				Tooltip: Allows you to remotely use the Blacksmith's services for an increased price
+			}
+
+			ModifierSlotUnlock: {
+				DisplayName: Modifier Slot Unlock
+				Tooltip: ""
+			}
+
+			ElectroPickaxe: {
+				DisplayName: Electro Pickaxe
+				Tooltip:
+					'''
+					Mining tiles creates a lightning node that connects to other nodes
+					creating a web of lightning that destroys tiles between the tiles
+					'''
+			}
+
+			CorruptCompass: {
+				DisplayName: Corrupt Compass
+				Tooltip:
+					'''
+					Finds the furthest corrupted tile in your direction
+					Left-Click to find a location
+					'''
+			}
+
+			CrimsonCompass: {
+				DisplayName: Crimson Compass
+				Tooltip:
+					'''
+					Finds the furthest crimson-tainted tile in your direction
+					Left-Click to find a location
+					'''
+			}
+
+			GraniteCompass: {
+				DisplayName: Granite Compass
+				Tooltip:
+					'''
+					Finds the furthest granite biome in your direction
+					Left-Click to find a location
+					'''
+			}
+
+			SnowOfInfinity: {
+				DisplayName: Timeless Snow
+				Tooltip: ""
+			}
+
+			SpaceScrap: {
+				DisplayName: Space Scrap
+				Tooltip: ""
+			}
+
+			VolcanicRock: {
+				DisplayName: Volcanic Rock
+				Tooltip: ""
+			}
+
+			TakaTalvi: {
+				DisplayName: Takatalvi
+				Tooltip: Shoots snowflakes that teleport behind the enemy and fly in your direction
+			}
+
+			CancerBarrier: {
+				DisplayName: Cancerous Bulwark
+				Tooltip:
+					'''
+					Creates a powerful explosion upon parrying enemies
+					Enemies hit by the the explosion will start decaying
+					Does nothing currently
+					'''
+			}
+
+			MoltenShield: {
+				DisplayName: Molten Shield
+				Tooltip:
+					'''
+					Allows the ability to ram into enemies
+					Double tap a direction
+					'''
+			}
+
+			AstronautHelmet: {
+				DisplayName: Astronaut Helmet
+				Tooltip: Grants immunity to Cosmic Suffocation
+			}
+
+			CosmicJelly: {
+				DisplayName: Cosmic Jelly
+				Tooltip: You can see better within the darkness of the Void
+			}
+
+			CosmicFogDye: {
+				DisplayName: Cosmic Fog Dye
+				Tooltip: ""
+			}
+
+			GasolineSprayer: {
+				DisplayName: Gasoline Sprayer
+				Tooltip:
+					'''
+					Spews out gasoline that sticks onto enemies
+					Enemies covered in gasoline will take 4x more damage from damage over time effects and spread fire onto other gasolined enemies
+					'''
+			}
+
+			FishronPerception: {
+				DisplayName: Fishron Perception
+				Tooltip:
+					'''
+					Makes liquids invisble
+					Allows infinite breath and high underwater mobility
+					'''
+			}
+
+			PlanteraBulb: {
+				DisplayName: Delicate Bulb
+				Tooltip: Summons the overgrown monstrosity when used in the underground jungle
+			}
+
+			MeteorJetpack: {
+				DisplayName: Apollo-11 Starpack
+				Tooltip: Allows flight and slow fall
+			}
+
+			HeartOfTheTundra: {
+				DisplayName: Heart of the Tundra
+				Tooltip: Summons the glacier construct when used in the Tundra
+			}
+
+			LihzardianBulwark: {
+				DisplayName: Lihzardian Bulwark
+				Tooltip:
+					'''
+					Pressing the Parry key and DOWN at the same time will make you mount a golem, making you take 66% less damage and unable to use items
+					The golem can jump around and crush enemies
+					Hold DOWN to slam downwards at extreme speeds
+					This ability has a 10 second cooldown
+					Great for prolonged exposure to damage 
+					'''
+			}
+
+			Minigun: {
+				DisplayName: Minigun
+				Tooltip:
+					'''
+					Two drones will aid you in combat
+					Right Click to reverse the drone's spread
+					80% chance to not consume ammo
+					'''
+			}
+
+			MeteorCompass: {
+				DisplayName: Meteor Compass
+				Tooltip:
+					'''
+					Finds the furthest meteorite in your direction
+					Left-Click to find a location
+					'''
+			}
+
+			SpiritItem: {
+				DisplayName: Spirit
+				Tooltip: ""
+			}
+
+			SerpentRelicItem: {
+				DisplayName: Frost Serpent Relic
+				Tooltip: ""
+			}
+
+			FrozenChunk: {
+				DisplayName: Frozen Chunk
+				Tooltip: ""
+			}
+
+			PoseidonsTide: {
+				DisplayName: Poseidon's Fragment
+				Tooltip: "[c/3b6ee9:A ghastly matter radiating with tranquil, oceanic energy]"
+			}
+
+			TurmoilRusher: {
+				DisplayName: Turmoil Flooder
+				Tooltip: Continuous usage will make the gun go overdrive, making it fire faster
+			}
+
+			ChromaticAegis: {
+				DisplayName: Chromatic Aegis
+				Tooltip: Releases curving rainbow lasers upon parrying
+			}
+
+			EasternTalismans: {
+				DisplayName: Eastern Talismans
+				Tooltip: Shoots chasing fantasy talismans
+			}
+
+			CrystalRadiationPill: {
+				DisplayName: Crystal Radiation Pill
+				Tooltip:
+					'''
+					Grants immunity to the effects of Cosmic Radiation
+					Movement speed multiplied by 1.2x when inflicted with Cosmic Radiation
+					'''
+			}
+
+			BlacksmithPhoneNumber: {
+				DisplayName: Blacksmith's Phone Number
+				Tooltip:
+					'''
+					Given by the blacksmith for her most loyal customers
+					[c/586475:(]3[i:PlatinumCoin] platinum coins [c/586475:spent, can be obtained multiple times)]
+					'''
+			}
+
+			RigidBroadsword: {
+				DisplayName: Rigid Broadsword
+				Tooltip: ""
+			}
+
+			HeavyMetal: {
+				DisplayName: Heavy Metal
+				Tooltip: ""
+			}
+
+			OvergrownWhip: {
+				DisplayName: Overgrown Whip
+				Tooltip:
+					'''
+					10 summon tag damage
+					Creates connecting vines upon hitting enemies
+					'''
+			}
+
+			FrostMonolithItem: {
+				DisplayName: Frost Monolith
+				Tooltip: ""
+			}
+
+			VoidFragment: {
+				DisplayName: Void Fragment
+				Tooltip: "[C/185d57:A vile chunk of void responsible for spreading the infection]"
+			}
+
+			DarkMetalClaymore: {
+				DisplayName: Dark Metal Claymore
+				Tooltip: ""
+			}
+
+			EmpoweringTablet: {
+				DisplayName: Warrior's Tablet
+				Tooltip:
+					'''
+					Most weapons will summon additional molten projectiles upon attacking
+					[c/ff5f00:Melee]:
+					[c/586475:Short-Ranged Molten Slashes]
+					[c/278f6f:Ranged]:
+					[c/586475:Distorted Molten Bullets]
+					[c/9534b4:Magic]:
+					[c/586475:Homing Molten Lasers]
+					[c/1d7fcb:Whips]:
+					[c/586475:Molten Whip that inflicts Oiled, making enemies take increased damage over time from fire debuffs]
+					You will be unable to dash or parry
+					'''
+			}
+
+			MendingRune: {
+				DisplayName: Healer's Rune
+				Tooltip: ""
+			}
+
+			AtmospheronMask: {
+				DisplayName: Atmospheron Mask
+				Tooltip: ""
+			}
+
+			DreamSeal: {
+				DisplayName: Dream Seal
+				Tooltip:
+					'''
+					Shoots dream talismans that stick to enemies
+					Right Click to create a boundary that warp the talismans around its corners
+					You will replenish mana and gain 20 defense while inside the boundary
+					Exiting the boundary's first ring makes it disappear
+					'''
+			}
+
+			StarPrize: {
+				DisplayName: Winner's Star
+				Tooltip:
+					'''
+					It has a note attached to it;
+					[c/6d09a7:Congrats on finishing the current content of the mod!]
+					[c/6d09a7:Make sure to look out for future content updates.]
+					[c/6d09a7:-CreanBL]
+					'''
+			}
+
+			FishPendant: {
+				DisplayName: Fish Pendant
+				Tooltip:
+					'''
+					Holding UP while submerged will transform you into a fish
+					Being a fish allows you to swim freely without drowning
+					You will return back into human form after a few seconds of not holding UP
+					'''
+			}
+
+			CosmicJewel: {
+				DisplayName: Cosmic Jewel
+				Tooltip: ""
+			}
+
+			StewThatMakesHerGoBlindFor1day: {
+				DisplayName: Perpetual Blindness Stew
+				Tooltip: Makes you go blind for 1 day
+			}
+
+			SkullMasterSickle: {
+				DisplayName: Skull Master's Sickle
+				Tooltip:
+					'''
+					Tills dirt into soil
+					Right Click to fire a sickle that breaks nearby fully grown crops
+					'''
+			}
+
+			ExtraTerrestrialAnvilItem: {
+				DisplayName: Extra Terrestrial Anvil
+				Tooltip: ""
+			}
+
+			EarthHairdye: {
+				DisplayName: Earthly Hair Dye
+				Tooltip: Turns your hair into a miniature planet
+			}
+
+			BetterWig: {
+				DisplayName: Improved Wig
+				Tooltip: Supports shadered hair dyes
+			}
+
+			AngelicHairdye: {
+				DisplayName: Angelic Hair Dye
+				Tooltip: ""
+			}
+
+			LaserSightLens: {
+				DisplayName: Rez 125S-T Model Laser Lens
+				Tooltip:
+					'''
+					Ranged damage increased by 10%
+					Press (Unbound Key) to toggle laser sight
+					Ranged damage and critical strike chance increased by 25% while in laser sight
+					'''
+			}
+
+			SoulOfKnight: {
+				DisplayName: Soul of Knight
+				Tooltip: "'The essence of primordial machines'"
+			}
+
+			PrimeGauntlet: {
+				DisplayName: Prime Glove
+				Tooltip: ""
+			}
+
+			OverloadedCore: {
+				DisplayName: Overloaded Heart
+				Tooltip:
+					'''
+					Hold Shift to perform a Hyper Dash
+					This ability has a 2 second or 5 second cooldown depending on if a boss is alive
+					'''
+			}
+
+			NucleusBag: {
+				DisplayName: Treasure Box (Project Nucleus)
+				Tooltip: ""
+			}
+
+			SewerHoop: {
+				DisplayName: Sewer Hoop
+				Tooltip: ""
+			}
+
+			VoidSeeds: {
+				DisplayName: Void Seeds
+				Tooltip:
+					'''
+					Spreads the void in a 7x7 circular radius
+					Will stop spreading after a specific amount of the world is consumed
+					[c/ff0000:HANDLE WITH EXTREME CAUTION !!]
+					[c/ff0000:ANY DAMAGE CAUSED IS IRREVERSIBLE !!]
+					'''
+			}
+
+			Flour: {
+				DisplayName: Flour
+				Tooltip: ""
+			}
+
+			BoswelliaSeed: {
+				DisplayName: Boswellia Seeds
+				Tooltip:
+					'''
+					Must be planted on heavenly soil
+					Requires a 3x4 area of space
+					Can be cut down for [i:TranscendenceMod/DivineFrankincense] after fully grown
+					'''
+			}
+
+			StarfruitSeeds: {
+				DisplayName: Starfruit Seeds
+				Tooltip:
+					'''
+					Must be planted on heavenly soil
+					Only grows during nights
+					'''
+			}
+
+			TomatoSeeds: {
+				DisplayName: Tomato Seeds
+				Tooltip: ""
+			}
+
+			Tomato: {
+				DisplayName: Tomato
+				Tooltip: ""
+			}
+
+			CocoaBean: {
+				DisplayName: Cocoa Bean
+				Tooltip: ""
+			}
+
+			CocoaBeanSeeds: {
+				DisplayName: Cocoa Bean Seeds
+				Tooltip: ""
+			}
+
+			LifeSeeds: {
+				DisplayName: Seeds of Life
+				Tooltip: Must be doused in honey to grow
+			}
+
+			AngelHornScythe: {
+				DisplayName: Angel-Horn Scythe
+				Tooltip: Tills dirt into heavenly soil, allowing more crops to be grown
+			}
+
+			IronHoe: {
+				DisplayName: Iron Hoe
+				Tooltip: ""
+			}
+
+			EarthDial: {
+				DisplayName: Earth Time Fragment
+				Tooltip: ""
+			}
+
+			SeraphCaller: {
+				DisplayName: Seraph's Bell
+				Tooltip:
+					'''
+					Starts a Casual Seraphic Encounter
+					Can only be used in a flat surface-height area at night
+					Doesn't work while a boss is alive
+					'''
+			}
+
+			TwentyTwoBullet: {
+				DisplayName: 22-Bullet
+				Tooltip:
+					'''
+					Splits into a maxium of 21 homing bullets that each target a different enemy
+					[c/ffba00:A fabled bullet rumoured to have killed 22 gods with a single shot.]
+					'''
+			}
+
+			TwistedShot: {
+				DisplayName: Twisted Tendril Shot
+				Tooltip: ""
+			}
+
+			Aorta: {
+				DisplayName: Aorta
+				Tooltip: ""
+			}
+
+			DoomsdayDestructor: {
+				DisplayName: Doomsday Destructor
+				Tooltip: ""
+			}
+
+			DragonScale: {
+				DisplayName: Dragon Scale
+				Tooltip: ""
+			}
+
+			HardmetalHook: {
+				DisplayName: Hardmetal Hook
+				Tooltip: ""
+			}
+
+			SunshadeEgg: {
+				DisplayName: Sunshade Egg
+				Tooltip: ""
+			}
+
+			RedSpiderLilyItem: {
+				DisplayName: Red Spider Lily
+				Tooltip: ""
+			}
+
+			SeedBox: {
+				DisplayName: Seed Box
+				Tooltip: ""
+			}
+
+			RedSpiderLilySeeds: {
+				DisplayName: Red Spider Lily Seeds
+				Tooltip: ""
+			}
+
+			WallOfFleshNote: {
+				DisplayName: Mysterious Note (Wall of Flesh)
+				Tooltip: TO BE REWRITTEN
+			}
+
+			WallOfFleshEnv: {
+				DisplayName: Mysterious Envelope
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			HeavenlyKunai: {
+				DisplayName: Heavenly Kunais
+				Tooltip: ""
+			}
+
+			ApolloHelmet: {
+				DisplayName: Apollo Helmet
+				Tooltip:
+					'''
+					Damage increased by 17,5%
+					Grants immunity to Cosmic Suffocation
+					'''
+			}
+
+			ApolloPiece: {
+				DisplayName: Apollo Piece
+				Tooltip: ""
+			}
+
+			FrozenMaw: {
+				DisplayName: Frozen Maw
+				Tooltip: ""
+			}
+
+			DysphoricThrow: {
+				DisplayName: Dysphoric Throw
+				Tooltip: ""
+			}
+
+			LunarShield: {
+				DisplayName: Lunar Shield
+				Tooltip: ""
+			}
+
+			GangstaShotgun: {
+				DisplayName: Gangsta Shotgun
+				Tooltip: "'You reap what you snow'"
+			}
+
+			JollyMedallion: {
+				DisplayName: Jolly Medallion
+				Tooltip: ""
+			}
+
+			ModifierContainer: {
+				DisplayName: Magic Modifier Bag
+				Tooltip:
+					'''
+					Allows you to use modifier items without consuming them
+					Placing 3 modifier items of the same type in the bag will allow you to use it infinitely
+					Right Click an item inside the bag to select it as the modifier
+					Can only be opened from the hotbar
+					'''
+			}
+
+			SunkenBlueBrickItem: {
+				DisplayName: Sunken Blue Brick
+				Tooltip: ""
+			}
+
+			SunkenGreenBrick: {
+				DisplayName: Sunken Green Brick
+				Tooltip: ""
+			}
+
+			SunkenPinkBrick: {
+				DisplayName: Sunken Pink Brick
+				Tooltip: ""
+			}
+
+			SunkenWallItem: {
+				DisplayName: Sunken Dungeon Wall
+				Tooltip: ""
+			}
+
+			IcyBoomerang: {
+				DisplayName: Lumihiutale
+				Tooltip: ""
+			}
+
+			MysticTalismanPickup: {
+				DisplayName: Mystic Talisman Pickup
+				Tooltip: ""
+			}
+
+			MysticTalisman: {
+				DisplayName: Mystic Talisman
+				Tooltip: ""
+			}
+
+			LunaticFlail: {
+				DisplayName: Lunatic Wrecking Ball
+				Tooltip: Wreck enemies with a giant moon!
+			}
+
+			CreanStaff: {
+				DisplayName: Night Blue Staff of Creation
+				Tooltip:
+					'''
+					Gains new abilities every Transcendence Mod boss defeated
+					[C/20f076:-:- Developer Item -:-]
+					[C/618090:-:- CreanBL -:-]
+					'''
+
+				Upgrades: {
+					FrostSerpent: You will be aided by Ice Blue Snatchers
+					Atmospheron: Projectile speed increased
+					Nucleus: You will shoot electric heart helixes
+					Seraph: You will be aided by miniature Cosmic Gazers
+				}
+			}
+
+			DownedBossSetter: {
+				DisplayName: Downed Boss Setter
+				Tooltip:
+					'''
+					Set DownedBoss flags for Transcendence Mod
+					Right Click to alternate
+					[c/FF0000:-:- Playtesting Item -:-]
+					'''
+			}
+
+			NucleusRelicItem: {
+				DisplayName: Project Nucleus Relic
+				Tooltip: ""
+			}
+
+			NucleusMask: {
+				DisplayName: CRT Mask
+				Tooltip: ""
+			}
+
+			CosmicArtifact: {
+				DisplayName: Cosmic Artifact
+				Tooltip:
+					'''
+					Opens a rift to the Seraph's pocket dimension
+					[C/ff0000:This item will intiate a battle, proceed with caution!]
+					[C/526377:It is recommended to obtain powerful gear before fighting this foe]
+					'''
+			}
+
+			NucleusSummonerItem: {
+				DisplayName: Nucleus Caller
+				Tooltip:
+					'''
+					Calls in the 'Project 1020-CTHL Nucleus' module when used at night on a flat surface
+					[C/526377:It is recommended to obtain powerful gear before fighting this foe]
+					'''
+			}
+
+			NucleusHead: {
+				DisplayName: Nucleus Head
+				Tooltip: ""
+			}
+
+			NucleusTrophyItem: {
+				DisplayName: Nucleus Trophy
+				Tooltip: ""
+			}
+
+			NohitMode: {
+				DisplayName: Illegal Mechanical Component
+				Tooltip:
+					'''
+					Instantly kills the user upon taking damage
+					This only happens if the item is favorited
+					'''
+			}
+
+			ScavengerChisel: {
+				Tooltip:
+					'''
+					A tool that can scavenge Silt, Slush and Fossils for important resources underground
+					Lasts for {0} uses
+					'''
+				DisplayName: Scavenger's Chisel
+			}
+
+			VolcanicRemains: {
+				DisplayName: Volcanic Remains
+				Tooltip: ""
+			}
+
+			RingOfBravery: {
+				DisplayName: Ring of Bravery
+				Tooltip:
+					'''
+					Max number of minions increased by 1
+					Whip speed increased by 25%
+					'''
+			}
+
+			HealthyJewel: {
+				DisplayName: Healthy Jewel
+				Tooltip: ""
+			}
+
+			ArcadeCabinetItem: {
+				DisplayName: Arcade Cabinet (Heartfelt Labyrinth)
+				Tooltip:
+					'''
+					Allows you to play an extended version of the Heartfelt Labyrinth game from the Project Nucleus fight!
+					Costs 2 gold [i:GoldCoin] to play
+					[C/ff0000:Might have some harsh consequences for losing...]
+					'''
+			}
+
+			DescriptionTooltip: {
+				DisplayName: Description Tooltip
+				Tooltip: ""
+			}
+
+			PocketGuillotine: {
+				DisplayName: Pocket Guillotine
+				Tooltip: Removes your head from your body, making you shorter
+			}
+
+			HeartOfTheQueen: {
+				DisplayName: Heart of the Queen
+				Tooltip: "[c/ffd730:A magical core only possessed by the most pure]"
+			}
+
+			BottomlessPotion: {
+				DisplayName: Bottomless Potion
+				Tooltip:
+					'''
+					Can be drinked an endless amount of times
+					Right Click in inventory to change potion type
+					The buff lasts for 8 minutes and takes another 8 minutes to fully recharge
+					'''
+			}
+
+			GalaxyAlloy: {
+				DisplayName: Galaxy Alloy
+				Tooltip: ""
+			}
+
+			LimboBlade: {
+				DisplayName: Limbo Longsword
+				Tooltip: ""
+			}
+
+			FrozenMaws: {
+				DisplayName: Frostbite Maws
+				Tooltip: Summons maws at your cursor that make bitten enemies lose 20 defense against summon weapons for 5 seconds
+			}
+		}
+
+		Projectiles: {
+			CelestialStar.DisplayName: Celestial Star
+			Rock.DisplayName: Rock
+			PumpkinYoyoProj.DisplayName: Grand Harvest
+			DivineBowBolt.DisplayName: Paranormal Arrow
+			ShimmerBulletProj.DisplayName: Shimmer Bullet
+			ShimmerMinion.DisplayName: Bright Star
+			WhiteDwarfProj.DisplayName: Supernova
+			StellarFireball.DisplayName: Stellar Fireball
+			Reflection.DisplayName: Reflection
+			StarfieldWhip.DisplayName: Starfield
+			StarfieldStar.DisplayName: Starfield
+			DrillSwordProj.DisplayName: Combat Drill
+			SpaceLaser.DisplayName: Space Laser
+			LuminiteStakeProj.DisplayName: Luminite Stake
+			GalaxySaberProj.DisplayName: Galaxy Saber
+			DivineSoul.DisplayName: Dungeon Spirit
+			ExoticRayBowShot.DisplayName: Rainbow Ray
+			JetstreamScepterProj.DisplayName: Jetstream
+			SquidLightningBolt.DisplayName: Lightning Bolt
+			SpaceBossBomb.DisplayName: Supernova
+			SpaceBossBombBlast.DisplayName: Cosmic Blast
+			GalaxyShard.DisplayName: Galaxy Shard
+			CelestialSeraphSentryShard.DisplayName: Galaxy Shard
+			MosquitoBiteGas.DisplayName: Mosquito's Bite
+			SpaceKunai.DisplayName: Space Kunai
+			CosmicSphere.DisplayName: Cosmic Sphere
+			VoidBlast.DisplayName: Void Blast
+			CelestialStar2.DisplayName: Celestial Star
+			SpaceBossMinion.DisplayName: Stellar Dweller
+			LuminiteStakeBolt.DisplayName: Lunar Plasma
+			SpaceVaccuumBlackHole.DisplayName: Black Hole
+			DeepwaterRip.DisplayName: Deepwater Rip
+			DeepwaterShred.DisplayName: Deepwater Shred
+			DeepwaterShredBloodWave.DisplayName: Deepwater Blood Wave
+			DeepwaterSlash.DisplayName: Deepwater Slash
+			BossStar.DisplayName: Boss Star
+			StarChunk.DisplayName: Star Chunk
+			MosquitoPoison.DisplayName: Mosquito Poison
+			EverlastingLance.DisplayName: Everlasting Lance
+			SwordSlash.DisplayName: Galaxy Saber
+			Asteroid.DisplayName: Asteroid
+			VoidAsteroid.DisplayName: Void Asteroid
+			CosmicSphereFragment.DisplayName: Cosmic Sphere Fragments
+			SeraphLaser.DisplayName: Star Laser
+			Moon.DisplayName: Moon
+			MoonFrag.DisplayName: Moon Rock
+			WindBlast.DisplayName: Wind Blast
+			ShrinkingOrb.DisplayName: Shrinking Orb
+			GrowingOrb.DisplayName: Growing Orb
+			Comet.DisplayName: Comet
+			TornadoFriendly.DisplayName: Tornado Friendly
+			WindDragonClawmerang.DisplayName: Wind Dragon's Clawmerang
+			OrionsAssault.DisplayName: Orion's Assault
+			OrionsHelix.DisplayName: Orion's Helix
+			TornadoHostile.DisplayName: Tornado
+			StrongWater.DisplayName: Rain
+			Icicle.DisplayName: Icicle
+			Snow.DisplayName: Snow
+			StormbowArrow.DisplayName: Stormbow Arrow
+			FireworkBlast.DisplayName: Firework Blast
+			FireworkProjectile.DisplayName: Firework
+			StarMist.DisplayName: Star Mist
+			PillarOfCreation.DisplayName: Pillar Of Creation
+			SupernovaSpawner.DisplayName: Supernova
+			CelestialSeraphSummoner.DisplayName: Seraph Communicator
+			FinalAttackProj.DisplayName: Universal Rainbow Spiral
+			DeathAnimationBoom.DisplayName: Death Explosion
+			PillarOfCreationFriendly.DisplayName: Pillar of Creation
+			PoCStar.DisplayName: Star
+			GalaxySaberShred.DisplayName: Galaxy Saber
+			OrionsHelixFriendly.DisplayName: Orion's Helix
+			LightningBoss.DisplayName: Lightning Boss
+			ShadowflameBeam.DisplayName: Shadowflame Beam
+			Starball.DisplayName: Starball
+			StarGlyph.DisplayName: Star Glyph
+			DashBallProj2.DisplayName: Energy Sphere
+			DashBallProj.DisplayName: Dash Ball Proj
+			PDHShot.DisplayName: PDH Ellipse
+			HardMetalSlasherProj.DisplayName: Hardmetal Slasher
+			CalamitousFireball.DisplayName: Calamitous Fireball
+			CalamitousBomb.DisplayName: Calamitous Bomb
+			EventHorizonVisual.DisplayName: Blackhole Soul
+			StellarSpearProj.DisplayName: Astralius Divina
+			WindBlastHostile.DisplayName: Wind Blast
+			LostHeadProj.DisplayName: Lost Head
+			WaterKunaiHostile.DisplayName: Water Kunai
+			WaterKunaiProj.DisplayName: Water Kunai
+			UpgradedMuramasaProj.DisplayName: Floodtide Muramasa
+			MuramasaPlusShred.DisplayName: Floodtide Slash
+			CloudProj.DisplayName: Cloud
+			TinkererGunBullet.DisplayName: Backfirer Bullet
+			PoCLaser.DisplayName: Laser of Creation
+			StrikeFromTheBushesProj.DisplayName: Strike From The Bushes
+			DoubleSwordRedProj.DisplayName: Red-Edged Sword
+			DoubleSwordBlueProj.DisplayName: Blue-Edged Sword
+			RuneBlastFriendly.DisplayName: Rune Blast
+			LivingBulletProj.DisplayName: Living Bullet
+			LivingBulletTree.DisplayName: Living Tree
+			MuramasaShred.DisplayName: Muramasa Shred
+			MuramasaSlash.DisplayName: Muramasa Slash
+			EoWFire.DisplayName: Cursed Fire
+			SpazzingEyeFire.DisplayName: Cursed Fire
+			CosmicPortal.DisplayName: Cosmic Portal
+			CosmicKick.DisplayName: Meteor Kick
+			BrightStarBomb.DisplayName: Bright Star Bomb
+			Constellations_HoldOut.DisplayName: Constellations
+			ConstellationsProj.DisplayName: Constellation
+			QuantumSlicerProj.DisplayName: Quantum Slicer
+			Sculpture.DisplayName: Sculpture
+			Shockwave.DisplayName: Shockwave
+			StarcraftedBlade.DisplayName: Starcrafted Blade
+			CosmosShard.DisplayName: Cosmos Shard
+			CosmosShardLauncherProj.DisplayName: Cosmos Shard Launcher
+			CosmosShardShockwave.DisplayName: Cosmic Shockwave
+			CosmosFlames.DisplayName: Cosmos Flames
+			SentryBlackhole.DisplayName: Blackhole
+			BoltProj.DisplayName: Bolt
+			FlailHook.DisplayName: Flailing Hook
+			GloveThrowItem.DisplayName: Thrown Item
+			Meteor.DisplayName: Meteor
+			StarGunBullet.DisplayName: Star Bullet
+			StarLaser.DisplayName: Star Laser
+			StarMegaLauncherDeathray.DisplayName: Star Mega Launcher
+			StarMegaLauncherStar.DisplayName: Star Mega Launcher Star
+			ShimmerBlossomProj.DisplayName: Shimmer Blossom
+			BlossomBoom.DisplayName: Blossom Boom
+			BaseballBatProj.DisplayName: Baseball Bat
+			SpikedBaseballBatProj.DisplayName: Spiked Baseball Bat
+			StarBirthLaser.DisplayName: Star Dust Laser
+			VoidAxeProj.DisplayName: Galaxy Crystal Axe
+			VoidAxeThrown.DisplayName: Galaxy Crystal Axe
+			SunBeam.DisplayName: Sun Beam
+			SunFlame.DisplayName: Sun Flame
+			LumimyrskyHiutale.DisplayName: Lumihiutale
+			StarGlyphNoReturn.DisplayName: Star Glyph
+			SeraphPet.DisplayName: Star Angel
+			MoonEclipse.DisplayName: Moon Eclipse
+			SunEclipse.DisplayName: Sun Eclipse
+			BluePolarityLaser.DisplayName: Polarity Laser
+			OrangePolarityLaser.DisplayName: Polarity Laser
+			BoAExplosion.DisplayName: Blighted Explosion
+			PortalBoxPoj.DisplayName: Portal Box
+			HomingStarLaser.DisplayName: Nebula Deathray
+			LightningLaser.DisplayName: Lightning Laser
+			StarsighterLaser.DisplayName: Nebula Ray
+			Star.DisplayName: Star
+			ExoticRayBowProj.DisplayName: Rainbow Ray Bow
+			ExoticRayBowTrailingShot.DisplayName: Elemental Shot
+			ElementalBowProj.DisplayName: Elemental Bow
+			CannonBall.DisplayName: Cannon Ball
+			CannonSentry.DisplayName: Cannon Sentry
+			ElementalArrow.DisplayName: Elemental Arrow
+			TimeOrb.DisplayName: Time Orb
+			AtbowphereProj.DisplayName: Atbowsphere
+			GiantAnchorProj.DisplayName: Giant Anchor
+			SpritersBrushProj.DisplayName: Spriter's Brush
+			SpritersPaint.DisplayName: Spriters Paint
+			HeavyKnifeProj.DisplayName: Heavy Knife
+			BladeOfReflectionProj.DisplayName: Blade Of Reflection
+			MirrorBladeShrapnel.DisplayName: Mirror Shrapnel
+			MuramasaLaser.DisplayName: Muramasa Slash
+			Pellet.DisplayName: Pellet
+			Rubble.DisplayName: Rubble
+			SunwarePickaxeGuidingLight.DisplayName: Guiding Light
+			TerraWhirlind.DisplayName: Terra Whirlind
+			RodOfRelocationWarp.DisplayName: Rod Of Relocation
+			BasicSword_Proj.DisplayName: Basic Sword
+			FanWind.DisplayName: Fan Wind
+			RainbowSpiralLaser.DisplayName: Laser of Finality
+			FinalDeathray.DisplayName: Final Deathray
+			MegaInferno.DisplayName: Mega Inferno
+			DashLaser.DisplayName: Dash Laser
+			PillarOfCreationP2.DisplayName: Eagle Nebula
+			PillarSpawner.DisplayName: Pillar Creator
+			StargazerLaserFriendly.DisplayName: Stargazer Laser
+			MirrorLaser.DisplayName: Mirror Laser
+			CondensedAir.DisplayName: Condensed Air
+			DragonHead.DisplayName: Dragon Head
+			RoarShockwave.DisplayName: Roar Shockwave
+			CobaltWater.DisplayName: Cobalt Water
+			MuramasaSummon.DisplayName: Summon of the Sea
+			ToxicArrowImpact.DisplayName: Toxic Gas
+			ToxicArrowProj.DisplayName: Toxic Arrow
+			DragonBolt.DisplayName: Dragon Bolt
+			DragonBolt_Telegraph.DisplayName: Dragon Bolt
+			EnchantedBolt.DisplayName: Enchanted Bolt
+			ColorFlame.DisplayName: Color Flame
+			AncientWater.DisplayName: Ancient Water
+			Seaweed.DisplayName: Seaweed
+			LightningRodProj.DisplayName: Lightning Rod
+			SeraphsSoul.DisplayName: Seraph's Soul
+			SpaceyoProj.DisplayName: Dysphoric Throw
+			GalaxyTear.DisplayName: Galaxy Tear
+			CatacombExplorerDust.DisplayName: Catacomb Explorer Dust
+			MiningDustProj.DisplayName: Mining Dust
+			SuperBombProj.DisplayName: Super Bomb
+			SuperBoom.DisplayName: Super Boom
+			SuperBombProj_Bouncy.DisplayName: Super Bomb
+			SuperBombProj_Sticky.DisplayName: Super Bomb
+			SuperBombProj_Brick.DisplayName: Super Bomb
+			SuperCreation.DisplayName: Super Reverse Bomb
+			SuperBombProj_Brick_Sticky.DisplayName: Sticky Super Bomb
+			CurvingStar.DisplayName: Curving Star
+			SeraphBobber.DisplayName: Seraph's Bobber
+			VoltageLauncherProj.DisplayName: Voltage Launcher
+			VoltageBeam.DisplayName: Voltage Beam
+			DreadshotProj.DisplayName: Dreadfish Pistol
+			DreadshotBullet.DisplayName: Dreadfish Bullet
+			UFOlaser.DisplayName: Twisted Tendril
+			QuantumBlast.DisplayName: Quantum Blast
+			HolyBolt.DisplayName: Holy Bolt
+			HolyFireball.DisplayName: Holy Fireball
+			AngelicLaser.DisplayName: Angelic Laser
+			HolyScroll_HoldOut.DisplayName: Holy Scroll
+			AngelicLaser_Friendly.DisplayName: Angelic Laser
+			Terrarrow.DisplayName: Terrarrowia
+			DivineBeam.DisplayName: Divine Beam
+			CthulhunadoFriendly.DisplayName: Cthulhunado
+			TempleArrowProj.DisplayName: Temple Arrow
+			MountaintopGlacier_Proj.DisplayName: Mountaintop Glacier
+			MountaintopGlacier_Proj2.DisplayName: Mountaintop Glacier
+			GlacierSnow.DisplayName: Glacier Snow
+			HomingFrostBlast.DisplayName: Frost Blast
+			FrostLaser.DisplayName: Frost Laser
+			ElectroPickaxe_Proj.DisplayName: Electro Pickaxe
+			ElectroPickaxeChainCenter.DisplayName: Electro Pickaxe Node
+			SkyyoProj.DisplayName: Skyyo
+			YoyoFeather.DisplayName: Feather
+			Lumihiutale.DisplayName: Lumihiutale
+			GasolineProj.DisplayName: Gasoline
+			TempleHead.DisplayName: Temple Head
+			CometLaser.DisplayName: Comet Laser
+			MirageShard.DisplayName: Mirage Shard
+			MagicalSnowflake.DisplayName: Magical Snowflake
+			MinigunProj.DisplayName: Minigun
+			SerpentIcicle.DisplayName: Serpent Icicle
+			CreepingIndicator.DisplayName: Creeping Indicator
+			FrostLaserStatic.DisplayName: Frost Laser
+			FishronBubble.DisplayName: Fishron Bubble
+			TurmoilRusherProj.DisplayName: Turmoil Steamer
+			TurmoilBullet.DisplayName: Turmoil Water
+			TurmoilMiniProj.DisplayName: Turmoil Droplet
+			EolShieldLaser.DisplayName: Prismatic Burst
+			EasternTalismanProj.DisplayName: Fantasy Talisman
+			RigidBroadswordProj.DisplayName: Rigid Broadsword
+			OvergrownChain.DisplayName: Overgrown Chain
+			OvergrownWhipProj.DisplayName: Overgrown Whip
+			DarkMetalClaymoreProj.DisplayName: Dark Metal Claymore
+			SerpentSnowball.DisplayName: Serpent Snowball
+			ClaymoreOrb.DisplayName: Claymore Orb
+			MoltenBullet.DisplayName: Molten Bullet
+			MoltenSlash.DisplayName: Molten Slash
+			MoltenTrail.DisplayName: Molten Trail
+			MoltenChunk.DisplayName: Molten Chunk
+			MoltenWhip.DisplayName: Molten Whip
+			DreamSealOrb.DisplayName: Dream Boundary
+			DreamSealProj.DisplayName: Dream Talisman
+			Terradime.DisplayName: Terradime
+			MuramasaDeathLaser.DisplayName: Moonwave Slash
+			SkullMasterProj.DisplayName: Skull Master's Sickle
+			DivineSpear.DisplayName: Divine Spear
+			GenericDivineLaser.DisplayName: Generic Divine Laser
+			HolyLaserSpawner.DisplayName: Holy Laser Spawner
+			HolyJavelin.DisplayName: Holy Javelin
+			SpaceRubble.DisplayName: Space Rubble
+			NucleusGenericBeam.DisplayName: Nucleus Beam
+			SlamShockwave.DisplayName: Slam Shockwave
+			NucleusLaser.DisplayName: Nucleus Laser
+			NucleusMine.DisplayName: Nucleus Mine
+			NucleusMineBlast.DisplayName: Nucleus Mine Blast
+			GuidedMissile.DisplayName: Guided Missile
+			PlasmaWave.DisplayName: Nucleus Plasma
+			SewerHoopProj.DisplayName: Sewer Hoop
+			SunBladeProj.DisplayName: Sun Blade
+			TwentyTwoBulletProj.DisplayName: 22-Bullet
+			GodlessTendril.DisplayName: Twisted Tendril
+			FriendlyNucleusLaser.DisplayName: Friendly Nucleus Laser
+			MothBaby.DisplayName: Moth Baby
+			NucleusHeart.DisplayName: Nucleus Heart
+			TwistedTendril.DisplayName: Twisted Tendril
+			RainbowShot.DisplayName: Rainbow Shot
+			FrostWave.DisplayName: Frost Wave
+			FrozenMawProj.DisplayName: Frozen Maw Proj
+			DysphoricYoyoProj.DisplayName: Dysphoric Throw
+			EolDeathBeam.DisplayName: Eol Death Beam
+			PlayerGameTransRing.DisplayName: Player Game Trans Ring
+			PlayerGameTrans.DisplayName: Player Game Trans
+			Sawblade.DisplayName: Sawblade
+			NucleusDeathBoom.DisplayName: Nucleus Death Boom
+			NucleusDeathGigaBoom.DisplayName: Nucleus Death Giga Boom
+			ParryVisual.DisplayName: Parry Visual
+			MysticBlast.DisplayName: Mystic Blast
+			LunaticFlailProj.DisplayName: Lunatic Wrecking Ball
+			CreanStaffProj.DisplayName: Crean Staff
+			CreanLaser.DisplayName: Crean Laser
+			RainbowBullet.DisplayName: Rainbow Bullet
+			CreanSnatcher.DisplayName: Crean Snatcher
+			CreanHeart.DisplayName: Crean Heart
+			CreanStargazer.DisplayName: Crean Stargazer
+			CreanStargazerLaser.DisplayName: Crean Stargazer Laser
+			FrostBlast.DisplayName: Frost Blast
+			BloodLiquid.DisplayName: Blood Liquid
+			BloodFireball.DisplayName: Blood Fireball
+			NucleusLaserBoom.DisplayName: Nucleus Laser Boom
+			NucleusTarget.DisplayName: Nucleus Target
+			BigCrunchStar.DisplayName: Big Crunch Star
+			BigCrunchStarSpawn.DisplayName: Big Crunch Star
+			ArtificialSun.DisplayName: Artificial Sun
+			HeavenlyKunaiProj.DisplayName: Heavenly Kunai
+			SewerHoopFountain.DisplayName: Water Fountain
+			PristineBlade.DisplayName: Pristine Blade
+			ImpurityBlast.DisplayName: Impurity Blast
+			RemoteBlastTelegraph.DisplayName: Remote Blast Telegraph
+			P2SupernovaBlackhole.DisplayName: Blackhole
+			P2SupernovaProj.DisplayName: Cosmic Remnants
+			P2SupernovaSun.DisplayName: Artificial Sun
+			EmpressSun.DisplayName: Empress Sun
+			EmpressLaser.DisplayName: Empress Laser
+			TwentyTwoHoming.DisplayName: Twenty Two Homing
+			LimboBladeProj.DisplayName: Limbo Blade
+			FrozenMawsProj.DisplayName: Frozen Maws
+			CoolBow.DisplayName: Cool Bow
+			SummitSpear.DisplayName: Summit Spear
+		}
+
+		SeraphAttackNames: {
+			BirthOfAStar: Starborn Miracle
+			BirthOfAStarP2: Birth of a Star
+			RainP1: Cthulhu's Firestorm
+			RainP2: Fractal Inferno
+			HomingP1: Astral Purification
+			HomingP2: Absolute Purification
+			Supernova: Claymore Supernova
+			Blackhole: Null Maelstrom
+			SwordSlamP2: Rending Blade of Heaven
+			NebulaMatterP2: Ultra Nebula Mantle
+			MeteorAbyss: Meteor Abyss
+			Moon: Impact Field
+			BreathingStar: Helios' Wrath
+			Pillars: Pillars of Creation
+			BigCrunch: Big Bang and Big Crunch
+			DivineSpear: Divine Spear of the Seraph
+			RoyalFlash: Royal Flash
+			TrackingBlades: Most Refined and Pristine Blades
+			RemoteBlast: Impurity Revealed Within
+			SupernovaP2: Death of a Star
+			LaserGrid: Pure Holy Assault
+		}
+
+		Achievement: {
+			Title: Transcendence Achievements
+			Notification: Achievement Get!
+
+			Markers: {
+				Start: Start
+				End: Finish
+			}
+
+			Categories: {
+				Prog: "[i:WoodenDoor] [C/fee86f:Progression]"
+				EaM: "[i:EnchantedSword] [C/54f07b:Equipment and Mechanics]"
+				Misc: "[i:SoulofFlight] [C/62b6ea:Miscellaneous]"
+				Challenge: "[i:WallOfFleshGoatMountItem] [C/c54161:Challenge]"
+			}
+
+			Steps: {
+				Begin: {
+					DisplayName: The Beginning
+					Tooltip: Open the Achievement Book
+				}
+
+				Parry: {
+					DisplayName: +PARRY
+					Tooltip: Obtain a parry from a shield
+				}
+
+				Modifier: {
+					DisplayName: Curious Alterations
+					Tooltip: Apply a modifier onto an item with the help of the Blacksmith
+				}
+
+				ModifierBag: {
+					DisplayName: Convenient Alterations
+					Tooltip: Obtain the Magic Modifier Bag
+				}
+
+				Snowman: {
+					DisplayName: Chilly Business
+					Tooltip: Talk to the Friendly Snowman in the underground ice biome
+				}
+
+				CosmicNPC: {
+					DisplayName: A Charitable Deed
+					Tooltip: Talk to the Cosmic Archmage and give them the item they want
+				}
+
+				Timedial: {
+					DisplayName: Timeless Artifact
+					Tooltip: Combine the three Time Fragments into the Timedial
+				}
+
+				Hardmetal: {
+					DisplayName: Heavy Metal
+					Tooltip: Defeat the giant eye and mine Hardmetal Ore from the depths of the caverns
+				}
+
+				Headless: {
+					DisplayName: Nightmares of the Eternal Moon
+					Tooltip: Defeat the Headless Terror
+				}
+
+				Volcanic: {
+					DisplayName: Hot Stuff
+					Tooltip: Brave the volcanic layer and obtain Volcanic Remains
+				}
+
+				sans: {
+					DisplayName: Bone Zone
+					Tooltip: Lift the Old Man's curse
+				}
+
+				Muramasa: {
+					DisplayName: Scars of the Catacombs
+					Tooltip: Defeat the Possessed Blade located deep within the halls of the Dungeon
+				}
+
+				Wall: {
+					DisplayName: Beyond the Wall
+					Tooltip: Throw the Guide Voodoo Doll into the lava and defeat the unstoppable horror of the Underworld
+				}
+
+				Empress: {
+					DisplayName: Absolute Radiance
+					Tooltip: Defeat the Empress of Light, the false angel created by angels, for angels
+				}
+
+				Moonlord: {
+					DisplayName: Primordial Rituals
+					Tooltip: Complete the Lunar Cult's ritual and defeat the lunar lord
+				}
+
+				VoidBiome: {
+					DisplayName: Tainted World
+					Tooltip: Release the Void into your land with the seeds obtained from the lunar beast
+				}
+
+				FrostSerpent: {
+					DisplayName: Snow Grave
+					Tooltip: Defeat the Frost Serpent
+				}
+
+				Atmospheron: {
+					DisplayName: Dragon Flayer
+					Tooltip: Defeat Atmospheron, the master of the vast overworld skies
+				}
+
+				PoseidonFrag: {
+					DisplayName: Secrets of the Dungeon
+					Tooltip: Brave the upgraded Dungeon and obtain a Poseidon's Fragment
+				}
+
+				NucleusCaller: {
+					DisplayName: Advanced Technologies
+					Tooltip: Craft the Nucleus Caller
+				}
+
+				Nucleus: {
+					DisplayName: Judgement Day
+					Tooltip: Defeat Project Nucleus, the primordial war machine
+				}
+
+				Artifact: {
+					DisplayName: Artifact of Immense Power
+					Tooltip: Craft the Cosmic Artifact
+				}
+
+				Seraph: {
+					DisplayName: Test of Will
+					Tooltip: Enter the Seraph's rift and survive the combat challenge
+				}
+
+				StarForge: {
+					DisplayName: Forge of Gods
+					Tooltip: Craft the Starcrafted Forge
+				}
+
+				EmpressChallenge: {
+					DisplayName: Mystic Flight
+					Tooltip:
+						'''
+						Defeat the Empress of Light under the following conditions:
+						> [C/526377:You will have to use the Everglowing Tiara's lacewing transformation for the WHOLE fight]
+						> [C/526377:All of the damage must come from the sun passive attacks]
+						[C/526377:Time of the day and stage of progression doesn't matter]
+						Difficulty: [i:ManaCrystal][i:ManaCrystal][i:ManaCrystal][i:ManaCrystal][i:StarStatue] (4/5)
+						'''
+				}
+
+				NucleusChallenge: {
+					DisplayName: So Retro!
+					Tooltip:
+						'''
+						Defeat Project Nucleus under the following conditions:
+						> [C/526377:You will have to have the Rez 125S-T Model Laser Lens sight active for the WHOLE fight]
+						[C/526377:Stage of progression doesn't matter]
+						Difficulty: [i:ManaCrystal][i:ManaCrystal][i:StarStatue][i:StarStatue][i:StarStatue] (2/5)
+						'''
+				}
+			}
+		}
+
+		Messages: {
+			Select: "[C/ffa400:Selected:]"
+			SuperBombFail: No Pickaxe Power Detected!
+			CreationBombFail: No Blocks Detected!
+			CreationBombSuccess: Selected Block: {0}
+			DemolitionistSuperBombHint: I've heard of a big grand bomb that can blow up anything that yer' pick can! I recommend giving one a try!
+			ModifierUIButton: Apply Modifiers
+			ModifierUIFailure: Cannot combine these!
+			ModifierUINoMoney: Not enough money!
+			ModifierUIEmptyPricePanel: "[c/58636b:Insert a modifiable item]"
+			SeraphLifeBonusFail: Life Bonus Failed!
+			Timedials: Time: [c/6cb7e6:{0}]
+			Parry: PARRY!
+			ParryUI: Parry Meter
+			FocusUI: Focus
+			ParryLeniency: "[C/5c915d:{0} Leniency]"
+			ParryCD: "[C/5c915d:{0} Cooldown]"
+			ModifierBagError: Can only be used from the hotbar!
+			BlacksmithPhoneError: No Response...
+			Process: Item Procession
+			RecipeBookTitle: Recipe Book
+			RecipeBookClick: "[C/ffc300:Click to view recipe!]"
+
+			Death: {
+				MagmaBlood0: "{0} was reduced to ashes by extremely hot blood."
+				MagmaBlood1: "{0} was melted by the forbidden tomato soup."
+				Explosion: "{0} blew up."
+				Blood: "{0} bled out."
+				FairyFire: "{0} burst into prismatic flames."
+				BlackHole: "{0} was sucked into a blackhole."
+				SpaceBoss: "{0} experienced the unknown."
+				NohitMode1: "{0} failed the challenge at hand."
+				NohitMode2: "{0} was electrocuted."
+				NohitMode3: "{0} divided by zero."
+				NohitMode4: "{0} tried to reject the concept of life and death."
+				MoonlordArena: "{0} faded away into the lunar fog, never to been again..."
+				NucleusGame: "{0} was deleted from existence."
+			}
+
+			Nucleus: {
+				Desperation: {
+					1: UNABLE TO MAINTAIN SYSTEMS !!
+					2: SHUT DOWN IMMINENT !!
+					3: STARTING UP PROCESS 'HEARTFELT_LABYRINTH'...
+					4: PROCESS 'HEARTFELT_LABYRINTH' HAS BEEN ACTIVATED !!
+					5: STARTING UP PROCESS 'BODY_TRANSFER'..
+					6: PROCESS 'BODY_TRANSFER' HAS BEEN ACTIVATED !!
+					7: YOU ARE GOING DOWN WITH ME.
+				}
+			}
+
+			BoulderRainStart: Boulders are raining down from the sky!
+			BoulderRainEnd: The rain has stopped, for now...
+			SmallWorldWarning: Small worlds aren't supported, please create a new Large world or you will likely experience Gameplay and World Generation problems.
+
+			Conditions: {
+				WoFEncounter: Only available after talking with the Seraph in the start of Hardmode
+				EoLEncounter: Only available after talking with the Seraph Post-Empress
+				BossNoHit: Drops only when the boss is beat without getting hit
+				SeraphCondition: Drops after defeating the Celestial Seraph
+				MoonlordCondition: Drops after defeating Moon Lord
+				DragonCondition: Drops after defeating Atmospheron
+			}
+
+			HardmetalOreUnlock: A new sturdy metal is shining deep underground...
+			MoonlordDeath: The primordial essence spreads across the atmosphere...
+			DragonDeath: The halls of the dungeon are howling with horror...
+
+			SeraphEncounters: {
+				Post-WoF: {
+					1: Do not be afraid.
+					2: I come with peaceful intentions, for now.
+					3: Your actions have caused some serious damages upon this land.
+					4: As a result, chaos stirred in Heaven.
+					5: We will be observing your every step from now on.
+				}
+
+				Post-EoL: {
+					1: That dryad...
+					2: In the ancient times the dryads barely managed to defeat the Primordial Beast known as Cthulhu.
+					3: The remaining Dryads locked him up within the depths of Limbo, causing some serious damages.
+					4: As a result, Limbo has been overtaken by the Void.
+					5: We resurrected the body of one of the fallen dryads and filled her with the Divine Light, but...
+					6: She quickly managed to get away and nobody saw her ever again.
+					7: Seems like she sealed herself in a butterfly.
+					8: Interesting.
+				}
+
+				Post-Cult.1: ""
+				Post-Moon.1: ""
+
+				Post-Nucleus: {
+					1: I have observed your battle from the distance, and I must say, I am impressed.
+					2: Your combat performance against man-made forces were incredible, but it's growing at a concerning pace.
+					3: As such, we must test your capabilities against something far greater.
+					4: Place the Cosmic Artifact onto the Celestial Altar and enter my pocket dimension.
+					5: Your efforts will be rewarded.
+					6: Good luck.
+				}
+			}
+
+			Reforges: {
+				Grounded:
+					'''
+					+8% acceleration
+					-5% flight time
+					'''
+				Soaring: +6% flight time
+			}
+
+			SeraphBossDialog: {
+				Intro.1: Ready to go?
+
+				Phase3: {
+					1: Your perseverance has caught my attention so far.
+					2: As such, I will start using some of my finer attacks now.
+					3: Do not let me down now.
+				}
+
+				Death: {
+					1: It seems that you have won this battle.
+					2: As such, I will teleport you back to the cathedral with your rewards.
+					3: We will use your combat performance to its fullest potential.
+					4: May we meet again, Terrarian.
+				}
+			}
+
+			Bestiary: {
+				SpaceBoss: One of the highest ranking angels in Heaven, capable of possessing the power of God and the cosmos.
+				Nucleus:
+					'''
+					This bio-mechanical marvel officially labeled as 'Project 1020-CTHL Nucleus' was created as the core of the mechanical reconstruction of Cthulhu.
+					After the project was abandoned, it was repurposed into an unrivaled war machine.
+					'''
+				Starsighter: A mystical creature formed from nebula and stardust.
+				SpaceJelly:
+					'''
+					A wild, mindless species formed from the remains of dead stars and nebula.
+					It's rumored to catch prey by stretching itself for high amounts of speed.
+					'''
+				Blackhole: A region of spacetime where not even light can escape, going near one isn't the brightest of ideas.
+				EtherealScourge:
+					'''
+					A majestic serpent tainted by the Void.
+					It devours anything and everything that it finds in the pitch black Limbo.
+					'''
+				OnyxflameConstruct: A terrifying construct crafted from onyxium and shadowflame, this deceptive foe will drive anyone daring to fight it insane.
+				AtmospheragonEgg:
+					'''
+					This egg is laid by an atmospheragon, an extremely powerful and exotic dragon species capable of bending the sky at will.
+					It hasn't hatched yet, so it isn't really that dangerous.
+					'''
+				Atmospheron: "A "
+				BeheadedZombie:
+					'''
+					A mutated zombie created by mad scientists seeking to create the 'ultimate lifeform'.
+					The experiements went wrong and this malformed monstrosity was born.
+					'''
+				Muramasa1:
+					'''
+					Ancient blade crafted by a swordsmith deep within the never ending corridors of the dungeon.
+					After the creator passed away, the sword absorbed their soul and became sentient.
+					'''
+				StormEel: A snake shaped fish capable of stunning their prey by zapping them with hundreds of volts.
+				VolcanicSlime: A slime exposed to the intense heats of the volcanic layer. Sets ablaze anything that it touches.
+				EmpyreanSlime: A mass of nebula resembling a slime. It consumes anything that it collides with.
+				VenomMosquito: An extremely venomous variant of mosquitoes that can poison one's bloodstream with only one bite.
+				Mosquito: An annoying insect that leeches blood from other creatures to survive.
+				EarthernScourge: An earthly serpent that tunnels through the volcanic layers of the underground. Feasts on hellstone and human flesh.
+				Scorpio: An apparition created by the stars reflecting light on the crystals.
+				FrostSerpent: A majestic icy serpent, crafted from the most pristine ice hunks and enchanted by the most powerful magicians in the land.
+				BoneShark: An unfortunate shark torn apart by the lunatic red glow of the Blood Moon.
+				LimboEyes: A horrid mindless beast detached from the Primordial Beast. Seeks vengeance for its master.
+				CosmicGazer: A more refined variant of the Starsighter. Capable of shooting condensed rays of nebula.
+				Snowman: A friendly snowman residing in the depths of the Tundra. Not a part of the snowman mafia.
+				VolcanicBat: A reanimated corpse of a bat that was buried under the volcanic rocks.
+			}
+
+			Tooltips: {
+				BeetleShellTooltip: "'Not to be confused with Beetleshell'"
+				ShieldEquipSlot: Shield Slot
+				ModifiableItem: Modifiable Item
+				ModifierItem: Modifier Item
+				ModifierMaterial: Modifier Ingredient
+				ModifierResult: Resulting Item
+
+				ArmorSetBonuses: {
+					Raider:
+						'''
+						[c/586475:Item collection range increased]
+						[c/586475:Coins have an even bigger collection range] 
+						'''
+					Cosmic:
+						'''
+						[c/586475:Damage and Critical strike chance increased by 20%]
+						[c/586475:Max number of minions increased by 2]
+						[c/586475:Press (Unbound Key) to open an interface that allows you to teleport in eight directions]
+						[c/586475:Teleporting horizontally will launch you at high speeds if a boss isn't currently alive]
+						[c/586475:Grants immunity to low gravity environments]
+						'''
+				}
+
+				Shields:
+					'''
+					[c/586475:Pressing (Unbound Key) will make you raise your shield for {0} frames.]
+					[c/586475:Getting hit by an enemy or a projectile within the last 5 frames will parry the attack, dealing damage to the foe and ignoring damage taken.]
+					[c/586475:You will lose {1} focus upon parrying]
+					[c/586475:Not having enough focus will prevent you from parrying]
+					'''
+
+				Modifiers: {
+					Names: {
+						0: Standard
+						1: Luminous
+						2: Spazzy
+						3: Danger-Detecting
+						4: Bottomless
+						5: Mechanical
+						6: Giant Slaying
+						7: Charged
+						8: Lunatic
+						9: Magnetic
+						10: Enchanted
+						11: Extended
+						12: Gigantic
+						13: Hooked
+						14: Silky
+						15: Draconic
+						16: Jolly
+						17: Mystic
+					}
+
+					RequiredPlural: Required items: {0}x [i:{1}]
+					RequiredSingle: Required item: [i:{1}]
+					Unlocked: "[i:TranscendenceMod/ModifierSlotUnlock] -*:- [c/f0cb0c:Modifier Application Cost -75% Off] -:*- [i:TranscendenceMod/ModifierSlotUnlock]"
+					ModifierLore:
+						'''
+						[c/586475:The remains of an once useful item that's been forgotten by time.]
+						[c/586475:Practically useless now, as it cannot be used on its own anymore.]
+						[c/586475:Only if there was someone that could transfer its abilities onto other items...]
+						'''
+					Luminous:
+						'''
+						-[C/ff6d00:Luminous] [C/A8714D:Modifier]-
+						* [C/5c915d:Upgrades the Sunshade Egg's babies, making them larger and faster]
+						* [C/5c915d:+6,66% critical strike damage]
+						* [C/5c915d:+20% luminosity]
+						* [C/fe7c7c:-5% critical strike chance outside of a Solar Eclipse]
+						[C/586475:These effects stack with each accessory]
+						Can be applied to Accessories
+						'''
+					Spazzing:
+						'''
+						-[C/91FF00:Spazzy Modifier]-
+						* [C/5c915d:You spew out fire from your mouth]
+						Can be applied to Helmets
+						'''
+					Skull:
+						'''
+						-[C/95b669:Danger Detecting Modifier]-
+						* [C/5c915d:Reveals enemies inside walls]
+						Can be applied to Helmets
+						'''
+					Blackhole:
+						'''
+						-[C/FF9A00:Bottomless Modifier]-
+						* [C/d8ab49:Sentries suck in items and deal tiny amounts of melee damage to enemies]
+						Can be applied to Sentries
+						'''
+					GiantSlayer:
+						'''
+						-[C/519a86:Giant Slaying Modifier]-
+						* [C/5c915d:Armor Penetration increased by 15]
+						* [C/fe7c7c:Enemies with 5 times more health than you will magnetize you towards them]
+						[C/586475:These effects stack with each armor piece]
+						Can be applied to Armor
+						'''
+					Mechanical:
+						'''
+						-[C/4b4c60:Mechanical] [C/ff184e:Modifier]-
+						* [C/5c915d:-]
+						Can be applied to Leggings
+						'''
+					Charger:
+						'''
+						-[C/31bde6:Charged Modifier]-
+						* [C/5c915d:Not attacking will charge your weapon, making it stronger. Attacking removes charge by 15%]
+						* [C/fe7c7c:Low Charge makes your weapon deal less damage than usual]
+						Can be applied to all weapons except minion staves and yoyos
+						'''
+					CultScroll:
+						'''
+						-[C/0b77e8:In][C/efce20:sa][C/0b77e8:ne Mo][C/efce20:difi][C/0b77e8:er]-
+						* [C/5c915d:Damage against normal enemies increased by 15%]
+						* [C/fe7c7c:Non-Critical strikes deal 10% reduced damage against bosses]
+						[C/586475:These effects stack with each accessory]
+						Can be applied to Accessories
+						'''
+					CrateMagnet:
+						'''
+						-[C/ff0000:Attractive] [C/ffffff:Modifier]-
+						* [C/5c915d:You have a 25% chance to attempt at rolling for a crate drop]
+						Can be applied to Fishing Rods
+						'''
+					MagicOrb:
+						'''
+						-[C/1f8de1:Fortunate] [C/44ddf6:Modifier]-
+						* [C/5c915d:You have a 33% chance to upgrade your] [C/2954ae:rare] [C/5c915d:fishing attempt to] [C/faa422:legendary]
+						Can be applied to Fishing Rods
+						'''
+					ExtendedHead:
+						'''
+						-[C/6e7892:Extended Modifier]-
+						* [C/5c915d:Pickaxe range increased by 4 tiles]
+						* [C/fe7c7c:Mining Speed multiplied by 0,66x]
+						Can be applied to Pickaxes
+						'''
+					GiantHandle:
+						'''
+						-[C/bf2433:Gigantic Modifier]-
+						* [C/5c915d:Weapon Size multiplied by 1,75x]
+						* [C/fe7c7c:Melee Speed multiplied by 0,33x]
+						Can be applied to Swords
+						'''
+					HardmetalHook:
+						'''
+						-[C/65799a:Hooked Modifier]-
+						* [C/5c915d:Base Fishing Power increased by 10]
+						Can be applied to Fishing Rods
+						'''
+					Silky:
+						'''
+						-[C/cec57f:Silky Modifier]-
+						* [C/5c915d:Summons moth babies every 15 seconds to attack your foes]
+						[C/5c915d:The babies will scale with your progression and will die after 20 seconds]
+						* [C/fe7c7c:Stuns you for a brief moment after being hit]
+						[C/586475:The amount of babies and duration of the stun scale with each armor piece]
+						Can be applied to Armor
+						'''
+					Draconic:
+						'''
+						-[C/c82412:Draconic Modifier]-
+						* [C/5c915d:Blocks a hit every 60 seconds]
+						[C/5c915d:You will gain Draconic Fury for 10 seconds upon blocking]
+						[C/5c915d:Draconic Fury increases movement stats and melee speed]
+						* [C/fe7c7c:You will take 33,3% more damage at the last quarter of the cooldown]
+						[C/586475:The stats and taken damage scale with each armor piece]
+						Can be applied to Armor
+						'''
+					Jolly:
+						'''
+						-[C/ee2b0f:Jolly] [C/1ad860:Modifier]-
+						* [C/5c915d:Grants you +0.5% max health for every 2000 points reached in the Frost Moon event]
+						* [C/fe7c7c:You will deal 10% less damage outside of the Tundra biome]
+						[C/586475:Life Boost caps at 20 000 points]
+						[C/586475:These effects scale with each armor piece]
+						Can be applied to Armor
+						'''
+					Mystic:
+						'''
+						-[C/953079:Mystic] [C/1d98b9:Modifier]-
+						* [C/5c915d:Magic damage has a chance to spawn Mystic Flames]
+						* [C/5c915d:Mystic Flames follow your cursor and create a friendly mystic blast]
+						* [C/5c915d:Picking up Mystic Flames before they explode will restore mana]
+						* [C/5c915d:+10% increased summon & magic damage]
+						[C/586475:The damage boost and the size of the explosion scales with each armor piece]
+						Can be applied to Dark Artist armor
+						'''
+					Muramasa:
+						'''
+						-[C/3b6ee9:Flooded Upgrade]-
+						[C/5c915d:Upgrades the affected weapon into a powerful water katana with high damage]
+						Can be applied to Muramasa [i:Muramasa]
+						'''
+					BaseballBat:
+						'''
+						-[C/819da7:Spiky Upgrade]-
+						[C/5c915d:Applies spikes into the affected weapon, making it deal more damage and charge faster]
+						[C/fe7c7c:Upgraded weapon deals less knockback]
+						Can be applied to Baseball Bat [i:TranscendenceMod/BaseballBat]
+						'''
+					Backfirer:
+						'''
+						-[C/8e574c:Recoil Upgrade]-
+						[C/d8ab49:Turns the affected weapon into a heavy riffle with insane recoil]
+						Can be applied to Clockwork Assault Riffle [i:ClockworkAssaultRifle]
+						'''
+					Eternity:
+						'''
+						-[C/0056ff:Eternal Upgrade]-
+						[C/d8ab49:Turns the affected item into an accessory that makes damage extremely consistent]
+						Can be applied to Eye of the Golem [i:EyeoftheGolem]
+						'''
+					CosmicCrystal:
+						'''
+						-[C/c7248f:Crystallized Upgrade]-
+						[C/5c915d:Turns the affected weapon into a cosmic rocket launcher flamethrower hybrid]
+						Can be applied to Rocket Launcher [i:RocketLauncher]
+						'''
+					TimedialTerraria:
+						'''
+						-[C/8cd8ea:The Timedial]-
+						Combine with the Etherial and Constant time fragments to create the Timedial
+						[i:TranscendenceMod/EarthDial] + [i:TranscendenceMod/EtheriaDial] + [i:TranscendenceMod/ConstantDial] = [i:TranscendenceMod/Timedial]
+						'''
+					TimedialEtheria:
+						'''
+						-[C/8cd8ea:The Timedial]-
+						Combine with the Earthly and Constant time fragments to create the Timedial
+						[i:TranscendenceMod/EarthDial] + [i:TranscendenceMod/EtheriaDial] + [i:TranscendenceMod/ConstantDial] = [i:TranscendenceMod/Timedial]
+						'''
+					TimedialConstant:
+						'''
+						-[C/8cd8ea:The Timedial]-
+						Combine with the Earthly and Etherial time fragments to create the Timedial
+						[i:TranscendenceMod/EarthDial] + [i:TranscendenceMod/EtheriaDial] + [i:TranscendenceMod/ConstantDial] = [i:TranscendenceMod/Timedial]
+						'''
+					BlacksmithPhone:
+						'''
+						-[C/322d5e:Bl][C/3d496e:ack][C/f58c00:s][C/ffee00:mi][C/ffffff:t][C/ffee00:h'][C/f58c00:s] [C/3d496e:Pho][C/322d5e:ne]-
+						Allows you to remotely access the blacksmith's services from anywhere for a higher price
+						'''
+				}
+			}
+		}
+
+		Prefixes: {
+			Precise.DisplayName: Precise
+			Fabled.DisplayName: Fabled
+			Gigantic.DisplayName: Gigantic
+			Disgusting.DisplayName: Disgusting
+			Crystallized.DisplayName: Crystallized
+			Grounded.DisplayName: Grounded
+			Soaring.DisplayName: Soaring
+			Colossal.DisplayName: Colossal
+		}
+
+		NPCs: {
+			StormSquid.DisplayName: Storm Squid
+			ProjectNucleus.DisplayName: Project Nucleus
+
+			CelestialSeraph: {
+				DisplayName: Celestial Seraph
+
+				BossChecklistIntegration: {
+					SpawnInfo: Place the Cosmic Artifact on the Celestial Altar and enter the portal
+					EntryName: Celestial Seraph
+				}
+			}
+
+			HeadlessZombie.DisplayName: Headless Terror
+
+			Tinkerer: {
+				DisplayName: Blacksmith
+
+				Dialogue: {
+					Idle1: Applying modifiers to equipment is extremely precise work, but once it's applied, it's pretty easy to change it.
+					Idle2: Applying modifiers to equipment is a skill only a few select ones can learn. It's basically tampering with nature itself.
+					Idle3: My ancestry is full of blacksmiths like me. If it weren't for them, you would never have those fancy modifiers.
+					Idle4: Once an item breaks beyond repair, it might still have a chance to be recycled into a modifier.
+					Idle5: Modifier Bags are pretty handy, you can store all your modifiers inside and not consume them upon use!
+					Idle6: This island has been purged from almost all coal from the eons of smithery from my ancestors. Your best bet is to seek it in warm environments.
+					Idle7: Modifiers can be found anywhere. You have to inspect every nook and cranny in this land to find all of them.
+				}
+
+				TownNPCMood: {
+					LoveBiome: I feel at home in these caverns.
+					LikeBiome: The desert is the last place on this island to contain the coal I need.
+					DislikeBiome: The jungle is way too moist and flammable for my liking.
+					HateCrowded: It's impossible to focus in a loud neighbourhood like this!
+					DislikeCrowded: There are way too many people around me, it's irritating!
+					LoveSpace: I love the lack of distractions around me, I can smith in peace!
+					FarFromHome: I don't like being this far away from my workshop.
+					NoHome: Could I get a house, please?
+					Content: It's all good.
+					LoveNPC: "{NPCName} has helped me with gathering some precious minerals."
+					LikeNPC: "{NPCName} has sold me some handy gadgets I can experiement on."
+					DislikeNPC: I don't really like {NPCName}'s personality.
+					LikeNPC_Princess: "{NPCName} is sweet."
+					Princess_LovesNPC: The smithing skills of {NPCName} are something to be amazed by!
+				}
+
+				Census.SpawnCondition: Moves in after obtaining a modifier item
+			}
+
+			LateGameNPC: {
+				Dialogue: {
+					TimedialReq: I need a  [i:{0}]  to speed up time!
+					TimedialHintEarth: To get the Earthly Time Fragment, you'll have to say the current date in the chat with the DD/MM/YYYY format during a Casual Seraphic Encounter.
+					TimedialHintEtheriaNoBar: I would tell you how to get the Etherial Time Fragment, but you need to rescue someone first.
+					TimedialHintEtheria: To get the Etherial Time Fragment, you have to defend the Eternia Crystal from the Old One's Army, go ask {NPCName} for more info.
+					TimedialHintConstant: To get the Constant Time Fragment, you have to slay the winter beast found during a snowstorm in the night Tundra.
+					TimedialUnlock: Thanks to this artifact, you can now make me speed up time for free every time.
+					QuestAsk1: I wish I had a {1}x [i:{0}], it would make my life so much easier!
+					QuestAsk2: I'm currently interested in {1}x [i:{0}]. Do you happen to have any spares?
+					Quest1: Thank you, here's my reward for bringing the {1}x [i:{0}]. I hope you will find some use out of this.
+					Generic0: Welcome to the Lower Heaven's one and only shop! What would you like today?
+					Generic1: I've heard crazy rumours about a person, who's being possessed by a mysterious being from a place called 'The Real World'. Crazy stuff!
+					Generic2: Those water pools down there are actually infused with cosmic power, try floating in it and you'll be healed.
+					Generic3: The pressure from this place's cosmic essence has penetrated the land and revealed hidden treasures.
+					Generic4: Did you know that there's an extremely tiny chance, that a meteorite will hit you at any time when you're sleeping and you cannot do anything to stop it?
+					Generic5: Greed is phohibited here, so I'll have to keep my prices as low as possible. Consider donating to help a struggling business!
+					GenericBeheaded: There exists a headless monstrosity running around in the wild, it appears during nights and is pretty powerful. Not powerful enough to compete with my magic though.
+					GenericPostCultist1: Finally, that lunatic cult is gone! The superior space people will rise up!
+					GenericPostCultist2: You've almost broken the Moon Lord's seal! Those celestial pillars will be the final obstacle preventing the lunar god from being unleashed. You should end his life while he's still at his weakest!
+					GenericDivineEra1: That lunar god's death has seemed to attract new faces around here.
+					GenericDivineEra2: The world has gotten modified in a similiar way as the death of that fleshy wall did. I can sense greater threats watching your every move.
+					GenericAtmospheron: You can call dragons by using a Wind Horn, they won't be friendly though.
+					GenericSeraph1: The Angel is awaiting you.
+					GenericPostSeraph1: Your powers have grown at a concerning pace, I never even thought that the might of God can be challenged.
+				}
+
+				Portal: Warp to Portal
+				TimeManip: Time Manipulation
+				Cycle: Cycle
+				DisplayName: Cosmic Archmage
+				Census.SpawnCondition: Find in Lower Heaven
+			}
+
+			SnowmanNPC: {
+				DisplayName: Friendly Snowman
+				Census.SpawnCondition: Locate in the Ice Biome
+
+				Dialogue: {
+					Intro: What's a human doing in a place like this?
+					Generic1: Make it quick, the mafia could be watching us right now.
+					Generic2: Aren't you cold in that suit of yours?
+					Generic3: I'd really like to go out more, but it's kind of dangerous here.
+					Generic4: Keep it quiet, there could be spies around here right now.
+					Serpent: There's a majestic glacial serpent in these caverns, you should beware of it.
+				}
+			}
+
+			MuramasaBoss: {
+				DisplayName: Possessed Blade
+
+				BossChecklistIntegration: {
+					SpawnInfo: Can be encountered in The Dungeon.
+					EntryName: Possessed Blade
+				}
+			}
+
+			Mosquito.DisplayName: Mosquito
+			WindDragon.DisplayName: Atmospheron
+			DummyPro.DisplayName: Target Dummy Pro
+			SeraphShield.DisplayName: Stardust Shield
+			NebulaMatter.DisplayName: Nebula Matter
+			SpaceJelly.DisplayName: Cosmijelly
+			Scorpio.DisplayName: Scorpio
+			Blackhole.DisplayName: Blackhole
+			StormEel.DisplayName: Storm Eel
+			Nighthopper.DisplayName: Enchanted Nighthopper
+			StormDragonEgg.DisplayName: Atmospheragon Egg
+			SeraphWings.DisplayName: Celestial Seraph
+			Starsighter.DisplayName: Starsighter
+			SeraphTurret.DisplayName: Starcrafted Turret
+			SpaceWorm_Body.DisplayName: Ethereal Serpent
+			SpaceWorm_Head.DisplayName: Ethereal Serpent
+			SpaceWorm_Tail.DisplayName: Ethereal Serpent
+			VolcanicSlime.DisplayName: Volcanic Slime
+			VenomMosquito.DisplayName: Venom Mosquito
+			EmpyreanSlime.DisplayName: Empyrean Slime
+			EarthernScourge_Body.DisplayName: Earthern Scourge
+			EarthernScourge_Head.DisplayName: Earthern Scourge
+			EarthernScourge_Tail.DisplayName: Earthern Scourge
+			FrostSerpent_Body.DisplayName: Frost Serpent
+			FrostSerpent_Head.DisplayName: Frost Serpent
+			FrostSerpent_Tail.DisplayName: Frost Serpent
+			BoneShark.DisplayName: Jaw Melter
+			TalkingSeraph.DisplayName: Celestial Seraph
+			LimboEyes.DisplayName: Limbo Eyes
+			CosmicGazer.DisplayName: Cosmic Gazer
+			HealHeart.DisplayName: Nucleus Healer
+			VolcanicBat.DisplayName: Volcanic Bat
+		}
+
+		Buffs: {
+			EolTrans: {
+				Description: You have transformed into the Princess of Light
+				DisplayName: Princess of Light
+			}
+
+			StarfieldDebuff: {
+				DisplayName: Starstruck
+				Description: Reduced defense against minions
+			}
+
+			PrismaticBurn: {
+				DisplayName: Prismatic Burn
+				Description: Scorching in prismatic flames
+			}
+
+			SpaceDebuff: {
+				Description: Melting from radiation
+				DisplayName: Cosmic Radiation
+			}
+
+			Grounded: {
+				Description: You can't fly!
+				DisplayName: Grounded
+			}
+
+			Noheal: {
+				DisplayName: Cursed Blood
+				Description: You cannot heal at all
+			}
+
+			JungleRingBuff: {
+				DisplayName: Lush Fury
+				Description: Life regeneration and Attack Speed increased by a small amount
+			}
+
+			BlackHoleDebuff: {
+				Description: You're being sucked in!
+				DisplayName: Blackhole
+			}
+
+			InfiniteFlight: {
+				Description: You have infinite flight
+				DisplayName: Infinite Flight
+			}
+
+			Paranoia: {
+				DisplayName: Paranoid
+				Description: Was that projectile there before?
+			}
+
+			BloodLoss: {
+				DisplayName: Rapid Blood Loss
+				Description: You are dying, fast!
+			}
+
+			DeepseaShred: {
+				Description: Shredded
+				DisplayName: Deepsea Shred
+			}
+
+			BatteryCD: {
+				DisplayName: Low Battery
+				Description: Please plug in a charger
+			}
+
+			SpaceBossMinions: {
+				DisplayName: Galaxy
+				Description: A galaxy will protect you
+			}
+
+			Shadowflame2: {
+				DisplayName: Onyx Flames
+				Description: Going insane
+			}
+
+			HardmetalPoisoning: {
+				DisplayName: Hardmetal Poisoning
+				Description: Losing life
+			}
+
+			AmogusTrans: {
+				DisplayName: Suspicious
+				Description: End it all
+			}
+
+			ExtraTerrestrialBuff: {
+				DisplayName: Extra Terrestrial Brew
+				Description: Decrease gravity by 20%, but also increase maxium mana by 150
+			}
+
+			StarcraftedDrunkness: {
+				DisplayName: Cosmic Alcohol
+				Description: Seeing stars
+			}
+
+			LifeFruitArenaBuff: {
+				DisplayName: Fruit Healing
+				Description: Max Health increased
+			}
+
+			AirPiercerBuff: {
+				DisplayName: Air Piercing Broom
+				Description: What a view
+			}
+
+			SeraphPetBuff: {
+				DisplayName: Star Angel
+				Description: A Star Angel is following you
+			}
+
+			BoABuff: {
+				DisplayName: Neuron Repair
+				Description: Yeah, this is big brain time
+			}
+
+			EarthernFortification: {
+				DisplayName: Earthern Fortification
+				Description: Covered in stone
+			}
+
+			Incineration: {
+				DisplayName: Incineration
+				Description: Burning to ashes
+			}
+
+			SeraphTimeStop: {
+				DisplayName: Time Manipulation
+				Description: The time is frozen!
+			}
+
+			Distortion: {
+				DisplayName: Distortion
+				Description: You cannot teleport with the Wand of Relocation
+			}
+
+			TurtleShieldBuff: {
+				Description: Inside a shell
+				DisplayName: Turtle Shell
+			}
+
+			BeetleshellBuff: {
+				DisplayName: Beetle
+				Description: Inside a shell
+			}
+
+			OrangeShellBuff: {
+				DisplayName: Orange Shell
+				Description: Inside a shell
+			}
+
+			PurpleShellBuff: {
+				DisplayName: Purple Shell
+				Description: Inside a shell
+			}
+
+			MuramasaMinionBuff: {
+				DisplayName: Ancient Blades
+				Description: Ancient water blades will protect you
+			}
+
+			CosmicSuffocation: {
+				DisplayName: Cosmic Suffocation
+				Description:
+					'''
+					Damage and life regeneration reduced
+					You have a chance to be critically hit, dealing double damage
+					'''
+			}
+
+			JellyBuff: {
+				DisplayName: Jellied
+				Description: Ability to see in dark places
+			}
+
+			GasolineBuff: {
+				DisplayName: Gasoline Buff
+				Description: Very flammable
+			}
+
+			ShieldBreak: {
+				DisplayName: Low Focus
+				Description: Cannot parry
+			}
+
+			CrystalRadiationProt: {
+				DisplayName: Cosmic Radiation Protection
+				Description: Protected from radiation
+			}
+
+			OvergrownDebuff: {
+				DisplayName: Overgrown Debuff
+				Description: Mods.TranscendenceMod.Buffs.OvergrownDebuff.Description
+			}
+
+			Blind: {
+				DisplayName: Blind
+				Description: Unable to see
+			}
+
+			DraconicFury: {
+				DisplayName: Draconic Fury
+				Description: Increased movement
+			}
+
+			DraconicFuryCD: {
+				DisplayName: Draconic Vulnerability
+				Description: You will receive more damage
+			}
+
+			OverloadedHeartCD: {
+				DisplayName: Hyperdash Recharge
+				Description: Cannot Hyperdash
+			}
+
+			MagmaBlood: {
+				DisplayName: Magma Blood
+				Description: Melted by blazing hot blood
+			}
+
+			SunMelt: {
+				DisplayName: Sun Melt
+				Description: Melted by a giant star
+			}
+
+			LacewingTransBuff: {
+				DisplayName: Lacewing Transformation
+				Description: Transformed into a lacewing
+			}
+
+			BottomlessPotSickness: {
+				DisplayName: Bottomless Potion Sickness
+				Description: Cannot drink from the Bottomless Potion
+			}
+
+			FrostBite: {
+				DisplayName: Frost Bite
+				Description: Mods.TranscendenceMod.Buffs.FrostBite.Description
+			}
+		}
+
+		Tiles: {
+			SpaceCrystal.MapEntry: Angelic Crystal
+			CarbonOreTile.MapEntry: Carbon
+			LifeFruitArenaTile.MapEntry: Fruit Totem
+			Oceation.MapEntry: Oceation
+			ShimmerAltar.MapEntry: Seraphic Altar
+			CrystalCrate_Tile.MapEntry: Crystal Crate
+			SeraphicCrate_Tile.MapEntry: Seraphic Crate
+			TranscendentAbyss_MusicBoxTile.MapEntry: Music Box (Null Abyss)
+			NucleusSummoner.MapEntry: Nucleus Caller
+			ArcadeCabinet.MapEntry: Arcade Cabinet
+			MaterialProcesser.MapEntry: Metal Processer
+		}
+
+		Keybinds: {
+			InfectionAccessoryKeyBind.DisplayName: Infected Relic Ability
+			HyperDash.DisplayName: Hyper Dash
+			Guard.DisplayName: Shield Parry
+			StarcraftedArmorSetBonus.DisplayName: Starcrafted Armor Teleport
+			ExtraterrestrialBuff.DisplayName: Extraterrestrial Brew Effects
+			Ret-125SModelLaserView.DisplayName: Ret-125S Laser View
+		}
+
+		Biomes: {
+			Landsite: {
+				DisplayName: Cosmic Fields
+				TownNPCDialogueName: the cosmic fields
+			}
+
+			VolcanicBiome: {
+				DisplayName: Volcanic Layer
+				TownNPCDialogueName: the volcanic layer
+			}
+
+			Heaven: {
+				DisplayName: Heaven
+				TownNPCDialogueName: lower Heaven
+			}
+
+			SunkenCatacombs: {
+				DisplayName: Sunken Catacombs
+				TownNPCDialogueName: the Sunken Catacombs
+			}
+
+			CosmicDimensions: {
+				DisplayName: The Cosmos
+				TownNPCDialogueName: the cosmos
+			}
+
+			Limbo: {
+				DisplayName: Limbo
+				TownNPCDialogueName: Limbo
+			}
+		}
+
+		DamageClasses.MagicRangedDamageClass.DisplayName: magic and ranged damage
+
+		Emotes: {
+			SeraphEmote.Command: seraph
+			NucleusEmote.Command: nucleus
+		}
+
+		Configs: {
+			TranscendenceConfig: {
+				DisplayName: Transcendence Config
+				Headers.Configuration: Configuration
+
+				AchievementBookOffsetX: {
+					Label: Achievement Book Horizontal Offset
+					Tooltip: Determines the offset of the Achievement Book icon on the X-axis
+				}
+
+				LuminiteBarAmount: {
+					Label: Luminite Processing Amount
+					Tooltip: How many Luminite Bars will you get from processing Luminite Ore at the Metal Processer
+				}
+			}
+		}
+	}
+}

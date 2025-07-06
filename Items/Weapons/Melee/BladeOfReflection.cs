@@ -1,0 +1,343 @@
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
+using TranscendenceMod.Projectiles.Weapons.Melee;
+
+namespace TranscendenceMod.Items.Weapons.Melee
+{
+    public class BladeOfReflection : ModItem
+    {
+        public int proj = ModContent.ProjectileType<BladeOfReflectionProj>();
+        public int reflection = ModContent.ProjectileType<Reflection>();
+        public override void SetStaticDefaults()
+        {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            ItemID.Sets.Spears[Type] = true;
+        }
+
+        public override void SetDefaults()
+        {
+            Item.damage = 130;
+            Item.DamageType = DamageClass.Melee;
+            Item.width = 24;
+            Item.height = 24;
+            Item.useTime = 18;
+            Item.useAnimation = 18;
+            Item.useStyle = ItemUseStyleID.Rapier;
+            Item.shoot = proj;
+            Item.shootSpeed = 8;
+            Item.noMelee = true;
+            Item.noUseGraphic = true;
+            Item.knockBack = 2;
+            Item.value = Item.sellPrice(gold: 12, silver: 50);
+            Item.rare = ItemRarityID.Cyan;
+            Item.UseSound = SoundID.Item60;
+            Item.autoReuse = true;
+            Item.crit = 20;
+        }
+        public override bool CanShoot(Player player)
+        {
+            if (player.ownedProjectileCounts[proj] > 0)
+                return false;
+            else return true;
+        }
+        public override void ModifyShootStats(Player player, ref Vector2 position,
+            ref Vector2 velocity, ref int type, ref int damage, ref float knockback) => type = ProjectileID.None;
+        public override bool CanUseItem(Player player)
+        {
+            if (player.ownedProjectileCounts[proj] > 0)
+                return false;
+            else return base.CanUseItem(player);
+        }
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            if (player.ownedProjectileCounts[proj] < 1)
+            {
+                Projectile.NewProjectile(source, position, velocity * 2, proj, damage, knockback, player.whoAmI);
+                Projectile.NewProjectile(source, position, velocity * -2, proj, damage, knockback, player.whoAmI, 1);
+            }
+            return false;
+        }
+        public override void HoldItem(Player player)
+        {
+            if (player.ownedProjectileCounts[reflection] == 0)
+            {
+                Projectile.NewProjectile(player.GetSource_ItemUse(Item), player.Center, Vector2.Zero, reflection, Item.damage, Item.knockBack, player.whoAmI);
+            }
+        }
+    }
+    public class Reflection : ModProjectile
+    {
+        public float vel = 0;
+
+        public override string Texture => "TranscendenceMod/Items/Weapons/Melee/BladeOfReflection";
+        public override void SetStaticDefaults()
+        {
+            ProjectileID.Sets.NoMeleeSpeedVelocityScaling[Type] = true;
+        }
+        public override void SetDefaults()
+        {
+            Projectile.width = 40;
+            Projectile.height = 60;
+            Projectile.DamageType = DamageClass.Generic;
+
+            Projectile.ownerHitCheck = true;
+            Projectile.netImportant = true;
+
+            Projectile.aiStyle = -1;
+            Projectile.penetrate = -1;
+            Projectile.timeLeft = 60;
+
+            Projectile.friendly = true;
+            Projectile.hostile = false;
+
+            Projectile.ignoreWater = true;
+            Projectile.tileCollide = false;
+        }
+        public override bool? CanDamage() => false;
+        public override void AI()
+        {
+            Player player = Main.player[Projectile.owner];
+            player.heldProj = Projectile.whoAmI;
+
+            if (player.HeldItem.type == ModContent.ItemType<BladeOfReflection>() && !player.dead)
+            {
+                Projectile.timeLeft = 5;
+            }
+
+            Projectile.hide = true;
+            Projectile.direction = -player.direction;
+            Projectile.Center = player.Center + new Vector2(250 * player.direction, 0);
+        }
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Player p = Main.player[Projectile.owner];
+            Player p2 = Main.playerVisualClone[Projectile.owner] ??= new();
+
+            p2.CopyVisuals(p);
+            p2.socialIgnoreLight = true;
+            p2.isFirstFractalAfterImage = true;
+            p2.firstFractalAfterImageOpacity = 1;
+
+            p2.ResetEffects();
+            p2.ResetVisibleAccessories();
+            p2.DisplayDollUpdate();
+            p2.UpdateDyes();
+            p2.UpdateSocialShadow();
+            p2.PlayerFrame();
+
+            p2.wingFrame = p.wingFrame;
+            p2.compositeFrontArm = p.compositeFrontArm;
+            p2.compositeFrontArm.rotation = p.compositeFrontArm.rotation + MathHelper.Pi;
+
+            p2.Center = Projectile.Center;
+            p2.direction = -p.direction;
+
+            DrawPlayer(p2, p2.position, -p.fullRotation, p.fullRotationOrigin, 0, 1);
+
+            return false;
+        }
+        public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
+        {
+            overPlayers.Add(index);
+        }
+
+
+        private readonly List<DrawData> _drawData = new List<DrawData>();
+
+        private readonly List<int> _dust = new List<int>();
+
+        private readonly List<int> _gore = new List<int>();
+
+        public void DrawPlayer(Player drawPlayer, Vector2 position, float rotation, Vector2 rotationOrigin, float shadow = 0f, float scale = 1f)
+        {
+            DrawPlayerInternal(drawPlayer, position, rotation, rotationOrigin, shadow, scale);
+        }
+
+        //Blatantly stolen from Vanilla Terraria Code
+        private void DrawPlayerInternal(Player drawPlayer, Vector2 position, float rotation, Vector2 rotationOrigin, float shadow = 0f, float alpha = 1f, float scale = 1f, bool headOnly = false)
+        {
+            if (drawPlayer.ShouldNotDraw)
+            {
+                return;
+            }
+            PlayerDrawSet drawInfo = default(PlayerDrawSet);
+            _drawData.Clear();
+            _dust.Clear();
+            _gore.Clear();
+
+            if (headOnly)
+            {
+                drawInfo.HeadOnlySetup(drawPlayer, _drawData, _dust, _gore, position.X, position.Y, alpha, scale);
+            }
+            else
+            {
+                drawInfo.BoringSetup(drawPlayer, _drawData, _dust, _gore, position, shadow, rotation, rotationOrigin);
+            }
+
+            PlayerLoader.ModifyDrawInfo(ref drawInfo);
+            PlayerDrawLayer[] drawLayers = PlayerDrawLayerLoader.GetDrawLayers(drawInfo);
+
+            foreach (PlayerDrawLayer layer in drawLayers)
+            {
+                if ((!headOnly || layer.IsHeadLayer))
+                {
+                    layer.DrawWithTransformationAndChildren(ref drawInfo);
+                }
+            }
+
+            PlayerDrawLayers.DrawPlayer_MakeIntoFirstFractalAfterImage(ref drawInfo);
+            PlayerDrawLayers.DrawPlayer_TransformDrawData(ref drawInfo);
+
+            if (scale != 1f)
+            {
+                PlayerDrawLayers.DrawPlayer_ScaleDrawData(ref drawInfo, scale);
+            }
+            DrawPlayer_RenderAllLayers(ref drawInfo);
+            if (!drawInfo.drawPlayer.mount.Active || !drawInfo.drawPlayer.UsingSuperCart)
+            {
+                return;
+            }
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].active && Main.projectile[i].owner == drawInfo.drawPlayer.whoAmI && Main.projectile[i].type == ProjectileID.MinecartMechLaser)
+                {
+                    Main.instance.DrawProj(i);
+                }
+            }
+        }
+        public static SpriteDrawBuffer spriteBuffer;
+        public static void DrawPlayer_RenderAllLayers(ref PlayerDrawSet drawinfo)
+        {
+            List<DrawData> drawDataCache = drawinfo.DrawDataCache;
+            if (spriteBuffer == null)
+            {
+                spriteBuffer = new SpriteDrawBuffer(Main.graphics.GraphicsDevice, 200);
+            }
+            else
+            {
+                spriteBuffer.CheckGraphicsDevice(Main.graphics.GraphicsDevice);
+            }
+            foreach (DrawData item in drawDataCache)
+            {
+                if (item.texture != null)
+                {
+                    item.Draw(spriteBuffer);
+                }
+            }
+            spriteBuffer.UploadAndBind();
+            DrawData cdd = default(DrawData);
+            int num = 0;
+            for (int i = 0; i <= drawDataCache.Count; i++)
+            {
+                if (drawinfo.projectileDrawPosition == i)
+                {
+                    spriteBuffer.Unbind();
+                    spriteBuffer.Bind();
+                }
+                if (i != drawDataCache.Count)
+                {
+                    cdd = drawDataCache[i];
+                    if (!cdd.sourceRect.HasValue)
+                    {
+                        cdd.sourceRect = cdd.texture.Frame();
+                    }
+                    if (cdd.texture != null)
+                    {
+                        spriteBuffer.DrawSingle(num++);
+                    }
+                }
+            }
+            spriteBuffer.Unbind();
+        }
+    }
+    public class BladeOfReflectionProj : ModProjectile
+    {
+        public float vel = 0;
+
+        public override string Texture => "TranscendenceMod/Items/Weapons/Melee/BladeOfReflection";
+        public override void SetStaticDefaults()
+        {
+            ProjectileID.Sets.NoMeleeSpeedVelocityScaling[Type] = true;
+        }
+        public override void SetDefaults()
+        {
+            Projectile.width = 40;
+            Projectile.height = 40;
+            Projectile.DamageType = DamageClass.MeleeNoSpeed;
+
+            Projectile.ownerHitCheck = true;
+            Projectile.netImportant = true;
+
+            Projectile.aiStyle = -1;
+            Projectile.penetrate = -1;
+            Projectile.timeLeft = 25;
+
+            Projectile.friendly = true;
+            Projectile.hostile = false;
+
+            Projectile.ignoreWater = true;
+            Projectile.tileCollide = false;
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            Vector2 pos = Vector2.SmoothStep(Projectile.Center, target.Center, 0.5f);
+            if (Projectile.ai[0] == 1)
+            {
+                for (int i = 0; i < Main.rand.Next(7, 10); i++)
+                {
+                    Projectile.NewProjectile(Projectile.GetSource_OnHit(target), pos, Main.rand.NextVector2Circular(2.5f, 5),
+                        ModContent.ProjectileType<MirrorBladeShrapnel>(), (int)(Projectile.damage * 0.33f), Projectile.knockBack, Main.player[Projectile.owner].whoAmI);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Dust.NewDustPerfect(pos, DustID.MagicMirror, Main.rand.NextVector2Circular(2.5f, 5));
+                }
+            }
+        }
+        public override void AI()
+        {
+            Player player = Main.player[Projectile.owner];
+            player.heldProj = Projectile.whoAmI;
+
+            if (player.HeldItem.type != ModContent.ItemType<BladeOfReflection>() || player.dead)
+                Projectile.Kill();
+
+            Projectile.Center = player.Center + (Projectile.velocity * 2 * vel);
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver4;
+
+            if (Projectile.ai[0] == 1)
+            {
+                Projectile.Center = player.Center + new Vector2(250 * player.direction, 0) + (Projectile.velocity * 2 * vel);
+            }
+            else
+            {
+                Projectile.usesLocalNPCImmunity = true;
+                Projectile.localNPCHitCooldown = 5;
+                player.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, (player.MountedCenter - Projectile.Center).ToRotation() + MathHelper.PiOver2);
+            }
+
+            if (Projectile.timeLeft < 16 && Projectile.timeLeft > 6)
+                vel = 1;
+            else vel += 0.125f;
+
+            if (Projectile.timeLeft < 6)
+            {
+                vel -= 0.25f;
+                if (Projectile.Distance(player.Center) < 5)
+                    Projectile.Kill();
+            }
+        }
+        public override bool PreDraw(ref Color lightColor)
+        {
+            return true;
+        }
+    }
+}

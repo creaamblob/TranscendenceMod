@@ -1,0 +1,4 @@
+displayName = Transcendence Mod
+author = CreanBL
+version = 0.1
+modReferences = StructureHelper
