@@ -63,7 +63,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             Player player = Main.player[npc.target];
 
             if (player == null || !player.active || player.dead)
-                return;
+                Projectile.active = false;
 
             if (Projectile.localAI[2] == 2)
             {

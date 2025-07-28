@@ -40,8 +40,7 @@ namespace TranscendenceMod
         public static ModKeybind Guard;
         public static ModKeybind InfectionAccessoryKeyBind;
         public static ModKeybind HyperDash;
-        public static ModKeybind StarCraftedArmorSetBonus;
-        public static ModKeybind ExtraterrestrialBuff;
+        public static ModKeybind ArmorSetBonus;
 
         public static bool EncouteredSeraph;
         public static bool EncouteredAtmospheron;
@@ -59,27 +58,13 @@ namespace TranscendenceMod
         public static float CosmosColorFadeTimer;
         public static float CosmosColorFade = 0.01f;
         public static Color CosmicPurple;
-        public static Color CosmicPurple2;
-        public static Color BlackAndWhite;
-
-        public static float GalaxyColorFadeTimer;
-        public static float GalaxyColorFade = 0.01f;
-        public static Color GalaxyBlue;
-
-        public static float BlackholeColorFadeTimer;
-        public static float BlackholeColorFade = 0.005f;
-        public static Color BlackholeColor;
-
-        public static Vector2 WorldCenter;
 
         public static int sx = Main.maxTilesX - 1000;
         public static int sy = 135;
         public static int spy = 300;
-        public static Vector2 spaceNPCPos = new Vector2((int)new Vector2(sx, sy).ToWorldCoordinates().X, (int)new Vector2(sx, sy).ToWorldCoordinates().Y);
 
         public static bool BoulderRain;
         public static int BoulderRainTime;
-        public bool SurvivedBoulderRain;
 
         public static float UniversalRotation;
         public static int Timer;
@@ -207,11 +192,8 @@ namespace TranscendenceMod
                 }
 
                 bool Legendary = Main.getGoodWorld || Main.zenithWorld;
-
-                if (Main.dayTime && Main.time == (Main.dayLength / 8) && Main.rand.NextBool(Legendary ? 4 : 12) && (Main.LocalPlayer.statLifeMax > 300 || Legendary))
-                {
+                if (Main.rand.NextBool(4) && Legendary)
                     IntiateBoulderRain();
-                }
             }
         }
 
@@ -237,9 +219,6 @@ namespace TranscendenceMod
             UniversalRotation += MathHelper.ToRadians(1);
             Timer++;
 
-            if (Main.LocalPlayer.HasBuff(ModContent.BuffType<SeraphTimeStop>()))
-                Main.LocalPlayer.eyeHelper.CurrentEyeFrame = 0;
-
             if (Timer % 900 == 0)
                 UpdateVoidTilesCount();
 
@@ -256,33 +235,17 @@ namespace TranscendenceMod
             {
                 Main.NewText(Language.GetTextValue("Mods.TranscendenceMod.Messages.BoulderRainEnd"), 175, 75, 255);
                 BoulderRain = false;
-                if (!SurvivedBoulderRain)
-                    SurvivedBoulderRain = true;
             }
 
-            if (!Main.LocalPlayer.HasBuff(ModContent.BuffType<SeraphTimeStop>())) CosmosColorFadeTimer += CosmosColorFade;
+            CosmosColorFadeTimer += CosmosColorFade;
             if (CosmosColorFadeTimer > 1 || CosmosColorFadeTimer < 0) CosmosColorFade = -CosmosColorFade;
-            CosmicPurple = Color.Lerp(new Color(0f, 0f, 0.75f), new Color(0.75f, 0f, 0.25f), CosmosColorFadeTimer);
-            CosmicPurple2 = Color.Lerp(new Color(0f, 0.25f, 0.75f), new Color(0.75f, 0f, 0.65f), CosmosColorFadeTimer);
-
-            BlackAndWhite = Color.Lerp(Color.DarkBlue, Color.Black, CosmosColorFadeTimer);
-
-            if (!Main.LocalPlayer.HasBuff(ModContent.BuffType<SeraphTimeStop>())) GalaxyColorFadeTimer += GalaxyColorFade;
-            if (GalaxyColorFadeTimer > 1 || GalaxyColorFadeTimer < 0) GalaxyColorFade = -GalaxyColorFade;
-            GalaxyBlue = Color.Lerp(new Color(0f, 0.2f, 0.8f), new Color(0.8f, 0.6f, 0f), CosmosColorFadeTimer);
-
-            if (!Main.LocalPlayer.HasBuff(ModContent.BuffType<SeraphTimeStop>())) BlackholeColorFadeTimer += BlackholeColorFade;
-            if (BlackholeColorFadeTimer > 1 || BlackholeColorFadeTimer < 0) BlackholeColorFade = -BlackholeColorFade;
-            BlackholeColor = Color.Lerp(Color.OrangeRed, Color.Yellow, BlackholeColorFadeTimer);
+            CosmicPurple = Color.Lerp(new Color(0f, 0.25f, 0.75f), new Color(0.75f, 0f, 0.65f), CosmosColorFadeTimer);
         }
         public override void PostSetupContent()
         {
             BossChecklistCrossMod();
         }
 
-        public override void PostDrawInterface(SpriteBatch spriteBatch)
-        {
-        }
         public override void PostDrawTiles()
         {
             SpriteBatch spriteBatch = Main.spriteBatch;
@@ -355,15 +318,16 @@ namespace TranscendenceMod
             Wspike.Register();
 
             Recipe dartTrap = Recipe.Create(ItemID.DartTrap);
-            dartTrap.AddIngredient(ItemID.StoneSlab, 5);
+            dartTrap.AddIngredient(ItemID.StoneSlab, 10);
             dartTrap.AddIngredient(ItemID.Stinger, 2);
             dartTrap.AddTile(TileID.HeavyWorkBench);
             dartTrap.Register();
 
             Recipe geyser = Recipe.Create(ItemID.GeyserTrap);
-            geyser.AddIngredient(ItemID.StoneBlock, 25);
-            geyser.AddIngredient(ItemID.AshBlock, 10);
+            geyser.AddIngredient(ItemID.StoneBlock, 15);
+            geyser.AddIngredient(ModContent.ItemType<VolcanicRemains>(), 2);
             geyser.AddTile(TileID.HeavyWorkBench);
+            geyser.DisableDecraft();
             geyser.Register();
 
             Recipe spearTrap = Recipe.Create(ItemID.SpearTrap);
@@ -418,47 +382,6 @@ namespace TranscendenceMod
             platKey.DisableDecraft();
             platKey.Register();
         }
-        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
-        {
-            int SpaceLand = tasks.FindIndex(genpass => genpass.Name.Equals("Surface Caves"));
-            int SpaceBiome = tasks.FindIndex(genpass => genpass.Name.Equals("Spawn Point"));
-            int Magnet = tasks.FindIndex(genpass => genpass.Name.Equals("Stalac"));
-            int Caves = tasks.FindIndex(genpass => genpass.Name.Equals("Surface Caves"));
-            int Church = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
-            int Shinies2 = tasks.FindIndex(genpass => genpass.Name.Equals("Larva"));
-            int SunkenCata = tasks.FindIndex(genpass => genpass.Name.Equals("Larva"));
-
-            if (SpaceLand != -1)
-                tasks.Insert(SpaceLand + 1, new CosmicValleyGenPass("SpaceLand", 550f));
-
-            if (SpaceBiome != -1)
-                tasks.Insert(SpaceBiome + 1, new SpaceBiomeGenPass("SpaceBiome", 550f));
-
-            if (Magnet != -1)
-                tasks.Insert(Magnet + 1, new CrateMagnets("Magnet", 550f));
-
-            if (Caves != -1)
-                tasks.Insert(Caves + 1, new CavinatorEX("Caves", 550f));
-
-            if (Church != -1)
-                tasks.Insert(Church + 1, new Temple("Church", 550f));
-
-            if (Shinies2 != -1)
-                tasks.Insert(Shinies2 + 1, new Ores("Shinies2", 550f));
-
-            if (SunkenCata != -1)
-                tasks.Insert(SunkenCata + 1, new SunkenCatacombGen("SunkenCatacombs", 550f));
-        }
-        public override void PostWorldGen()
-        {
-            base.PostWorldGen();
-        }
-        public override void ModifyLightingBrightness(ref float scale)
-        {
-            base.ModifyLightingBrightness(ref scale);
-            if (Main.LocalPlayer.GetModPlayer<TranscendencePlayer>().IsBlind > 0)
-                scale *= 0.75f;
-        }
         public override void PostAddRecipes()
         {
             for (int r = 0; r < Recipe.numRecipes; r++)
@@ -483,6 +406,9 @@ namespace TranscendenceMod
                 }
 
                 if (recipe.HasResult(ItemID.LunarBar))
+                    recipe.DisableRecipe();
+
+                if (recipe.HasResult(ItemID.UnholyArrow) && recipe.HasIngredient(ItemID.Vertebrae))
                     recipe.DisableRecipe();
             }
         }
@@ -520,6 +446,47 @@ namespace TranscendenceMod
 
             RecipeGroup Shadowscale = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.ShadowScale)}", ItemID.ShadowScale, ItemID.TissueSample);
             RecipeGroup.RegisterGroup(nameof(ItemID.ShadowScale), Shadowscale);
+        }
+        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
+        {
+            int SpaceLand = tasks.FindIndex(genpass => genpass.Name.Equals("Surface Caves"));
+            int SpaceBiome = tasks.FindIndex(genpass => genpass.Name.Equals("Spawn Point"));
+            int Magnet = tasks.FindIndex(genpass => genpass.Name.Equals("Stalac"));
+            int Caves = tasks.FindIndex(genpass => genpass.Name.Equals("Surface Caves"));
+            int Church = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
+            int Shinies2 = tasks.FindIndex(genpass => genpass.Name.Equals("Larva"));
+            int SunkenCata = tasks.FindIndex(genpass => genpass.Name.Equals("Larva"));
+
+            if (SpaceLand != -1)
+                tasks.Insert(SpaceLand + 1, new CosmicValleyGenPass("SpaceLand", 550f));
+
+            if (SpaceBiome != -1)
+                tasks.Insert(SpaceBiome + 1, new SpaceBiomeGenPass("SpaceBiome", 550f));
+
+            if (Magnet != -1)
+                tasks.Insert(Magnet + 1, new CrateMagnets("Magnet", 550f));
+
+            if (Caves != -1)
+                tasks.Insert(Caves + 1, new CavinatorEX("Caves", 550f));
+
+            if (Church != -1)
+                tasks.Insert(Church + 1, new Temple("Church", 550f));
+
+            if (Shinies2 != -1)
+                tasks.Insert(Shinies2 + 1, new Ores("Shinies2", 550f));
+
+            if (SunkenCata != -1)
+                tasks.Insert(SunkenCata + 1, new SunkenCatacombGen("SunkenCatacombs", 550f));
+        }
+        public override void ModifyLightingBrightness(ref float scale)
+        {
+            base.ModifyLightingBrightness(ref scale);
+
+            if (Main.LocalPlayer.GetModPlayer<TranscendencePlayer>().IsBlind > 0)
+                scale *= 0.925f;
+
+            if (Main.LocalPlayer.GetModPlayer<TranscendencePlayer>().HasJellyBuff)
+                scale += 0.04f;
         }
         private void BossChecklistCrossMod()
         {
@@ -648,13 +615,11 @@ namespace TranscendenceMod
             Guard = KeybindLoader.RegisterKeybind(Mod, "Guard", Microsoft.Xna.Framework.Input.Keys.Z);
             InfectionAccessoryKeyBind = KeybindLoader.RegisterKeybind(Mod, "InfectionAccessoryKeyBind", Microsoft.Xna.Framework.Input.Keys.O);
             HyperDash = KeybindLoader.RegisterKeybind(Mod, "HyperDash", Microsoft.Xna.Framework.Input.Keys.LeftShift);
-            StarCraftedArmorSetBonus = KeybindLoader.RegisterKeybind(Mod, "StarcraftedArmorSetBonus", "T");
-            ExtraterrestrialBuff = KeybindLoader.RegisterKeybind(Mod, "ExtraterrestrialBuff", "Y");
+            ArmorSetBonus = KeybindLoader.RegisterKeybind(Mod, "ArmorSetBonus", Microsoft.Xna.Framework.Input.Keys.T);
 
             On_Main.DrawCursor += On_Main_DrawCursor;
             On_Main.DrawThickCursor += On_Main_DrawThickCursor;
 
-            On_LiquidRenderer.DrawNormalLiquids += On_LiquidRenderer_DrawNormalLiquids;
             On_Player.GetItemGrabRange += On_Player_GetItemGrabRange;
             On_Player.AddBuff_DetermineBuffTimeToAdd += On_Player_AddBuff_DetermineBuffTimeToAdd;
             On_Player.GetAdjustedItemScale += On_Player_GetAdjustedItemScale;
@@ -686,20 +651,6 @@ namespace TranscendenceMod
                 return;
 
             orig(bonus, smart);
-        }
-
-        private void On_LiquidRenderer_DrawNormalLiquids(On_LiquidRenderer.orig_DrawNormalLiquids orig, LiquidRenderer self, SpriteBatch spriteBatch, Vector2 drawOffset, int waterStyle, float globalAlpha, bool isBackgroundDraw)
-        {
-            globalAlpha *= 0.75f;
-
-            if (Main.bloodMoon)
-                globalAlpha *= 0.75f;
-            if (Main.LocalPlayer.ZoneDungeon)
-                globalAlpha *= 0.75f;
-            if (Main.LocalPlayer.ZoneGraveyard)
-                globalAlpha *= 3f;
-
-            orig(self, spriteBatch, drawOffset, waterStyle, globalAlpha, isBackgroundDraw);
         }
 
         private bool On_Projectile_AI_007_GrapplingHooks_CanTileBeLatchedOnTo(On_Projectile.orig_AI_007_GrapplingHooks_CanTileBeLatchedOnTo orig, Projectile self, int x, int y)
@@ -735,7 +686,7 @@ namespace TranscendenceMod
             if (Main.LocalPlayer.GetModPlayer<TranscendencePlayer>().RaiderSetWear)
             {
                 if (item.type == ItemID.CopperCoin || item.type == ItemID.SilverCoin || item.type == ItemID.GoldCoin || item.type == ItemID.PlatinumCoin)
-                    return Range + 350;
+                    return Range + 250;
                 return Range + 125;
             }
             else return Range;
@@ -745,7 +696,7 @@ namespace TranscendenceMod
         {
             Color col = orig(self, alphaChannelMultiplier, lerpToWhite, rawHueOverride);
             if (Main.player[self.owner].name.Contains("CreanBL"))
-                return Color.Lerp(Color.Blue, Color.Aqua, (float)Math.Cos(Main.GlobalTimeWrappedHourly));
+                return Color.Lerp(Color.Blue, Color.Aqua, (float)Math.Cos(Main.GlobalTimeWrappedHourly) * lerpToWhite);
             return col;
         }
 
@@ -759,10 +710,16 @@ namespace TranscendenceMod
         private float On_Player_GetAdjustedItemScale(On_Player.orig_GetAdjustedItemScale orig, Player self, Item item)
         {
             float scale = orig(self, item);
+
+            if (self.GetModPlayer<TranscendencePlayer>().SharkscaleSetWear && (item.DamageType == DamageClass.Melee || item.DamageType == DamageClass.MeleeNoSpeed))
+                scale += 0.375f;
+
             if (self.GetModPlayer<TranscendencePlayer>().UsingLunarGauntlet && (item.DamageType == DamageClass.Melee || item.DamageType == DamageClass.MeleeNoSpeed))
                 scale *= 1.25f;
+
             if (self.GetModPlayer<TranscendencePlayer>().BigHandle)
                 scale *= 1.75f;
+
             return scale;
         }
 
@@ -780,8 +737,7 @@ namespace TranscendenceMod
         {
             Guard = null;
             InfectionAccessoryKeyBind = null;
-            StarCraftedArmorSetBonus = null;
-            ExtraterrestrialBuff = null;
+            ArmorSetBonus = null;
         }
         public override void OnWorldLoad()
         {
@@ -825,6 +781,7 @@ namespace TranscendenceMod
             if (DownedOOA) tag["DownedOOA"] = true;
             if (ObtainedTimeDial) tag["ObtainedTimeDial"] = true;
             if (EncouteredSeraph) tag["EncouteredSeraph"] = true;
+            if (VoidTilesCount > 0) tag["VoidTilesCount"] = VoidTilesCount;
         }
         public override void LoadWorldData(TagCompound tag)
         {
@@ -838,6 +795,7 @@ namespace TranscendenceMod
             ObtainedTimeDial = tag.ContainsKey("ObtainedTimeDial");
             EncouteredAtmospheron = tag.ContainsKey("EncouteredAtmospheron");
             EncouteredSeraph = tag.ContainsKey("EncouteredSeraph");
+            VoidTilesCount = tag.GetInt("VoidTilesCount");
 
         }
     }

@@ -22,7 +22,7 @@ namespace TranscendenceMod.Items.Consumables.FoodAndDrinks
             Item.height = 16;
             Item.value = Item.buyPrice(gold: 1);
             Item.UseSound = SoundID.Item2;
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
         }
     }
 }

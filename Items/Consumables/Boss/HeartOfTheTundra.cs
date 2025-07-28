@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TranscendenceMod.Items.Materials;
 using TranscendenceMod.Miscannellous.Rarities;
 using TranscendenceMod.NPCs.Boss.FrostSerpent;
 
@@ -42,6 +43,7 @@ namespace TranscendenceMod.Items.Consumables.Boss
             .AddIngredient(ItemID.SnowBlock, 750)
             .AddIngredient(ItemID.IceBlock, 500)
             .AddIngredient(ItemID.SpectreBar, 20)
+            .AddIngredient(ModContent.ItemType<GalaxyAlloy>(), 2)
             .AddIngredient(ItemID.SoulofLight, 5)
             .AddIngredient(ItemID.SoulofNight, 5)
             .AddTile(TileID.IceMachine)

@@ -27,6 +27,7 @@ namespace TranscendenceMod
             Starting,
             Molten,
             Palladium,
+            Sharkscale,
             SeraphAegis
         }
 
@@ -81,8 +82,15 @@ namespace TranscendenceMod
                     dashBounce = 1;
                     break;
 
+                case DashType.Sharkscale:
+                    dashSpeed = 32f;
+                    dashCD = 45;
+                    dashTime = 15;
+                    dashBounce = 2;
+                    break;
+
                 case DashType.SeraphAegis:
-                    dashSpeed = 28f;
+                    dashSpeed = 26f;
                     dashCD = 30;
                     dashTime = 15;
                     dashBounce = 2;
@@ -161,6 +169,12 @@ namespace TranscendenceMod
             { 
                 dashType = DashType.Palladium;
                 visualDash = DashType.Palladium;
+                dashRefillTimer = 30;
+            }
+            if (TranscendencePlayer.SharkscaleSetWear)
+            {
+                dashType = DashType.Sharkscale;
+                visualDash = DashType.Sharkscale;
                 dashRefillTimer = 30;
             }
             if (TranscendencePlayer.CosmicAegis)
@@ -300,16 +314,26 @@ namespace TranscendenceMod
                             for (int j = 0; j < 3; j++)
                             {
                                 Dust d = Dust.NewDustPerfect(Player.Center - new Vector2(Player.width / 2 * dashDir, (float)(Math.Sin(TranscendenceWorld.Timer / (4 + (i * 0.25f))) * 65)), ModContent.DustType<PlayerCosmicBlood>(),
-                                    Vector2.Zero, 0, TranscendenceWorld.CosmicPurple2, 1f);
+                                    Vector2.Zero, 0, TranscendenceWorld.CosmicPurple, 1f);
                                 d.velocity = new Vector2(dashDir * -5, 0);
                                 d.noGravity = true;
 
                                 Dust d2 = Dust.NewDustPerfect(Player.Center - new Vector2(Player.width / 2 * dashDir, (float)(Math.Sin(TranscendenceWorld.Timer / (4 + (i * 0.25f))) * -65)), ModContent.DustType<PlayerCosmicBlood>(),
-                                    Vector2.Zero, 0, TranscendenceWorld.CosmicPurple2, 1f);
+                                    Vector2.Zero, 0, TranscendenceWorld.CosmicPurple, 1f);
                                 d2.velocity = new Vector2(dashDir * -5, 0);
                                 d2.noGravity = true;
                             }
                         }
+                        break;
+                    }
+                case DashType.Sharkscale:
+                    {
+                        int type = Main.rand.NextBool(3) ? ModContent.DustType<MuramasaDust>() : ModContent.DustType<BetterWater>();
+                        Dust d = Dust.NewDustPerfect(Player.Center - new Vector2(Player.width / 2 * dashDir, (float)Math.Ceiling(Math.Sin(TranscendenceWorld.Timer)) * 25f), type,
+                            Player.velocity, 0, Color.White, type == ModContent.DustType<BetterWater>() ? 2f : 1f);
+                        d.velocity = new Vector2(dashDir * -5, 0);
+                        d.noGravity = true;
+
                         break;
                     }
                 case DashType.Molten:

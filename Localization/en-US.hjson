@@ -16,7 +16,7 @@ Mods: {
 			}
 
 			PumpkinYoyo: {
-				DisplayName: Grand Harvest
+				DisplayName: Fresh Harvest
 				Tooltip:
 					'''
 					Feeds you for 7 seconds after swinging
@@ -125,7 +125,7 @@ Mods: {
 					You cannot use items while firing the laser
 					Press the mount button and (Unbound Key) at the same time to transform into a lacewing
 					As a lacewing:
-					* [C/5c915d:Deal 50% more damage]
+					* [C/5c915d:Deal 35% more damage]
 					* [C/5c915d:Have a tiny hitbox and infinite flight]
 					* [C/fe7c7c:Cannot use items (Can still use summons and passives)]
 					* [C/fe7c7c:You will die in a single hit]
@@ -207,8 +207,8 @@ Mods: {
 				Tooltip:
 					'''
 					Hitting enemies increases the [c/FF0000:Blood Gauge],
-					When the blood gauge is full, press (Unbound Key) to heal for [c/FF0000:(Healed Amount)] life [c/586475:(Max Life * 0.35 - Defense / 2)]
-					Getting hit decreases the meter by 20%
+					When the blood gauge is full, press (Unbound Key) to heal for [c/FF0000:(Healed Amount)] life [c/586475:(Max Life * 0.25 - Defense / 2)]
+					Getting hit decreases the meter by 33%
 					'''
 			}
 
@@ -230,7 +230,7 @@ Mods: {
 			JungleShield2: {
 				Tooltip:
 					'''
-					Pressing the Parry key and DOWN at the same time will make you hide inside the shell, making you take 90% less damage, increased knockback and inability to use items
+					Pressing the Parry key and UP at the same time will make you hide inside the shell, making you take 90% less damage, increased knockback and inability to use items
 					Being hit in this form will damage the shell, increasing taken damage by 15%, this effect stacks infinitely
 					The shell will repair itself after 45 seconds of not being getting hit on the shell
 					You can view the repair status in the inventory
@@ -242,7 +242,7 @@ Mods: {
 			}
 
 			JungleShield1: {
-				Tooltip: Pressing the Parry key and DOWN at the same time will make you hide inside the shell, making you take 50% less damage and unable to move or attack
+				Tooltip: Pressing the Parry key and UP at the same time will make you hide inside the shell, making you take 50% less damage and unable to move or attack
 				DisplayName: Tortoise Shell
 			}
 
@@ -492,15 +492,15 @@ Mods: {
 			}
 
 			MuramasaUpgrade: {
-				DisplayName: Flashtide Edge
+				DisplayName: Twilight Edge
 				Tooltip: "'How ya doin' Muramasa?'"
 			}
 
 			UpgradedMuramasa: {
-				DisplayName: Twilight Shore Katana
+				DisplayName: Twilight Muramasa
 				Tooltip:
 					'''
-					Penetrates enemy armor
+					Penetrates 25 points of enemy armor
 					Right Click to charge a powerful water slash
 					Left Click when fully charged to lunge forward at high speeds
 					'''
@@ -697,7 +697,7 @@ Mods: {
 				DisplayName: Time Dial
 				Tooltip:
 					'''
-					Bring to the Cosmic Archmage to unlock their time manipulation ability
+					Bring to the Star Trader to unlock their time manipulation ability
 					[c/6d09a7:A priceless artifact capable of manipulating the time. Only a select few know how to use it.]
 					'''
 			}
@@ -958,7 +958,7 @@ Mods: {
 
 			SeraphPetItem: {
 				DisplayName: Fractured Planet
-				Tooltip: Summons a Star Angel
+				Tooltip: Summons a Space Angel
 			}
 
 			KatanaFan: {
@@ -1081,7 +1081,7 @@ Mods: {
 
 			AbsolutePurity: {
 				DisplayName: Absolute Purity
-				Tooltip: Cleanses any modifier from an item
+				Tooltip: ""
 			}
 
 			HardmetalHelmet: {
@@ -1278,16 +1278,6 @@ Mods: {
 					'''
 			}
 
-			MuramasaHeadBlackout: {
-				DisplayName: Muramasa Head Blackout
-				Tooltip: ""
-			}
-
-			MuramasaHeadRevealed: {
-				DisplayName: Muramasa Head Revealed
-				Tooltip: ""
-			}
-
 			SeraphHeadBlackOut: {
 				DisplayName: Seraph Head Black Out
 				Tooltip: ""
@@ -1323,8 +1313,8 @@ Mods: {
 				WarpPoint: Return Point
 			}
 
-			BasicSword: {
-				DisplayName: Basic Sword
+			LegendarySword: {
+				DisplayName: Legendary Sword
 				Tooltip: Getting hit by an enemy within 10 frames of swinging the sword will parry the attack
 			}
 
@@ -1374,7 +1364,7 @@ Mods: {
 				DisplayName: Giant Shell (Orange)
 				Tooltip:
 					'''
-					Pressing the Parry key and DOWN at the same time will make you hide inside the shell, making you take 30% less damage and unable to move or use items
+					Pressing the Parry key and UP at the same time will make you hide inside the shell, making you take 30% less damage and unable to move or use items
 					Movement speed reduced by 15%
 					'How am I even supposed fit inside this?'
 					'''
@@ -1384,7 +1374,7 @@ Mods: {
 				DisplayName: Giant Shell (Purple)
 				Tooltip:
 					'''
-					Pressing the Parry key and DOWN at the same time will make you hide inside the shell, making you take 40% less damage and unable to move or use items
+					Pressing the Parry key and UP at the same time will make you hide inside the shell, making you take 40% less damage and unable to move or use items
 					Enemies take damage when attacking you
 					Movement speed reduced by 15%
 					'How am I even supposed fit inside this?'
@@ -1445,7 +1435,7 @@ Mods: {
 			}
 
 			SuperBomb_Bouncy: {
-				DisplayName: Super Bouncy Bomb
+				DisplayName: Bouncy Super Bomb
 				Tooltip:
 					'''
 					Large Blast Radius
@@ -1455,7 +1445,7 @@ Mods: {
 			}
 
 			SuperBomb_Sticky: {
-				DisplayName: Super Sticky Bomb
+				DisplayName: Sticky Super Bomb
 				Tooltip:
 					'''
 					Large Blast Radius
@@ -1618,7 +1608,7 @@ Mods: {
 				DisplayName: Orb of Flow
 				Tooltip:
 					'''
-					Focus cost reduced by 50%
+					You will regain focus 50% faster
 					Raising your shield will slow you down for the duration of the parry
 					'''
 			}
@@ -1782,14 +1772,14 @@ Mods: {
 
 			HeartOfTheTundra: {
 				DisplayName: Heart of the Tundra
-				Tooltip: Summons the glacier construct when used in the Tundra
+				Tooltip: Summons the glacial construct when used in the Tundra
 			}
 
 			LihzardianBulwark: {
 				DisplayName: Lihzardian Bulwark
 				Tooltip:
 					'''
-					Pressing the Parry key and DOWN at the same time will make you mount a golem, making you take 66% less damage and unable to use items
+					Pressing the Parry key and UP at the same time will make you mount a golem, making you take 66% less damage and unable to use items
 					The golem can jump around and crush enemies
 					Hold DOWN to slam downwards at extreme speeds
 					This ability has a 10 second cooldown
@@ -1946,8 +1936,8 @@ Mods: {
 				Tooltip:
 					'''
 					It has a note attached to it;
-					[c/6d09a7:Congrats on finishing the current content of the mod!]
-					[c/6d09a7:Make sure to look out for future content updates.]
+					[c/6d09a7:Congratulations and thank you for finishing the current content of the mod!]
+					[c/6d09a7:Make sure to look out for future content updates!] :)
 					[c/6d09a7:-CreanBL]
 					'''
 			}
@@ -2037,7 +2027,11 @@ Mods: {
 
 			SewerHoop: {
 				DisplayName: Sewer Hoop
-				Tooltip: ""
+				Tooltip:
+					'''
+					Creates water fountains upon striking enemies
+					Pierces an additional enemy before returning back to you
+					'''
 			}
 
 			VoidSeeds: {
@@ -2110,7 +2104,7 @@ Mods: {
 				Tooltip: ""
 			}
 
-			EarthDial: {
+			TerrariaDial: {
 				DisplayName: Earth Time Fragment
 				Tooltip: ""
 			}
@@ -2119,9 +2113,10 @@ Mods: {
 				DisplayName: Seraph's Bell
 				Tooltip:
 					'''
-					Starts a Casual Seraphic Encounter
+					Summons the Celestial Seraph
 					Can only be used in a flat surface-height area at night
 					Doesn't work while a boss is alive
+					[C/ff0000:This item will intiate a conversation, proceed with caution!]
 					'''
 			}
 
@@ -2296,7 +2291,7 @@ Mods: {
 				Upgrades: {
 					FrostSerpent: You will be aided by Ice Blue Snatchers
 					Atmospheron: Projectile speed increased
-					Nucleus: You will shoot electric heart helixes
+					Nucleus: You will be aided by a magical cog
 					Seraph: You will be aided by miniature Cosmic Gazers
 				}
 			}
@@ -2388,10 +2383,10 @@ Mods: {
 			}
 
 			ArcadeCabinetItem: {
-				DisplayName: Arcade Cabinet (Heartfelt Labyrinth)
+				DisplayName: Arcade Cabinet (Heart Labyrinth)
 				Tooltip:
 					'''
-					Allows you to play an extended version of the Heartfelt Labyrinth game from the Project Nucleus fight!
+					Allows you to play an extended version of the Heart Labyrinth game from the Project Nucleus fight!
 					Costs 2 gold [i:GoldCoin] to play
 					[C/ff0000:Might have some harsh consequences for losing...]
 					'''
@@ -2436,12 +2431,59 @@ Mods: {
 				DisplayName: Frostbite Maws
 				Tooltip: Summons maws at your cursor that make bitten enemies lose 20 defense against summon weapons for 5 seconds
 			}
+
+			SharkBoots: {
+				DisplayName: Sharkscale Boots
+				Tooltip:
+					'''
+					Melee critical strike chance increased by 15%
+					Movement speed increased by 20%
+					'''
+			}
+
+			SharkChestplate: {
+				DisplayName: Sharkscale Chestplate
+				Tooltip:
+					'''
+					Melee damage increased by 20%
+					Melee armor penetration increased by 15
+					'''
+			}
+
+			SharkHelmet: {
+				DisplayName: Sharkscale Helmet
+				Tooltip:
+					'''
+					Melee damage increased by 15%
+					Melee attack speed increased by 25%
+					'''
+			}
+
+			WetPickaxe: {
+				DisplayName: Wet Pickaxe
+				Tooltip: ""
+			}
+
+			LegendaryHilt: {
+				DisplayName: Legendary Hilt
+				Tooltip: ""
+			}
+
+			FuckThisBoss: {
+				DisplayName: Phantasmal Guard
+				Tooltip: Prevents Phantasmal Spheres and Phantasmal Deathrays from hurting you
+			}
+
+			AetherRootBeer: {
+				DisplayName: Aether Root Beer
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
 			CelestialStar.DisplayName: Celestial Star
 			Rock.DisplayName: Rock
-			PumpkinYoyoProj.DisplayName: Grand Harvest
+			PumpkinYoyoProj.DisplayName: Fresh Harvest
 			DivineBowBolt.DisplayName: Paranormal Arrow
 			ShimmerBulletProj.DisplayName: Shimmer Bullet
 			ShimmerMinion.DisplayName: Bright Star
@@ -2526,8 +2568,8 @@ Mods: {
 			LostHeadProj.DisplayName: Lost Head
 			WaterKunaiHostile.DisplayName: Water Kunai
 			WaterKunaiProj.DisplayName: Water Kunai
-			UpgradedMuramasaProj.DisplayName: Floodtide Muramasa
-			MuramasaPlusShred.DisplayName: Floodtide Slash
+			UpgradedMuramasaProj.DisplayName: Twilight Muramasa
+			MuramasaPlusShred.DisplayName: Twilight Slash
 			CloudProj.DisplayName: Cloud
 			TinkererGunBullet.DisplayName: Backfirer Bullet
 			PoCLaser.DisplayName: Laser of Creation
@@ -2539,7 +2581,6 @@ Mods: {
 			LivingBulletTree.DisplayName: Living Tree
 			MuramasaShred.DisplayName: Muramasa Shred
 			MuramasaSlash.DisplayName: Muramasa Slash
-			EoWFire.DisplayName: Cursed Fire
 			SpazzingEyeFire.DisplayName: Cursed Fire
 			CosmicPortal.DisplayName: Cosmic Portal
 			CosmicKick.DisplayName: Meteor Kick
@@ -2574,7 +2615,7 @@ Mods: {
 			SunFlame.DisplayName: Sun Flame
 			LumimyrskyHiutale.DisplayName: Lumihiutale
 			StarGlyphNoReturn.DisplayName: Star Glyph
-			SeraphPet.DisplayName: Star Angel
+			SeraphPet.DisplayName: Space Angel
 			MoonEclipse.DisplayName: Moon Eclipse
 			SunEclipse.DisplayName: Sun Eclipse
 			BluePolarityLaser.DisplayName: Polarity Laser
@@ -2605,7 +2646,7 @@ Mods: {
 			SunwarePickaxeGuidingLight.DisplayName: Guiding Light
 			TerraWhirlind.DisplayName: Terra Whirlind
 			RodOfRelocationWarp.DisplayName: Rod Of Relocation
-			BasicSword_Proj.DisplayName: Basic Sword
+			LegendarySword_Proj.DisplayName: Basic Sword
 			FanWind.DisplayName: Fan Wind
 			RainbowSpiralLaser.DisplayName: Laser of Finality
 			FinalDeathray.DisplayName: Final Deathray
@@ -2762,12 +2803,14 @@ Mods: {
 			FrozenMawsProj.DisplayName: Frozen Maws
 			CoolBow.DisplayName: Cool Bow
 			SummitSpear.DisplayName: Summit Spear
+			CreanCog.DisplayName: Crean Cog
+			FrostMist.DisplayName: Frost Mist
 		}
 
 		SeraphAttackNames: {
 			BirthOfAStar: Starborn Miracle
 			BirthOfAStarP2: Birth of a Star
-			RainP1: Cthulhu's Firestorm
+			RainP1: Eldritch Firestorm
 			RainP2: Fractal Inferno
 			HomingP1: Astral Purification
 			HomingP2: Absolute Purification
@@ -2782,7 +2825,7 @@ Mods: {
 			BigCrunch: Big Bang and Big Crunch
 			DivineSpear: Divine Spear of the Seraph
 			RoyalFlash: Royal Flash
-			TrackingBlades: Most Refined and Pristine Blades
+			TrackingBlades: Pristine, Elegant Blades
 			RemoteBlast: Impurity Revealed Within
 			SupernovaP2: Death of a Star
 			LaserGrid: Pure Holy Assault
@@ -2832,7 +2875,7 @@ Mods: {
 
 				CosmicNPC: {
 					DisplayName: A Charitable Deed
-					Tooltip: Talk to the Cosmic Archmage and give them the item they want
+					Tooltip: Talk to the Star Trader and give them the item they want
 				}
 
 				Timedial: {
@@ -2887,7 +2930,7 @@ Mods: {
 
 				FrostSerpent: {
 					DisplayName: Snow Grave
-					Tooltip: Defeat the Frost Serpent
+					Tooltip: Craft the Heart of the Tundra [i:TranscendenceMod/HeartOfTheTundra] and defeat the Frost Serpent
 				}
 
 				Atmospheron: {
@@ -2962,10 +3005,10 @@ Mods: {
 			ModifierUIEmptyPricePanel: "[c/58636b:Insert a modifiable item]"
 			SeraphLifeBonusFail: Life Bonus Failed!
 			Timedials: Time: [c/6cb7e6:{0}]
-			Parry: PARRY!
+			Parry.1: PARRY!
 			ParryUI: Parry Meter
 			FocusUI: Focus
-			ParryLeniency: "[C/5c915d:{0} Leniency]"
+			ParryLeniency: "[C/5c915d:{0} Delay]"
 			ParryCD: "[C/5c915d:{0} Cooldown]"
 			ModifierBagError: Can only be used from the hotbar!
 			BlacksmithPhoneError: No Response...
@@ -2993,8 +3036,8 @@ Mods: {
 				Desperation: {
 					1: UNABLE TO MAINTAIN SYSTEMS !!
 					2: SHUT DOWN IMMINENT !!
-					3: STARTING UP PROCESS 'HEARTFELT_LABYRINTH'...
-					4: PROCESS 'HEARTFELT_LABYRINTH' HAS BEEN ACTIVATED !!
+					3: STARTING UP PROCESS 'HEART_LABYRINTH'...
+					4: PROCESS 'HEART_LABYRINTH' HAS BEEN ACTIVATED !!
 					5: STARTING UP PROCESS 'BODY_TRANSFER'..
 					6: PROCESS 'BODY_TRANSFER' HAS BEEN ACTIVATED !!
 					7: YOU ARE GOING DOWN WITH ME.
@@ -3038,9 +3081,6 @@ Mods: {
 					8: Interesting.
 				}
 
-				Post-Cult.1: ""
-				Post-Moon.1: ""
-
 				Post-Nucleus: {
 					1: I have observed your battle from the distance, and I must say, I am impressed.
 					2: Your combat performance against man-made forces were incredible, but it's growing at a concerning pace.
@@ -3051,20 +3091,16 @@ Mods: {
 				}
 			}
 
-			Reforges: {
-				Grounded:
-					'''
-					+8% acceleration
-					-5% flight time
-					'''
-				Soaring: +6% flight time
-			}
-
 			SeraphBossDialog: {
 				Intro.1: Ready to go?
 
+				Phase2: {
+					1: The next phase of the combat trial may commence.
+					2: Good luck.
+				}
+
 				Phase3: {
-					1: Your perseverance has caught my attention so far.
+					1: Your capabilities have impressed me so far.
 					2: As such, I will start using some of my finer attacks now.
 					3: Do not let me down now.
 				}
@@ -3150,13 +3186,20 @@ Mods: {
 						[c/586475:Teleporting horizontally will launch you at high speeds if a boss isn't currently alive]
 						[c/586475:Grants immunity to low gravity environments]
 						'''
+					Shark:
+						'''
+						[c/586475:Double tap a direction to ram into enemies]
+						[c/586475:Fishing power increased by 25]
+						[c/586475:Melee weapon size increased by 37,5%]
+						[c/586475:Melee attack speed increased by 30%]
+						'''
 				}
 
 				Shields:
 					'''
-					[c/586475:Pressing (Unbound Key) will make you raise your shield for {0} frames.]
+					[c/586475:Pressing (Unbound Key) will make you raise your shield for a few frames.]
 					[c/586475:Getting hit by an enemy or a projectile within the last 5 frames will parry the attack, dealing damage to the foe and ignoring damage taken.]
-					[c/586475:You will lose {1} focus upon parrying]
+					[c/586475:You will lose {0} focus upon parrying]
 					[c/586475:Not having enough focus will prevent you from parrying]
 					'''
 
@@ -3167,19 +3210,18 @@ Mods: {
 						2: Spazzy
 						3: Danger-Detecting
 						4: Bottomless
-						5: Mechanical
-						6: Giant Slaying
-						7: Charged
-						8: Lunatic
-						9: Magnetic
-						10: Enchanted
-						11: Extended
-						12: Gigantic
-						13: Hooked
-						14: Silky
-						15: Draconic
-						16: Jolly
-						17: Mystic
+						5: Giant Slaying
+						6: Charged
+						7: Lunatic
+						8: Magnetic
+						9: Enchanted
+						10: Extended
+						11: Gigantic
+						12: Hooked
+						13: Silky
+						14: Draconic
+						15: Jolly
+						16: Mystic
 					}
 
 					RequiredPlural: Required items: {0}x [i:{1}]
@@ -3191,6 +3233,12 @@ Mods: {
 						[c/586475:Practically useless now, as it cannot be used on its own anymore.]
 						[c/586475:Only if there was someone that could transfer its abilities onto other items...]
 						'''
+					None:
+						'''
+						-[C/ac4595:Absolute Purification]-
+						* [C/fe7c7c:Removes modifiers from an item]
+						Can be applied to any item with a modifier
+						'''
 					Luminous:
 						'''
 						-[C/ff6d00:Luminous] [C/A8714D:Modifier]-
@@ -3201,13 +3249,13 @@ Mods: {
 						[C/586475:These effects stack with each accessory]
 						Can be applied to Accessories
 						'''
-					Spazzing:
+					Spazzy:
 						'''
 						-[C/91FF00:Spazzy Modifier]-
 						* [C/5c915d:You spew out fire from your mouth]
 						Can be applied to Helmets
 						'''
-					Skull:
+					DangerDetecting:
 						'''
 						-[C/95b669:Danger Detecting Modifier]-
 						* [C/5c915d:Reveals enemies inside walls]
@@ -3227,12 +3275,6 @@ Mods: {
 						[C/586475:These effects stack with each armor piece]
 						Can be applied to Armor
 						'''
-					Mechanical:
-						'''
-						-[C/4b4c60:Mechanical] [C/ff184e:Modifier]-
-						* [C/5c915d:-]
-						Can be applied to Leggings
-						'''
 					Charger:
 						'''
 						-[C/31bde6:Charged Modifier]-
@@ -3240,7 +3282,7 @@ Mods: {
 						* [C/fe7c7c:Low Charge makes your weapon deal less damage than usual]
 						Can be applied to all weapons except minion staves and yoyos
 						'''
-					CultScroll:
+					CultistScroll:
 						'''
 						-[C/0b77e8:In][C/efce20:sa][C/0b77e8:ne Mo][C/efce20:difi][C/0b77e8:er]-
 						* [C/5c915d:Damage against normal enemies increased by 15%]
@@ -3254,13 +3296,13 @@ Mods: {
 						* [C/5c915d:You have a 25% chance to attempt at rolling for a crate drop]
 						Can be applied to Fishing Rods
 						'''
-					MagicOrb:
+					EnchantedPearl:
 						'''
 						-[C/1f8de1:Fortunate] [C/44ddf6:Modifier]-
 						* [C/5c915d:You have a 33% chance to upgrade your] [C/2954ae:rare] [C/5c915d:fishing attempt to] [C/faa422:legendary]
 						Can be applied to Fishing Rods
 						'''
-					ExtendedHead:
+					LongPickHead:
 						'''
 						-[C/6e7892:Extended Modifier]-
 						* [C/5c915d:Pickaxe range increased by 4 tiles]
@@ -3274,10 +3316,10 @@ Mods: {
 						* [C/fe7c7c:Melee Speed multiplied by 0,33x]
 						Can be applied to Swords
 						'''
-					HardmetalHook:
+					Hooked:
 						'''
 						-[C/65799a:Hooked Modifier]-
-						* [C/5c915d:Base Fishing Power increased by 10]
+						* [C/5c915d:Fishing power increased by 10]
 						Can be applied to Fishing Rods
 						'''
 					Silky:
@@ -3318,26 +3360,26 @@ Mods: {
 						[C/586475:The damage boost and the size of the explosion scales with each armor piece]
 						Can be applied to Dark Artist armor
 						'''
-					Muramasa:
+					MuramasaUpgrade:
 						'''
 						-[C/3b6ee9:Flooded Upgrade]-
 						[C/5c915d:Upgrades the affected weapon into a powerful water katana with high damage]
 						Can be applied to Muramasa [i:Muramasa]
 						'''
-					BaseballBat:
+					BaseballBatUpgrade:
 						'''
 						-[C/819da7:Spiky Upgrade]-
 						[C/5c915d:Applies spikes into the affected weapon, making it deal more damage and charge faster]
 						[C/fe7c7c:Upgraded weapon deals less knockback]
 						Can be applied to Baseball Bat [i:TranscendenceMod/BaseballBat]
 						'''
-					Backfirer:
+					ClockworkUpgrade:
 						'''
 						-[C/8e574c:Recoil Upgrade]-
 						[C/d8ab49:Turns the affected weapon into a heavy riffle with insane recoil]
 						Can be applied to Clockwork Assault Riffle [i:ClockworkAssaultRifle]
 						'''
-					Eternity:
+					EternityUpgrade:
 						'''
 						-[C/0056ff:Eternal Upgrade]-
 						[C/d8ab49:Turns the affected item into an accessory that makes damage extremely consistent]
@@ -3353,24 +3395,30 @@ Mods: {
 						'''
 						-[C/8cd8ea:The Timedial]-
 						Combine with the Etherial and Constant time fragments to create the Timedial
-						[i:TranscendenceMod/EarthDial] + [i:TranscendenceMod/EtheriaDial] + [i:TranscendenceMod/ConstantDial] = [i:TranscendenceMod/Timedial]
+						[i:TranscendenceMod/TerrariaDial] + [i:TranscendenceMod/EtheriaDial] + [i:TranscendenceMod/ConstantDial] = [i:TranscendenceMod/Timedial]
 						'''
 					TimedialEtheria:
 						'''
 						-[C/8cd8ea:The Timedial]-
 						Combine with the Earthly and Constant time fragments to create the Timedial
-						[i:TranscendenceMod/EarthDial] + [i:TranscendenceMod/EtheriaDial] + [i:TranscendenceMod/ConstantDial] = [i:TranscendenceMod/Timedial]
+						[i:TranscendenceMod/TerrariaDial] + [i:TranscendenceMod/EtheriaDial] + [i:TranscendenceMod/ConstantDial] = [i:TranscendenceMod/Timedial]
 						'''
 					TimedialConstant:
 						'''
 						-[C/8cd8ea:The Timedial]-
 						Combine with the Earthly and Etherial time fragments to create the Timedial
-						[i:TranscendenceMod/EarthDial] + [i:TranscendenceMod/EtheriaDial] + [i:TranscendenceMod/ConstantDial] = [i:TranscendenceMod/Timedial]
+						[i:TranscendenceMod/TerrariaDial] + [i:TranscendenceMod/EtheriaDial] + [i:TranscendenceMod/ConstantDial] = [i:TranscendenceMod/Timedial]
 						'''
 					BlacksmithPhone:
 						'''
 						-[C/322d5e:Bl][C/3d496e:ack][C/f58c00:s][C/ffee00:mi][C/ffffff:t][C/ffee00:h'][C/f58c00:s] [C/3d496e:Pho][C/322d5e:ne]-
 						Allows you to remotely access the blacksmith's services from anywhere for a higher price
+						'''
+					LegendarySword:
+						'''
+						-[C/a82709:Legendary Upgrade]-
+						[C/5c915d:Turns the affected weapon into a legendary blade]
+						Can be applied to Wooden Sword [i:WoodenSword]
 						'''
 				}
 			}
@@ -3448,16 +3496,12 @@ Mods: {
 					Quest1: Thank you, here's my reward for bringing the {1}x [i:{0}]. I hope you will find some use out of this.
 					Generic0: Welcome to the Lower Heaven's one and only shop! What would you like today?
 					Generic1: I've heard crazy rumours about a person, who's being possessed by a mysterious being from a place called 'The Real World'. Crazy stuff!
-					Generic2: Those water pools down there are actually infused with cosmic power, try floating in it and you'll be healed.
-					Generic3: The pressure from this place's cosmic essence has penetrated the land and revealed hidden treasures.
+					Generic2: Generic3:
 					Generic4: Did you know that there's an extremely tiny chance, that a meteorite will hit you at any time when you're sleeping and you cannot do anything to stop it?
-					Generic5: Greed is phohibited here, so I'll have to keep my prices as low as possible. Consider donating to help a struggling business!
-					GenericBeheaded: There exists a headless monstrosity running around in the wild, it appears during nights and is pretty powerful. Not powerful enough to compete with my magic though.
+					Generic5: GenericBeheaded: There exists a headless monstrosity running around in the wild, it appears during nights and is pretty powerful. Not powerful enough to compete with my magic though.
 					GenericPostCultist1: Finally, that lunatic cult is gone! The superior space people will rise up!
 					GenericPostCultist2: You've almost broken the Moon Lord's seal! Those celestial pillars will be the final obstacle preventing the lunar god from being unleashed. You should end his life while he's still at his weakest!
-					GenericDivineEra1: That lunar god's death has seemed to attract new faces around here.
-					GenericDivineEra2: The world has gotten modified in a similiar way as the death of that fleshy wall did. I can sense greater threats watching your every move.
-					GenericAtmospheron: You can call dragons by using a Wind Horn, they won't be friendly though.
+					GenericDivineEra1: That lunar beast's death has seemed to attract new faces around here.
 					GenericSeraph1: The Angel is awaiting you.
 					GenericPostSeraph1: Your powers have grown at a concerning pace, I never even thought that the might of God can be challenged.
 				}
@@ -3465,7 +3509,7 @@ Mods: {
 				Portal: Warp to Portal
 				TimeManip: Time Manipulation
 				Cycle: Cycle
-				DisplayName: Cosmic Archmage
+				DisplayName: Star Trader
 				Census.SpawnCondition: Find in Lower Heaven
 			}
 
@@ -3524,6 +3568,9 @@ Mods: {
 			CosmicGazer.DisplayName: Cosmic Gazer
 			HealHeart.DisplayName: Nucleus Healer
 			VolcanicBat.DisplayName: Volcanic Bat
+			BloodWorm_Body.DisplayName: Wound Burrower
+			BloodWorm_Head.DisplayName: Wound Burrower
+			BloodWorm_Tail.DisplayName: Wound Burrower
 		}
 
 		Buffs: {
@@ -3633,8 +3680,8 @@ Mods: {
 			}
 
 			SeraphPetBuff: {
-				DisplayName: Star Angel
-				Description: A Star Angel is following you
+				DisplayName: Space Angel
+				Description: A Space Angel is following you
 			}
 
 			BoABuff: {
@@ -3785,7 +3832,7 @@ Mods: {
 			InfectionAccessoryKeyBind.DisplayName: Infected Relic Ability
 			HyperDash.DisplayName: Hyper Dash
 			Guard.DisplayName: Shield Parry
-			StarcraftedArmorSetBonus.DisplayName: Starcrafted Armor Teleport
+			ArmorSetBonus.DisplayName: Armor Setbonus
 			ExtraterrestrialBuff.DisplayName: Extraterrestrial Brew Effects
 			Ret-125SModelLaserView.DisplayName: Ret-125S Laser View
 		}
@@ -3825,8 +3872,9 @@ Mods: {
 		DamageClasses.MagicRangedDamageClass.DisplayName: magic and ranged damage
 
 		Emotes: {
-			SeraphEmote.Command: seraph
+			SerpentEmote.Command: serpent
 			NucleusEmote.Command: nucleus
+			SeraphEmote.Command: seraph
 		}
 
 		Configs: {

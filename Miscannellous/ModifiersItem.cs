@@ -48,14 +48,14 @@ namespace TranscendenceMod.Miscannellous
         }
         public override void ModifyWeaponDamage(Item item, Player player, ref StatModifier damage)
         {
-            if (Modifier == ModifierIDs.Charged)
+            if (Modifier == ModifierIDs.Charger)
             {
                 damage *= (0.66f + ChargerCharge);
             }
         }
         public override bool? UseItem(Item item, Player player)
         {
-            if (Modifier == ModifierIDs.Charged && DoesUseCharge)
+            if (Modifier == ModifierIDs.Charger && DoesUseCharge)
             {
                 float amount = MathHelper.Lerp(0.075f, 0.25f, item.useAnimation / 20f);
 
@@ -76,7 +76,7 @@ namespace TranscendenceMod.Miscannellous
 
             if (ChargeCD > 0)
                 ChargeCD--;
-            if (Modifier == ModifierIDs.Charged)
+            if (Modifier == ModifierIDs.Charger)
             {
                 if (ModifierCD2 > 0)
                     ModifierCD2--;
@@ -230,30 +230,10 @@ namespace TranscendenceMod.Miscannellous
         }
         public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            if (item.ModItem is BaseModifier mod || Modifier == ModifierIDs.None)
+            if (item.ModItem is BaseModifier || Modifier == ModifierIDs.None)
                 return;
 
-            string texString = "TranscendenceMod/Miscannellous/Assets/Icons/MothLamp";
-            switch (Modifier)
-            {
-                case ModifierIDs.Spazzy: texString = "TranscendenceMod/Miscannellous/Assets/Icons/SpazEye"; break;
-                case ModifierIDs.DangerDetecting: texString = "TranscendenceMod/Miscannellous/Assets/Icons/Skull"; break;
-                case ModifierIDs.Blackhole: texString = "TranscendenceMod/Miscannellous/Assets/Icons/Blackhole"; break;
-                case ModifierIDs.Mechanical: texString = "TranscendenceMod/Miscannellous/Assets/Icons/Bucket"; break;
-                case ModifierIDs.GiantSlaying: texString = "TranscendenceMod/Miscannellous/Assets/Icons/GiantSlayer"; break;
-                case ModifierIDs.Charged: texString = "TranscendenceMod/Miscannellous/Assets/Icons/Charger"; break;
-                case ModifierIDs.CultistScroll: texString = "TranscendenceMod/Miscannellous/Assets/Icons/Scroll"; break;
-                case ModifierIDs.CrateMagnet: texString = "TranscendenceMod/Miscannellous/Assets/Icons/Magnet"; break;
-                case ModifierIDs.EnchantedPearl: texString = "TranscendenceMod/Miscannellous/Assets/Icons/Pearl"; break;
-                case ModifierIDs.LongPickHead: texString = "TranscendenceMod/Miscannellous/Assets/Icons/ExtendHead"; break;
-                case ModifierIDs.GiantHandle: texString = "TranscendenceMod/Miscannellous/Assets/Icons/BigHandle"; break;
-                case ModifierIDs.Hooked: texString = "TranscendenceMod/Miscannellous/Assets/Icons/Hooked"; break;
-                case ModifierIDs.Silky: texString = "TranscendenceMod/Miscannellous/Assets/Icons/Silky"; break;
-                case ModifierIDs.Draconic: texString = "TranscendenceMod/Miscannellous/Assets/Icons/DragonScale"; break;
-                case ModifierIDs.Jolly: texString = "TranscendenceMod/Miscannellous/Assets/Icons/Jolly"; break;
-                case ModifierIDs.Mystic: texString = "TranscendenceMod/Miscannellous/Assets/Icons/Mystic"; break;
-
-            }
+            string texString = $"TranscendenceMod/Miscannellous/Assets/Icons/{Modifier}";
             Texture2D sprite = ModContent.Request<Texture2D>(texString).Value;
             spriteBatch.Draw(sprite, position + new Vector2(-16, 0), null, Color.White);
         }
@@ -261,27 +241,8 @@ namespace TranscendenceMod.Miscannellous
         {
             if (Modifier != 0 && item.ModItem is not BaseModifier)
             {
-                var modifiername = "";
-                switch (Modifier)
-                {
-                    case ModifierIDs.Luminous: modifiername = Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Luminous"); break;
-                    case ModifierIDs.Spazzy: modifiername = Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Spazzing"); break;
-                    case ModifierIDs.DangerDetecting: modifiername = Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Skull"); break;
-                    case ModifierIDs.Blackhole: modifiername = Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Blackhole"); break;
-                    case ModifierIDs.Mechanical: modifiername = Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Mechanical"); break;
-                    case ModifierIDs.GiantSlaying: modifiername = Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.GiantSlayer"); break;
-                    case ModifierIDs.Charged: modifiername = Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Charger"); break;
-                    case ModifierIDs.CultistScroll: modifiername = Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.CultScroll"); break;
-                    case ModifierIDs.CrateMagnet: modifiername = Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.CrateMagnet"); break;
-                    case ModifierIDs.EnchantedPearl: modifiername = Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.MagicOrb"); break;
-                    case ModifierIDs.LongPickHead: modifiername = Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.ExtendedHead"); break;
-                    case ModifierIDs.GiantHandle: modifiername = Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.GiantHandle"); break;
-                    case ModifierIDs.Hooked: modifiername = Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.HardmetalHook"); break;
-                    case ModifierIDs.Silky: modifiername = Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Silky"); break;
-                    case ModifierIDs.Draconic: modifiername = Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Draconic"); break;
-                    case ModifierIDs.Jolly: modifiername = Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Jolly"); break;
-                    case ModifierIDs.Mystic: modifiername = Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Mystic"); break;
-                }
+                var modifiername = Language.GetTextValue($"Mods.TranscendenceMod.Messages.Tooltips.Modifiers.{Modifier}");
+
                 var modifier = new TooltipLine(Mod, "Modifier Name", modifiername);
                 tooltips.Insert(tooltips.Count, modifier);
             }
@@ -325,11 +286,7 @@ namespace TranscendenceMod.Miscannellous
             {
                 player.GetModPlayer<TranscendencePlayer>().DangerDetection = true;
             }
-            if (Modifier == ModifierIDs.Mechanical)
-            {
-                player.GetModPlayer<TranscendencePlayer>().Bolts = true;
-            }
-            if (Modifier == ModifierIDs.GiantSlaying)
+            if (Modifier == ModifierIDs.GiantSlayer)
             {
                 player.GetModPlayer<TranscendencePlayer>().GiantSlayer++;
             }

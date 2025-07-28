@@ -22,8 +22,7 @@ namespace TranscendenceMod.Miscannellous.UI
             Texture2D sprite2 = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/UI/ShieldParryBar_Jewel").Value;
 
             Player player = Main.LocalPlayer;
-
-            Vector2 pos = new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
+            Vector2 pos = player.Center - Main.screenPosition;
 
             bool onCD = player.GetModPlayer<TranscendencePlayer>().ParryTimerCD < player.GetModPlayer<TranscendencePlayer>().ParryCD;
             int timer = (int)(player.GetModPlayer<TranscendencePlayer>().ParryTimer);
@@ -35,6 +34,11 @@ namespace TranscendenceMod.Miscannellous.UI
                 Main.isMouseLeftConsumedByUI = true;
                 Main.LocalPlayer.mouseInterface = true;
             }
+
+
+            spriteBatch.End();
+            spriteBatch.Begin(default, BlendState.AlphaBlend, Main.DefaultSamplerState, default, default, null, Main.GameViewMatrix.TransformationMatrix);
+
 
             if (player != null && player.active && player.TryGetModPlayer(out TranscendencePlayer modPlayer) && modPlayer.HasParry && modPlayer.CanParry())
             {
@@ -74,6 +78,10 @@ namespace TranscendenceMod.Miscannellous.UI
                     Main.hoverItemName = Language.GetTextValue("Mods.TranscendenceMod.Messages.ParryUI");
                 }
             }
+
+            spriteBatch.End();
+            spriteBatch.Begin(default, BlendState.AlphaBlend);
+
         }
     }
 

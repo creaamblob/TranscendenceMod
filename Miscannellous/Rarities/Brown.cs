@@ -9,10 +9,10 @@ namespace TranscendenceMod.Miscannellous.Rarities
         {
             if (offset < 0)
                 return ModContent.RarityType<ModdedPurple>();
-            if (offset == 2)
-                return ModContent.RarityType<MidnightBlue>();
+            if (offset > 0)
+                return ModContent.RarityType<SteelGray>();
             return Type;
         }
-        public override Color RarityColor => new Color(129, 73, 55);
+        public override Color RarityColor => new Color(130, 75, 55);
     }
 }

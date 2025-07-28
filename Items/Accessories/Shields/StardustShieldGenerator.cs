@@ -14,7 +14,7 @@ namespace TranscendenceMod.Items.Accessories.Shields
 
         public override void SetDefaults()
         {
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
             Item.width = 18;
             Item.height = 22;
             Item.accessory = true;

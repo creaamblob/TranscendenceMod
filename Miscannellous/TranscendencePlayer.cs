@@ -71,7 +71,6 @@ namespace TranscendenceMod
         public bool PearlMod;
         public bool ExtendedHead;
         public bool BigHandle;
-        public bool Bolts;
         public int DragonScales;
         public bool DraconicFury;
         public int DraconicFuryCD;
@@ -83,6 +82,7 @@ namespace TranscendenceMod
         /*Accessories*/
         public bool CosmicAegis;
         public bool ChiselPotEquipped;
+        public bool FairerMoonlord;
 
         public bool EverglowingCrownEquipped;
         public int EverglowingSunCD;
@@ -142,9 +142,6 @@ namespace TranscendenceMod
         public bool FrozenMaw;
         public int FrozenMawDamage;
 
-        public bool HyperFeather;
-        public bool HeavyBootsEquipped;
-
         public bool NucleusLens;
         public bool NucleusLensSocial;
 
@@ -180,7 +177,7 @@ namespace TranscendenceMod
         public int ShieldID;
         public float Focus;
         public float MaxFocus = 100f;
-        public float FocusGatherSpeed = 0.05f;
+        public float FocusGatherSpeed = 0.075f;
         public float ParryFocusCost = 35f;
 
         public int TurtleCD;
@@ -205,14 +202,7 @@ namespace TranscendenceMod
         public int GolemCrushTimer;
 
         public bool StardustShield;
-        public int StardustShieldRequiredParries = 3;
-        public int StardustShieldParries;
-
         public bool CultistForcefield;
-        public int CultistForcefieldRequiredParries = 3;
-        public int CultistForcefieldParries;
-        public int CultistForcefieldDura;
-        public int Forcefield1Size;
 
         public int ShieldDamage;
         public int AegisRamDamage;
@@ -246,9 +236,9 @@ namespace TranscendenceMod
         public bool NucleusLensKeybind;
         public bool ShieldGuard;
         public bool InfectionAbility;
-        public bool DashKeybind;
+        public bool HyperDashKeybind;
         public bool LeftClicking;
-        public bool StarcraftedKeybind;
+        public bool ArmorKeybind;
 
 
         /*Buffs*/
@@ -289,7 +279,7 @@ namespace TranscendenceMod
         public int PaintBounceCD;
         public int BrushCooloff;
         public bool WandOfReturnCD;
-        public int SwordTimer;
+        public int LegendarySwordTimer;
         public int VoltageBeamTimer;
         public int ElectroPickCD;
         public int ConstellationsIndex;
@@ -301,6 +291,8 @@ namespace TranscendenceMod
         public bool OcramBuff;
 
         public bool RaiderSetWear;
+
+        public bool SharkscaleSetWear;
 
         public bool CosmicSetWear;
         public Vector2[] CosmicTPpositions = new Vector2[8];
@@ -432,6 +424,7 @@ namespace TranscendenceMod
         }
         public override void ResetEffects()
         {
+            FocusGatherSpeed = 0.075f;
             ParryFocusCost = 35f;
             MysticCards = 0;
             Jolly = 0;
@@ -443,6 +436,7 @@ namespace TranscendenceMod
             RingOfBravery = false;
             PocketGuillotine = false;
             FrostBite = false;
+            FairerMoonlord = false;
 
             ShaderShit();
 
@@ -468,13 +462,13 @@ namespace TranscendenceMod
             if (FishTrans > 0)
                 FishTrans--;
             FishNeck = false;
+            SharkscaleSetWear = false;
             FishronPerceptionAcc = false;
             HasJellyBuff = false;
             if (IsBlind > 0)
                 IsBlind--;
             HasModifiersInventory = false;
             BrokenShield = false;
-            Bolts = false;
             LihzardianBulwarkEquipped = false;
             CrystalRadiationPill = false;
             EolAegis = false;
@@ -506,8 +500,6 @@ namespace TranscendenceMod
             PalladiumShieldEquipped = false;
             CosmicWings = false;
             Stargazer = false;
-            HyperFeather = false;
-            HeavyBootsEquipped = false;
 
             if (TurtleCD > 0)
                 TurtleCD--;
@@ -518,8 +510,8 @@ namespace TranscendenceMod
             if (GiantShellCD > 0)
                 GiantShellCD--;
 
-            if (SwordTimer > 0)
-                SwordTimer--;
+            if (LegendarySwordTimer > 0)
+                LegendarySwordTimer--;
 
             if (SturdyPlateTimer > 0)
                 SturdyPlateTimer--;
@@ -584,7 +576,7 @@ namespace TranscendenceMod
                     Player.AddBuff(BuffID.ChaosState, TranscendenceUtils.BossAlive() ? 450 : 120);
                     Projectile.NewProjectile(Player.GetSource_FromAI(), Player.Center, Vector2.Zero, ModContent.ProjectileType<CosmicPortal>(), 0, 0, Player.whoAmI, 0, 2);
                 }
-                if (StarcraftedKeybind)
+                if (ArmorKeybind)
                 {
                     for (int i = 0; i < CosmicTPpositions.Length; i++)
                     {
@@ -794,7 +786,7 @@ namespace TranscendenceMod
             }
             if (Vampire)
             {
-                VampireBlood -= (int)(CrimsonNecklaceMaxBlood * 0.2f);
+                VampireBlood -= (int)(CrimsonNecklaceMaxBlood * 0.33f);
                 if (VampireBlood < 0)
                     VampireBlood = 0;
             }
@@ -941,7 +933,7 @@ namespace TranscendenceMod
                 Player.velocity *= 0.5f;
 
             if (DualBall && ParryTimer > 0)
-                Player.velocity *= 0.66f;
+                Player.velocity *= 0.8f;
         }
         public override bool ConsumableDodge(Player.HurtInfo info)
         {
@@ -1168,13 +1160,13 @@ namespace TranscendenceMod
             HitTimer = 5;
             if (InsideShell == 0 && !InsideGolem)
             {
-                float decreases = 40;
+                float decreases = 20;
 
                 if (StardustShield)
-                    decreases += 20f;
+                    decreases += 10f;
 
                 if (CultistForcefield)
-                    decreases += 20f;
+                    decreases += 10f;
 
                 Focus -= decreases;
             }
@@ -1437,6 +1429,12 @@ namespace TranscendenceMod
             if (FrostBite)
                 Player.statDefense -= 20;
 
+            if (DualBall)
+            {
+                float increase = 0.5f * FocusGatherSpeed;
+                FocusGatherSpeed = FocusGatherSpeed + increase;
+            }
+
             if (Focus < MaxFocus)
                 Focus += FocusGatherSpeed;
             else Focus = MaxFocus;
@@ -1479,7 +1477,7 @@ namespace TranscendenceMod
                 }
                 if (Danger && ++EverglowingSunCD % 20 == 0)
                 {
-                    Projectile.NewProjectile(Player.GetSource_FromAI(), Player.Center, Player.DirectionTo(Main.MouseWorld) * 6f, ModContent.ProjectileType<EmpressSun>(), 90, 2f, Player.whoAmI);
+                    Projectile.NewProjectile(Player.GetSource_FromAI(), Player.Center, Player.DirectionTo(Main.MouseWorld) * 6f, ModContent.ProjectileType<EmpressSun>(), 95, 2f, Player.whoAmI);
                 }
                 if (TranscendenceWorld.InfectionAccessoryKeyBind.JustPressed)
                 {
@@ -1505,7 +1503,7 @@ namespace TranscendenceMod
                     CannotUseItems = true;
                     CannotUseItemsTimer = 5;
 
-                    Player.GetDamage(DamageClass.Generic) += 0.5f;
+                    Player.GetDamage(DamageClass.Generic) += 0.35f;
                     Player.endurance *= 0f;
                     Player.DefenseEffectiveness *= 0f;
                     Player.mount.SetMount(ModContent.MountType<LacewingTransformationMount>(), Player);
@@ -1932,7 +1930,7 @@ namespace TranscendenceMod
                 Player.GetAttackSpeed(DamageClass.SummonMeleeSpeed) += 0.25f;
             }
 
-            VampireHealAmount = (int)(Player.statLifeMax2 * 0.35f) - (Player.statDefense / 2);
+            VampireHealAmount = (int)(Player.statLifeMax2 * 0.25f) - (Player.statDefense / 2);
 
             if (InsideShell > 0 && (TurtleShield || BeetleShield))
             {
@@ -2120,39 +2118,19 @@ namespace TranscendenceMod
                     StarFade -= 0.0125f;
             }
 
-            float vignetteStrengthMult = 0.875f;
-            if (HasJellyBuff && Player.HasBuff(ModContent.BuffType<JellyBuff>()))
-            {
-                int buffTime = Player.buffTime[Player.FindBuffIndex(ModContent.BuffType<JellyBuff>())];
-                float sightMult = buffTime > 300 ? 0.66f : MathHelper.Lerp(0f, 0.66f, buffTime / 300f);
-                vignetteStrengthMult -= sightMult;
-
-                if (Main.rand.NextBool(3))
-                    Dust.NewDust(Player.position, Player.width, Player.height, Main.rand.NextBool(2) ? DustID.ManaRegeneration : DustID.PinkSlime);
-            }
-
             if (!ZoneLimbo)
             {
                 if (NullFade > 0f)
                     NullFade = MathHelper.Lerp(NullFade, 0f, 0.05f);
             }
             else
-            {
-                Player.velocity.Y += 0.75f;
                 NullFade = MathHelper.Lerp(NullFade, 1f, 0.05f);
-
-                Filters.Scene.Activate("TranscendenceMod:ScreenVignette");
-                Filters.Scene["TranscendenceMod:ScreenVignette"].GetShader().UseProgress(1f * vignetteStrengthMult * NullFade);
-                Filters.Scene["TranscendenceMod:ScreenVignette"].GetShader().UseIntensity(1f * NullFade);
-                Filters.Scene["TranscendenceMod:ScreenVignette"].GetShader().UseTargetPosition(Main.screenPosition + new Vector2(Main.screenWidth / 2, Main.screenHeight));
-                ScreenVignetteTimer = 5;
-            }
 
 
             if (!NPC.AnyNPCs(ModContent.NPCType<CelestialSeraph>()))
                 SkyManager.Instance.Deactivate("TranscendenceMod:CelestialSeraph");
 
-            if (!AstronautHelmet && !ApolloHelmet && (StarFade > 0 || NullFade > 0) && ZoneStar)
+            if (!AstronautHelmet && !ApolloHelmet && (StarFade > 0 || NullFade > 0) && ZoneStar && SeraphTileDrawingSystem.PhaseThroughTimer == 0)
                 Player.AddBuff(ModContent.BuffType<CosmicSuffocation>(), 5);
 
             for (int i = 0; i < PortalBoxPositions.Length; i++)
@@ -2200,9 +2178,9 @@ namespace TranscendenceMod
 
             if (Vampire)
             {
-                CrimsonNecklaceMaxBlood = 20000;
+                CrimsonNecklaceMaxBlood = 125000;
                 if (VampireBlood > CrimsonNecklaceMaxBlood)
-                    VampireBlood = CrimsonNecklaceMaxBlood + 5;
+                    VampireBlood = CrimsonNecklaceMaxBlood;
 
                 if (CrimsonNecklaceBloodCD < 15)
                     CrimsonNecklaceBloodCD++;
@@ -2242,8 +2220,8 @@ namespace TranscendenceMod
         public bool CanParry() => !CannotUseItems && !EmpoweringTabletEquipped && !QuestBookUIDrawing.Visible;
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            if (TranscendenceWorld.StarCraftedArmorSetBonus.JustPressed) StarcraftedKeybind = true;
-            if (TranscendenceWorld.StarCraftedArmorSetBonus.JustReleased) StarcraftedKeybind = false;
+            if (TranscendenceWorld.ArmorSetBonus.JustPressed) ArmorKeybind = true;
+            if (TranscendenceWorld.ArmorSetBonus.JustReleased) ArmorKeybind = false;
 
             if (Player.controlUseItem) LeftClicking = true;
             if (Player.releaseUseItem) LeftClicking = false;
@@ -2287,7 +2265,7 @@ namespace TranscendenceMod
             {
                 InfectionAbility = true;
 
-                if (VampireBlood > CrimsonNecklaceMaxBlood && Vampire)
+                if (VampireBlood >= CrimsonNecklaceMaxBlood && Vampire)
                 {
                     VampireBlood = 0;
                     Player.Heal(VampireHealAmount);
@@ -2300,10 +2278,9 @@ namespace TranscendenceMod
             }
 
             /*Dashing*/
-            Player.TryGetModPlayer(out Dashes dashes);
-            if (TranscendenceWorld.HyperDash.JustPressed && OCoreTimer < 4)
-                DashKeybind = true;
-            if (TranscendenceWorld.HyperDash.JustReleased) DashKeybind = false;
+            Player.TryGetModPlayer(out Dashes dashes);if (TranscendenceWorld.HyperDash.JustPressed && OCoreTimer < 4)
+                HyperDashKeybind = true;
+            if (TranscendenceWorld.HyperDash.JustReleased) HyperDashKeybind = false;
         }
         public override void ModifyScreenPosition()
         {
@@ -2401,7 +2378,7 @@ namespace TranscendenceMod
                     itemDrop = item;
                 }
             }
-            if (attempt.uncommon && !attempt.inHoney && !attempt.inLava && Main.bloodMoon)
+            if (attempt.common && !attempt.inHoney && !attempt.inLava && Main.bloodMoon)
             {
                 itemDrop = ModContent.ItemType<TomatoSeeds>();
             }
@@ -2431,15 +2408,14 @@ namespace TranscendenceMod
                 Item.NewItem(Player.GetSource_FromAI(), target.getRect(), ModContent.ItemType<MysticTalismanPickup>());
             }
 
-            if (target.CanBeChasedBy() && Vampire && VampireBlood < (CrimsonNecklaceMaxBlood + 5) && CrimsonNecklaceBloodCD > 14 && Player.Distance(target.Center) < 1000)
+            if (target.CanBeChasedBy() && Vampire && VampireBlood < CrimsonNecklaceMaxBlood && Player.Distance(target.Center) < 1000)
             {
                 VampireBlood += damageDone;
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 2; i++)
                 {
                     Dust.NewDust(target.Center, 1, 1, ModContent.DustType<BetterBlood>(),
                         Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(4f, 4f), 0, Color.White, 1f);
                 }
-                CrimsonNecklaceBloodCD = 0;
             }
         }
         public override void FrameEffects()

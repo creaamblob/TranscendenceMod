@@ -15,8 +15,7 @@ namespace TranscendenceMod.Items.Modifiers.Upgrades
         public override int RequiredAmount => 4;
         public override ModifierIDs ModifierType => ModifierIDs.BaseballBatUpgrade;
         public override int CraftingResultItem => ModContent.ItemType<SpikedBaseballBat>();
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.BaseballBat");
-        public int timer;
+
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

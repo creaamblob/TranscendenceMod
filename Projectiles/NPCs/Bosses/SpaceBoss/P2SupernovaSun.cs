@@ -49,7 +49,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
                 int p = Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<NucleusDeathGigaBoom>(), 0, 0f, -1, 0, npc.whoAmI);
                 Main.projectile[p].timeLeft = boss.AttackDuration - 60;
 
-                for (int i = 0; i < 256; i++)
+                for (int i = 0; i < 324; i++)
                 {
                     int p2 = Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Main.rand.NextVector2Circular(48f, 48f), ModContent.ProjectileType<P2SupernovaProj>(), 110, 0f, -1, 0, Projectile.ai[1]);
                     Main.projectile[p2].timeLeft = boss.AttackDuration - 120;

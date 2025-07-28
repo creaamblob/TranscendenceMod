@@ -7,8 +7,7 @@ namespace TranscendenceMod.Items.Modifiers
     public class SunshadeEgg : BaseModifier
     {
         public override int RequiredItem => ItemID.Cobweb;
-        public override int RequiredAmount => 99;
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Silky");
+        public override int RequiredAmount => 50;
         public override ModifierIDs ModifierType => ModifierIDs.Silky;
         public override bool CanBeApplied(Item item) => item.defense > 0 && !item.accessory;
 

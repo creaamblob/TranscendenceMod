@@ -37,7 +37,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Nucleus
         {
             for (int i = -125; i < 250; i++)
             {
-                float y = (float)Math.Sin(i * 0.035f * 2f + TranscendenceWorld.UniversalRotation * 1.5f) * 150f;
+                float y = (float)Math.Sin(i * 0.035f * 2f + TranscendenceWorld.UniversalRotation * 1.5f) * 200f;
                 float y2 = Projectile.Center.Y - 620 + (int)Sinewave + y;
                 float x = Projectile.Center.X + 1000 + (i * 20f);
 

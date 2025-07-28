@@ -7,6 +7,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using TranscendenceMod.Items.Materials.MobDrops;
+using TranscendenceMod.Items.Modifiers.Upgrades;
 using TranscendenceMod.Miscannellous;
 using TranscendenceMod.Miscannellous.Biomes;
 
@@ -50,6 +51,7 @@ namespace TranscendenceMod.NPCs.PreHard
             npcLoot.Add(ItemDropRule.Common(ItemID.Gel, 1, 2, 4));
             npcLoot.Add(ItemDropRule.Common(ItemID.AshBlock, 2, 1, 3));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VolcanicRemains>(), 4, 1, 2));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LegendaryHilt>(), 50));
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {

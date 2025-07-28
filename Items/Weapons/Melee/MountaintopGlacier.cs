@@ -147,7 +147,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
             Projectile.velocity = Projectile.velocity.RotatedBy(Timer / 40f);
             if (Projectile.timeLeft < 52)
             {
-                int d = Dust.NewDust(dustPos, 1, 1, ModContent.DustType<Smoke3>(), 0, 0, 0, Color.DeepSkyBlue * 0.125f, 0.75f);
+                int d = Dust.NewDust(dustPos, 1, 1, ModContent.DustType<Smoke>(), 0, 0, 0, Color.DeepSkyBlue * 0.125f, 0.75f);
                 Main.dust[d].noGravity = true;
                 Main.dust[d].velocity = Vector2.Zero;
             }
@@ -241,7 +241,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
             Projectile.velocity = Projectile.velocity;
 
             Vector2 dustPos = Projectile.Center + Projectile.velocity * 20 * (0.25f * Projectile.scale);
-            int d = Dust.NewDust(dustPos, 1, 1, ModContent.DustType<Smoke3>(),
+            int d = Dust.NewDust(dustPos, 1, 1, ModContent.DustType<Smoke>(),
                 0, 0, 0, Color.DeepSkyBlue * 0.125f, 0.75f);
             Main.dust[d].noGravity = true;
             Main.dust[d].velocity = Vector2.Zero;

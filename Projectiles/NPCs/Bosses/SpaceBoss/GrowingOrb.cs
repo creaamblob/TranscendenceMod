@@ -53,7 +53,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
         public override void AI()
         {
             if (Projectile.ai[2] != 1 && Projectile.scale < (10 * (1 + Projectile.GetGlobalProjectile<TranscendenceProjectiles>().SpaceBossPortalProjectile)))
-                Projectile.scale += 0.01f * (1 + Projectile.GetGlobalProjectile<TranscendenceProjectiles>().SpaceBossPortalProjectile);
+                Projectile.scale += 0.015f * (1 + Projectile.GetGlobalProjectile<TranscendenceProjectiles>().SpaceBossPortalProjectile);
 
             NPC npc = Main.npc[(int)Projectile.ai[1]];
 

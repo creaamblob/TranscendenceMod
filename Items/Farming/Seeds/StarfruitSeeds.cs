@@ -18,7 +18,7 @@ namespace TranscendenceMod.Items.Farming.Seeds
         {
             base.SetDefaults();
             Item.value = Item.buyPrice(gold: 2);
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
         }
         public override void AddRecipes()
         {

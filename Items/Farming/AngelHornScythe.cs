@@ -14,7 +14,7 @@ namespace TranscendenceMod.Items.Farming
         public override void SetDefaults()
         {
             base.SetDefaults();
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
 
             Item.width = 26;
             Item.height = 26;

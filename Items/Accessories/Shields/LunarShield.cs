@@ -6,7 +6,7 @@ namespace TranscendenceMod.Items.Accessories.Shields
 {
     public class LunarShield : BaseShield
     {
-        public override int Leniency => 30;
+        public override int Leniency => 26;
 
         public override int Cooldown => 60;
 

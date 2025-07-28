@@ -75,11 +75,8 @@ namespace TranscendenceMod.Items.Weapons.Melee
     }
     internal class LimboBladeProj : ModProjectile
     {
-
         public float Timer;
-        public float SparkleTimer;
         public float RotSpeed = 0.4f;
-        public bool boolean;
         public int orb = ModContent.ProjectileType<ClaymoreOrb>();
 
         public override void SetDefaults()

@@ -148,7 +148,7 @@ namespace TranscendenceMod.NPCs.SpaceBiome
             Color col = Color.White * alpha;
 
             TranscendenceUtils.DrawEntity(NPC, Color.White * 0.25f, 8f * alpha, "bloom", 0, NPC.Center - new Vector2(NPC.width, NPC.height) * 0.35f, null);
-            TranscendenceUtils.DrawEntity(NPC, TranscendenceWorld.CosmicPurple2, 3f * alpha, "bloom", 0, NPC.Center - new Vector2(NPC.width, NPC.height) * 0.35f, null);
+            TranscendenceUtils.DrawEntity(NPC, TranscendenceWorld.CosmicPurple, 3f * alpha, "bloom", 0, NPC.Center - new Vector2(NPC.width, NPC.height) * 0.35f, null);
              
             for (int i = 0; i < (NPC.oldPos.Length / 2.15f); i++)
             {

@@ -60,8 +60,8 @@ namespace TranscendenceMod.Miscannellous
             if (mp == null)
                 return false;
 
-            return mp.InsideShell == 0 && !mp.InsideGolem && mp.HasParry
-                && mp.ParryTimer > 0 && mp.ParryTimer <= 5
+            return mp.InsideShell == 0 && !mp.InsideGolem && (mp.HasParry
+                && mp.ParryTimer > 0 && mp.ParryTimer <= 5 || mp.LegendarySwordTimer > 0)
                 && mp.ParryTimerCD > mp.ParryCD;
         }
 

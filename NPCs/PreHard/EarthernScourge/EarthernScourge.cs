@@ -10,6 +10,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using TranscendenceMod.Buffs;
 using TranscendenceMod.Items.Materials.MobDrops;
+using TranscendenceMod.Items.Modifiers.Upgrades;
 using TranscendenceMod.Miscannellous;
 using TranscendenceMod.Miscannellous.Biomes;
 using TranscendenceMod.Miscannellous.GlobalStuff;
@@ -42,14 +43,13 @@ namespace TranscendenceMod.NPCs.PreHard.EarthernScourge
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Venom] = true;
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire3] = true;
-            NPC.buffImmune[ModContent.BuffType<SpaceDebuff>()] = true;
         }
 
         public override void SetDefaults()
         {
-            NPC.lifeMax = Main.hardMode ? 885 : NPC.downedBoss3 ? 120 : 65;
-            NPC.defense = 0;
-            NPC.damage = Main.hardMode ? 135 : NPC.downedBoss3 ? 65 : 40;
+            NPC.lifeMax = Main.hardMode ? 500 : NPC.downedBoss3 ? 80 : 50;
+            NPC.damage = Main.hardMode ? 65 : NPC.downedBoss3 ? 45 : 35;
+            NPC.defense = 5;
             NPC.knockBackResist = 0;
 
             NPC.width = 30;
@@ -63,23 +63,23 @@ namespace TranscendenceMod.NPCs.PreHard.EarthernScourge
             NPC.DeathSound = SoundID.NPCDeath8;
 
             NPC.friendly = false;
-            NPC.value = Item.buyPrice(silver: 25);
+            NPC.value = Item.sellPrice(silver: 5);
             SpawnModBiomes = new int[1] { ModContent.GetInstance<VolcanicBiome>().Type };
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ItemID.StoneBlock, 1, 5, 12));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VolcanicRemains>(), 2, 2, 3));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VolcanicRemains>(), 1, 2, 3));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LegendaryHilt>(), 50));
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (spawnInfo.Player.GetModPlayer<TranscendencePlayer>().ZoneVolcano && (!NPC.AnyNPCs(Type) || NPC.downedBoss3))
-                return 0.35f;
+                return 0.25f;
             else return 0;
         }
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
         {
-            NPC.damage = (int)(NPC.damage * 0.55f);
         }
         public override void AI()
         {
@@ -159,12 +159,11 @@ namespace TranscendenceMod.NPCs.PreHard.EarthernScourge
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Venom] = true;
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire3] = true;
-            NPC.buffImmune[ModContent.BuffType<SpaceDebuff>()] = true;
         }
         public override void SetDefaults()
         {
             NPC.lifeMax = 5;
-            NPC.damage = 35;
+            NPC.damage = Main.hardMode ? 50 : NPC.downedBoss3 ? 35 : 30; 
             NPC.knockBackResist = 0;
             NPC.takenDamageMultiplier = 0.33f;
 
@@ -203,7 +202,6 @@ namespace TranscendenceMod.NPCs.PreHard.EarthernScourge
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Venom] = true;
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire3] = true;
-            NPC.buffImmune[ModContent.BuffType<SpaceDebuff>()] = true;
         }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
@@ -216,7 +214,7 @@ namespace TranscendenceMod.NPCs.PreHard.EarthernScourge
         public override void SetDefaults()
         {
             NPC.lifeMax = 5;
-            NPC.damage = 35;
+            NPC.damage = Main.hardMode ? 40 : NPC.downedBoss3 ? 25 : 30;
             NPC.knockBackResist = 0;
 
             NPC.width = 30;

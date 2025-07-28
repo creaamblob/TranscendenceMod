@@ -23,7 +23,7 @@ namespace TranscendenceMod.Items.Consumables.LootBags
         }
         public override void SetDefaults()
         {
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
             Item.maxStack = 9999;
 
             Item.useAnimation = 10;

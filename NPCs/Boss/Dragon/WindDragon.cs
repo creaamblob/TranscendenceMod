@@ -121,7 +121,6 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
             NPC.boss = true;
             NPC.friendly = false;
             NPC.knockBackResist = 0f;
-            NPC.BossBar = ModContent.GetInstance<AtmospheronBossBar>();
         }
         public override bool CheckActive() => false;
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)

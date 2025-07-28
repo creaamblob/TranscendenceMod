@@ -7,8 +7,7 @@ namespace TranscendenceMod.Items.Modifiers
     public class SkullMod : BaseModifier
     {
         public override int RequiredItem => ItemID.PoisonedKnife;
-        public override int RequiredAmount => 50;
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Skull");
+        public override int RequiredAmount => 25;
         public override ModifierIDs ModifierType => ModifierIDs.DangerDetecting;
         public override bool CanBeApplied(Item item) => item.headSlot != -1;
 

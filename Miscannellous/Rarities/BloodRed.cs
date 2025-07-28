@@ -8,9 +8,9 @@ namespace TranscendenceMod.Miscannellous.Rarities
         public override int GetPrefixedRarity(int offset, float valueMult)
         {
             if (offset < 0)
-                return ModContent.RarityType<MidnightBlue>();
-            return ModContent.RarityType<DarkPink>();
+                return ModContent.RarityType<CosmicRarity>();
+            return Type;
         }
-        public override Color RarityColor => new Color(150, 20, 30);
+        public override Color RarityColor => new Color(255, 50, 0);
     }
 }

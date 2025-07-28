@@ -40,7 +40,7 @@ namespace TranscendenceMod.Miscannellous.Skies
                 if (eff != null)
                 {
                     eff.Parameters["uColor"].SetValue(Color.Black.ToVector3());
-                    eff.Parameters["uSecondaryColor"].SetValue(TranscendenceWorld.CosmicPurple2.ToVector3());
+                    eff.Parameters["uSecondaryColor"].SetValue(TranscendenceWorld.CosmicPurple.ToVector3());
                     eff.Parameters["uTime"].SetValue(Main.GlobalTimeWrappedHourly * 4f);
                     eff.Parameters["centre"].SetValue(new Vector2(0.5f, 0.25f));
                     eff.Parameters["uProgress"].SetValue(Progress);

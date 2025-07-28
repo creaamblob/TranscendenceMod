@@ -71,7 +71,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
 
             if (Projectile.ai[2] > 100)
             {
-                Projectile.velocity = Vector2.Lerp(Projectile.velocity, new Vector2(0, 3.75f).RotatedBy(Projectile.ai[0]), 1f / 90f).RotatedBy(0.025f);
+                Projectile.velocity = Vector2.Lerp(Projectile.velocity, new Vector2(0, 5f).RotatedBy(Projectile.ai[0]), 1f / 60f).RotatedBy(0.0375f);
             }
         }
     }

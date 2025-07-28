@@ -8,7 +8,6 @@ namespace TranscendenceMod.Items.Modifiers
     {
         public override int RequiredItem => ItemID.LunarTabletFragment;
         public override int RequiredAmount => 6;
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Luminous");
         public override ModifierIDs ModifierType => ModifierIDs.Luminous;
         public override bool CanBeApplied(Item item) => item.accessory;
 

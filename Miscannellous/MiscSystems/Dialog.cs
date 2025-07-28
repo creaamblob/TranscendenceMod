@@ -99,6 +99,9 @@ namespace TranscendenceMod
             {
                 if (font2 != null && Dialog[i].UnfinishedSentence != null && Dialog[i].UnfinishedSentence != "" && Dialog[i].UnfinishedSentence.Length > 0)
                 {
+                    spriteBatch.End();
+                    spriteBatch.Begin(default, BlendState.AlphaBlend, Main.DefaultSamplerState, default, default, null, Main.GameViewMatrix.TransformationMatrix);
+
                     Dialog dialog = Dialog[i];
 
                     float x = font2.MeasureString(Dialog[i].UnfinishedSentence).X / 2f;
@@ -110,9 +113,9 @@ namespace TranscendenceMod
 
                     Vector2 pos0 = dialog.Center;
                     if (dialog.Anchor != null && dialog.Anchor.active)
-                        pos0 = dialog.Anchor.Center + dialog.Center;
+                        pos0 = dialog.Anchor.Center - Main.screenPosition + dialog.Center;
 
-                    Vector2 pos = pos0 - new Vector2(x, 0) - Main.screenPosition;
+                    Vector2 pos = pos0 - new Vector2(x, 0);
                     Color defCol = new Color(63, 65, 151, 255) * 0.785f;
 
                     if (dialog.ScreenLock)
@@ -128,14 +131,29 @@ namespace TranscendenceMod
                     {
                         if (dialog.boxType != DialogBoxes.None)
                         {
-                            Rectangle boxRec = new Rectangle((int)pos.X - 10, (int)pos.Y - 5, (int)x * 2 + 20, 40);
-                            Rectangle boxRec2 = new Rectangle((int)(pos.X - 12), (int)(pos.Y - 7), (int)x * 2 + 24, 44);
+                            Rectangle lRec = new Rectangle(0, 0, 18, 32);
+                            Rectangle lRec2 = new Rectangle((int)pos.X - 28, (int)pos.Y - 3, 18, 40);
 
-                            spriteBatch.Draw(TextureAssets.BlackTile.Value, boxRec2, Color.White);
-                            spriteBatch.Draw(TextureAssets.BlackTile.Value, boxRec, Color.Black);
+                            Rectangle mRec = new Rectangle(19, 0, 59, 32);
+                            int midOff = (int)x * 2 + 20;
+                            Rectangle mRec2 = new Rectangle((int)pos.X - 10, (int)pos.Y - 3, midOff, 40);
+
+                            Rectangle rRec = new Rectangle(78, 0, 18, 32);
+                            Rectangle rRec2 = new Rectangle((int)pos.X - 10 + midOff, (int)pos.Y - 3, 18, 40);
+
+                            string spritepath = $"TranscendenceMod/Miscannellous/UI/Dialog/{dialog.boxType}";
+                            Texture2D sprite = ModContent.Request<Texture2D>(spritepath).Value;
+
+                            spriteBatch.Draw(sprite, lRec2, lRec, Color.White * a);
+                            spriteBatch.Draw(sprite, mRec2, mRec, Color.White * a);
+                            spriteBatch.Draw(sprite, rRec2, rRec, Color.White * a);
+
                         }
                         ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font2, dialog.UnfinishedSentence, pos, dialog.Color * a, 0f, Vector2.Zero, Vector2.One);
                     }
+
+                    spriteBatch.End();
+                    spriteBatch.Begin(default, BlendState.AlphaBlend);
                 }
             }
         }

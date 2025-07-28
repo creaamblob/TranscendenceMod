@@ -40,7 +40,7 @@ namespace TranscendenceMod.Items.Weapons.Ranged
             Item.reuseDelay = 30;
 
             Item.value = Item.sellPrice(gold: 35);
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
             Item.noMelee = true;
             Item.noUseGraphic = true;
             Item.crit = 15;
@@ -121,7 +121,7 @@ namespace TranscendenceMod.Items.Weapons.Ranged
                     if (Projectile.ai[1] >= MaxCharge)
                     {
                         RedFlashTimer++;
-                        Main.EntitySpriteDraw(sprite, Projectile.Center - Main.screenPosition, null, Color.Lerp(TranscendenceWorld.GalaxyBlue, Color.Transparent, (float)Math.Sin(RedFlashTimer / 4)), Projectile.rotation, sprite.Size() * 0.5f, 1f,
+                        Main.EntitySpriteDraw(sprite, Projectile.Center - Main.screenPosition, null, Color.Lerp(Color.Red, Color.Transparent, (float)Math.Sin(RedFlashTimer / 4)), Projectile.rotation, sprite.Size() * 0.5f, 1f,
                             Main.MouseWorld.X < Projectile.Center.X ? SpriteEffects.FlipVertically : SpriteEffects.None);
                     }
                 }

@@ -42,7 +42,7 @@ namespace TranscendenceMod.Items.Weapons
             Item.noUseGraphic = true;
 
             Item.value = Item.sellPrice(gold: 50);
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
 
         }
         public override void HoldItem(Player player)
@@ -125,12 +125,17 @@ namespace TranscendenceMod.Items.Weapons
 
 
             int snatcher = ModContent.ProjectileType<CreanSnatcher>();
+            int cog = ModContent.ProjectileType<CreanCog>();
             int stargazer = ModContent.ProjectileType<CreanStargazer>();
 
             if (player.ownedProjectileCounts[snatcher] == 0 && TranscendenceWorld.DownedFrostSerpent)
             {
                 for (int i = 0; i < 5; i++)
                     Projectile.NewProjectile(player.GetSource_FromAI(), player.Center, Vector2.Zero, snatcher, player.HeldItem.damage / 4, 2f, player.whoAmI, 0f, i, 5f);
+            }
+            if (player.ownedProjectileCounts[cog] == 0 && TranscendenceWorld.DownedNucleus)
+            {
+                Projectile.NewProjectile(player.GetSource_FromAI(), player.Center, vel * 8f, cog, player.HeldItem.damage, 3f, player.whoAmI);
             }
             if (player.ownedProjectileCounts[stargazer] < 2 && TranscendenceWorld.DownedSpaceBoss)
             {
@@ -157,12 +162,6 @@ namespace TranscendenceMod.Items.Weapons
                     Main.projectile[p].extraUpdates += TranscendenceWorld.DownedWindDragon ? 8 : 4;
                     Main.projectile[p2].extraUpdates += TranscendenceWorld.DownedWindDragon ? 8 : 4;
 
-                    if (TranscendenceWorld.DownedNucleus)
-                    {
-                        Projectile.NewProjectile(Projectile.GetSource_FromAI(), vec, vel * speed, ModContent.ProjectileType<CreanHeart>(), player.HeldItem.damage / 3, Projectile.knockBack, player.whoAmI, 0f, 0f, 1f);
-                        Projectile.NewProjectile(Projectile.GetSource_FromAI(), vec, vel * speed, ModContent.ProjectileType<CreanHeart>(), player.HeldItem.damage / 3, Projectile.knockBack, player.whoAmI, 0f, 1f, -1f);
-                    }
-
 
                     if (player.HeldItem.GetGlobalItem<ModifiersItem>().ChargerCharge > 0)
                     {
@@ -174,7 +173,7 @@ namespace TranscendenceMod.Items.Weapons
                         player.GetModPlayer<TranscendencePlayer>().CreanStaffClick = 40;
 
                     Projectile.ai[1]++;
-                    Projectile.ai[2] = 20;
+                    Projectile.ai[2] = player.HeldItem.useAnimation;
                 }
             }
         }

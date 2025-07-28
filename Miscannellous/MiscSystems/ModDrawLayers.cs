@@ -22,7 +22,7 @@ namespace TranscendenceMod
         public override bool GetDefaultVisibility(PlayerDrawSet drawInfo)
         {
             Player player = drawInfo.drawPlayer;
-            return player.GetModPlayer<TranscendencePlayer>().CosmicSetWear && player.GetModPlayer<TranscendencePlayer>().StarcraftedKeybind && !player.HasBuff(BuffID.ChaosState);
+            return player.GetModPlayer<TranscendencePlayer>().CosmicSetWear && player.GetModPlayer<TranscendencePlayer>().ArmorKeybind && !player.HasBuff(BuffID.ChaosState);
         }
         protected override void Draw(ref PlayerDrawSet drawInfo)
         {

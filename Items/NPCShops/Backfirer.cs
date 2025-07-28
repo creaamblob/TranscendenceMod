@@ -20,15 +20,14 @@ namespace TranscendenceMod.Items.NPCShops
         public override void SetDefaults()
         {
             Item.DamageType = DamageClass.Ranged;
-            Item.damage = 117;
+            Item.damage = 68;
             Item.knockBack = 2.7f;
             Item.crit = 10;
             Item.shoot = ProjectileID.PurificationPowder;
             Item.shootSpeed = 10f;
 
-            Item.useTime = 30;
-            Item.useAnimation = 30;
-            Item.reuseDelay = 45;
+            Item.useTime = 90;
+            Item.useAnimation = 90;
             Item.autoReuse = true;
 
             Item.useStyle = ItemUseStyleID.Shoot;

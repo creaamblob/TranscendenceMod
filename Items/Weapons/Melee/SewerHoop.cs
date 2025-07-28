@@ -24,7 +24,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
             Item.height = 20;
 
             Item.shoot = boomerang;
-            Item.shootSpeed = 14f;
+            Item.shootSpeed = 18f;
 
             Item.noMelee = true;
             Item.noUseGraphic = true;

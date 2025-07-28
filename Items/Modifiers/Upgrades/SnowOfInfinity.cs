@@ -15,7 +15,7 @@ namespace TranscendenceMod.Items.Modifiers.Upgrades
         public override int RequiredAmount => 20;
         public override ModifierIDs ModifierType => ModifierIDs.EternityUpgrade;
         public override int CraftingResultItem => ModContent.ItemType<Eternal>();
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Eternity");
+
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

@@ -10,9 +10,11 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using TranscendenceMod.Buffs;
 using TranscendenceMod.Dusts;
+using TranscendenceMod.Items.Consumables;
 using TranscendenceMod.Projectiles.Equipment;
 using TranscendenceMod.Projectiles.Modifiers;
 using TranscendenceMod.Projectiles.Weapons.Melee;
+using TranscendenceMod.Projectiles.Weapons.Ranged;
 using TranscendenceMod.Projectiles.Weapons.Summoner;
 
 namespace TranscendenceMod.Miscannellous.GlobalStuff
@@ -57,11 +59,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
             Player player = Main.player[projectile.owner];
 
             if (SnowArrow)
-            {
-                Vector2 pos = target.Top - new Vector2(Main.rand.NextBool(2) ? 50 : -50, 50);
-                int p = Projectile.NewProjectile(target.GetSource_FromAI(), pos, new Vector2(0, -5), ProjectileID.FrostArrow, projectile.damage, projectile.knockBack, player.whoAmI);
-                Main.projectile[p].velocity.X = pos.DirectionTo(target.Center).X;
-            }
+                target.AddBuff(BuffID.Frostburn2, 180);
         }
         public bool ModUnparryable;
         public bool Unparryable(Projectile projectile)
@@ -78,16 +76,15 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
             if (projectile.type == ProjectileID.PoisonSeedPlantera && projectile.ai[0] < 1)
                 return projectile.localAI[1] > 45;
 
-            if (projectile.type == ProjectileID.PhantasmalSphere)
-                return Timer > 120;
+            if (projectile.type == ProjectileID.PhantasmalDeathray || projectile.type == ProjectileID.PhantasmalSphere)
+            {
+                if (target.GetModPlayer<TranscendencePlayer>().FairerMoonlord)
+                    return false;
+
+                return base.CanHitPlayer(projectile, target);
+            }
 
             if (projectile.type == ProjectileID.HallowBossRainbowStreak && projectile.timeLeft < 60)
-                return false;
-
-            if (projectile.type == ProjectileID.PhantasmalEye)
-                return Timer2 > 10;
-
-            if (projectile.type == ProjectileID.PhantasmalBolt && Timer < 120 && projectile.ai[2] != 6574)
                 return false;
 
             if (parryConditions(projectile, target) && base.CanHitPlayer(projectile, target))
@@ -106,7 +103,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
             if (modplayer == null)
                 return;
 
-            DialogUI.SpawnDialog(Language.GetTextValue("Mods.TranscendenceMod.Messages.Parry"), target.Top, 60, Color.Gold);
+            DialogUI.SpawnDialogCutscene(Language.GetTextValue("Mods.TranscendenceMod.Messages.Parry"), DialogBoxes.Generic, 1, 1, target, new Vector2(0, -target.height - 40), 90, Color.Gold);
 
             Projectile.NewProjectile(target.GetSource_FromThis(), target.Center, Vector2.Zero, ModContent.ProjectileType<ParryVisual>(), 0, 0, target.whoAmI, target.GetModPlayer<TranscendencePlayer>().ShieldID);
 
@@ -135,12 +132,6 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
             startPos = projectile.Center;
             baseVel = projectile.velocity;
 
-            if (projectile.type == ProjectileID.MoonlordArrowTrail)
-                projectile.damage = (int)(projectile.damage * 0.4f);
-
-            if (projectile.sentry && player.HeldItem.GetGlobalItem<ModifiersItem>().Modifier == ModifierIDs.Blackhole && source is EntitySource_ItemUse)
-                Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<SentryBlackhole>(), 100, 0, player.whoAmI, projectile.whoAmI);
-
             if (source is EntitySource_Parent npc && npc.Entity is NPC npc2 && npc2 != null && npc2.active)
                 owner = npc2;
 
@@ -163,6 +154,53 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
         public override bool PreAI(Projectile projectile)
         {
             Player owner2 = Main.player[projectile.owner];
+
+            int sx = TranscendenceWorld.SpaceTempleX;
+            if ((projectile.type == ProjectileID.Bomb || projectile.type == ProjectileID.Dynamite || projectile.type == ProjectileID.StickyBomb ||
+                projectile.type == ProjectileID.StickyDynamite || projectile.type == ProjectileID.BouncyBomb ||
+                projectile.type == ProjectileID.BouncyDynamite || projectile.type == ProjectileID.ScarabBomb ||
+                projectile.type == ProjectileID.RocketIV || projectile.type == ProjectileID.RocketII || projectile.type == ProjectileID.MiniNukeGrenadeII
+                || projectile.type == ProjectileID.MiniNukeMineII || projectile.type == ProjectileID.MiniNukeRocketII || projectile.type == ProjectileID.MiniNukeSnowmanRocketII
+                || projectile.type == ProjectileID.RocketSnowmanII || projectile.type == ProjectileID.RocketSnowmanIV
+                || projectile.type == ProjectileID.MiniNukeMineII || projectile.type == ProjectileID.ClusterFragmentsI
+                || projectile.type == ProjectileID.GrenadeII || projectile.type == ProjectileID.ProximityMineIV
+                || projectile.type == ProjectileID.RocketSnowmanII || projectile.type == ProjectileID.RocketSnowmanIV
+                || projectile.type == ProjectileID.ProximityMineIV || projectile.type == ProjectileID.Celeb2RocketExplosive
+                || projectile.type == ProjectileID.Celeb2RocketExplosiveLarge || projectile.type == ProjectileID.GrenadeIV
+                || projectile.type == ProjectileID.ClusterMineII || projectile.type == ProjectileID.ClusterRocketII
+                || projectile.type == ProjectileID.LavaBomb || projectile.type == ProjectileID.LavaGrenade
+                || projectile.type == ProjectileID.LavaMine || projectile.type == ProjectileID.LavaSnowmanRocket
+                || projectile.type == ProjectileID.LavaRocket || projectile.type == ProjectileID.WetBomb || projectile.type == ProjectileID.WetGrenade
+                || projectile.type == ProjectileID.WetRocket || projectile.type == ProjectileID.WetMine || projectile.type == ProjectileID.WetSnowmanRocket
+                || projectile.type == ProjectileID.HoneyBomb || projectile.type == ProjectileID.HoneyGrenade || projectile.type == ProjectileID.HoneyMine
+                || projectile.type == ProjectileID.HoneyRocket || projectile.type == ProjectileID.HoneySnowmanRocket || projectile.type == ProjectileID.DirtBomb
+                || projectile.type == ProjectileID.DirtStickyBomb || projectile.type == ProjectileID.BombFish
+                || projectile.type == ProjectileID.BombSkeletronPrime && (Main.getGoodWorld || Main.zenithWorld) || projectile.type == ProjectileID.Explosives
+                || projectile.type == ModContent.ProjectileType<MiningDustProj>() || projectile.type == ModContent.ProjectileType<SuperBoom>() || projectile.type == ModContent.ProjectileType<SuperCreation>()
+                || projectile.type == ModContent.ProjectileType<SuperBombProj_Brick>() || projectile.type == ModContent.ProjectileType<SuperBombProj_Brick_Sticky>()
+                || projectile.type == ModContent.ProjectileType<SuperBombProj_Sticky>() || projectile.type == ModContent.ProjectileType<SuperBombProj_Bouncy>() || projectile.type == ModContent.ProjectileType<SuperBombProj>()
+                 || projectile.type == ModContent.ProjectileType<MiningDustProj>())
+                && projectile.position.Between(new Vector2(sx - (64 * 16), 50 * 16), new Vector2(sx + (64 * 16))))
+            {
+                projectile.timeLeft++;
+                projectile.velocity *= 1.05f;
+                if (projectile.scale < 0.9f)
+                {
+                    projectile.velocity *= 0.9f;
+                    projectile.position = projectile.oldPosition;
+                }
+                projectile.tileCollide = false;
+                projectile.scale -= 0.01f;
+                if (projectile.scale < 0)
+                    projectile.active = false;
+
+                return false;
+            }
+
+            if (SnowArrow && owner2 != null && owner2.active && Timer % 2 == 0 && Timer > 2)
+            {
+                Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, Main.rand.NextVector2Circular(1f, 1f), ModContent.ProjectileType<FrostMist>(), projectile.damage / 7, 0f, owner2.whoAmI);
+            }
 
             if ((projectile.type == ProjectileID.PaladinsHammerHostile && owner != null && owner.type == NPCID.Paladin) && TranscendenceWorld.DownedWindDragon)
             {
@@ -233,45 +271,6 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
         public override void AI(Projectile projectile)
         {
             Player owner = Main.player[projectile.owner];
-
-            int sx = TranscendenceWorld.SpaceTempleX;
-            if ((projectile.type == ProjectileID.Bomb || projectile.type == ProjectileID.Dynamite || projectile.type == ProjectileID.StickyBomb ||
-                projectile.type == ProjectileID.StickyDynamite || projectile.type == ProjectileID.BouncyBomb ||
-                projectile.type == ProjectileID.BouncyDynamite || projectile.type == ProjectileID.ScarabBomb ||
-                projectile.type == ProjectileID.RocketIV || projectile.type == ProjectileID.RocketII || projectile.type == ProjectileID.MiniNukeGrenadeII
-                || projectile.type == ProjectileID.MiniNukeMineII || projectile.type == ProjectileID.MiniNukeRocketII || projectile.type == ProjectileID.MiniNukeSnowmanRocketII
-                || projectile.type == ProjectileID.RocketSnowmanII || projectile.type == ProjectileID.RocketSnowmanIV
-                || projectile.type == ProjectileID.MiniNukeMineII || projectile.type == ProjectileID.ClusterFragmentsI
-                || projectile.type == ProjectileID.GrenadeII || projectile.type == ProjectileID.ProximityMineIV
-                || projectile.type == ProjectileID.RocketSnowmanII || projectile.type == ProjectileID.RocketSnowmanIV
-                || projectile.type == ProjectileID.ProximityMineIV || projectile.type == ProjectileID.Celeb2RocketExplosive
-                || projectile.type == ProjectileID.Celeb2RocketExplosiveLarge || projectile.type == ProjectileID.GrenadeIV 
-                || projectile.type == ProjectileID.ClusterMineII || projectile.type == ProjectileID.ClusterRocketII
-                || projectile.type == ProjectileID.LavaBomb || projectile.type == ProjectileID.LavaGrenade
-                || projectile.type == ProjectileID.LavaMine || projectile.type == ProjectileID.LavaSnowmanRocket
-                || projectile.type == ProjectileID.LavaRocket || projectile.type == ProjectileID.WetBomb || projectile.type == ProjectileID.WetGrenade
-                || projectile.type == ProjectileID.WetRocket || projectile.type == ProjectileID.WetMine || projectile.type == ProjectileID.WetSnowmanRocket
-                || projectile.type == ProjectileID.HoneyBomb || projectile.type == ProjectileID.HoneyGrenade || projectile.type == ProjectileID.HoneyMine
-                || projectile.type == ProjectileID.HoneyRocket || projectile.type == ProjectileID.HoneySnowmanRocket || projectile.type == ProjectileID.DirtBomb
-                || projectile.type == ProjectileID.DirtStickyBomb || projectile.type == ProjectileID.BombFish
-                || projectile.type == ProjectileID.BombSkeletronPrime && (Main.getGoodWorld || Main.zenithWorld) || projectile.type == ProjectileID.Explosives
-                || projectile.type == ModContent.ProjectileType<MiningDustProj>() || projectile.type == ModContent.ProjectileType<SuperBoom>() || projectile.type == ModContent.ProjectileType<SuperCreation>()
-                || projectile.type == ModContent.ProjectileType<SuperBombProj_Brick>() || projectile.type == ModContent.ProjectileType<SuperBombProj_Brick_Sticky>()
-                || projectile.type == ModContent.ProjectileType<SuperBombProj_Sticky>() || projectile.type == ModContent.ProjectileType<SuperBombProj_Bouncy>() || projectile.type == ModContent.ProjectileType<SuperBombProj>())
-                && projectile.position.Between(new Vector2(sx - (64 * 16), 50 * 16), new Vector2(sx + (64 * 16))))
-            {
-                projectile.timeLeft++;
-                projectile.velocity *= 1.05f;
-                if (projectile.scale < 0.9f)
-                {
-                    projectile.velocity *= 0.9f;
-                    projectile.position = projectile.oldPosition;
-                }
-                projectile.tileCollide = false;
-                projectile.scale -= 0.01f;
-                if (projectile.scale < 0)
-                    projectile.active = false;
-            }
 
             switch (projectile.type)
             {

@@ -19,22 +19,23 @@ namespace TranscendenceMod.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Item.DamageType = DamageClass.Ranged;
-            Item.damage = 182;
-            Item.knockBack = 1.5f;
-            Item.crit = 10;
+            Item.damage = 175;
+            Item.knockBack = 1.75f;
+            Item.crit = 15;
+
             Item.shoot = ProjectileID.PurificationPowder;
             Item.shootSpeed = 28f;
 
-            Item.useTime = 8;
-            Item.useAnimation = 8;
+            Item.useTime = 24;
+            Item.useAnimation = 24;
             Item.autoReuse = true;
 
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.useAmmo = AmmoID.Arrow;
             Item.UseSound = SoundID.Item5;
 
-            Item.width = 20;
-            Item.height = 8;
+            Item.width = 8;
+            Item.height = 28;
             Item.noMelee = true;
 
             Item.value = Item.sellPrice(gold: 20);
@@ -50,14 +51,10 @@ namespace TranscendenceMod.Items.Weapons.Ranged
             int p = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
             Main.projectile[p].GetGlobalProjectile<TranscendenceProjectiles>().SnowArrow = true;
 
-            rotation += MathHelper.PiOver4;
-            if (rotation > MathHelper.PiOver2)
-                rotation = -MathHelper.PiOver4;
             return false;
         }
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            velocity = velocity.RotatedBy(rotation / 4f);
         }
     }
 }

@@ -20,10 +20,15 @@ namespace TranscendenceMod.Miscannellous.UI
 
             Player player = Main.LocalPlayer;
 
+
+            spriteBatch.End();
+            spriteBatch.Begin(default, BlendState.AlphaBlend, Main.DefaultSamplerState, default, default, null, Main.GameViewMatrix.TransformationMatrix);
+
+
             if (player != null && player.active && player.TryGetModPlayer(out TranscendencePlayer modplayer) && modplayer.EvasionStoneEquipped && !modplayer.EvasionStoneExists)
             {
-                int x = Main.screenWidth / 2;
-                int y = Main.screenHeight / 2;
+                int x = (int)(player.Center.X - Main.screenPosition.X);
+                int y = (int)(player.Center.Y - Main.screenPosition.Y);
 
                 int width = modplayer.EvasionStoneGraze == 0 ? 0 : (int)MathHelper.Lerp(0f, 28f, modplayer.EvasionStoneGraze / 13f);
                 int width2 = modplayer.EvasionStoneTimer == 0 ? 0 : (int)MathHelper.Lerp(0f, 28f, modplayer.EvasionStoneTimer / (float)modplayer.EvasionStoneMaxTimer);
@@ -51,6 +56,9 @@ namespace TranscendenceMod.Miscannellous.UI
 
                 spriteBatch.Draw(watch, rec42, Color.White);
             }
+
+            spriteBatch.End();
+            spriteBatch.Begin(default, BlendState.AlphaBlend);
         }
     }
 

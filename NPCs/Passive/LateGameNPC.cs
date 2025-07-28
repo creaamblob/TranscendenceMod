@@ -337,7 +337,6 @@ namespace TranscendenceMod.NPCs.Passive
                 TranscendenceUtils.sell(npcshop, ModContent.ItemType<EnchantedHopper>(), Item.buyPrice(silver: 65));
                 TranscendenceUtils.sell(npcshop, ItemID.EnchantedNightcrawler, Item.buyPrice(silver: 85));
                 TranscendenceUtils.sell(npcshop, ModContent.ItemType<ExtraTerrestrialBrew>());
-                TranscendenceUtils.sell(npcshop, ModContent.ItemType<StarcraftedBooze>());
                 TranscendenceUtils.sell(npcshop, ModContent.ItemType<StarcraftedStew>());
                 TranscendenceUtils.sell(npcshop, ModContent.ItemType<CosmicGrassSeed>());
                 TranscendenceUtils.sell(npcshop, ModContent.ItemType<StarGun>());

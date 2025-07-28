@@ -74,7 +74,7 @@ namespace TranscendenceMod.Projectiles
 
             if (Main.rand.NextBool(5))
             {
-                int d = Dust.NewDust(Projectile.Center + new Vector2(Projectile.direction < 0 ? 100 : 50, 100) + Projectile.velocity * Main.rand.Next(10, 25), 1, 1, ModContent.DustType<Smoke2>(), 10 * Projectile.direction, -15,
+                int d = Dust.NewDust(Projectile.Center + new Vector2(Projectile.direction < 0 ? 100 : 50, 100) + Projectile.velocity * Main.rand.Next(10, 25), 1, 1, ModContent.DustType<Smoke>(), 10 * Projectile.direction, -15,
                     0, col2, Main.rand.NextFloat(0.4f, 0.9f));
                 Main.dust[d].noGravity = true;
             }

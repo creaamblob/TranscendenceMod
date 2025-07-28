@@ -42,7 +42,7 @@ namespace TranscendenceMod.Items.Weapons.Magic
             Item.autoReuse = true;
             Item.noMelee = true;
             Item.value = Item.sellPrice(gold: 35);
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
             Item.shoot = proj2;
             Item.shootSpeed = 1f;
         }

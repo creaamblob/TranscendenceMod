@@ -23,7 +23,6 @@ namespace TranscendenceMod.Projectiles.Equipment.Tools
         public override void AI()
         {
             Lighting.AddLight(Projectile.Center, 0.5f, 0.1f, 0.4f);
-            //Main.NewText(Projectile.ai[0] + " " + Projectile.ai[1] + " " + Projectile.ai[2]);
         }
         public override bool PreDraw(ref Color lightColor)
         {

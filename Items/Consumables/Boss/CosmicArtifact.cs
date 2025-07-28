@@ -23,7 +23,7 @@ namespace TranscendenceMod.Items.Consumables.Boss
             Item.height = 18;
 
             Item.value = Item.buyPrice(gold: 25);
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
         }
         public override Color? GetAlpha(Color lightColor) => Color.White;
         public override void AddRecipes()
@@ -31,7 +31,7 @@ namespace TranscendenceMod.Items.Consumables.Boss
             CreateRecipe()
             .AddIngredient(ModContent.ItemType<AetherRootItem>(), 18)
             .AddIngredient(ModContent.ItemType<PulverizedPlanet>(), 16)
-            .AddIngredient(ModContent.ItemType<SoulOfKnight>(), 5)
+            .AddIngredient(ModContent.ItemType<GalaxyAlloy>(), 4)
             .AddIngredient(ModContent.ItemType<HeartOfTheQueen>())
             .AddTile(TileID.LunarCraftingStation)
             .Register();

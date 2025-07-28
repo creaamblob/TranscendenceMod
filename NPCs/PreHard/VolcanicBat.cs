@@ -8,6 +8,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 using TranscendenceMod.Items.Materials.MobDrops;
+using TranscendenceMod.Items.Modifiers.Upgrades;
 using TranscendenceMod.Miscannellous;
 using TranscendenceMod.Miscannellous.Biomes;
 
@@ -46,13 +47,15 @@ namespace TranscendenceMod.NPCs.PreHard
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            TranscendenceUtils.DrawTrailNPC(NPC, Color.White, 1f, Texture, false, true, 1.5f, new Vector2(0, 4));
+            SpriteEffects se = NPC.direction == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            TranscendenceUtils.DrawTrailNPC(NPC, Color.White, 1f, Texture, false, true, 1.5f, new Vector2(0, 4), se);
             return base.PreDraw(spriteBatch, screenPos, drawColor);
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ItemID.StoneBlock, 1, 3, 5));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VolcanicRemains>(), 3, 1, 2));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VolcanicRemains>(), 2, 1, 3));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LegendaryHilt>(), 50));
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {

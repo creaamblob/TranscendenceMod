@@ -28,7 +28,6 @@ namespace TranscendenceMod.Items.Consumables.Placeables
         {
             CreateRecipe()
             .AddIngredient(ItemID.LunarBar, 30)
-            .AddIngredient(ModContent.ItemType<AtmospheragonScale>(), 6)
             .AddIngredient(ModContent.ItemType<Lightning>(), 8)
             .AddIngredient(ItemID.Wire, 999)
             .AddIngredient(ItemID.SoulofSight, 5)

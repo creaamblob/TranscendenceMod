@@ -7,6 +7,9 @@ namespace TranscendenceMod.Items.Accessories.Shields
 {
     public abstract class BaseShield : ModItem
     {
+        /// <summary>
+        /// Lower = Better
+        /// </summary>
         public abstract int Leniency { get; }
         public abstract int Cooldown { get; }
         public abstract int DefenseAmount { get; }

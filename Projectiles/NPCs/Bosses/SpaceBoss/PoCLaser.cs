@@ -51,7 +51,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             //Request the Effect
             var eff = ModContent.Request<Effect>("TranscendenceMod/Miscannellous/Assets/Shaders/Effects/MovingNoiseTrans", AssetRequestMode.ImmediateLoad).Value;
             //Apply Shader Texture
-            string string1 = "TranscendenceMod/Miscannellous/Assets/BloodRedShader";
+            string string1 = "TranscendenceMod/Miscannellous/Assets/Blood";
             Texture2D shaderImage = ModContent.Request<Texture2D>(string1).Value;
 
             Projectile.localAI[2] += 0.0125f;

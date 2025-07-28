@@ -27,7 +27,7 @@ namespace TranscendenceMod.Projectiles.Weapons.Melee
 
             Projectile.aiStyle = 1;
             AIType = ProjectileID.Stake;
-            Projectile.ArmorPenetration = 999;
+            Projectile.ArmorPenetration = 25;
 
             Projectile.friendly = true;
             Projectile.tileCollide = false;

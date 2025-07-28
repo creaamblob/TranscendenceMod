@@ -62,7 +62,7 @@ namespace TranscendenceMod.Items.Modifiers
                 blank.OverrideColor = Color.Transparent;
                 tooltips.Add(blank);
 
-                var modifier = new TooltipLine(Mod, "Modifier Name", mod.TooltipPath);
+                var modifier = new TooltipLine(Mod, "Modifier Name", Language.GetTextValue($"Mods.TranscendenceMod.Messages.Tooltips.Modifiers.{mod.ModifierType}"));
                 tooltips.Add(modifier);
 
                 string plural = Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.RequiredPlural", mod.RequiredAmount, mod.RequiredItem);

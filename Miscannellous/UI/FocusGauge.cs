@@ -22,8 +22,11 @@ namespace TranscendenceMod.Miscannellous.UI
             Texture2D sprite = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/UI/FocusGauge").Value;
 
             Player player = Main.LocalPlayer;
+            Vector2 pos = player.Center + new Vector2(0, 5 / Main.UIScale) - Main.screenPosition;
 
-            Vector2 pos = new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f + 5f * Main.UIScale);
+            spriteBatch.End();
+            spriteBatch.Begin(default, BlendState.AlphaBlend, Main.DefaultSamplerState, default, default, null, Main.GameViewMatrix.TransformationMatrix);
+
 
             if (player != null && player.active && player.TryGetModPlayer(out TranscendencePlayer modPlayer) && modPlayer != null && modPlayer.HasParry && modPlayer.CanParry())
             {
@@ -54,6 +57,9 @@ namespace TranscendenceMod.Miscannellous.UI
                     Main.hoverItemName = Language.GetTextValue("Mods.TranscendenceMod.Messages.FocusUI") + $" ({Math.Round(modPlayer.Focus, 0)}/{modPlayer.MaxFocus})";
                 }
             }
+
+            spriteBatch.End();
+            spriteBatch.Begin(default, BlendState.AlphaBlend);
         }
     }
 }

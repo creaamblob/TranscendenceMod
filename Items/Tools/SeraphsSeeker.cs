@@ -27,7 +27,7 @@ namespace TranscendenceMod.Items.Tools
 			Item.height = 56;
 
 			Item.value = Item.buyPrice(gold: 20);
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
             Item.fishingPole = 65;
 
             Item.shoot = bobber;
@@ -43,7 +43,7 @@ namespace TranscendenceMod.Items.Tools
         public override void ModifyFishingLine(Projectile bobber, ref Vector2 lineOriginOffset, ref Color lineColor)
         {
             lineOriginOffset = new Vector2(39, -43);
-            lineColor = TranscendenceWorld.CosmicPurple2;
+            lineColor = TranscendenceWorld.CosmicPurple;
         }
         public override void AddRecipes()
         {

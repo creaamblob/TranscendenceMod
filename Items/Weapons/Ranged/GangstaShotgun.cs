@@ -16,13 +16,13 @@ namespace TranscendenceMod.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Item.DamageType = DamageClass.Ranged;
-            Item.damage = 42;
+            Item.damage = 38;
             Item.knockBack = 3f;
             Item.shoot = ProjectileID.PurificationPowder;
             Item.shootSpeed = 14f;
 
-            Item.useTime = 28;
-            Item.useAnimation = 28;
+            Item.useTime = 36;
+            Item.useAnimation = 36;
             Item.autoReuse = true;
 
             Item.UseSound = SoundID.Item36;
@@ -39,10 +39,10 @@ namespace TranscendenceMod.Items.Weapons.Ranged
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            for (int i = 0; i < Main.rand.Next(2, 5); i++)
+            for (int i = 0; i < Main.rand.Next(2, 4); i++)
             {
-                Projectile.NewProjectile(source, position, velocity.RotatedByRandom(0.1f) * Main.rand.NextFloat(0.8f, 1.2f), type, damage, knockback, player.whoAmI);
-                Projectile.NewProjectile(source, position, velocity.RotatedByRandom(0.2f) * Main.rand.NextFloat(0.8f, 1.2f), ProjectileID.SnowBallFriendly, damage / 3, knockback, player.whoAmI);
+                Projectile.NewProjectile(source, position, velocity.RotatedByRandom(0.1f) * Main.rand.NextFloat(0.6f, 1.4f), type, damage / 2, knockback, player.whoAmI);
+                Projectile.NewProjectile(source, position, velocity.RotatedByRandom(0.2f) * Main.rand.NextFloat(0.8f, 1.2f), ProjectileID.SnowBallFriendly, damage / 4, knockback, player.whoAmI);
             }
             return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }

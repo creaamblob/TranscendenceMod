@@ -8,7 +8,6 @@ namespace TranscendenceMod.Items.Modifiers
     {
         public override int RequiredItem => ItemID.SoulofSight;
         public override int RequiredAmount => 5;
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Spazzing");
         public override ModifierIDs ModifierType => ModifierIDs.Spazzy;
         public override bool CanBeApplied(Item item) => item.headSlot != -1;
 

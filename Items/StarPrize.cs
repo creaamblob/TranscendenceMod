@@ -17,7 +17,7 @@ namespace TranscendenceMod.Items
             Item.height = 17;
 
             Item.value = Item.buyPrice(gold: 5);
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
 
         }
     }

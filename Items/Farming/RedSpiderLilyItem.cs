@@ -14,10 +14,10 @@ namespace TranscendenceMod.Items.Farming
         public override void SetDefaults()
         {
             Item.width = 14;
-            Item.height = 18;
+            Item.height = 22;
             Item.maxStack = 9999;
 
-            Item.value = Item.buyPrice(gold: 1, silver: 25);
+            Item.value = Item.sellPrice(silver: 25);
             Item.rare = ItemRarityID.Yellow;
         }
     }

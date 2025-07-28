@@ -1,4 +1,7 @@
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -26,7 +29,7 @@ namespace TranscendenceMod.Items.Armor.Sets.Cosmic
         {
             Item.width = 20;
             Item.height = 20;
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
             Item.defense = 28;
             Item.value = Item.sellPrice(gold: 25);
         }
@@ -36,9 +39,25 @@ namespace TranscendenceMod.Items.Armor.Sets.Cosmic
             player.maxMinions += 1;
             player.whipRangeMultiplier += 0.2f;
         }
-        public override void UpdateArmorSet(Player player)
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            player.setBonus = "";
+            base.ModifyTooltips(tooltips);
+
+            ModKeybind mkb = TranscendenceWorld.ArmorSetBonus;
+            if (!Main.dedServ && mkb != null)
+            {
+                List<string> keys = mkb.GetAssignedKeys();
+
+                if (keys.Count > 0)
+                {
+                    StringBuilder sb = new StringBuilder(10);
+                    sb.Append(keys[0]);
+
+                    TooltipLine line = tooltips.FirstOrDefault(x => x.Mod == "Terraria" && x.Text.Contains("(Unbound Key)"));
+                    if (line != null)
+                        line.Text = line.Text.Replace("(Unbound Key)", sb.ToString());
+                }
+            }
         }
         public override void AddRecipes()
         {

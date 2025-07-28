@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TranscendenceMod.Miscannellous;
@@ -37,13 +38,19 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             if (Projectile.Distance(npc.Center) < 50)
                 Projectile.Kill();
         }
+        public Color col;
+        public override void OnSpawn(IEntitySource source)
+        {
+            base.OnSpawn(source);
+            col = Color.Lerp(Color.Yellow, Color.OrangeRed, Main.rand.NextFloat(1f));
+        }
         public override bool PreDraw(ref Color lightColor)
         {
             SpriteBatch spriteBatch = Main.spriteBatch;
             spriteBatch.End();
             spriteBatch.Begin(default, BlendState.Additive, default, default, default, null, Main.GameViewMatrix.TransformationMatrix);
 
-            TranscendenceUtils.DrawTrailProj(Projectile, TranscendenceWorld.BlackholeColor, 2f, "TranscendenceMod/Miscannellous/Assets/Circle", true, false, 1f, Vector2.Zero);
+            TranscendenceUtils.DrawTrailProj(Projectile, col, 2f, "TranscendenceMod/Miscannellous/Assets/Circle", true, false, 1f, Vector2.Zero);
             TranscendenceUtils.DrawTrailProj(Projectile, Color.White, 1.5f, "TranscendenceMod/Miscannellous/Assets/Circle", true, false, 1f, Vector2.Zero);
 
             spriteBatch.End();

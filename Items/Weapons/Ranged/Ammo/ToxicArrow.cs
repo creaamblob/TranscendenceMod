@@ -30,9 +30,9 @@ namespace TranscendenceMod.Items.Weapons.Ranged.Ammo
         }
         public override void AddRecipes()
         {
-            CreateRecipe(150)
-            .AddIngredient(ItemID.ChlorophyteArrow, 150)
-            .AddIngredient(ModContent.ItemType<MosquitoVenom>(), 3)
+            CreateRecipe(250)
+            .AddIngredient(ItemID.ChlorophyteArrow, 250)
+            .AddIngredient(ModContent.ItemType<MosquitoVenom>(), 2)
             .AddTile(TileID.LunarCraftingStation)
             .Register();
         }

@@ -18,7 +18,7 @@ namespace TranscendenceMod.Items.Tools
             Item.height = 18;
             Item.maxStack = 9999;
 
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
             Item.value = Item.buyPrice(gold: 25);
 
             Item.UseSound = SoundID.Item35;

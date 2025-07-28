@@ -24,7 +24,7 @@ namespace TranscendenceMod.Items.Armor.Hats
 
             Item.defense = 26;
             Item.value = Item.sellPrice(gold: 20);
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
         }
         public override void UpdateEquip(Player player)
         {

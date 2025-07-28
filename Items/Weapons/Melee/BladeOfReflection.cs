@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
@@ -21,7 +22,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            Item.damage = 130;
+            Item.damage = 120;
             Item.DamageType = DamageClass.Melee;
             Item.width = 24;
             Item.height = 24;
@@ -34,7 +35,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
             Item.noUseGraphic = true;
             Item.knockBack = 2;
             Item.value = Item.sellPrice(gold: 12, silver: 50);
-            Item.rare = ItemRarityID.Cyan;
+            Item.rare = ItemRarityID.Yellow;
             Item.UseSound = SoundID.Item60;
             Item.autoReuse = true;
             Item.crit = 20;
@@ -57,8 +58,8 @@ namespace TranscendenceMod.Items.Weapons.Melee
         {
             if (player.ownedProjectileCounts[proj] < 1)
             {
-                Projectile.NewProjectile(source, position, velocity * 2, proj, damage, knockback, player.whoAmI);
-                Projectile.NewProjectile(source, position, velocity * -2, proj, damage, knockback, player.whoAmI, 1);
+                Projectile.NewProjectile(source, position, velocity * 2f, proj, damage, knockback, player.whoAmI);
+                Projectile.NewProjectile(source, position, velocity * -2f, proj, damage, knockback, player.whoAmI, 1);
             }
             return false;
         }
@@ -111,7 +112,10 @@ namespace TranscendenceMod.Items.Weapons.Melee
 
             Projectile.hide = true;
             Projectile.direction = -player.direction;
-            Projectile.Center = player.Center + new Vector2(250 * player.direction, 0);
+
+            float x = -(player.Center.X - Main.MouseWorld.X);
+            Projectile.Center = player.Center + new Vector2(x, 0);
+            player.direction = (Main.MouseWorld.X > player.Center.X).ToDirectionInt();
         }
         public override bool PreDraw(ref Color lightColor)
         {
@@ -286,20 +290,18 @@ namespace TranscendenceMod.Items.Weapons.Melee
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Vector2 pos = Vector2.SmoothStep(Projectile.Center, target.Center, 0.5f);
-            if (Projectile.ai[0] == 1)
+            for (int i = 0; i < Main.rand.Next(4, 7); i++)
             {
-                for (int i = 0; i < Main.rand.Next(7, 10); i++)
-                {
-                    Projectile.NewProjectile(Projectile.GetSource_OnHit(target), pos, Main.rand.NextVector2Circular(2.5f, 5),
-                        ModContent.ProjectileType<MirrorBladeShrapnel>(), (int)(Projectile.damage * 0.33f), Projectile.knockBack, Main.player[Projectile.owner].whoAmI);
-                }
+                int proj = ModContent.ProjectileType<MirrorBladeShrapnel>();
+                if (Main.player[Projectile.owner].ownedProjectileCounts[proj] >= 20)
+                    continue;
+
+                Projectile.NewProjectile(Projectile.GetSource_OnHit(target), pos, Main.rand.NextVector2Circular(2.5f, 5),
+                    proj, (int)(Projectile.damage * 0.33f), Projectile.knockBack, Main.player[Projectile.owner].whoAmI);
             }
-            else
+            for (int i = 0; i < 10; i++)
             {
-                for (int i = 0; i < 10; i++)
-                {
-                    Dust.NewDustPerfect(pos, DustID.MagicMirror, Main.rand.NextVector2Circular(2.5f, 5));
-                }
+                Dust.NewDustPerfect(pos, DustID.MagicMirror, Main.rand.NextVector2Circular(2.5f, 5));
             }
         }
         public override void AI()
@@ -315,7 +317,8 @@ namespace TranscendenceMod.Items.Weapons.Melee
 
             if (Projectile.ai[0] == 1)
             {
-                Projectile.Center = player.Center + new Vector2(250 * player.direction, 0) + (Projectile.velocity * 2 * vel);
+                float x = -(player.Center.X - Main.MouseWorld.X);
+                Projectile.Center = player.Center + new Vector2(x, 0) + (Projectile.velocity * 2 * vel);
             }
             else
             {

@@ -26,15 +26,19 @@ namespace TranscendenceMod.Items.Weapons.Summoner
         {
             Item.damage = 118;
             Item.DamageType = DamageClass.Summon;
-            Item.knockBack = 2;
+            Item.knockBack = 2f;
+
             Item.width = 20;
             Item.height = 20;
+
             Item.useTime = 25;
             Item.useAnimation = 25;
             Item.useStyle = ItemUseStyleID.Swing;
+
             Item.mana = 15;
             Item.value = Item.sellPrice(gold: 17, silver: 50);
             Item.rare = ModContent.RarityType<Brown>();
+
             Item.UseSound = SoundID.Item44;
             Item.noMelee = true;
             Item.shoot = ModContent.ProjectileType<MuramasaSummon>();
@@ -50,9 +54,8 @@ namespace TranscendenceMod.Items.Weapons.Summoner
         {
             CreateRecipe()
                 .AddIngredient(ItemID.Smolstar)
-                .AddIngredient(ModContent.ItemType<PoseidonsTide>(), 14)
-                .AddIngredient(ItemID.SpectreBar, 12)
-                .AddIngredient(ModContent.ItemType<SunBar>(), 8)
+                .AddIngredient(ModContent.ItemType<PoseidonsTide>(), 12)
+                .AddIngredient(ItemID.GoldBar, 8)
                 .AddIngredient(ItemID.Bone, 99)
                 .AddTile(ModContent.TileType<Oceation>())
                 .Register();

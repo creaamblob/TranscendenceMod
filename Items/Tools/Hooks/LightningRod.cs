@@ -29,7 +29,7 @@ namespace TranscendenceMod.Items.Tools.Hooks
             Item.DamageType = DamageClass.Generic;
 
             Item.shoot = ModContent.ProjectileType<LightningRodProj>();
-            Item.shootSpeed = 15;
+            Item.shootSpeed = 26f;
 
             Item.useStyle = ItemUseStyleID.None;
             Item.value = Item.buyPrice(gold: 10);

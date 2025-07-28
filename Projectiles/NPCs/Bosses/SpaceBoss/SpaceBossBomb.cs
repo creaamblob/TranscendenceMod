@@ -184,7 +184,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             spriteBatch.End();
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, Main.DefaultSamplerState, default, default, eff, Main.GameViewMatrix.TransformationMatrix);
 
-            Color col = TranscendenceWorld.CosmicPurple2;
+            Color col = TranscendenceWorld.CosmicPurple;
             Color col2 = Color.White;
             if (Projectile.ai[0] == 1f)
                 col = Color.OrangeRed;

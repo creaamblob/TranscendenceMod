@@ -24,13 +24,13 @@ namespace TranscendenceMod.Projectiles.Weapons.Ranged
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Ranged;
+
+            ProjectileID.Sets.TrailCacheLength[Type] = 15;
         }
         public override void OnSpawn(IEntitySource source)
         {
             Projectile.extraUpdates = 1 + (int)Projectile.ai[1];
             Projectile.damage *= (int)(1 + Projectile.ai[1]);
-            Projectile.penetrate = 1 + (int)(Projectile.ai[1] * 5);
-            ProjectileID.Sets.TrailCacheLength[Type] = 1 + (int)(Projectile.ai[1] * 120);
             Projectile.Opacity = 0;
         }
         public override void AI()

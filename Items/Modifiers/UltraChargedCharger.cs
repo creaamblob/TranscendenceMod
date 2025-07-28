@@ -11,8 +11,7 @@ namespace TranscendenceMod.Items.Modifiers
     {
         public override int RequiredItem => ModContent.ItemType<Lightning>();
         public override int RequiredAmount => 3;
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Charger");
-        public override ModifierIDs ModifierType => ModifierIDs.Charged;
+        public override ModifierIDs ModifierType => ModifierIDs.Charger;
         public override bool CanBeApplied(Item item) => item.damage > 0 && !ItemID.Sets.Yoyo[item.type] && !item.sentry && (item.DamageType != DamageClass.Summon || item.DamageType == DamageClass.SummonMeleeSpeed);
 
         public override void SetDefaults()

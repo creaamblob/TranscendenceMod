@@ -8,7 +8,6 @@ namespace TranscendenceMod.Items.Modifiers
     {
         public override int RequiredItem => ItemID.Damselfish;
         public override int RequiredAmount => 6;
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.MagicOrb");
         public override ModifierIDs ModifierType => ModifierIDs.EnchantedPearl;
         public override bool CanBeApplied(Item item) => item.fishingPole > 0;
 

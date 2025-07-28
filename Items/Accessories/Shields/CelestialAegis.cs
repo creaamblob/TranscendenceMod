@@ -24,7 +24,7 @@ namespace TranscendenceMod.Items.Accessories.Shields
             Item.damage = 1275;
             Item.DamageType = DamageClass.Melee;
 
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
             Item.width = 32;
             Item.height = 32;
             Item.value = Item.buyPrice(platinum: 1, gold : 50);

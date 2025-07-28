@@ -24,13 +24,13 @@ namespace TranscendenceMod.Items.Materials.LargeRecipes
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient(ModContent.ItemType<SoulOfKnight>(), 6)
             .AddRecipeGroup(nameof(ItemID.TitaniumBar), 15)
             .AddIngredient(ModContent.ItemType<SteelAlloy>(), 15)
             .AddIngredient(ItemID.Wire, 50)
             .AddIngredient(ItemID.SoulofSight, 10)
             .AddIngredient(ItemID.SoulofMight, 10)
             .AddIngredient(ItemID.SoulofFright, 10)
+            .AddIngredient(ModContent.ItemType<SoulOfKnight>(), 4)
             .AddIngredient(ModContent.ItemType<Lightning>(), 5)
             .AddTile(TileID.MythrilAnvil)
             .Register();

@@ -12,7 +12,6 @@ using static tModPorter.ProgressUpdate;
 
 namespace TranscendenceMod.Miscannellous.Skies
 {
-    //Making custom skies be like: *Insert turkish ice cream man GIF here*
     public class SpaceBossSky : CustomSky
     {
         private bool active = false;
@@ -45,7 +44,33 @@ namespace TranscendenceMod.Miscannellous.Skies
                         starsVel[i].Y = 15f;
                     }
 
-                    bool PrideMonth = DateTime.Now.Month == 6;
+                    // Set Default Colours
+                    starsColour[i] = Color.DeepSkyBlue;
+                    if (Main.rand.NextBool(3))
+                        starsColour[i] = Color.Aqua;
+                    if (Main.rand.NextBool(4))
+                        starsColour[i] = Color.HotPink;
+                    if (Main.rand.NextBool(4))
+                        starsColour[i] = Color.Lime;
+                    if (Main.rand.NextBool(6))
+                        starsColour[i] = Color.Yellow;
+
+                    // Set Seasonal Colours, overrides default colours
+                    // I would have added more seasonal colours, but god forbid having holidays on the same day every day
+                    bool Christmas = DateTime.Now.Month == 12 && DateTime.Now.Day < 25;
+                    bool PrideMonth = DateTime.Now.Month == 6 || DateTime.Now.Month == 3 && DateTime.Now.Day == 31;
+
+                    if (Christmas)
+                    {
+                        switch (Main.rand.Next(0, 4))
+                        {
+                            case 0: starsColour[i] = Color.SkyBlue; break;
+                            case 1: starsColour[i] = Color.White; break;
+                            case 2: starsColour[i] = Color.Gold; break;
+                            case 3: starsColour[i] = Color.White; break;
+
+                        }
+                    }
                     if (PrideMonth)
                     {
                         switch (Main.rand.Next(0, 3))
@@ -54,18 +79,6 @@ namespace TranscendenceMod.Miscannellous.Skies
                             case 1: starsColour[i] = Color.Pink; break;
                             case 2: starsColour[i] = Color.White; break;
                         }
-                    }
-                    else
-                    {
-                        starsColour[i] = Color.DeepSkyBlue;
-                        if (Main.rand.NextBool(3))
-                            starsColour[i] = Color.Aqua;
-                        if (Main.rand.NextBool(4))
-                            starsColour[i] = Color.HotPink;
-                        if (Main.rand.NextBool(4))
-                            starsColour[i] = Color.Lime;
-                        if (Main.rand.NextBool(6))
-                            starsColour[i] = Color.Yellow;
                     }
 
 

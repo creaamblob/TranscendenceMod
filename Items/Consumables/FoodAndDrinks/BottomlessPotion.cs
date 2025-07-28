@@ -34,7 +34,7 @@ namespace TranscendenceMod.Items.Consumables.FoodAndDrinks
 
             Item.width = 16;
             Item.height = 16;
-            Item.value = Item.buyPrice(silver: 75);
+            Item.value = Item.sellPrice(gold: 2, silver: 75);
             Item.rare = ItemRarityID.LightPurple;
         }
 
@@ -102,8 +102,8 @@ namespace TranscendenceMod.Items.Consumables.FoodAndDrinks
         {
             CreateRecipe()
             .AddIngredient(ItemID.BottledWater)
-            .AddIngredient(ModContent.ItemType<BlackholeFish>(), 4)
             .AddIngredient(ModContent.ItemType<FlowerEssence>(), 5)
+            .AddIngredient(ModContent.ItemType<BlackholeFish>(), 4)
             .AddTile(TileID.Bottles)
             .Register();
         }

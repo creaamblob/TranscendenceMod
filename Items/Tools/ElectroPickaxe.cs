@@ -36,7 +36,7 @@ namespace TranscendenceMod.Items.Tools
             Item.noMelee = true;
 
             Item.value = Item.buyPrice(gold: 50);
-            Item.rare = ModContent.RarityType<Brown>();
+            Item.rare = ModContent.RarityType<ModdedPurple>();
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
             Item.shoot = projectile;

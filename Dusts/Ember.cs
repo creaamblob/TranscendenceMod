@@ -27,6 +27,7 @@ namespace TranscendenceMod.Dusts
         {
             dust.position += dust.velocity;
             dust.velocity.X = dust.fadeIn + (float)Math.Sin(Main.GlobalTimeWrappedHourly / 2f) * 2;
+            Lighting.AddLight(dust.position, 0.25f, 0.175f, 0f);
 
             dust.scale *= 0.975f;
             if (dust.scale < 0.05f)

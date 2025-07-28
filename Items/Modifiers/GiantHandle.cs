@@ -11,7 +11,6 @@ namespace TranscendenceMod.Items.Modifiers
     {
         public override int RequiredItem => ItemID.LifeCrystal;
         public override int RequiredAmount => 4;
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.GiantHandle");
         public override ModifierIDs ModifierType => ModifierIDs.GiantHandle;
         public override bool CanBeApplied(Item item) => item.DamageType == DamageClass.Melee && item.useStyle == ItemUseStyleID.Swing && item.axe == 0 && item.pick == 0 || item.GetGlobalItem<ModifiersItem>().BlacksmithGiantHandleAllowed == true;
 

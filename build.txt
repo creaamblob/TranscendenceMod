@@ -1,4 +1,4 @@
-displayName = Transcendence Mod
+displayName = [c/7b03ca:Tran][c/b80aee:scen][c/e90cce:denc][c/b80aee:e Mod]
 author = CreanBL
 version = 0.1
 modReferences = StructureHelper

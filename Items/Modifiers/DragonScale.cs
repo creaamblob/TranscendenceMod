@@ -8,7 +8,6 @@ namespace TranscendenceMod.Items.Modifiers
     {
         public override int RequiredItem => ItemID.DefenderMedal;
         public override int RequiredAmount => 5;
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Draconic");
         public override ModifierIDs ModifierType => ModifierIDs.Draconic;
         public override bool CanBeApplied(Item item) => item.defense > 0 && !item.accessory;
 

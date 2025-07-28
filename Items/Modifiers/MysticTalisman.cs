@@ -9,8 +9,7 @@ namespace TranscendenceMod.Items.Modifiers
     public class MysticTalisman : BaseModifier
     {
         public override int RequiredItem => ItemID.DefenderMedal;
-        public override int RequiredAmount => 25;
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Mystic");
+        public override int RequiredAmount => 20;
         public override ModifierIDs ModifierType => ModifierIDs.Mystic;
         public override bool CanBeApplied(Item item) => item.type == ItemID.ApprenticeAltHead || item.type == ItemID.ApprenticeAltShirt || item.type == ItemID.ApprenticeAltPants;
 

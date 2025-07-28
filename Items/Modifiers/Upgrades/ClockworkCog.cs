@@ -15,8 +15,7 @@ namespace TranscendenceMod.Items.Modifiers.Upgrades
         public override int RequiredAmount => 99;
         public override ModifierIDs ModifierType => ModifierIDs.ClockworkUpgrade;
         public override int CraftingResultItem => ModContent.ItemType<Backfirer>();
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Backfirer");
-        public int timer;
+
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

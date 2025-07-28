@@ -25,7 +25,7 @@ float4 Sinewave(float2 coords : TEXCOORD0) : COLOR0
 {
     float4 color = tex2D(uImage0, coords);
     
-    color.rbg = lerp(color.rbg, float3(1, 0, 0.3), color.rgb * 1.5 * uOpacity);
+    color.rbg = lerp(color.rbg, float3(1, 0, 0.3), color.rgb * uOpacity);
     
     return color;
 }

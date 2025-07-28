@@ -41,7 +41,7 @@ namespace TranscendenceMod.Items.Consumables.LootBags
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<VoidNecklace>()));
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShimmerChunk>(), 1, 26, 36));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShimmerChunk>(), 1, 36, 48));
 
             itemLoot.Add(ItemDropRule.FewFromOptions(4, 1,
                 ModContent.ItemType<LunaticFlail>(),

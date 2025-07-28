@@ -85,7 +85,7 @@ namespace TranscendenceMod.NPCs.Passive
                 /*Always available*/
                 TranscendenceUtils.sell(npcshop, ItemID.SnowBlock, Item.buyPrice(silver: 5));
                 TranscendenceUtils.sell(npcshop, ItemID.IceBlock, Item.buyPrice(silver: 20));
-                TranscendenceUtils.sell(npcshop, ItemID.FlinxFur, Item.buyPrice(gold: 3, silver: 75));
+                TranscendenceUtils.sell(npcshop, ItemID.FlinxFur, Item.buyPrice(gold: 1, silver: 75));
                 TranscendenceUtils.sell(npcshop, ItemID.IceSkates, Item.buyPrice(gold: 20));
                 TranscendenceUtils.sell(npcshop, ItemID.IceCream, Item.buyPrice(gold: 2, silver: 50));
 

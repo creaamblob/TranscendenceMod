@@ -11,7 +11,6 @@ namespace TranscendenceMod.Items.Modifiers
     {
         public override int RequiredItem => ItemID.Ectoplasm;
         public override int RequiredAmount => 4;
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.CultScroll");
         public override ModifierIDs ModifierType => ModifierIDs.CultistScroll;
         public override bool CanBeApplied(Item item) => item.accessory;
 

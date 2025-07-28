@@ -16,12 +16,12 @@ namespace TranscendenceMod.Items.Modifiers.Upgrades
     public class MuramasaUpgrade : BaseModifier
     {
         public override bool CanBeApplied(Item item) => item.type == ItemID.Muramasa;
-        public override int RequiredItem => ItemID.Frostbrand;
-        public override int RequiredAmount => 1;
+        public override int RequiredItem => ItemID.Ectoplasm;
+        public override int RequiredAmount => 24;
         public override ModifierIDs ModifierType => ModifierIDs.MuramasaUpgrade;
         public override int CraftingResultItem => ModContent.ItemType<UpgradedMuramasa>();
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Muramasa");
-        public int timer;
+
+
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -42,7 +42,7 @@ namespace TranscendenceMod.Items.Modifiers.Upgrades
             for (int i = 0; i < 4; i++)
             {
                 float pi = MathHelper.TwoPi * i / 4;
-                float rot = pi += MathHelper.ToRadians(++timer + 4);
+                float rot = pi + Main.GlobalTimeWrappedHourly;
 
                 Vector2 pos = position + Vector2.One.RotatedBy(rot) * 4;
                 spriteBatch.Draw(sprite, pos - new Vector2(Item.width * 0.9f, Item.height * 0.85f), null, Color.Blue * 0.2f, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 0);
@@ -53,8 +53,8 @@ namespace TranscendenceMod.Items.Modifiers.Upgrades
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<PoseidonsTide>(), 16)
-                .AddIngredient(ItemID.SpectreBar, 12)
                 .AddIngredient(ModContent.ItemType<SunBar>(), 12)
+                .AddIngredient(ItemID.GoldBar, 12)
                 .AddTile(ModContent.TileType<Oceation>())
                 .Register();
         }

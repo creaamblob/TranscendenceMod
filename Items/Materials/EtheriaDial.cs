@@ -8,14 +8,13 @@ using TranscendenceMod.Items.Consumables;
 
 namespace TranscendenceMod.Items.Materials
 {
-    public class EtheriaDial : EarthDial
+    public class EtheriaDial : TerrariaDial
     {
-        public override bool CanBeApplied(Item item) => item.type == ModContent.ItemType<EarthDial>();
+        public override bool CanBeApplied(Item item) => item.type == ModContent.ItemType<TerrariaDial>();
         public override int RequiredItem => ModContent.ItemType<ConstantDial>();
         public override int RequiredAmount => 1;
-        public override ModifierIDs ModifierType => ModifierIDs.Timedial;
+        public override ModifierIDs ModifierType => ModifierIDs.TimedialEtheria;
         public override int CraftingResultItem => ModContent.ItemType<Timedial>();
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.TimedialEtheria");
         public override void SetDefaults()
         {
             base.SetDefaults();

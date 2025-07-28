@@ -8,8 +8,7 @@ namespace TranscendenceMod.Items.Modifiers
     {
         public override int RequiredItem => ItemID.LunarBar;
         public override int RequiredAmount => 5;
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.GiantSlayer");
-        public override ModifierIDs ModifierType => ModifierIDs.GiantSlaying;
+        public override ModifierIDs ModifierType => ModifierIDs.GiantSlayer;
         public override bool CanBeApplied(Item item) => item.headSlot > 0 || item.bodySlot > 0 || item.legSlot > 0;
 
         public override void SetDefaults()

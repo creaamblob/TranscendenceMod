@@ -75,6 +75,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
         {
             base.OnSpawn(source);
 
+            Projectile.damage = 0;
             if (Main.npc[(int)Projectile.ai[1]].ModNPC is CelestialSeraph boss)
                 Projectile.timeLeft = boss.AttackDuration;
         }

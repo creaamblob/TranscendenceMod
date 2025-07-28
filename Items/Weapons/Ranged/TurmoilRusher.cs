@@ -16,6 +16,7 @@ using TranscendenceMod.Items.NPCShops;
 using TranscendenceMod.Miscannellous;
 using TranscendenceMod.Miscannellous.Rarities;
 using TranscendenceMod.Projectiles.Weapons.Ranged;
+using TranscendenceMod.Tiles.BigTiles;
 
 namespace TranscendenceMod.Items.Weapons.Ranged
 {
@@ -59,12 +60,11 @@ namespace TranscendenceMod.Items.Weapons.Ranged
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient(ModContent.ItemType<Backfirer>())
             .AddIngredient(ItemID.Megashark)
             .AddIngredient(ModContent.ItemType<PoseidonsTide>(), 8)
-            .AddIngredient(ItemID.HellstoneBar, 20)
+            .AddIngredient(ItemID.GoldBar, 16)
             .AddIngredient(ItemID.Cog, 50)
-            .AddTile(TileID.LunarCraftingStation)
+            .AddTile(ModContent.TileType<Oceation>())
             .Register();
         }
     }
@@ -183,7 +183,7 @@ namespace TranscendenceMod.Items.Weapons.Ranged
                 Vector2 vel = Projectile.DirectionTo(Main.MouseWorld);
 
                 if (Timer2 > 20)
-                    Dust.NewDustPerfect(vec2, ModContent.DustType<Smoke3>(), vel.RotatedBy(MathHelper.PiOver4 / 2f * player.direction).RotatedByRandom(0.2f) * -8f, 0, Color.DarkGray * 0.5f,  0.275f);
+                    Dust.NewDustPerfect(vec2, ModContent.DustType<Smoke>(), vel.RotatedBy(MathHelper.PiOver4 / 2f * player.direction).RotatedByRandom(0.2f) * -8f, 0, Color.DarkGray * 0.5f,  0.275f);
 
 
                 while (++Projectile.ai[1] > CD && player.HasAmmo(VanillaIsSoPicky) && player.controlUseItem && !player.mouseInterface && player.GetModPlayer<TranscendencePlayer>().CannotUseItemsTimer < 1)

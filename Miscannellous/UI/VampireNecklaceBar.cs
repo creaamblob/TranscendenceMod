@@ -1,8 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -16,10 +18,13 @@ namespace TranscendenceMod.Miscannellous.UI
             Texture2D sprite2 = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/UI/VampireNecklaceBar_Inner").Value;
             Player player = Main.LocalPlayer;
 
+            spriteBatch.End();
+            spriteBatch.Begin(default, BlendState.AlphaBlend, Main.DefaultSamplerState, default, default, null, Main.GameViewMatrix.TransformationMatrix);
+
             if (player != null && player.active && player.TryGetModPlayer(out TranscendencePlayer modplayer) && modplayer.Vampire)
             {
-                int x = Main.screenWidth / 2;
-                int y = Main.screenHeight / 2 - 140;
+                int x = (int)(player.Center.X - Main.screenPosition.X);
+                int y = (int)(player.Center.Y - 100 - Main.screenPosition.Y);
 
                 int width = (int)MathHelper.Lerp(0f, 32f, modplayer.VampireBlood / (float)modplayer.CrimsonNecklaceMaxBlood);
                 Rectangle rec = new Rectangle(x - (sprite.Width / 2), y + 59, sprite.Width, sprite.Height);
@@ -28,7 +33,16 @@ namespace TranscendenceMod.Miscannellous.UI
                 spriteBatch.Draw(sprite2, rec, Color.White);
                 spriteBatch.Draw(TextureAssets.BlackTile.Value, rec2, modplayer.VampireBlood >= modplayer.CrimsonNecklaceMaxBlood ? Color.White : Color.Red);
                 spriteBatch.Draw(sprite, rec, Color.White);
+
+                bool Hover = Main.MouseWorld.Between(new Vector2(x - (sprite.Width / 2), y + 59) + Main.screenPosition, new Vector2(x - (sprite.Width / 2), y + 59) + Main.screenPosition + new Vector2(sprite.Width, sprite.Height));
+                if (Hover)
+                {
+                    Main.hoverItemName = modplayer.VampireBlood + " / " + modplayer.CrimsonNecklaceMaxBlood;
+                }
             }
+
+            spriteBatch.End();
+            spriteBatch.Begin(default, BlendState.AlphaBlend);
         }
     }
 

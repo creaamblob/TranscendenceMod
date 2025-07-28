@@ -13,6 +13,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
+using TranscendenceMod.Buffs;
 using TranscendenceMod.Dusts;
 using TranscendenceMod.Items.Armor.Hats;
 using TranscendenceMod.Items.Consumables.LootBags;
@@ -108,11 +109,11 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
         public override void SetDefaults()
         {
             /*Stats*/
-            NPC.lifeMax = 625 * 1000;
+            NPC.lifeMax = 800 * 1000;
             NPC.damage = 150;
             NPC.defense = 50;
             NPC.npcSlots = 8f;
-            NPC.value = Item.buyPrice(platinum: 1);
+            NPC.value = Item.buyPrice(platinum: 1, gold: 25);
             /*Collision*/
             NPC.width = 188;
             NPC.height = 252;
@@ -141,7 +142,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
 
             /*Materials*/
             normalMode.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SoulOfKnight>(), 1, 8, 16));
-            normalMode.OnSuccess(ItemDropRule.Common(ItemID.HallowedBar, 1, 15, 30));
+            normalMode.OnSuccess(ItemDropRule.Common(ItemID.HallowedBar, 1, 30, 45));
             normalMode.OnSuccess(ItemDropRule.Common(ItemID.LunarOre, 1, 30, 50));
 
             normalMode.OnSuccess(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<NucleusMask>(), 7));
@@ -361,10 +362,15 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
                 return;
             }
 
-            if ((Main.expertMode || Main.masterMode) && Main.rand.NextBool(15) && Phase == 2)
+            if ((Main.expertMode || Main.masterMode) && Phase == 2)
             {
-                int dir = Main.rand.NextFromList(-1, 1);
-                Dust.NewDustPerfect(NPC.Center + new Vector2(62 * dir, 12), ModContent.DustType<NucleusBlood>(), new Vector2(1.5f * dir, -1f), 0, Color.Red, 1f);
+                local.AddBuff(ModContent.BuffType<InfiniteFlight>(), 1);
+
+                if (Main.rand.NextBool(15))
+                {
+                    int dir = Main.rand.NextFromList(-1, 1);
+                    Dust.NewDustPerfect(NPC.Center + new Vector2(62 * dir, 12), ModContent.DustType<NucleusBlood>(), new Vector2(1.5f * dir, -1f), 0, Color.Red, 1f);
+                }
             }
 
             //Attack Patterns

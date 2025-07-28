@@ -36,8 +36,8 @@ namespace TranscendenceMod.Projectiles.Weapons.Melee
             Projectile.velocity = Projectile.velocity.RotatedBy(1.1f) * 1.2f;
             Projectile.velocity.Y -= Main.rand.NextFloat(-25f, 25f);
 
-            int d = Dust.NewDust(Projectile.Center, 1, 1, DustID.Phantasmal, 0, 0, 0, Color.White, Projectile.scale);
-            Main.dust[d].velocity = Vector2.Zero;
+            Dust d = Dust.NewDustPerfect(Projectile.Center, DustID.Phantasmal, Vector2.Zero, 0, Color.White, Projectile.scale);
+            d.noGravity = true;
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {

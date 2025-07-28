@@ -29,7 +29,7 @@ namespace TranscendenceMod.Projectiles.Weapons.Melee
 
             Projectile.friendly = true;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 15;
+            Projectile.localNPCHitCooldown = -1;
             Projectile.DamageType = DamageClass.Melee;
 
             Projectile.ignoreWater = true;

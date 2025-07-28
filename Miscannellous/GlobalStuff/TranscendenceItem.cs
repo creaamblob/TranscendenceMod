@@ -71,38 +71,11 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
             eff.Parameters["useAlpha"].SetValue(false);
             eff.Parameters["useExtraCol"].SetValue(false);
 
-            if ((SeraphDifficultyItem || item.rare == ModContent.RarityType<Brown>() && !item.expert && !item.master || item.rare == ModContent.RarityType<BloodRed>() || item.rare == ModContent.RarityType<MidnightBlue>()) && line.Name == "ItemName")
+            if ((SeraphDifficultyItem || item.rare == ModContent.RarityType<CosmicRarity>()) && line.Name == "ItemName")
             {
-                Color col = TranscendenceWorld.CosmicPurple2;
+                Color col = TranscendenceWorld.CosmicPurple;
                 Color color = new Color(col.R, col.G, col.B, 0f);
                 Color color3 = Color.White;
-
-                if (item.rare == ModContent.RarityType<Brown>())
-                {
-                    col = Color.Transparent;
-                    color3 = Color.SandyBrown;
-                    Main.instance.GraphicsDevice.Textures[1] = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/EarthMagicShader").Value;
-
-                    eff.Parameters["uImageSize1"].SetValue(shaderImage.Size() * 5f);
-                    eff.Parameters["uTime"].SetValue(Main.GlobalTimeWrappedHourly * 0.25f);
-                    eff.Parameters["uOpacity"].SetValue(1f);
-                }
-
-                if (item.master || item.rare == ModContent.RarityType<BloodRed>())
-                {
-                    col = new Color(Main.masterColor + 0.75f, Main.masterColor, 0.2f);
-                    color3 = Color.Black;
-
-                    if (item.rare == ModContent.RarityType<BloodRed>())
-                    {
-                        Main.instance.GraphicsDevice.Textures[1] = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/BloodRedShader").Value;
-                        eff.Parameters["uTime"].SetValue(Main.GlobalTimeWrappedHourly * 0.05f);
-                    }
-                    else
-                    {
-                        Main.instance.GraphicsDevice.Textures[1] = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/MasterModeShader").Value;
-                    }
-                }
 
                 //Draw tooltips for expert seraph loot
                 if (item.expert)
@@ -121,53 +94,47 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                 ChatManager.DrawColorCodedStringShadow(spriteBatch, FontAssets.MouseText.Value, line.Text, new Vector2(line.X, line.Y), Color.Black, 0, Vector2.Zero, Vector2.One, -1, 3);
                 spriteBatch.End();
                 //Restart spritebatch with the shader active
-                spriteBatch.Begin(SpriteSortMode.Immediate, item.rare != ModContent.RarityType<Brown>() ? BlendState.Additive : BlendState.NonPremultiplied, spriteBatch.GraphicsDevice.SamplerStates[0],
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, spriteBatch.GraphicsDevice.SamplerStates[0],
                     spriteBatch.GraphicsDevice.DepthStencilState, spriteBatch.GraphicsDevice.RasterizerState, eff, Main.UIScaleMatrix);
-
-                if (item.rare != ModContent.RarityType<Brown>())
-                {
-                    spriteBatch.Draw(ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/GlowBloomNoBG").Value, new Rectangle((int)(line.X - (width * 0.9375f)), line.Y - 12, width * 3, 45), color);
-                    spriteBatch.Draw(ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/GlowBloomNoBG").Value, new Rectangle((int)(line.X - (width * 0.9375f)), line.Y - 12, width * 3, 45), color);
-                }
+                
+                spriteBatch.Draw(ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/GlowBloomNoBG").Value, new Rectangle((int)(line.X - (width * 0.9375f)), line.Y - 12, width * 3, 45), color);
+                spriteBatch.Draw(ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/GlowBloomNoBG").Value, new Rectangle((int)(line.X - (width * 0.9375f)), line.Y - 12, width * 3, 45), color);
 
                 //Draw the shadered text
-                ChatManager.DrawColorCodedStringShadow(spriteBatch, FontAssets.MouseText.Value, line.Text, new Vector2(line.X, line.Y), Color.White, 0, Vector2.Zero, Vector2.One, -1, item.rare == ModContent.RarityType<Brown>() ? 4 : 2);
-                
-                if (item.rare == ModContent.RarityType<MidnightBlue>() || SeraphDifficultyItem)
+                ChatManager.DrawColorCodedStringShadow(spriteBatch, FontAssets.MouseText.Value, line.Text, new Vector2(line.X, line.Y), Color.White, 0, Vector2.Zero, Vector2.One, -1, 2);
+
+                spriteBatch.End();
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, spriteBatch.GraphicsDevice.SamplerStates[0],
+                    spriteBatch.GraphicsDevice.DepthStencilState, spriteBatch.GraphicsDevice.RasterizerState, null, Main.UIScaleMatrix);
+
+                for (int i = 0; i < 6; i++)
                 {
-                    spriteBatch.End();
-                    spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, spriteBatch.GraphicsDevice.SamplerStates[0],
-                        spriteBatch.GraphicsDevice.DepthStencilState, spriteBatch.GraphicsDevice.RasterizerState, null, Main.UIScaleMatrix);
-
-                    for (int i = 0; i < 6; i++)
+                    int size = (int)(star.Width * starsSize[i] + (float)Math.Sin(TranscendenceWorld.UniversalRotation * 2f) * 4);
+                    if (++starResetTimer[i] > 40)
                     {
-                        int size = (int)(star.Width * starsSize[i] + (float)Math.Sin(TranscendenceWorld.UniversalRotation * 2f) * 4);
-                        if (++starResetTimer[i] > 40)
-                        {
-                            starsRandomX[i] = Main.rand.Next((int)(width * -0.4f), (int)(width * 1.4f));
-                            starsRandomY[i] = Main.rand.Next(-75, 75);
-                            starsSize[i] = Main.rand.NextFloat(0.15f, 0.3f);
-                            starResetTimer[i] = Main.rand.Next(-4, 2);
-                            starsRot[i] = MathHelper.ToRadians(Main.rand.Next(-4, 4));
-                            starsDir[i] = Main.rand.NextBool(2) ? 1 : 2;
-                        }
-
-                        starsRandomX[i] = (int)new Vector2(starsRandomX[i], starsRandomY[i]).RotatedBy(starsRot[i] * starsDir[i] / -5f).X;
-                        starsRandomY[i] = (int)new Vector2(starsRandomX[i], starsRandomY[i]).RotatedBy(starsRot[i] * starsDir[i] / -5f).Y;
-
-                        if (starResetTimer[i] < 20 && starResetTimer[i] > 0)
-                            starsSize[i] += 0.033f;
-                        if (starResetTimer[i] > 20)
-                            starsSize[i] = MathHelper.Lerp(starsSize[i], 0f, 1f / 15f);
-
-                        starPositions[i] = new Vector2(line.X + starsRandomX[i], line.Y + (height / 2) + starsRandomY[i]);
-                        starPositions[i] = Vector2.Lerp(starPositions[i], new Vector2(line.X + (width * 0.66f), line.Y + (height / 2)), starResetTimer[i] / 80f);
-
-                        spriteBatch.Draw(star, new Rectangle((int)(starPositions[i].X), (int)(starPositions[i].Y), size * 3, size * 3),
-                            null, (item.master ? Color.Gold * 0.5f : Color.White * 0.4f), starsRot[i], star.Size() * 0.5f, SpriteEffects.None, 0);
-                        spriteBatch.Draw(star, new Rectangle((int)starPositions[i].X, (int)starPositions[i].Y, size, size),
-                            null, Color.White, starsRot[i], star.Size() * 0.5f, SpriteEffects.None, 0);
+                        starsRandomX[i] = Main.rand.Next((int)(width * -0.4f), (int)(width * 1.4f));
+                        starsRandomY[i] = Main.rand.Next(-75, 75);
+                        starsSize[i] = Main.rand.NextFloat(0.15f, 0.3f);
+                        starResetTimer[i] = Main.rand.Next(-4, 2);
+                        starsRot[i] = MathHelper.ToRadians(Main.rand.Next(-4, 4));
+                        starsDir[i] = Main.rand.NextBool(2) ? 1 : 2;
                     }
+
+                    starsRandomX[i] = (int)new Vector2(starsRandomX[i], starsRandomY[i]).RotatedBy(starsRot[i] * starsDir[i] / -5f).X;
+                    starsRandomY[i] = (int)new Vector2(starsRandomX[i], starsRandomY[i]).RotatedBy(starsRot[i] * starsDir[i] / -5f).Y;
+
+                    if (starResetTimer[i] < 20 && starResetTimer[i] > 0)
+                        starsSize[i] += 0.033f;
+                    if (starResetTimer[i] > 20)
+                        starsSize[i] = MathHelper.Lerp(starsSize[i], 0f, 1f / 15f);
+
+                    starPositions[i] = new Vector2(line.X + starsRandomX[i], line.Y + (height / 2) + starsRandomY[i]);
+                    starPositions[i] = Vector2.Lerp(starPositions[i], new Vector2(line.X + (width * 0.66f), line.Y + (height / 2)), starResetTimer[i] / 80f);
+
+                    spriteBatch.Draw(star, new Rectangle((int)(starPositions[i].X), (int)(starPositions[i].Y), size * 3, size * 3),
+                        null, (item.master ? Color.Gold * 0.5f : Color.White * 0.4f), starsRot[i], star.Size() * 0.5f, SpriteEffects.None, 0);
+                    spriteBatch.Draw(star, new Rectangle((int)starPositions[i].X, (int)starPositions[i].Y, size, size),
+                        null, Color.White, starsRot[i], star.Size() * 0.5f, SpriteEffects.None, 0);
                 }
 
                 spriteBatch.End();
@@ -193,26 +160,18 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
             if (item.type == ItemID.Zenith)
             {
                 item.damage = 180;
-                item.rare = ModContent.RarityType<MidnightBlue>();
+                item.rare = ModContent.RarityType<CosmicRarity>();
             }
-
-            int bType = item.buffType;
-            if ((bType == BuffID.WellFed || bType == BuffID.WellFed2 || bType == BuffID.WellFed3) && item.type != ItemID.GoldenDelight && item.buffTime > (9 * 60 * 60))
-                item.buffTime /= 2;
 
             if (item.type == ItemID.LongRainbowTrailWings)
                 item.expert = false;
 
             if (item.type == ItemID.Daybloom || item.type == ItemID.Shiverthorn || item.type == ItemID.Fireblossom || item.type == ItemID.Waterleaf || item.type == ItemID.Deathweed || item.type == ItemID.Moonglow)
-            {
                 ItemID.Sets.ShimmerTransformToItem[item.type] = ModContent.ItemType<ShimmerBlossom>();
-            }
 
             //Why not
             if (item.maxStack == Item.CommonMaxStack)
-            {
                 item.maxStack = 99999;
-            }
 
             if (item.type == ItemID.VineRopeCoil)
             {
@@ -238,10 +197,6 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                 item.shoot = ProjectileID.WebRopeCoil;
                 item.shootSpeed = 7;
             }
-        }
-        public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
-        {
-            base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }
         public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
         {
@@ -270,15 +225,6 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
         }
         public override bool CanUseItem(Item item, Player player)
         {
-            if (player.GetModPlayer<TranscendencePlayer>().Possessing)
-                return false;
-
-            if (player.GetModPlayer<TranscendencePlayer>().InsideShell > 0)
-                return false;
-
-            if (player.GetModPlayer<TranscendencePlayer>().InsideGolem)
-                return false;
-
             if (player.GetModPlayer<TranscendencePlayer>().ZoneSpaceTemple && (item.type == ItemID.Wrench || item.type == ItemID.BlueWrench
                 || item.type == ItemID.GreenWrench || item.type == ItemID.YellowWrench || item.type == ItemID.MulticolorWrench || item.type == ItemID.ActuationRod))
                 return false;
@@ -321,7 +267,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
 
                 if (rocket != 0 && rocketcd == 0)
                 {
-                    Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Center, player.DirectionTo(Main.MouseWorld) * 15,
+                    Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Center, player.DirectionTo(Main.MouseWorld) * 16f,
                         ModContent.ProjectileType<FireworkProjectile>(), (int)(item.damage * 0.375f), 3f, player.whoAmI);
                     mp.RocketCD = 240;
                 }
@@ -368,7 +314,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                         StringBuilder sb = new StringBuilder(10);
                         sb.Append(keys[0]);
 
-                        var generic = new TooltipLine(Mod, "ShieldGeneric", Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Shields", ShieldParryLeniency, Main.LocalPlayer.GetModPlayer<TranscendencePlayer>().ParryFocusCost));
+                        var generic = new TooltipLine(Mod, "ShieldGeneric", Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Shields", Main.LocalPlayer.GetModPlayer<TranscendencePlayer>().ParryFocusCost));
                         var cd = new TooltipLine(Mod, "ShieldParryCD", Language.GetTextValue("Mods.TranscendenceMod.Messages.ParryCD", ShieldParryCD / 60f));
 
                         tooltips.Insert(parryIndex, generic);
@@ -383,7 +329,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
 
             if (ShieldParryLeniency != 0)
             {
-                var len = new TooltipLine(Mod, "ShieldParryLeniency", Language.GetTextValue("Mods.TranscendenceMod.Messages.ParryLeniency", 130 - ShieldParryLeniency * 2));
+                var len = new TooltipLine(Mod, "ShieldParryLeniency", Language.GetTextValue("Mods.TranscendenceMod.Messages.ParryLeniency", ShieldParryLeniency / 2));
                 tooltips.Insert(parryIndex + 1, len);
             }
 

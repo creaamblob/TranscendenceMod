@@ -10,7 +10,6 @@ namespace TranscendenceMod.Items.Modifiers
     {
         public override int RequiredItem => ItemID.SoulofFright;
         public override int RequiredAmount => 5;
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Jolly");
         public override ModifierIDs ModifierType => ModifierIDs.Jolly;
         public override bool CanBeApplied(Item item) => item.headSlot > 0 || item.bodySlot > 0 || item.legSlot > 0 || item.accessory;
 

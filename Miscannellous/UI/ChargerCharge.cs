@@ -15,10 +15,13 @@ namespace TranscendenceMod.Miscannellous.UI
             Texture2D sprite = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/UI/ChargerCharge").Value;
             Player player = Main.LocalPlayer;
 
-            if (player != null && player.active && player.HeldItem.TryGetGlobalItem(out ModifiersItem modiers) && modiers.Modifier == ModifierIDs.Charged)
+            spriteBatch.End();
+            spriteBatch.Begin(default, BlendState.AlphaBlend, Main.DefaultSamplerState, default, default, null, Main.GameViewMatrix.TransformationMatrix);
+
+            if (player != null && player.active && player.HeldItem.TryGetGlobalItem(out ModifiersItem modiers) && modiers.Modifier == ModifierIDs.Charger)
             {
-                int x = Main.screenWidth / 2;//(int)(player.Center.X - 88 - Main.screenPosition.X);
-                int y = Main.screenHeight / 2;//(int)(player.Center.Y - 50 - Main.screenPosition.Y);
+                int x = (int)(player.Center.X - Main.screenPosition.X);
+                int y = (int)(player.Center.Y - Main.screenPosition.Y);
 
                 float charge = player.HeldItem.GetGlobalItem<ModifiersItem>().ChargerCharge;
                 int width = (int)MathHelper.Lerp(0f, 32f, charge - 0.25f);
@@ -28,6 +31,9 @@ namespace TranscendenceMod.Miscannellous.UI
                 spriteBatch.Draw(sprite, rec, Color.White);
                 spriteBatch.Draw(TextureAssets.BlackTile.Value, rec2, charge < 0.66f ? Color.Red : new Color(10, 207, 232));
             }
+
+            spriteBatch.End();
+            spriteBatch.Begin(default, BlendState.AlphaBlend);
         }
     }
 

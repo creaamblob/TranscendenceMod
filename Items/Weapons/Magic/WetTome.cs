@@ -50,7 +50,7 @@ namespace TranscendenceMod.Items.Weapons.Magic
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.WaterBolt)
+                .AddIngredient(ItemID.RazorbladeTyphoon)
                 .AddIngredient(ModContent.ItemType<PoseidonsTide>(), 12)
                 .AddTile(ModContent.TileType<Oceation>())
                 .Register();

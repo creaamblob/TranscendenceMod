@@ -7,6 +7,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TranscendenceMod.Dusts;
+using TranscendenceMod.Miscannellous;
 using TranscendenceMod.Miscannellous.Rarities;
 using TranscendenceMod.Projectiles.Weapons.Melee;
 
@@ -34,7 +35,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
         {
             Item.damage = 335;
             Item.crit = 20;
-            Item.DamageType = DamageClass.MeleeNoSpeed;
+            Item.DamageType = DamageClass.Melee;
 
             Item.width = 22;
             Item.height = 28;
@@ -49,6 +50,8 @@ namespace TranscendenceMod.Items.Weapons.Melee
 
             Item.value = Item.sellPrice(gold: 50);
             Item.rare = ModContent.RarityType<Brown>();
+            Item.GetGlobalItem<ModifiersItem>().BlacksmithGiantHandleAllowed = true;
+
 
             Item.UseSound = new SoundStyle("TranscendenceMod/Miscannellous/Assets/Sounds/Weapons/MuramasaSwing")
             {
@@ -79,7 +82,9 @@ namespace TranscendenceMod.Items.Weapons.Melee
             {
                 player.GetModPlayer<TranscendencePlayer>().MuramasaTime = 45;
                 cycle = -cycle;
-                Projectile.NewProjectile(source, position, velocity, projectile, damage, knockback, -1, sizeMult, cycle, 12);
+                int p = Projectile.NewProjectile(source, position, velocity, projectile, damage, knockback, -1, sizeMult, cycle, 12);
+                float am = Item.GetGlobalItem<ModifiersItem>().Modifier == ModifierIDs.GiantHandle ? 1f : 3f;
+                Main.projectile[p].extraUpdates += (int)(player.GetAttackSpeed(DamageClass.Melee) * am);
                 DashTimer = 0;
             }
             return false;
@@ -124,7 +129,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
         {
             Projectile.width = 74;
             Projectile.height = 74;
-            Projectile.DamageType = DamageClass.MeleeNoSpeed;
+            Projectile.DamageType = DamageClass.Melee;
 
             Projectile.ownerHitCheck = true;
             Projectile.netImportant = true;
@@ -135,11 +140,9 @@ namespace TranscendenceMod.Items.Weapons.Melee
 
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 2;
-            Projectile.ArmorPenetration = 999;
+            Projectile.ArmorPenetration = 25;
 
             Projectile.friendly = true;
-            Projectile.extraUpdates = 2;
-
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
         }
@@ -164,7 +167,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
             float reference = float.NaN;
-            if (Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center,
+            if (Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Main.player[Projectile.owner].Center,
                 Projectile.Center + Projectile.velocity * (Projectile.ai[2] * (Projectile.scale * 1.75f)) * 0.275f, 24, ref reference))
             {
                 return true;

@@ -64,7 +64,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
                 }
                 else
                 {
-                    for (int i = 0; i < 16; i++)
+                    for (int i = 0; i < 36; i++)
                     {
                         Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Main.rand.NextVector2CircularEdge(8f, 8f) * Main.rand.NextFloat(1f, 1.75f),
                             ModContent.ProjectileType<CosmicSphere>(), Projectile.damage, Projectile.knockBack, -1, 0, Projectile.ai[1]);

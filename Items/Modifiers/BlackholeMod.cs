@@ -9,10 +9,9 @@ namespace TranscendenceMod.Items.Modifiers
     public class BlackholeMod : BaseModifier
     {
         public override int RequiredItem => ItemID.FragmentVortex;
-        public override int RequiredAmount => 7;
+        public override int RequiredAmount => 8;
         public override ModifierIDs ModifierType => ModifierIDs.Blackhole;
-        public override bool CanBeApplied(Item item) => item.sentry;
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.Blackhole");
+        public override bool CanBeApplied(Item item) => item.accessory;
 
         public override void SetDefaults()
         {

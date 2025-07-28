@@ -41,7 +41,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
                 if (npc == null)
                     return;
 
-                Projectile.velocity = Projectile.DirectionTo(npc.Center) * MathHelper.Lerp(2f, 12f, Projectile.ai[2] / 105f);
+                Projectile.velocity = Projectile.DirectionTo(npc.Center) * MathHelper.Lerp(2f, 10f, Projectile.ai[2] / 105f);
 
                 if (Projectile.Distance(npc.Center) < 175)
                 {

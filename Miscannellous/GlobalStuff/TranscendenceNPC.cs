@@ -221,7 +221,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
         }
         public override bool CheckDead(NPC npc)
         {
-            if (npc.target != -1 && !Main.player[npc.target].GetModPlayer<TranscendencePlayer>().Possessing && Main.player[npc.target].GetModPlayer<TranscendencePlayer>().CorruptWanderingKit && !PossessionAvaivable
+            /*if (npc.target != -1 && !Main.player[npc.target].GetModPlayer<TranscendencePlayer>().Possessing && Main.player[npc.target].GetModPlayer<TranscendencePlayer>().CorruptWanderingKit && !PossessionAvaivable
                 && Main.player[npc.target].Distance(npc.Center) < 1000 && !npc.boss && npc.realLife == -1 && !Possessed
                 && npc.type != NPCID.PirateShip && npc.type != NPCID.PirateShipCannon && npc.type != NPCID.GolemHead && npc.type != NPCID.EaterofWorldsHead && !(npc.ModNPC is HeadSegment))
             {
@@ -232,7 +232,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                 npc.life = npc.lifeMax;
                 npc.velocity = Vector2.Zero;
                 return false;
-            }
+            }*/
 
             return base.CheckDead(npc);
         }
@@ -355,6 +355,9 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
             if (SuckedInNecklace > 0)
                 return false;
 
+            if (npc.type == NPCID.MoonLordFreeEye || npc.type == NPCID.MoonLordHand || npc.type == NPCID.MoonLordHead)
+                return false;
+
             // Parrying
             if (npc.active && base.CanHitPlayer(npc, target, ref cooldownSlot) && npc.Hitbox.Intersects(target.Hitbox) && !npc.dontTakeDamage && npc != null && TranscendenceUtils.GeneralParryConditions(target))
             {
@@ -362,8 +365,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                 if (modPlayer == null)
                     return base.CanHitPlayer(npc, target, ref cooldownSlot);
 
-                DialogUI.SpawnDialog(Language.GetTextValue("Mods.TranscendenceMod.Messages.Parry"), target.Top, 60, Color.Gold);
-
+                DialogUI.SpawnDialogCutscene(Language.GetTextValue("Mods.TranscendenceMod.Messages.Parry"), DialogBoxes.Generic, 1, 1, target, new Vector2(0, -target.height - 40), 90, Color.Gold);
                 Projectile.NewProjectile(target.GetSource_FromThis(), target.Center, Vector2.Zero, ModContent.ProjectileType<ParryVisual>(), 0, 0, target.whoAmI, target.GetModPlayer<TranscendencePlayer>().ShieldID);
 
                 if (modPlayer.PalladiumShieldEquipped)
@@ -541,7 +543,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                 }
                 if (Possessed)
                 {
-                    if (npc.Distance(TranscendenceWorld.WorldCenter) < (1500 * 1.35f) || TargetPlayer.dead)
+                    if (TargetPlayer.dead)
                         npc.StrikeInstantKill();
 
                     npc.dontTakeDamage = true;
@@ -691,7 +693,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
 
             if (player.GetModPlayer<TranscendencePlayer>().ZoneVolcano)
             {
-                spawnRate = (int)(spawnRate * 0.5f);
+                spawnRate = (int)(spawnRate * 0.375f);
                 maxSpawns = (int)(maxSpawns * 1.33f);
             }
         }

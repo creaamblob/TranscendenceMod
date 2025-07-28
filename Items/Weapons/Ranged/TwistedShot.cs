@@ -4,6 +4,9 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TranscendenceMod.Items.Materials.MobDrops;
+using TranscendenceMod.Items.Materials;
+using TranscendenceMod.Items.Weapons.Melee;
 using TranscendenceMod.Miscannellous.Rarities;
 using TranscendenceMod.Projectiles.Weapons.Ranged;
 
@@ -51,6 +54,15 @@ namespace TranscendenceMod.Items.Weapons.Ranged
         }
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+             .AddIngredient(ModContent.ItemType<GalaxyAlloy>(), 3)
+             .AddIngredient(ModContent.ItemType<VoidFragment>(), 8)
+             .AddTile(TileID.LunarCraftingStation)
+             .Register();
         }
     }
 }

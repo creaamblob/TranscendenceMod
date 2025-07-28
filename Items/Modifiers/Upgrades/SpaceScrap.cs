@@ -17,7 +17,7 @@ namespace TranscendenceMod.Items.Modifiers.Upgrades
         public override int RequiredAmount => 20;
         public override ModifierIDs ModifierType => ModifierIDs.CosmicCrystal;
         public override int CraftingResultItem => ModContent.ItemType<CosmosShardLauncher>();
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.CosmicCrystal");
+
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -29,7 +29,7 @@ namespace TranscendenceMod.Items.Modifiers.Upgrades
             Item.height = 24;
 
             Item.value = Item.buyPrice(gold: 35);
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
         }
         public override Color? GetAlpha(Color lightColor) => Color.White;
     }

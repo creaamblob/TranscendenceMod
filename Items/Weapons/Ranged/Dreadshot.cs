@@ -139,7 +139,7 @@ namespace TranscendenceMod.Items.Weapons.Ranged
                     {
                         Charge += 0.025f;
                         Vector2 pos2 = Vector2.One.RotatedBy(TranscendenceWorld.UniversalRotation * 25) * 5;
-                        Projectile.Center = new Vector2(pos.X + (pos2.X / 2f), pos.Y + pos2.Y);
+                        Projectile.Center = pos + new Vector2(pos2.X / 2f, pos2.Y).RotatedBy(Projectile.velocity.ToRotation());
                         Projectile.rotation = Projectile.DirectionTo(pos).ToRotation() - MathHelper.PiOver2;
 
                         if (TranscendenceWorld.Timer % 20 == 0)

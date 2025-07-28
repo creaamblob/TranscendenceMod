@@ -68,12 +68,12 @@ namespace TranscendenceMod.Projectiles.Weapons.Melee
                     && projectile.type == Type && (Projectile.ai[1] == projectile.ai[1] + 1 || projectile.ai[1] == 11 && Projectile.ai[1] == 0) && projectile.ai[2] == Projectile.ai[2])
                 {
                     Vector2 pos2 = Projectile.Center - Main.screenPosition;
-                    Rectangle rec = new Rectangle((int)pos2.X, (int)pos2.Y, (int)(10 * Projectile.scale), (int)Projectile.Distance(projectile.Center) * 2);
+                    Rectangle rec = new Rectangle((int)pos2.X, (int)pos2.Y, (int)(7 * Projectile.scale), (int)Projectile.Distance(projectile.Center) * 2);
 
                     if (sprite2 == null)
                         sprite2 = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/BloomLine2").Value;
 
-                    Main.spriteBatch.Draw(sprite2, rec, null, new Color(0.7f, 0.2f, 0f, 0f), Projectile.DirectionTo(projectile.Center).ToRotation() - MathHelper.PiOver2, default, default, 0);
+                    Main.spriteBatch.Draw(sprite2, rec, null, new Color(0.75f, 0.25f, 0f, 0f), Projectile.DirectionTo(projectile.Center).ToRotation() - MathHelper.PiOver2, default, default, 0);
                 }
             }
             TranscendenceUtils.DrawProjAnimated(Projectile, lightColor, Projectile.scale, Texture, Projectile.rotation, Projectile.Center, false, false, false);

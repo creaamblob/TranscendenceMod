@@ -21,7 +21,7 @@ namespace TranscendenceMod.Items.Consumables.Placeables
         {
             Item.CloneDefaults(ItemID.VoidMonolith);
             Item.value = Item.sellPrice(gold: 5);
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
             Item.accessory = true;
             Item.DefaultToPlaceableTile(ModContent.TileType<SeraphMonolith>());
         }

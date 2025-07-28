@@ -10,7 +10,6 @@ namespace TranscendenceMod.Items.Modifiers
     {
         public override int RequiredItem => ItemID.CratePotion;
         public override int RequiredAmount => 2;
-        public override string TooltipPath => Language.GetTextValue("Mods.TranscendenceMod.Messages.Tooltips.Modifiers.CrateMagnet");
         public override ModifierIDs ModifierType => ModifierIDs.CrateMagnet;
         public override bool CanBeApplied(Item item) => item.fishingPole > 0;
 

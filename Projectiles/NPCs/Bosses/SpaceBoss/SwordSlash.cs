@@ -42,10 +42,10 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             spriteBatch.Begin(default, BlendState.Additive, default, default, default, null, Main.GameViewMatrix.TransformationMatrix);
 
             TranscendenceUtils.DrawEntity(Projectile, TranscendenceWorld.CosmicPurple * 0.33f, 1f,
-            "TranscendenceMod/Miscannellous/Assets/HitEffect", 0, Projectile.Center + Projectile.velocity * 3, null);
+            "TranscendenceMod/Miscannellous/Assets/Trail", 0, Projectile.Center + Projectile.velocity * 3, null);
 
             TranscendenceUtils.DrawEntity(Projectile, Color.White * 0.33f, 0.75f,
-            "TranscendenceMod/Miscannellous/Assets/HitEffect", 0, Projectile.Center + Projectile.velocity * 3, null);
+            "TranscendenceMod/Miscannellous/Assets/Trail", 0, Projectile.Center + Projectile.velocity * 3, null);
 
             spriteBatch.End();
             spriteBatch.Begin(default, BlendState.AlphaBlend, default, default, default, null, Main.GameViewMatrix.TransformationMatrix);

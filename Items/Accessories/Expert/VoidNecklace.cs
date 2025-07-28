@@ -20,7 +20,7 @@ namespace TranscendenceMod.Items.Accessories.Expert
 
         public override void SetDefaults()
         {
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
             Item.width = 24;
             Item.height = 24;
             Item.accessory = true;

@@ -18,6 +18,7 @@ using TranscendenceMod.Projectiles.NPCs.Bosses.Muramasa;
 using TranscendenceMod.Items.Weapons.Ranged;
 using TranscendenceMod.Items.Accessories.Offensive;
 using TranscendenceMod.Items.Materials.MobDrops;
+using Terraria.ModLoader.UI.ModBrowser;
 
 namespace TranscendenceMod.NPCs.Miniboss
 {
@@ -39,10 +40,10 @@ namespace TranscendenceMod.NPCs.Miniboss
         public override void SetDefaults()
         {
             /*Stats*/
-            NPC.lifeMax = TranscendenceWorld.DownedWindDragon ? 32250 : NPC.downedPlantBoss ? 9520 : 1755;
-            NPC.defense = TranscendenceWorld.DownedWindDragon ? 20 : NPC.downedPlantBoss ? 20 : 10;
+            NPC.lifeMax = TranscendenceWorld.DownedWindDragon ? 25000 : NPC.downedPlantBoss ? 8750 : 1275;
+            NPC.defense = TranscendenceWorld.DownedWindDragon ? 120 : NPC.downedPlantBoss ? 65 : 25;
             NPC.damage = TranscendenceWorld.DownedWindDragon ? 80 : NPC.downedPlantBoss ? 60 : 40;
-            NPC.value = TranscendenceWorld.DownedWindDragon ? Item.buyPrice(gold: 35) : NPC.downedPlantBoss ? Item.buyPrice(gold: 17, silver: 50) : Item.buyPrice(gold: 5);
+            NPC.value = TranscendenceWorld.DownedWindDragon ? Item.sellPrice(gold: 12, silver: 50) : NPC.downedPlantBoss ? Item.sellPrice(gold: 7, silver: 50) : Item.sellPrice(gold: 2, silver: 50);
             NPC.width = TranscendenceWorld.DownedWindDragon ? 58 : 64;
             NPC.height = TranscendenceWorld.DownedWindDragon ? 58 : 64;
             NPC.aiStyle = 0;
@@ -173,12 +174,12 @@ namespace TranscendenceMod.NPCs.Miniboss
 
             void ComeHere()
             {
-                Duration = 150;
+                Duration = 260;
                 Vector2 pos = NPC.Center + Vector2.One.RotatedBy(MathHelper.ToRadians(Timer * 7.5f)) * (550 - Timer);
                 Vector2 pos2 = NPC.Center + Vector2.One.RotatedBy(-MathHelper.ToRadians(Timer * 7.5f)) * (450 - (Timer * 0.75f));
                 NPC.rotation += 0.5f;
 
-                if (Timer < 75)
+                if (Timer < 60)
                 {
                     Dust.NewDust(pos, 1, 1, DustID.DungeonWater);
                     Dust.NewDust(pos2, 1, 1, DustID.DungeonWater);
@@ -199,16 +200,16 @@ namespace TranscendenceMod.NPCs.Miniboss
 
             void SpeedSlice()
             {
-                Duration = 180;
+                Duration = 150;
                 NPC.rotation += 0.5f;
 
                 if (Timer > 45 && Timer < (Duration - 60) && Timer % 6 == 0)
                 {
-                    for (int i = 0; i < 2; i++)
+                    for (int i = 0; i < 4; i++)
                     {
-                        Vector2 pos = NPC.Center + Vector2.One.RotatedByRandom(MathHelper.TwoPi) * 1350f;
+                        Vector2 pos = player.Center + Vector2.One.RotatedByRandom(MathHelper.TwoPi) * 750f;
 
-                        int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, pos.DirectionTo(NPC.Center),
+                        int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, pos.DirectionTo(player.Center).RotatedByRandom(MathHelper.PiOver2),
                             ModContent.ProjectileType<MuramasaDeathLaser>(), 25, 1, -1, 1, 0, 3);
                         Main.projectile[p].extraUpdates = 0;
                     }
@@ -244,6 +245,14 @@ namespace TranscendenceMod.NPCs.Miniboss
                     if (NPC.ai[3] != 1)
                     {
                         NPC.velocity.Y = 25f;
+
+                        if (Timer % 5 == 0)
+                        {
+                            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(2, 0), ModContent.ProjectileType<MuramasaSlash>(), 30, 2, -1, 0, 0, 2);
+                            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(-2, 0), ModContent.ProjectileType<MuramasaSlash>(), 30, 2, -1, 0, 0, 2);
+                        }
+
+
                         if (Collision.SolidCollision(NPC.Center - new Vector2(8), 16, 16) && NPC.position.Y > (player.position.Y - 20))
                         {
                             SoundEngine.PlaySound(SoundID.DD2_MonkStaffGroundImpact, NPC.Center);
@@ -253,7 +262,7 @@ namespace TranscendenceMod.NPCs.Miniboss
                     }
                     else
                     {
-                        if (++NPC.ai[0] < 60 && Timer % 15 == 0)
+                        if (++NPC.ai[0] < 60 && Timer % 10 == 0)
                         {
                             float rand = Main.rand.NextFloat(-25f, 25f);
                             int rand2 = Main.rand.Next(2, 9);

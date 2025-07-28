@@ -18,7 +18,7 @@ namespace TranscendenceMod.Items.Materials
             Item.width = 12;
             Item.height = 12;
             Item.value = Item.buyPrice(gold: 2, silver: 50);
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
             Item.maxStack = 9999;
         }
         public override Color? GetAlpha(Color lightColor) => Color.White;

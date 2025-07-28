@@ -33,7 +33,7 @@ namespace TranscendenceMod.Items.Consumables.LootBags
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulOfKnight>(), 1, 12, 20));
-            itemLoot.Add(ItemDropRule.Common(ItemID.HallowedBar, 1, 15, 30));
+            itemLoot.Add(ItemDropRule.Common(ItemID.HallowedBar, 1, 45, 60));
             itemLoot.Add(ItemDropRule.Common(ItemID.LunarOre, 1, 45, 60));
 
             itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<NucleusMask>(), 7));

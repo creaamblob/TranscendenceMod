@@ -10,7 +10,6 @@ namespace TranscendenceMod.Items.Modifiers
 {
     public class AbsolutePurity : BaseModifier
     {
-        public override string TooltipPath => "";
         public override ModifierIDs ModifierType => ModifierIDs.None;
         public override bool CanBeApplied(Item item) => item.GetGlobalItem<ModifiersItem>().Modifier > 0 && item.ModItem is not BaseModifier;
         public override int RequiredItem => ItemID.FallenStar;

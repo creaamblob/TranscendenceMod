@@ -21,7 +21,7 @@ namespace TranscendenceMod.Items.Accessories.Vanity
             Item.width = 16;
             Item.height = 16;
             Item.value = Item.buyPrice(platinum: 25);
-            Item.rare = ModContent.RarityType<MidnightBlue>();
+            Item.rare = ModContent.RarityType<CosmicRarity>();
             Item.master = true;
             Item.accessory = true;
             Item.vanity = true;
