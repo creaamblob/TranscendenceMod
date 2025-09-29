@@ -68,14 +68,14 @@ namespace TranscendenceMod.Miscannellous
         public static void DrawItemGlowmask(Item Item, float rotat, float size, string texture)
         {
             Texture2D GlowMask = ModContent.Request<Texture2D>($"{texture}_Glow").Value;
-            Vector2 pos = new Vector2(Item.Center.X, Item.position.Y + Item.height - GlowMask.Height * 0.5f + 2);
+            Vector2 pos = new Vector2(Item.Center.X, Item.position.Y + Item.height - GlowMask.Height * 0.5f);
             Rectangle rec = new Rectangle(0, 0, GlowMask.Width, GlowMask.Height);
             Main.EntitySpriteDraw(GlowMask, pos - Main.screenPosition, rec, Color.White, rotat, GlowMask.Size() * 0.5f, size, SpriteEffects.None);
         }
         internal static void DrawItemGlowmask(Item Item, float rotat, float size, string texture, Vector2 pos2)
         {
             Texture2D GlowMask = ModContent.Request<Texture2D>($"{texture}_Glow").Value;
-            Vector2 pos = new Vector2(Item.Center.X, Item.position.Y + Item.height - GlowMask.Height * 0.5f + 2);
+            Vector2 pos = new Vector2(Item.Center.X, Item.position.Y + Item.height - GlowMask.Height * 0.5f);
             Rectangle rec = new Rectangle(0, 0, GlowMask.Width, GlowMask.Height);
             Main.EntitySpriteDraw(GlowMask, pos + pos2 - Main.screenPosition, rec, Color.White, rotat, GlowMask.Size() * 0.5f, size, SpriteEffects.None);
         }

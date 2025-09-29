@@ -30,6 +30,7 @@ using TranscendenceMod.Projectiles.NPCs.Bosses.FrostSerpent;
 using TranscendenceMod.Projectiles.NPCs.Bosses.Nucleus;
 using TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss;
 using static System.Net.Mime.MediaTypeNames;
+using static TranscendenceMod.TranscendenceWorld;
 namespace TranscendenceMod.NPCs.Boss.Nucleus
 {
     [AutoloadBossHead]
@@ -501,15 +502,14 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
             AttackDuration = 270;
             Attacks = NucleusAttacks.Slam;
 
-            NPC.damage = Damage * 2;
-
+            NPC.damage = Damage;
             ChangeColour(Colours.Gray);
 
             NPC.velocity *= 0.9f;
 
             if (Timer_AI < 45)
             {
-                NPC.velocity = NPC.DirectionTo(player.Center + player.velocity * 20f - new Vector2(0, 425)) * 14f;
+                NPC.velocity = NPC.DirectionTo(player.Center + player.velocity * 20f - new Vector2(0, 425)) * 10f;
             }
 
             if (Timer_AI > 60 && Timer_AI < 80)
@@ -580,7 +580,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
                 if (ProjectileCD2 < 125)
                     ProjectileCD2++;
 
-                CanDealDamage = true;
+                CanDealDamage = Timer_AI > 150;
 
 
                 ProjectileCD4 = (int)(player.Center.Y - 200 - Center.Y);
@@ -626,10 +626,11 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
 
             if (NPC.Center.Y < (Center.Y - 625) && ProjectileCD2 != 1)
             {
+                bool l = Main.rand.NextBool();
                 for (int i = -1000; i < 1000; i += 200)
                 {
                     Vector2 pos = Center - new Vector2(i, 650);
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, new Vector2(0, 5), nucleusBeam, 100, 0f, -1, -60, NPC.whoAmI);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, new Vector2(0, 5), nucleusBeam, 100, 0f, -1, -45, NPC.whoAmI);
                 }
 
                 NPC.position.X = player.Center.X;
@@ -930,8 +931,8 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
                 }
 
                 NPC.dontTakeDamage = false;
-                if (!TranscendenceWorld.DownedNucleus)
-                    TranscendenceWorld.DownedNucleus = true;
+                if (!Downed.Contains(Bosses.ProjectNucleus))
+                    Downed.Add(Bosses.ProjectNucleus);
 
                 if (NucleusChallenge)
                     ModAchievementsHelper.CompleteChallenge(player, TaskIDs.NucleusChallenge);
@@ -1071,8 +1072,8 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
 
         public override bool PreKill()
         {
-            if (TranscendenceWorld.DownedNucleus == false)
-                TranscendenceWorld.DownedNucleus = true;
+            if (!Downed.Contains(Bosses.ProjectNucleus))
+                Downed.Add(Bosses.ProjectNucleus);
 
             return true;
         }
@@ -1092,7 +1093,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
         public Color col;
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            int max = Phase == 2 ? 12 : 9;
+            /*int max = Phase == 2 ? 12 : 9;
 
             string att = AttacksCompleted.Count == 0 ? "-" : string.Join(", ", AttacksCompleted.ToArray());
             string ratt = RecentAttacks.Count == 0 ? "-" : string.Join(", ", RecentAttacks.ToArray());
@@ -1101,7 +1102,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
                 $"   [c/31e24d:Attacks Left: {AttacksCompleted.Count} / {max}]  " + ratt;
             ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.MouseText.Value, t, new Vector2(35, Main.screenHeight - 40), Color.White, 0f, Vector2.Zero, Vector2.One);
 
-            col = Color.Red;
+            */col = Color.Red;
 
             if (BlueAlpha > 0f)
                 SetColours(Color.Lerp(col, Color.DeepSkyBlue, BlueAlpha));
@@ -1147,16 +1148,30 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
 
             if (NPC.Center.Y > (Center.Y - 575) && NPC.ai[1] != 99)
             {
-                Color wireCol = col;
-
-                Vector2 startVec = Center - new Vector2(0, 625f);
-                if (Attacks == NucleusAttacks.Swing)
-                    startVec.X += dashVels[3].X;
+                Vector2 startVec = NPC.Center - new Vector2(0, 825f);
                 Vector2 vec = startVec - Main.screenPosition;
 
+                for (int i = 0; i < 9; i++)
+                {
+                    Color wireCol = Color.Lerp(col, Color.Black, 0.5f);
+
+                    Vector2 vec2 = new Vector2(60f - (SqueezeWidthLoss / 4.7f) * NPC.scale, 40f * NPC.scale).RotatedBy(MathHelper.TwoPi * i / (12f - WiresMissing) + TranscendenceWorld.UniversalRotation * 2f);
+
+                    int x = (int)(vec.X + vec2.X);
+                    int y = (int)(vec.Y + vec2.Y);
+
+                    Rectangle rec = new Rectangle(x, y, 2, (int)(startVec.Distance(NPC.Center) * 2f));
+
+                    if (i >= WiresMissing)
+                    {
+                        spriteBatch.Draw(TextureAssets.BlackTile.Value, rec, null, wireCol, startVec.DirectionTo(NPC.Center).ToRotation() + MathHelper.PiOver2, TextureAssets.BlackTile.Value.Size() * 0.5f, SpriteEffects.None, 0f);
+                    }
+                }
                 for (int i = 0; i < 12; i++)
                 {
-                    Vector2 vec2 = new Vector2(60f - (SqueezeWidthLoss / 4.7f) * NPC.scale, 40f * NPC.scale).RotatedBy(MathHelper.TwoPi * i / (12f - WiresMissing) + TranscendenceWorld.UniversalRotation * 4f);
+                    Color wireCol = col;
+
+                    Vector2 vec2 = new Vector2(60f - (SqueezeWidthLoss / 4.7f) * NPC.scale, 40f * NPC.scale).RotatedBy(WiresMissing == 11 ? MathHelper.PiOver4 * 1.25f : MathHelper.TwoPi * i / (12f - WiresMissing) + TranscendenceWorld.UniversalRotation * 2f + MathHelper.PiOver4);
 
                     int x = (int)(vec.X + vec2.X);
                     int y = (int)(vec.Y + vec2.Y);
@@ -1166,8 +1181,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
 
                     if (i >= WiresMissing)
                     {
-                        spriteBatch.Draw(TextureAssets.BlackTile.Value, rec, null, wireCol, startVec.DirectionTo(NPC.Center).ToRotation() - MathHelper.PiOver2, TextureAssets.BlackTile.Value.Size() * 0.5f, SpriteEffects.None, 0f);
-
+                        spriteBatch.Draw(TextureAssets.BlackTile.Value, rec, null, wireCol, startVec.DirectionTo(NPC.Center).ToRotation() + MathHelper.PiOver2, TextureAssets.BlackTile.Value.Size() * 0.5f, SpriteEffects.None, 0f);
                     }
                 }
 

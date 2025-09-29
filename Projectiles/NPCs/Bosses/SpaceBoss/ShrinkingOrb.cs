@@ -53,7 +53,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
 
 
             if (Projectile.ai[2] != 1 && Projectile.scale > 1)
-                Projectile.scale -= 0.0325f;
+                Projectile.scale -= 0.0275f;
 
 
             if (npc.ModNPC is CelestialSeraph boss)

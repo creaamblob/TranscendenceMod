@@ -50,7 +50,11 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             npcPos = npc.Center;
 
             if (Projectile.timeLeft > 60 && Projectile.scale < 1f)
+            {
+                if (Projectile.ai[0] != 1f)
+                    Projectile.Center = Main.player[npc.target].Center;
                 Projectile.scale = MathHelper.Lerp(Projectile.scale, 1f, 1f / 30f);
+            }
 
             if (Projectile.timeLeft == 40)
             {

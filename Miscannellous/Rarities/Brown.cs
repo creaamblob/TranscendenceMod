@@ -13,6 +13,6 @@ namespace TranscendenceMod.Miscannellous.Rarities
                 return ModContent.RarityType<SteelGray>();
             return Type;
         }
-        public override Color RarityColor => new Color(130, 75, 55);
+        public override Color RarityColor => new Color(105, 52, 39);
     }
 }

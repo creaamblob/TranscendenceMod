@@ -50,7 +50,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             eff.Parameters["uTime"].SetValue(0);
             eff.Parameters["yChange"].SetValue(Main.GlobalTimeWrappedHourly / 2f);
             eff.Parameters["useExtraCol"].SetValue(true);
-            Vector3 col = new Vector3(0f, 0.2f, 0.8f);
+            Vector3 col = new Vector3(0f, 0.2f, 0.8f) * Projectile.Opacity;
             if (Projectile.ai[0] < 0)
             {
                 col = Projectile.ai[2] % 2 == 0 ? new Vector3(1f, 0.8f, 0f) : Projectile.ai[2] % 3 == 0 ? new Vector3(1f, 1f, 1f) : new Vector3(0f, 0.4f, 0.8f);
@@ -76,7 +76,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             sb.End();
             sb.Begin(default, BlendState.AlphaBlend, Main.DefaultSamplerState, default, default, null, Main.GameViewMatrix.TransformationMatrix);
         }
-        public override bool CanHitPlayer(Player target) => Projectile.localAI[2] > 85;
+        public override bool CanHitPlayer(Player target) => Projectile.localAI[2] > 85 && Projectile.Opacity >= 1f;
         public override void AI()
         {
             if (Projectile.timeLeft < 60)
@@ -96,7 +96,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             {
                 SoundEngine.PlaySound(new SoundStyle("TranscendenceMod/Miscannellous/Assets/Sounds/NPCs/Hurt/CelestialSeraphShield")
                 {
-                    Pitch = 2f,
+                    Pitch = 1.5f,
                     MaxInstances = 0
                 }, Projectile.Center);
 

@@ -107,7 +107,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
                     for (int e = 0; e < 6; e++)
                     {
                         Dust.NewDust(Projectile.Center - new Vector2(0, Main.rand.Next(0, 188)), 48, -148,
-                            ModContent.DustType<StarDust>(), 0, 0, 0, Color.White, 2.75f);
+                            ModContent.DustType<StarDust>(), 0, 0, 0, Color.DarkRed, 2.75f);
                         //TranscendenceUtils.ProjectileRing(Projectile, 8, Projectile.GetSource_FromAI(), Projectile.Center - new Vector2(0, 100) + Main.rand.NextVector2Square(-50, 50), ModContent.ProjectileType<StarMist>(), (int)(Projectile.damage * 1.75f), 3, 0.25f, 0, 0, 1, -1, 0);
                     }
                 }

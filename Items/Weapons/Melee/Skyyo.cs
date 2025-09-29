@@ -41,7 +41,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient(ModContent.ItemType<SunBar>(), 6)
+            .AddIngredient(ModContent.ItemType<SunburntAlloy>(), 6)
             .AddIngredient(ItemID.SunplateBlock, 10)
             .AddIngredient(ItemID.Feather, 4)
             .AddIngredient(ItemID.SoulofSight, 8)

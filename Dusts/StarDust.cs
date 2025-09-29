@@ -46,7 +46,7 @@ namespace TranscendenceMod.Dusts
             Texture2D sprite2 = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/StarEffect").Value;
             Vector2 origin = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);
 
-            sb.Draw(sprite, dust.position + new Vector2(11 * 0.66f * dust.scale) - Main.screenPosition, null, Color.Gold * 0.5f, 0, origin, dust.scale / 3, SpriteEffects.None, 0);
+            sb.Draw(sprite, dust.position + new Vector2(11 * 0.66f * dust.scale) - Main.screenPosition, null, dust.color * 0.5f, 0, origin, dust.scale / 3, SpriteEffects.None, 0);
             sb.Draw(sprite2, dust.position + new Vector2(11 * 0.66f * dust.scale) - Main.screenPosition, null, Color.White * 0.75f, 0, sprite2.Size() * 0.5f, dust.scale, SpriteEffects.None, 0);
 
             sb.End();

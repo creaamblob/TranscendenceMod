@@ -29,7 +29,7 @@ namespace TranscendenceMod.Items.Weapons
         public override void AddRecipes()
         {
             CreateRecipe(24)
-            .AddIngredient(ItemID.FallenStar, 2)
+            .AddIngredient(ItemID.FallenStar)
             .AddTile(TileID.SkyMill)
             .Register();
         }

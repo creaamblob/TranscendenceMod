@@ -32,6 +32,8 @@ namespace TranscendenceMod.Projectiles.Weapons.Ranged
         public override void AI()
         {
             Projectile.ai[2] += 1f / 30f;
+            Projectile.velocity = Vector2.Lerp(Projectile.velocity, Projectile.DirectionTo(Main.MouseWorld) * 6f, 1f / 15f);
+            
         }
         public override void OnSpawn(IEntitySource source)
         {

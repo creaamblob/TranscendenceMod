@@ -53,7 +53,7 @@ namespace TranscendenceMod.Items.Modifiers.Upgrades
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<PoseidonsTide>(), 16)
-                .AddIngredient(ModContent.ItemType<SunBar>(), 12)
+                .AddIngredient(ModContent.ItemType<SunburntAlloy>(), 12)
                 .AddIngredient(ItemID.GoldBar, 12)
                 .AddTile(ModContent.TileType<Oceation>())
                 .Register();

@@ -52,8 +52,11 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             {
                 Projectile.ai[0]++;
 
-                if (Projectile.ai[0] == 2)
+                if (Projectile.localAI[1] != 1)
+                {
                     SoundEngine.PlaySound(ModSoundstyles.SeraphBomb with { MaxInstances = 0 });
+                    Projectile.localAI[1] = 1;
+                }
 
                 if (Height < 3000)
                     Height += 100f;

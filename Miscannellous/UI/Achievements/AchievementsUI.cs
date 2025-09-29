@@ -68,8 +68,8 @@ namespace TranscendenceMod.Miscannellous.UI.Achievements
             UIElement hardmetal = new Hardmetal();
             modPanel.Append(hardmetal);
 
-            UIElement headless = new Headless();
-            modPanel.Append(headless);
+            UIElement processer = new Procession();
+            modPanel.Append(processer);
 
             UIElement volcanic = new Volcanic();
             modPanel.Append(volcanic);

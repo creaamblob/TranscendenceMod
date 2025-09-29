@@ -44,6 +44,7 @@ using TranscendenceMod.NPCs.SpaceBiome;
 using TranscendenceMod.Projectiles;
 using TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss;
 using TranscendenceMod.Projectiles.Weapons;
+using static TranscendenceMod.TranscendenceWorld;
 using Conditions = Terraria.GameContent.ItemDropRules.Conditions;
 
 namespace TranscendenceMod.NPCs.Boss.Seraph
@@ -228,13 +229,13 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
         public override void SetDefaults()
         {
             /*Stats*/
-            NPC.lifeMax = 1100 * 1000;
+            NPC.lifeMax = 1155 * 1000;
             NPC.defense = 50;
-            NPC.damage = 190;
+            NPC.damage = 200;
             NPC.takenDamageMultiplier = 1;
-            NPC.npcSlots = 10;
+            NPC.npcSlots = 6f;
             NPC.aiStyle = -1;
-            NPC.value = Item.buyPrice(platinum: 2, gold: 50);
+            NPC.value = Item.buyPrice(platinum: 1, gold: 75);
 
             /*Collision*/
             NPC.width = 126;
@@ -245,6 +246,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
             /*Audio*/
             NPC.HitSound = ModSoundstyles.SeraphHurt with
             {
+                Volume = 0.66f,
                 PitchRange = (-0.45f, 0.8f),
                 MaxInstances = 0
             };
@@ -400,7 +402,8 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
                 else NPC.ai[1]++;
             }
 
-            if (NPC.life < (NPC.lifeMax * 0.75f))
+            //Begin second phase at 0.666667% HP
+            if (NPC.life <= (NPC.lifeMax * 0.666667f))
             {
                 Phase2Timer++;
                 if (SkyTransitionP2 < 1 && Phase2Timer < 60)
@@ -427,8 +430,8 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
                     SoundEngine.PlaySound(SoundID.Roar, NPC.Center);
                 }
             }
-            //Begin third phase at 25% HP
-            if ((NPC.life < (NPC.lifeMax * 0.25f) || Phase3Timer > 0) && NPC.ai[1] < 41 && Phase == 2)
+            //Begin third phase at 20% HP
+            if ((NPC.life <= (NPC.lifeMax * 0.2f) || Phase3Timer > 0) && NPC.ai[1] < 41 && Phase == 2)
             {
                 NPCFade = 1f;
                 Phase3Timer++;
@@ -479,7 +482,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
                 //Finish the transition (so proud of her)
                 if (Phase3Timer > 760)
                 {
-                    NPC.life = (int)(NPC.lifeMax * 0.25f);
+                    NPC.life = (int)(NPC.lifeMax * 0.2f);
                     NPC.ai[1] = 40;
                     Phase = 3;
                 }
@@ -776,7 +779,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
             if (Timer_AI == 60)
             {
                 TranscendenceUtils.ProjectileRing(NPC, Phase == 2 ? 6 : 5, NPC.GetSource_FromAI(), NPC.Center, starbirthlaser, 75, 3,
-                        2, 2, NPC.whoAmI, 140, player.whoAmI, 0);
+                        2, 2, NPC.whoAmI, 140, player.whoAmI, Main.rand.NextFloat(MathHelper.TwoPi));
             }
 
             if (GlyphPhase)
@@ -816,7 +819,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
                 Vector2 vel = Vector2.One.RotatedBy(RotationTimer / 7);
                 float am = 48;
                 if (Phase == 2)
-                    am = 5 ;
+                    am = 7;
 
                 for (int i = 0; i < 7; i++)
                 {
@@ -826,7 +829,8 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
                         if (Phase == 2)
                             pos = NPC.Center + Vector2.One.RotatedByRandom(MathHelper.TwoPi) * Main.rand.NextFloat(0f, 500f);
                         int am2 = Phase == 2 ? j : 0;
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, Vector2.Zero, mist, 90, 1, -1, Phase == 2 ? -1.75f : 2.325f, NPC.whoAmI, am2);
+                        int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, Vector2.Zero, mist, 90, 1, -1, Phase == 2 ? -1.75f : 2.325f, NPC.whoAmI, am2);
+                        Main.projectile[p].timeLeft = AttackDuration - 60;
                     }
                 }
 
@@ -1036,7 +1040,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
             CurrentAttack = Language.GetTextValue("Mods.TranscendenceMod.SeraphAttackNames.Blackhole");
             Attack = SeraphAttacks.EventHorizon;
 
-            DustColor = Color.Black;
+            DustColor = Color.DarkOrange;
             NPC.dontTakeDamage = true;
 
             NPCFade = 0f;
@@ -1060,13 +1064,13 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
                 ProjReverse = -ProjReverse;
                 ProjectileCD[3] += 15;
 
-                RotationSpeed = 0.125f * Main.rand.NextFloat(0.2125f, 1.375f) * ProjReverse;
+                RotationSpeed = 0.075f * ProjReverse;
                 ProjectileCD[1] = 0;
             }
 
             Ring(NPC.Center);
 
-            if (Timer_AI > 120 && Timer_AI < (AttackDuration - 170))
+            if (Timer_AI > 120 && Timer_AI < (AttackDuration - 270) && ++ProjectileCD[0] % 2 == 0)
             {
                 SoundEngine.PlaySound(SoundID.Item117 with { MaxInstances = 0, Volume = 0.15f, Pitch = -1f }, NPC.Center);
                 BlackHoleSuck();
@@ -1074,22 +1078,26 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
 
             void BlackHoleSuck()
             {
-                int visualChance = Main.masterMode ? 15 : 25;
+                int visualChance = 15;
                 if (Main.rand.NextBool(visualChance))
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.One.RotatedByRandom(360) * BoundarySize, Vector2.Zero, blackholevisual,
+                {
+                    Vector2 pos = NPC.Center + Vector2.One.RotatedByRandom(360) * BoundarySize;
+
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, Vector2.Zero, blackholevisual,
                         0, 0, -1, 0, NPC.whoAmI);
+                }
 
 
                 //Suck the player into the blackhole if they're too close
                 if (local.Distance(NPC.Center) < 125)
-                {
-                    local.velocity = local.DirectionTo(arenaCenter + Vector2.One.RotatedBy(MathHelper.ToRadians(Timer_AI * 5)) * 25) * 10;
-                    local.AddBuff(ModContent.BuffType<BlackHoleDebuff>(), 5);
-                }
+                    {
+                        local.velocity = local.DirectionTo(arenaCenter + Vector2.One.RotatedBy(MathHelper.ToRadians(Timer_AI * 5)) * 25) * 10;
+                        local.AddBuff(ModContent.BuffType<BlackHoleDebuff>(), 5);
+                    }
 
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 4; i++)
                 {
-                    Vector2 pos = NPC.Center + Vector2.One.RotatedBy((MathHelper.TwoPi * i / 3f) + Math.Sin(RotationTimer) * 0.875f + MathHelper.ToRadians(ProjectileCD[3] * 2f)) * BoundarySize;
+                    Vector2 pos = NPC.Center + Vector2.One.RotatedBy((MathHelper.TwoPi * i / 4f) + Math.Sin(RotationTimer * 1.1f)) * BoundarySize;
 
                     Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, Vector2.Zero, EventHorizonproj,
                         95, 0f, -1, 0, NPC.whoAmI, 12.5f);
@@ -1248,7 +1256,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
             {
                 for (int i = 0; i < 16; i++)
                 {
-                    Vector2 vel = new Vector2(8.75f, 0f).RotatedBy(MathHelper.TwoPi * i / 16f);
+                    Vector2 vel = new Vector2(10f, 0f).RotatedBy(MathHelper.TwoPi * i / 16f);
                     vel.Y /= 2f;
                     Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, vel.RotatedBy(DashVel.ToRotation() + MathHelper.PiOver2), dashproj2, 85, 2f, -1, 0, NPC.whoAmI, 1.25f);
                 }
@@ -1457,9 +1465,9 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
                         for (int i = 0; i < 4; i++)
                         {
                             Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + new Vector2(175, -180),
-                                new Vector2(5 + (i * 25), 50), pillarlaser, 80, 5, -1, 1, 0, 1);
+                                new Vector2(7.5f + (i * 25), 75f), pillarlaser, 80, 5, -1, 1, 0, 1);
                             Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center - new Vector2(175, 180),
-                                new Vector2(-5 - (i * 25), 50), pillarlaser, 80, 5, -1, 1, 0, -1);
+                                new Vector2(-7.5f - (i * 25), 75f), pillarlaser, 80, 5, -1, 1, 0, -1);
                         }
                     }
                 }
@@ -1497,18 +1505,19 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
                 ProjectileCD[2] += 45;
                 SoundEngine.PlaySound(SoundID.Item14 with { Pitch = -0.5f, Volume = 2 });
 
-                int amount = 5;
+                int amount = 8;
                 int am = NotClassic ? 2 : 1;
                 //Create a star shaped bullet hell
                 for (int k = 0; k < am; k++)
                 {
+                    float rot = Main.rand.NextFloat(MathHelper.TwoPi);
                     for (int i = 0; i < 10; i++)
                     {
                         for (int j = 0; j < amount; j++)
                         {
-                            Vector2 pos = NPC.Center + Vector2.One.RotatedBy(MathHelper.TwoPi * j / amount + MathHelper.ToRadians(i * 8f + (k * 23.275f))) * (float)(50 + Math.Sin(i) * 35);
-                            int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, Vector2.Zero, stellarfireball, 75, 1f, -1, 0, NPC.whoAmI, 0.33f);
-                            Main.projectile[p].velocity = pos.DirectionTo(NPC.Center) * ((-3.5f * (1f + (k / 2f))) - (float)Math.Sin(i / 6f));
+                            Vector2 pos = NPC.Center + Vector2.One.RotatedBy(rot + MathHelper.TwoPi * j / amount + MathHelper.ToRadians(i * 8f + (k * 45f / 2f))) * (float)(50 + Math.Sin(i) * 45f);
+                            int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, Vector2.Zero, stellarfireball, 85, 1f, -1, 0, NPC.whoAmI, 0.33f);
+                            Main.projectile[p].velocity = pos.DirectionTo(NPC.Center) * ((-3.75f * (1f + (k * 0.66f))) - (float)Math.Sin(i / 6f));
                         }
                     }
                 }
@@ -1519,13 +1528,14 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
                     Volume = 0.95f
                 }, NPC.Center);
 
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 48; i++)
                 {
                     Main.instance.CameraModifiers.Add(new PunchCameraModifier(new Vector2(Main.rand.Next(-20, 20)),
-                        new Vector2(Main.rand.NextFloatDirection()), 80, 5, 15, -1, null));
+                        new Vector2(Main.rand.NextFloatDirection()), 120, 15, 15, -1, null));
                 }
                 CrushProjDelayTimer = 0;
             }
+
             if (CrushProjDelayTimer == 85)
                 SoundEngine.PlaySound(SoundID.Item43);
 
@@ -1641,7 +1651,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
 
         public void RoyalFlash()
         {
-            AttackDuration = 580;
+            AttackDuration = 500;
             Attack = SeraphAttacks.RoyalFlash;
             CurrentAttack = Language.GetTextValue("Mods.TranscendenceMod.SeraphAttackNames.RoyalFlash");
 
@@ -1649,6 +1659,9 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
             Vector2 pos = Vector2.SmoothStep(player.Center, NPC.Center - new Vector2(0, 84), skyFade);
             local.GetModPlayer<TranscendencePlayer>().cameraModifier = true;
             local.GetModPlayer<TranscendencePlayer>().cameraPos = pos;
+
+            if (Timer_AI < 5)
+                ProjectileCD[1] = Main.rand.NextBool(2) ? 1 : -1;
 
             if (Timer_AI < (AttackDuration - 60))
             {
@@ -1668,7 +1681,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
 
             if (ProjectileCD[0] > 0 && ProjectileCD[0] % 5 == 0)
             {
-                TranscendenceUtils.ProjectileRing(NPC, 3, NPC.GetSource_FromAI(), NPC.Center - new Vector2(0, 88), ModContent.ProjectileType<GenericDivineLaser>(), 75, 0f, 1f, -75f, NPC.whoAmI, MathHelper.Lerp(2.5f, 15f, (Timer_AI - 120) / (float)(AttackDuration - 120f)), -1, TranscendenceWorld.UniversalRotation * 2f, 2);
+                TranscendenceUtils.ProjectileRing(NPC, 3, NPC.GetSource_FromAI(), NPC.Center - new Vector2(0, 88), ModContent.ProjectileType<GenericDivineLaser>(), 95, 0f, 1f, -75f, NPC.whoAmI, MathHelper.Lerp(2.5f, 15f, (Timer_AI - 120) / (float)(AttackDuration - 120f)), -1, TranscendenceWorld.UniversalRotation * 2.125f * ProjectileCD[1], 2);
             }
         }
 
@@ -1708,14 +1721,15 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
 
             if (++ProjectileCD[0] % 5 == 0 && ProjectileCD[0] < 120) 
             {
-                for (int i = 0; i < 6; i++)
+                float am = Phase == 2 ? 6f : 8f;
+                for (int i = 0; i < am; i++)
                 {
-                    Vector2 pos = Dashpos + Vector2.One.RotatedBy(MathHelper.TwoPi * i / 6f + TranscendenceWorld.UniversalRotation * rotMult) * (15f + (ProjectileCD[0] * 8f));
+                    Vector2 pos = Dashpos + Vector2.One.RotatedBy(MathHelper.ToRadians(ProjectileCD[5]) + MathHelper.TwoPi * i / am + TranscendenceWorld.UniversalRotation * rotMult) * (15f + (ProjectileCD[0] * 8f));
 
                     int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, Vector2.Zero, ModContent.ProjectileType<Meteor>(), 90, 2f, -1, 0f, NPC.whoAmI, 0f);
                     Main.projectile[p].hostile = true;
 
-                    Vector2 pos2 = Dashpos + Vector2.One.RotatedBy(MathHelper.TwoPi * i / 6f - TranscendenceWorld.UniversalRotation * rotMult) * (15f + (ProjectileCD[0] * 8f));
+                    Vector2 pos2 = Dashpos + Vector2.One.RotatedBy(MathHelper.ToRadians(ProjectileCD[5]) + MathHelper.TwoPi * i / am - TranscendenceWorld.UniversalRotation * rotMult) * (15f + (ProjectileCD[0] * 8f));
 
                     int p2 = Projectile.NewProjectile(NPC.GetSource_FromAI(), pos2, Vector2.Zero, ModContent.ProjectileType<Meteor>(), 90, 2f, -1, 0f, NPC.whoAmI, 0f);
                     Main.projectile[p2].hostile = true;
@@ -1724,6 +1738,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
             if (ProjectileCD[0] > 150)
             {
                 Dashpos = player.Center;
+                ProjectileCD[5] = Main.rand.Next(0, 361);
                 ProjectileCD[0] = 0;
             }
         }
@@ -1750,7 +1765,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
             if (Timer_AI < 45 || Timer_AI > (AttackDuration - 90))
                 return;
 
-            int cd = (int)MathHelper.Lerp(45, 20, Timer_AI / (float)(AttackDuration - 90));
+            int cd = (int)MathHelper.Lerp(40, 15, Timer_AI / (float)(AttackDuration - 90));
             if (++ProjectileCD[0] % cd == 0)
             {
                 float rot = Main.rand.NextFloat(MathHelper.TwoPi);
@@ -1847,7 +1862,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
 
             if (Timer_AI > 450)
             {
-                if (++ProjectileCD[1] % 45 == 0)
+                if (++ProjectileCD[1] % 35 == 0)
                 {
                     float rot = Main.rand.NextFloat(MathHelper.TwoPi);
                     for (int i = 0; i < 4; i++)
@@ -1861,10 +1876,10 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
             if (Timer_AI > 60 && ++ProjectileCD[0] % cd == 0)
             {
                 float x = Main.rand.NextFloat(-200f, 200f);
-                for (int i = -1500; i < 1650; i += 150)
+                for (int i = -1650; i < 1815; i += 165)
                 {
                     Vector2 pos = player.Center - new Vector2(i + x, 1250);
-                    int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, new Vector2(1.25f * ProjReverse, 5), ModContent.ProjectileType<GenericDivineLaser>(), 100, 0f, -1, -90, NPC.whoAmI, 2f);
+                    int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, new Vector2(1.25f * ProjReverse, 5), ModContent.ProjectileType<GenericDivineLaser>(), 100, 0f, -1, -60, NPC.whoAmI, 2.5f);
                     Main.projectile[p].extraUpdates = 2;
                 }
                 ProjReverse = -ProjReverse;
@@ -1885,19 +1900,19 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
             {
                 Vector2 vel = NPC.DirectionTo(player.Center);
 
-                NPC.velocity.X = MathHelper.Lerp(NPC.velocity.X, vel.X * 45f, 1f / 20f);
-                NPC.velocity.Y = MathHelper.Lerp(NPC.velocity.Y, vel.Y * 15f, 1f / 10f);
+                NPC.velocity.X = MathHelper.Lerp(NPC.velocity.X, vel.X * 50f, 1f / 20f);
+                NPC.velocity.Y = MathHelper.Lerp(NPC.velocity.Y, vel.Y * 20f, 1f / 10f);
 
                 if (NPC.Distance(player.Center) > 500)
                     P3FlyTimer = 25;
 
             }
-            else if (NPC.Distance(player.Center) < 500 || P3FlyTimer2 > 0)
+            else if (NPC.Distance(player.Center) < 650 || P3FlyTimer2 > 0)
             {
                 Vector2 vel = -NPC.DirectionTo(player.Center);
 
-                NPC.velocity.X = MathHelper.Lerp(NPC.velocity.X, vel.X * 45f, 1f / 20f);
-                NPC.velocity.Y = MathHelper.Lerp(NPC.velocity.Y, vel.Y * 15f, 1f / 10f);
+                NPC.velocity.X = MathHelper.Lerp(NPC.velocity.X, vel.X * 50f, 1f / 20f);
+                NPC.velocity.Y = MathHelper.Lerp(NPC.velocity.Y, vel.Y * 20f, 1f / 10f);
 
 
                 if (NPC.Distance(player.Center) < 500)
@@ -2228,7 +2243,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
                 //Draw the vignette
                 var eff = ModContent.Request<Effect>("TranscendenceMod/Miscannellous/Assets/Shaders/Effects/SeraphArenaShader", AssetRequestMode.ImmediateLoad).Value;
                 eff.Parameters["uColor"].SetValue(new Vector3(DustColor.R / 255f, DustColor.G / 255f, DustColor.B / 255f));
-                eff.Parameters["uOpacity"].SetValue((Phase > 1 ? 24f : 12f) * arenaSizeShrinkAnim);
+                eff.Parameters["uOpacity"].SetValue(12f * arenaSizeShrinkAnim);
                 eff.Parameters["uImageSize0"].SetValue(new Vector2(BoundarySize));
                 eff.Parameters["uTime"].SetValue(Main.GlobalTimeWrappedHourly);
                 //Apply Space Texture
@@ -2240,7 +2255,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
                 spriteBatch.End();
                 spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullNone, eff, Main.GameViewMatrix.TransformationMatrix);
 
-                float mult = 13f;
+                float mult = 14f;
                 eff.Parameters["uImageSize1"].SetValue(shaderImage.Size() / 8f);
 
                 TranscendenceUtils.DrawEntity(NPC, Color.White, size * 12f, "TranscendenceMod/Miscannellous/Assets/InvisSprite", 0, arenaCenter, null);
@@ -2397,7 +2412,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
             if (Attack == SeraphAttacks.RoyalFlash)
             {
                 for (int i = -30; i < 40; i += 10)
-                    TranscendenceUtils.DrawEntity(NPC, Color.White * (skyFade * 3f) * NPCFade, NPC.scale * 0.75f, "bloom", NPC.rotation, NPC.Center - new Vector2(i, 86), null);
+                    TranscendenceUtils.DrawEntity(NPC, Color.White * (skyFade * 3f) * NPCFade, NPC.scale, "bloom", NPC.rotation, NPC.Center - new Vector2(i, 86), null);
             }
 
 
@@ -2431,12 +2446,6 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
                     TranscendenceUtils.DrawEntity(NPC, Color.White, MathHelper.Lerp(ballSize * 2.75f, 0f, fade), "TranscendenceMod/Miscannellous/Assets/GlowBloomNoBG", 0, NPC.oldPos[i] + NPC.Size / 2f, null);
 
                 }
-
-                spriteBatch.End();
-                spriteBatch.Begin(default, BlendState.Additive, Main.DefaultSamplerState, default, default, null, Main.GameViewMatrix.TransformationMatrix);
-
-                if (ProjectileCD[1] != 6 && !(ProjectileCD[1] == 0 && Timer_AI > (AttackDuration / 2)))
-                    TranscendenceUtils.DrawEntity(NPC, (ProjectileCD[1] == 5 && Phase != 2 ? Color.Red : Color.White) * ballSize, 3f, "TranscendenceMod/Miscannellous/Assets/SeraphMeteorStrike", rot, NPC.Center + (rot - MathHelper.PiOver2).ToRotationVector2() * 20f, null);
 
                 TranscendenceUtils.RestartSB(spriteBatch, BlendState.AlphaBlend, null);
 
@@ -2665,8 +2674,8 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
         
         public override bool PreKill()
         {
-            if (TranscendenceWorld.DownedSpaceBoss == false)
-                TranscendenceWorld.DownedSpaceBoss = true;
+            if (!Downed.Contains(Bosses.CelestialSeraph))
+                Downed.Add(Bosses.CelestialSeraph);
             return true;
         }
         public override void BossHeadSlot(ref int index)

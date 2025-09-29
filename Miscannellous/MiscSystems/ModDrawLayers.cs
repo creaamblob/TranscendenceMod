@@ -12,9 +12,39 @@ using TranscendenceMod.Items.Accessories.Movement.Wings;
 using TranscendenceMod.Items.Accessories.Movement;
 using TranscendenceMod.Items.Weapons.Melee;
 using TranscendenceMod.Items.Weapons.Ranged;
+using TranscendenceMod.Items.Tools.Compasses;
+using TranscendenceMod.NPCs.Boss.Seraph;
 
 namespace TranscendenceMod
 {
+    public class CompassNeedle : PlayerDrawLayer
+    {
+        public override Position GetDefaultPosition() => PlayerDrawLayers.AfterLastVanillaLayer;
+        public override bool GetDefaultVisibility(PlayerDrawSet drawInfo)
+        {
+            Player player = drawInfo.drawPlayer;
+            return player.HeldItem.ModItem is Compass;
+        }
+        protected override void Draw(ref PlayerDrawSet drawInfo)
+        {
+            Texture2D sprite = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/CompassNeedle").Value;
+
+            Player player = drawInfo.drawPlayer;
+            if (player.HeldItem.ModItem is not Compass compass)
+                return;
+
+            if (compass.Pos == Vector2.Zero)
+                return;
+
+            float rot = player.DirectionTo(compass.Pos).ToRotation() - MathHelper.PiOver4;
+            if (player.GetModPlayer<AngelsGatewayPlayer>().ZoneAngelGateway > 0 || NPC.AnyNPCs(ModContent.NPCType<CelestialSeraph>()))
+                rot = Main.rand.NextFloat(MathHelper.TwoPi);
+
+            var drawPos = drawInfo.Center + Vector2.One.RotatedBy(rot) * 125f - Main.screenPosition;
+            drawInfo.DrawDataCache.Add(new DrawData(sprite, drawPos, null, Color.White * 0.75f, rot + MathHelper.PiOver2 * 1.5f - player.fullRotation, sprite.Size() * 0.5f, 1f, SpriteEffects.None));
+        }
+    }
+
     public class CosmicSet : PlayerDrawLayer
     {
         public float rot;

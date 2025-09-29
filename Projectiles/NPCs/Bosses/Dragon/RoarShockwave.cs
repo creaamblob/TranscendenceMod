@@ -29,7 +29,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Dragon
             Projectile.tileCollide = false;
             Projectile.aiStyle = -1;
             Projectile.hostile = true;
-            Projectile.timeLeft = 3450;
+            Projectile.timeLeft = 2500;
             Projectile.penetrate = -1;
             Projectile.extraUpdates = 1;
         }
@@ -44,9 +44,9 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Dragon
             ProjectileID.Sets.DrawScreenCheckFluff[Type] = 2500;
             
 
-            if (++Timer > 15 && Projectile.extraUpdates < 85)
+            if (++Timer > 5 && Projectile.extraUpdates < 100)
             {
-                Projectile.extraUpdates++;
+                Projectile.extraUpdates += 2;
                 Timer = 0;
             }
 

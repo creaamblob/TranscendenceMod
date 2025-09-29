@@ -52,8 +52,14 @@ namespace TranscendenceMod.Miscannellous.UI
             int x = Main.screenWidth / 2;
             x -= bar.Width / 2;
             int y = (int)(Main.screenHeight * 0.875f);
+
+
             Rectangle barRec = new Rectangle(x, y, bar.Width, bar.Height);
+            Rectangle barRec2 = new Rectangle(x, y, bar.Width, bar.Height + 8);
+
+            spriteBatch.Draw(bar, barRec2, Color.Black * 0.33f);
             spriteBatch.Draw(bar, barRec, Color.White);
+
 
 
             int remaining = (int)(MathHelper.Lerp(240, 0, npc.life / (float)npc.lifeMax));
@@ -82,21 +88,21 @@ namespace TranscendenceMod.Miscannellous.UI
 
             DynamicSpriteFont font = FontAssets.MouseText.Value;
             string hpText = npc.life + " / " + npc.lifeMax + $" ({ Math.Round(MathHelper.Lerp(0, 100, npc.life / (float)npc.lifeMax), 1)}% )";
-            ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font,
-                hpText, new Vector2(x + 163 - font.MeasureString(hpText).X * 0.375f / 1.5f, y + 12), col * 0.66f, 0, Vector2.Zero, Vector2.One * 0.75f);
 
-            string defText = npc.defense.ToString();
             ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font,
-                defText, new Vector2(x + 20 - font.MeasureString(defText).X * 0.375f, y + 36), Color.Lerp(Color.Lime, Color.Aqua, 0.5f), 0, Vector2.Zero, Vector2.One * 0.75f);
+                hpText, new Vector2(x + 163 - font.MeasureString(hpText).X * 0.375f / 1.5f, y + 16), Color.Black * 0.5f, 0, Vector2.Zero, Vector2.One * 0.75f);
+            ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font,
+                hpText, new Vector2(x + 163 - font.MeasureString(hpText).X * 0.375f / 1.5f, y + 12), col, 0, Vector2.Zero, Vector2.One * 0.75f);
+
 
             string text = npc.FullName;
             if (npc.ModNPC is CelestialSeraph boss2)
             {
-                text = npc.FullName + " > " + $"[C/c200ff:{boss2.CurrentAttack}]";
+                text = npc.FullName + " > " + $"[C/8e34c9:{boss2.CurrentAttack}]";
             }
 
             ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font,
-                text, new Vector2(x + 58, y + 36), Color.White, 0, Vector2.Zero, Vector2.One * 0.66f);
+                text, new Vector2(x + 58, y + 36), Color.Gray * 0.75f, 0, Vector2.Zero, Vector2.One * 0.66f);
         }
     }
 }

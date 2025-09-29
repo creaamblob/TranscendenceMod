@@ -1,61 +1,63 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.GameInput;
+using Terraria.Graphics.CameraModifiers;
 using Terraria.Graphics.Effects;
+using Terraria.Graphics.Renderers;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.ModLoader.UI;
 using TranscendenceMod.Buffs;
 using TranscendenceMod.Buffs.Items;
-using TranscendenceMod.Dusts;
-using TranscendenceMod.Items.Accessories.Movement.Wings;
-using TranscendenceMod.Items.Accessories.Vanity;
-using TranscendenceMod.Items.Weapons.Ranged;
-using TranscendenceMod.Miscannellous;
-using TranscendenceMod.Miscannellous.GlobalStuff;
-using TranscendenceMod.Projectiles.Equipment;
-using SoundEngine = Terraria.Audio.SoundEngine;
-using Terraria.GameContent;
-using System;
-using TranscendenceMod.Items.Materials;
-using System.Collections.Generic;
-using static Terraria.Player;
-using TranscendenceMod.Items.Accessories.Shields;
-using TranscendenceMod.Items.Armor.Sets.Cosmic;
-using TranscendenceMod.Items.Consumables.Placeables.SpaceBiome;
-using TranscendenceMod.Tiles.TilesheetHell.Nature;
-using TranscendenceMod.Items.Consumables.LootBags;
-using TranscendenceMod.Items.Materials.Fish;
-using TranscendenceMod.NPCs.SpaceBiome;
-using TranscendenceMod.Items.Accessories.Offensive.EoL;
-using TranscendenceMod.NPCs.Boss.Seraph;
-using TranscendenceMod.Miscannellous.UI.ModifierUI;
-using Terraria.Graphics.Renderers;
-using TranscendenceMod.Buffs.Items.Potions;
-using TranscendenceMod.Items.Consumables.FoodAndDrinks;
-using TranscendenceMod.Projectiles.Modifiers;
-using Terraria.Graphics.CameraModifiers;
-using TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss;
-using TranscendenceMod.NPCs.Boss.FrostSerpent;
-using TranscendenceMod.Miscannellous.Biomes;
-using TranscendenceMod.Items.Tools;
-using TranscendenceMod.Projectiles.Equipment.Tools;
-using TranscendenceMod.Miscanellous.MiscSystems;
-using TranscendenceMod.Projectiles.NPCs.Bosses.Nucleus;
-using TranscendenceMod.NPCs.Boss.Nucleus;
 using TranscendenceMod.Buffs.Items.Modifiers;
+using TranscendenceMod.Buffs.Items.Potions;
+using TranscendenceMod.Dusts;
 using TranscendenceMod.Items;
+using TranscendenceMod.Items.Accessories.Movement.Wings;
+using TranscendenceMod.Items.Accessories.Offensive.EoL;
+using TranscendenceMod.Items.Accessories.Shields;
+using TranscendenceMod.Items.Accessories.Vanity;
+using TranscendenceMod.Items.Armor.Sets.Cosmic;
 using TranscendenceMod.Items.Consumables;
-using Terraria.ModLoader.UI;
-using TranscendenceMod.Items.Mounts;
-using TranscendenceMod.Items.Materials.MobDrops;
+using TranscendenceMod.Items.Consumables.FoodAndDrinks;
+using TranscendenceMod.Items.Consumables.LootBags;
+using TranscendenceMod.Items.Consumables.Placeables.SpaceBiome;
 using TranscendenceMod.Items.Farming.Seeds;
-using TranscendenceMod.Miscannellous.UI.Processer;
+using TranscendenceMod.Items.Materials;
+using TranscendenceMod.Items.Materials.Fish;
+using TranscendenceMod.Items.Materials.MobDrops;
+using TranscendenceMod.Items.Mounts;
+using TranscendenceMod.Items.Tools;
+using TranscendenceMod.Items.Weapons.Ranged;
+using TranscendenceMod.Miscanellous.MiscSystems;
+using TranscendenceMod.Miscannellous;
+using TranscendenceMod.Miscannellous.Biomes;
+using TranscendenceMod.Miscannellous.GlobalStuff;
 using TranscendenceMod.Miscannellous.UI.Achievements;
+using TranscendenceMod.Miscannellous.UI.ModifierUI;
+using TranscendenceMod.Miscannellous.UI.Processer;
+using TranscendenceMod.NPCs.Boss.FrostSerpent;
+using TranscendenceMod.NPCs.Boss.Nucleus;
+using TranscendenceMod.NPCs.Boss.Seraph;
+using TranscendenceMod.NPCs.Passive;
+using TranscendenceMod.NPCs.SpaceBiome;
+using TranscendenceMod.Projectiles.Equipment;
+using TranscendenceMod.Projectiles.Equipment.Tools;
+using TranscendenceMod.Projectiles.Modifiers;
+using TranscendenceMod.Projectiles.NPCs.Bosses.Nucleus;
+using TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss;
+using TranscendenceMod.Tiles.TilesheetHell.Nature;
+using static Terraria.Player;
+using static TranscendenceMod.TranscendenceWorld;
+using SoundEngine = Terraria.Audio.SoundEngine;
 
 namespace TranscendenceMod
 {
@@ -89,7 +91,6 @@ namespace TranscendenceMod
 
         public bool NohitMode;
         public bool RingOfBravery;
-        public bool PocketGuillotine;
 
         public bool Possessing;
         public int PossessingTimer;
@@ -113,6 +114,7 @@ namespace TranscendenceMod
 
         public bool OverloadedCore;
         public int OCoreTimer;
+        public int OCoreChargeTimer;
 
         /**/
         public bool AstronautHelmet;
@@ -424,7 +426,7 @@ namespace TranscendenceMod
         }
         public override void ResetEffects()
         {
-            FocusGatherSpeed = 0.075f;
+            FocusGatherSpeed = 0.1f;
             ParryFocusCost = 35f;
             MysticCards = 0;
             Jolly = 0;
@@ -434,7 +436,6 @@ namespace TranscendenceMod
             DraconicFury = false;
             SunMelt = false;
             RingOfBravery = false;
-            PocketGuillotine = false;
             FrostBite = false;
             FairerMoonlord = false;
 
@@ -812,10 +813,6 @@ namespace TranscendenceMod
 
                 Gore.NewGore(Player.GetSource_Death(), Player.Center, Main.rand.NextVector2Circular(2f, 2f), gore);
                 Gore.NewGore(Player.GetSource_Death(), Player.Center, Main.rand.NextVector2Circular(2f, 2f), gore2);
-
-                SoundEngine.PlaySound(SoundID.NPCDeath1, Player.Center);
-                playSound = false;
-                genGore = false;
             }
 
             if (LacewingTrans)
@@ -1075,10 +1072,13 @@ namespace TranscendenceMod
             {
                 Player.flapSound = true;
 
-                if (Player.controlJump && Player.wingTime > 0 && TranscendenceWorld.Timer % 2 == 0)
+                if (Player.controlJump && TranscendenceWorld.Timer % 2 == 0)
                 {
-                    Dust.NewDustPerfect(Player.Center - new Vector2((Player.width - 6) * Player.direction, -8), ModContent.DustType<Ember>(), new Vector2(-2 * Player.direction, 2.5f), 0, default, 0.375f);
-                    Dust.NewDustPerfect(Player.Center - new Vector2(((Player.width / -2)) * Player.direction, -8), ModContent.DustType<Ember>(), new Vector2(2 * Player.direction, 2.5f), 0, default, 0.375f);
+                    Dust d = Dust.NewDustPerfect(Player.Center - new Vector2((Player.width - 2) * Player.direction, -8), DustID.Torch, new Vector2(-2 * Player.direction, 0.5f), 0, default, 2f);
+                    d.noGravity = true;
+
+                    Dust d2 = Dust.NewDustPerfect(Player.Center + new Vector2((Player.width - 6) * Player.direction, 8), DustID.Torch, new Vector2(-2 * Player.direction, 0.5f), 0, default, 2f);
+                    d2.noGravity = true;
                 }
                 if (Player.wingFrame == 3 && TranscendenceWorld.Timer % 4 == 0)
                 {
@@ -1091,18 +1091,13 @@ namespace TranscendenceMod
 
             Player.position = Player.Bottom;
 
-            if (InsideShell == 0 && !InsideGolem && FishTrans == 0 && !Possessing && !PocketGuillotine && !LacewingTrans)
+            if (InsideShell == 0 && !InsideGolem && FishTrans == 0 && !Possessing && !LacewingTrans)
             {
                 Player.width = increasedWidth;
                 Player.height = increasedHeight;
             }
             else
             {
-                if (PocketGuillotine)
-                {
-                    Player.width = increasedWidth;
-                    Player.height = 28;
-                }
                 if (FishTrans > 0)
                 {
                     Player.width = 14;
@@ -1137,8 +1132,6 @@ namespace TranscendenceMod
         }
         public override bool CanBeHitByNPC(NPC npc, ref int cooldownSlot)
         {
-            if (npc.lifeMax == 250 && npc.friendly)
-                return true;
             if (Player.GetModPlayer<Dashes>().dashBounce > 0 && Player.GetModPlayer<Dashes>().ramTimer > 0)
                 return false;
 
@@ -1146,14 +1139,7 @@ namespace TranscendenceMod
         }
         public override bool CanBeHitByProjectile(Projectile proj)
         {
-            if (Player.HasBuff(ModContent.BuffType<SeraphTimeStop>()))
-                return false;
-
             return base.CanBeHitByProjectile(proj);
-        }
-        public void ShieldBreak(int am)
-        {
-            Player.AddBuff(ModContent.BuffType<ShieldBreak>(), am);
         }
         public override void PostHurt(HurtInfo info)
         {
@@ -1202,14 +1188,6 @@ namespace TranscendenceMod
 
         public override void HideDrawLayers(PlayerDrawSet drawInfo)
         {
-            if (PocketGuillotine)
-            {
-                foreach (var layer in PlayerDrawLayerLoader.Layers)
-                {
-                    if (layer.Name == "Head" || layer.Name == "HairFront" || layer.Name == "HairBack") layer.Hide();
-                }
-            }
-
             if (Possessing || NucleusConsumed > 0)
             {
                 drawInfo.hideEntirePlayer = true;
@@ -1218,7 +1196,7 @@ namespace TranscendenceMod
                     layer.Hide();
                 }
             }
-            if (FishTrans > 0)
+            if (FishTrans > 0 && !Player.dead)
             {
                 foreach (var layer in PlayerDrawLayerLoader.Layers)
                 {
@@ -1435,8 +1413,10 @@ namespace TranscendenceMod
                 FocusGatherSpeed = FocusGatherSpeed + increase;
             }
 
+            float MoveMult = Player.velocity.Length() > 12.5f ? 0f : MathHelper.Lerp(1f, 0f, Player.velocity.Length() / 12.5f);
+
             if (Focus < MaxFocus)
-                Focus += FocusGatherSpeed;
+                Focus += FocusGatherSpeed * MoveMult;
             else Focus = MaxFocus;
 
             if (Focus <= ParryFocusCost)
@@ -1521,17 +1501,16 @@ namespace TranscendenceMod
             Tile tile2 = Main.tile[(int)Player.Center.X / 16, (int)Player.Center.Y / 16];
 
             bool cond = Player.wet && Player.controlUp && FishNeck;
-            if (cond || FishTrans > 0)
+            if (cond)
             {
-                if (FishTrans == 0 || FishTrans == 1)
+                if (FishTrans == 0)
                 {
                     for (int i = 0; i < 32; i++)
                         Dust.NewDustPerfect(Player.Center, ModContent.DustType<ArenaDust>(), new Vector2(0, 5f + (float)Math.Sin(i) * 2f).RotatedBy(MathHelper.TwoPi * i / 32f + MathHelper.PiOver4 / 2f), 0, Color.Blue, 3f);
                 }
-                if (cond)
-                    FishTrans = 90;
-                Player.gills = true;
 
+                FishTrans = 5;
+                Player.gills = true;
                 FullRotResetCD = 5;
 
                 CannotUseItems = true;
@@ -1540,6 +1519,7 @@ namespace TranscendenceMod
                 Player.endurance *= 0f;
                 Player.DefenseEffectiveness *= 0f;
                 Player.mount.Dismount(Player);
+                Player.velocity.X *= 0f;
 
                 if (TranscendenceWorld.Timer % 10 == 0)
                 {
@@ -1548,27 +1528,18 @@ namespace TranscendenceMod
                         FishFrame = 0;
                 }
 
-                if (Player.wet)
+                if (Player.controlUp)
                 {
-                    if (Player.controlUp)
-                    {
-                        Player.velocity = Player.DirectionTo(Main.MouseWorld) * 5f;
-                        Player.fullRotationOrigin = new Vector2(8);
-                        Player.fullRotation = Player.DirectionTo(Main.MouseWorld).ToRotation() + MathHelper.PiOver2;
-                        Player.direction = Main.MouseWorld.X > Player.Center.X ? 1 : -1;
-                    }
-                    else
-                    {
-                        Player.velocity *= 0.9f;
-                        Player.gravity *= 0f;
-                    }
+                    Player.velocity = Player.DirectionTo(Main.MouseWorld) * 5f;
+                    Player.fullRotationOrigin = new Vector2(8);
+                    Player.fullRotation = Player.DirectionTo(Main.MouseWorld).ToRotation() + MathHelper.PiOver2;
+                    Player.direction = Main.MouseWorld.X > Player.Center.X ? 1 : -1;
                 }
                 else
                 {
-                    Player.velocity.Y += 0.05f;
-                    Player.AddBuff(BuffID.Suffocation, 2);
+                    Player.velocity *= 0.9f;
+                    Player.gravity *= 0f;
                 }
-
 
                 Player.controlLeft = false;
                 Player.controlRight = false;
@@ -1630,7 +1601,7 @@ namespace TranscendenceMod
                                 dmg = 230;
                             if (NPC.downedMoonlord)
                                 dmg = 295;
-                            if (TranscendenceWorld.DownedNucleus)
+                            if (Downed.Contains(Bosses.ProjectNucleus))
                                 dmg = 360;
 
                             SoundEngine.PlaySound(SoundID.DD2_OgreSpit, Player.Center);
@@ -1653,7 +1624,7 @@ namespace TranscendenceMod
                                     dmg = 300;
                                 if (NPC.downedMoonlord)
                                     dmg = 355;
-                                if (TranscendenceWorld.DownedNucleus)
+                                if (Downed.Contains(Bosses.ProjectNucleus))
                                     dmg = 425;
                             }
 
@@ -2278,9 +2249,14 @@ namespace TranscendenceMod
             }
 
             /*Dashing*/
-            Player.TryGetModPlayer(out Dashes dashes);if (TranscendenceWorld.HyperDash.JustPressed && OCoreTimer < 4)
+            Player.TryGetModPlayer(out Dashes dashes);
+            if (TranscendenceWorld.HyperDash.JustPressed)
                 HyperDashKeybind = true;
-            if (TranscendenceWorld.HyperDash.JustReleased) HyperDashKeybind = false;
+            if (TranscendenceWorld.HyperDash.JustReleased)
+            {
+                OCoreChargeTimer = 0;
+                HyperDashKeybind = false;
+            }
         }
         public override void ModifyScreenPosition()
         {

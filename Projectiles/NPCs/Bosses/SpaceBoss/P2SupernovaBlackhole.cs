@@ -44,7 +44,8 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
                 Projectile.scale += 1f / 60f;
 
             NPC npc = Main.npc[(int)Projectile.ai[1]];
-            if (npc == null) return;
+            if (npc == null || !npc.active)
+                Projectile.Kill();
 
 
             Player player = Main.player[npc.target];
@@ -60,6 +61,8 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             float speed2 = (float)Math.Sin(Projectile.ai[0]) * 140;
 
             Projectile.ai[2] += 0.25f;
+            if (Projectile.ai[2] % 0.75f == 0)
+                player.velocity += player.DirectionTo(Projectile.Center);
 
             if (Projectile.timeLeft > 90)
                 Projectile.velocity = Vector2.Lerp(Projectile.velocity, Projectile.DirectionTo(player.Center + Vector2.One.RotatedBy(Projectile.ai[2] * (float)Math.Tan(Projectile.ai[2] / 20)) * dist) * (90f + (speed2 * 0.66f)), changeSpeed);

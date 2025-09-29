@@ -72,14 +72,14 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Nucleus
 
             if (player != null && player.active)
             {
-                if (player.Distance(Projectile.Center) < 5000 && Timer2 > 30 && Timer2 < 285)
+                if (player.Distance(Projectile.Center) < 5000 && Timer2 > 30 && Timer2 < 150)
                 {
                     if (Timer2 % 8 == 0)
                     {
                         pos = player.Center + Vector2.One.RotatedBy(Projectile.DirectionTo(player.Center).ToRotation() - MathHelper.PiOver4) * 1750;
                     }
                     Vector2 targetVelocity = Projectile.DirectionTo(pos + Vector2.One.RotatedByRandom(360) * Main.rand.Next(65, 175)) * Speed;
-                    Projectile.velocity = Vector2.Lerp(Projectile.velocity * (InsideLiquid ? 0.6f : 1f), targetVelocity, InsideLiquid ? 0.05f : 0.02f);
+                    Projectile.velocity = Vector2.Lerp(Projectile.velocity * (InsideLiquid ? 0.6f : 1f), targetVelocity, 0.0375f);
                     Timer = 0;
                 }
             } 

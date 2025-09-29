@@ -13,6 +13,8 @@ using TranscendenceMod.Items.Modifiers;
 using System.Collections.Generic;
 using TranscendenceMod.Tiles.TilesheetHell.Nature;
 using Terraria.DataStructures;
+using TranscendenceMod.NPCs.Passive;
+using Steamworks;
 
 namespace TranscendenceMod.Miscannellous
 {
@@ -519,20 +521,63 @@ namespace TranscendenceMod.Miscannellous
             }
         }
     }
-    public class Temple : GenPass
+    public class Structures : GenPass
     {
-        public Temple(string name, double loadWeight) : base(name, loadWeight)
+        public Structures(string name, double loadWeight) : base(name, loadWeight)
         {
         }
 
         [JITWhenModsEnabled("StructureHelper")]
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = "Building the Cosmic Cathedral";
+            progress.Message = "Creating Transcendence Structures";
             int sx = (int)(Main.maxTilesX / 3.75f);
             int sy = 135;
 
             StructureHelper.API.Generator.GenerateStructure("Miscannellous/CosmicChurch", new Point16(sx - 30, (sy - 78) - 15), TranscendenceMod.Instance, false, true);
+
+            int quarterX = (int)(Main.maxTilesX * 0.25f);
+            int quarterY = (int)(Main.maxTilesY * 0.25f);
+            int count = 0;
+
+            for (int i = quarterX; i < (Main.maxTilesX - quarterX); i++)
+            {
+                if (count >= 480)
+                    break;
+
+                for (int j = (int)(quarterY * 1.5f); j < (Main.maxTilesY - quarterY); j++)
+                {
+                    Tile tile = Main.tile[i, j];
+                    if (tile.TileType == TileID.SnowBlock || tile.TileType == TileID.IceBlock)
+                    {
+                        Point point = new Point(i, j);
+                        Ref<int> solidTiles = new Ref<int>(0);
+
+                        WorldUtils.Gen(point, new Shapes.Rectangle(29, 18), Actions.Chain(new GenAction[]
+                        {
+                            new Actions.ContinueWrapper(Actions.Chain(new GenAction[]
+                            {
+                                new Modifiers.IsSolid(),
+                                new Actions.Custom((i, j, args) => {
+                                    count++;
+                                    return true; }),
+                                new Actions.Scanner(solidTiles)
+                            }))
+                        }));
+
+                        if (count >= 480)
+                        {
+                            StructureHelper.API.Generator.GenerateStructure("Miscannellous/SnowmanHouse", new Point16(i, j), TranscendenceMod.Instance, false, false);
+
+                            Vector2 npcPos = new Vector2(i + 7, j + 13).ToWorldCoordinates();
+                            NPC.NewNPC(NPC.GetSource_None(), (int)npcPos.X, (int)npcPos.Y, ModContent.NPCType<SnowmanNPC>());
+
+                            break;
+                        }
+                    }
+                }
+            }
+            void End() => Console.Write("Placed Snowman House!");
         }
     }
     public class CosmicValleyGenPass : GenPass
@@ -559,7 +604,7 @@ namespace TranscendenceMod.Miscannellous
             NetMessage.SendTileSquare(-1, sx, spy, 250);
 
             //Hills at the edge
-            WorldUtils.Gen(new Point(sx + 380, spy), new Shapes.Slime(59), new Actions.SetTileKeepWall(TileID.Dirt));
+            WorldUtils.Gen(new Point(sx + 385, spy), new Shapes.Slime(59), new Actions.SetTileKeepWall(TileID.Dirt));
             WorldUtils.Gen(new Point(sx - 380, spy), new Shapes.Slime(59), new Actions.SetTileKeepWall(TileID.Dirt));
 
             //The actual hole

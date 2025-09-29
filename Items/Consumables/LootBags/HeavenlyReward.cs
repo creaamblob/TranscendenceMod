@@ -41,7 +41,7 @@ namespace TranscendenceMod.Items.Consumables.LootBags
             IItemDropRule[] Generic = new IItemDropRule[] {
                 ItemDropRule.Common(ItemID.MeteoriteBar, 2, 14, 20),
                 ItemDropRule.Common(ItemID.LunarBar, 2, 6, 14),
-                ItemDropRule.Common(ModContent.ItemType<SunBar>(), 2, 8, 12),
+                ItemDropRule.Common(ModContent.ItemType<SunburntAlloy>(), 2, 8, 12),
 
                 ItemDropRule.Common(ModContent.ItemType<FlowerEssence>(), 2, 1, 3),
                 ItemDropRule.Common(ModContent.ItemType<Starfruit>(), 2, 1, 2),

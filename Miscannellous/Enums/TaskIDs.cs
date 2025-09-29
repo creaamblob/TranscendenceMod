@@ -6,10 +6,10 @@ namespace TranscendenceMod
     }
     public enum TaskIDs : byte
     {
-        Begin, Parry, Modifier, ModifierBag, Snowman, CosmicNPC, Timedial, Hardmetal, Headless,
+        Begin, Parry, Modifier, ModifierBag, Snowman, CosmicNPC, Timedial, Hardmetal, Procession,
         Volcanic, sans, Muramasa, Wall, Empress, Moonlord, VoidBiome, FrostSerpent, Atmospheron,
-        PoseidonFrag, NucleusCaller, Nucleus, Artifact, Seraph, StarForge, /*GAP HERE*/
-        PreFinalBoss, FinalBoss, EmpressChallenge, NucleusChallenge
+        PoseidonFrag, NucleusCaller, Nucleus, Artifact, Seraph, StarForge,
+        EmpressChallenge, NucleusChallenge
     }
 }
 

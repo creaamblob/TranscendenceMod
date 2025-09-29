@@ -38,7 +38,7 @@ namespace TranscendenceMod.Items.Armor.Sets.Shark
         }
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Melee) += 0.15f;
+            player.GetDamage(DamageClass.Melee) += 0.2f;
             player.GetAttackSpeed(DamageClass.Melee) += 0.25f;
         }
         public override void UpdateArmorSet(Player player)

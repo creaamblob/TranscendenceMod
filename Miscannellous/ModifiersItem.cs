@@ -308,10 +308,9 @@ namespace TranscendenceMod.Miscannellous
         {
             if (Modifier == ModifierIDs.Luminous)
             {
-                player.GetModPlayer<TranscendencePlayer>().CritDamage += 0.066f;
+                player.GetModPlayer<TranscendencePlayer>().CritDamage += 0.05f;
                 player.GetModPlayer<TranscendencePlayer>().Luminosity += 0.2f;
-                if (!Main.eclipse)
-                    player.GetCritChance(DamageClass.Generic) -= 5f;
+                player.gravity *= 1.075f;
             }
             if (Modifier == ModifierIDs.CultistScroll)
             {

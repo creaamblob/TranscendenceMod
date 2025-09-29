@@ -25,6 +25,7 @@ using TranscendenceMod.Miscannellous.UI;
 using TranscendenceMod.Projectiles;
 using TranscendenceMod.Projectiles.NPCs.Bosses.FrostSerpent;
 using TranscendenceMod.Projectiles.Weapons.Magic;
+using static TranscendenceMod.TranscendenceWorld;
 
 namespace TranscendenceMod.NPCs.Boss.FrostSerpent
 {
@@ -128,7 +129,6 @@ namespace TranscendenceMod.NPCs.Boss.FrostSerpent
             normalMode.OnSuccess(ItemDropRule.FewFromOptions(2, 1,
                 ModContent.ItemType<MountaintopGlacier>(),
                 ModContent.ItemType<Snowshot>(),
-                ModContent.ItemType<Lumimyrsky>(),
                 ModContent.ItemType<FrozenMaws>()));
 
             /*Loot Bag, Relic and Pet*/
@@ -659,8 +659,8 @@ namespace TranscendenceMod.NPCs.Boss.FrostSerpent
                 NPC.chaseable = false;
                 NPC.dontTakeDamage = false;
 
-                if (!TranscendenceWorld.DownedFrostSerpent)
-                    TranscendenceWorld.DownedFrostSerpent = true;
+                if (!Downed.Contains(Bosses.FrostSerpent))
+                    Downed.Add(Bosses.FrostSerpent);
             }
         }
         public override bool CheckDead()

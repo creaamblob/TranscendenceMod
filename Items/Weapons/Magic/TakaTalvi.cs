@@ -58,10 +58,9 @@ namespace TranscendenceMod.Items.Weapons.Magic
             CreateRecipe()
             .AddIngredient(ModContent.ItemType<Lumimyrsky>())
             .AddIngredient(ItemID.SpectreStaff)
-            .AddIngredient(ModContent.ItemType<AtmospheragonScale>(), 4)
-            .AddIngredient(ModContent.ItemType<PoseidonsTide>(), 8)
-            .AddIngredient(ItemID.FrostCore, 2)
             .AddIngredient(ItemID.SnowBlock, 250)
+            .AddIngredient(ModContent.ItemType<PoseidonsTide>(), 8)
+            .AddIngredient(ItemID.IceFeather, 2)
             .AddTile(TileID.MythrilAnvil)
             .Register();
         }

@@ -29,7 +29,7 @@ namespace TranscendenceMod.Items.Armor.Sets.Shark
         }
         public override void UpdateEquip(Player player)
         {
-            player.GetCritChance(DamageClass.Melee) += 0.15f;
+            player.GetCritChance(DamageClass.Melee) += 0.2f;
             player.moveSpeed += 0.2f;
         }
         public override void AddRecipes()

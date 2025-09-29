@@ -9,6 +9,7 @@ using TranscendenceMod.Items.Weapons.Melee;
 using TranscendenceMod.Miscannellous;
 using TranscendenceMod.Miscannellous.Rarities;
 using TranscendenceMod.Projectiles.Weapons.Crean;
+using static TranscendenceMod.TranscendenceWorld;
 
 namespace TranscendenceMod.Items.Weapons
 {
@@ -28,8 +29,8 @@ namespace TranscendenceMod.Items.Weapons
             Item.shoot = ProjectileID.PurificationPowder;
             Item.shootSpeed = 36f;
 
-            Item.useTime = 20;
-            Item.useAnimation = 20;
+            Item.useTime = 35;
+            Item.useAnimation = 35;
             Item.autoReuse = true;
 
             Item.useStyle = ItemUseStyleID.None;
@@ -56,10 +57,12 @@ namespace TranscendenceMod.Items.Weapons
         public override void AddRecipes()
         {
             CreateRecipe()
+            .AddIngredient(ItemID.SapphireStaff)
             .AddIngredient(ItemID.RainbowRod)
             .AddIngredient(ModContent.ItemType<SpritersBrush>())
             .AddIngredient(ItemID.SoulofFlight, 125)
             .AddIngredient(ItemID.SoulofLight, 50)
+            .AddIngredient(ItemID.Sapphire, 25)
             .AddIngredient(ItemID.LunarOre, 5)
             .AddTile(TileID.LunarCraftingStation)
             .Register();
@@ -70,6 +73,7 @@ namespace TranscendenceMod.Items.Weapons
         public int Combo;
         public int TimeSinceSpawn;
         public int dir;
+        public float Recoil;
         Player player;
         public override string Texture => "TranscendenceMod/Items/Weapons/CreanStaff";
         public override void SetDefaults()
@@ -80,9 +84,12 @@ namespace TranscendenceMod.Items.Weapons
 
             Projectile.tileCollide = false;
             Projectile.timeLeft = 15;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 10;
 
             Projectile.friendly = true;
-            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.DamageType = DamageClass.Generic;
+            Projectile.penetrate = -1;
         }
         public override bool? CanDamage() => false;
         public override bool PreDraw(ref Color lightColor)
@@ -90,13 +97,14 @@ namespace TranscendenceMod.Items.Weapons
             Texture2D sprite = ModContent.Request<Texture2D>(Texture).Value;
             if (TimeSinceSpawn > 5)
             {
-                if (Main.MouseWorld.Distance(player.Center) > 75)
-                {
-                    Main.EntitySpriteDraw(sprite, Projectile.Center - Main.screenPosition, null, Color.White, Projectile.rotation + player.fullRotation + MathHelper.PiOver2, sprite.Size() * 0.5f, 1f,
-                        SpriteEffects.None);
-                }
+                Main.EntitySpriteDraw(sprite, Projectile.Center - Main.screenPosition, null, Color.White, Projectile.rotation + player.fullRotation + MathHelper.PiOver2 + MathHelper.ToRadians(Main.rand.NextFloat(4f, 4f) * Recoil), sprite.Size() * 0.5f, 1f,
+                    SpriteEffects.None);
             }
             return false;
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            base.OnHitNPC(target, hit, damageDone);
         }
         public override void AI()
         {
@@ -106,17 +114,20 @@ namespace TranscendenceMod.Items.Weapons
                 Projectile.timeLeft = 5;
             else return;
 
-            Vector2 pos = player.Center + Projectile.velocity * 5.65f;
+            Vector2 pos = player.Center + Projectile.velocity * 5.5f;
             Projectile.Center = pos;
             player.heldProj = Projectile.whoAmI;
             TimeSinceSpawn++;
+
+            if (Recoil > 0f)
+                Recoil = MathHelper.Lerp(Recoil, 0f, 1f / 5f);
 
             if (TimeSinceSpawn < 5)
                 Projectile.ai[1] = -1;
 
             float rotation = (player.Center - Main.MouseWorld).ToRotation() + MathHelper.PiOver2 + MathHelper.PiOver4 - player.fullRotation;
 
-            Projectile.velocity = Projectile.DirectionTo(Main.MouseWorld) * 6.65f;
+            Projectile.velocity = player.DirectionTo(Main.MouseWorld) * (7.5f - Recoil);
             Projectile.rotation = rotation;
 
             Vector2 vec = Projectile.Center + Projectile.velocity * 4f;
@@ -128,53 +139,50 @@ namespace TranscendenceMod.Items.Weapons
             int cog = ModContent.ProjectileType<CreanCog>();
             int stargazer = ModContent.ProjectileType<CreanStargazer>();
 
-            if (player.ownedProjectileCounts[snatcher] == 0 && TranscendenceWorld.DownedFrostSerpent)
+            if (player.ownedProjectileCounts[snatcher] == 0 && Downed.Contains(Bosses.FrostSerpent))
             {
                 for (int i = 0; i < 5; i++)
                     Projectile.NewProjectile(player.GetSource_FromAI(), player.Center, Vector2.Zero, snatcher, player.HeldItem.damage / 4, 2f, player.whoAmI, 0f, i, 5f);
             }
-            if (player.ownedProjectileCounts[cog] == 0 && TranscendenceWorld.DownedNucleus)
+            if (player.ownedProjectileCounts[cog] == 0 && Downed.Contains(Bosses.ProjectNucleus))
             {
                 Projectile.NewProjectile(player.GetSource_FromAI(), player.Center, vel * 8f, cog, player.HeldItem.damage, 3f, player.whoAmI);
             }
-            if (player.ownedProjectileCounts[stargazer] < 2 && TranscendenceWorld.DownedSpaceBoss)
+            if (player.ownedProjectileCounts[stargazer] < 2 && Downed.Contains(Bosses.CelestialSeraph))
             {
                 Projectile.NewProjectile(player.GetSource_FromAI(), player.Center, Vector2.Zero, stargazer, player.HeldItem.damage, 2f, player.whoAmI, 0f, player.ownedProjectileCounts[stargazer], 2f);
             }
 
-            if (Main.MouseWorld.Distance(player.Center) > 75)
+            player.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, rotation - MathHelper.PiOver4);
+            dir = Main.MouseWorld.X > player.Center.X ? 1 : -1;
+            player.direction = dir;
+
+
+            if (Projectile.ai[2] > 0)
+                Projectile.ai[2]--;
+
+            if (player.controlUseItem && Projectile.ai[2] == 0)
             {
-                player.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, rotation - MathHelper.PiOver4);
-                dir = Main.MouseWorld.X > player.Center.X ? 1 : -1;
-                player.direction = dir;
+                for (int i = 0; i < 3; i++)
+                SoundEngine.PlaySound(SoundID.Item72 with { Volume = 2, MaxInstances = 0}, Projectile.Center);
+
+                int p = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Projectile.DirectionTo(Main.MouseWorld),
+                    ModContent.ProjectileType<CreanStargazerLaser>(), Projectile.damage, 2f, Projectile.owner, 0, Projectile.whoAmI, 1f);
+                Main.projectile[p].localAI[2] = Main.rand.Next(0, 40);
 
 
-                if (Projectile.ai[2] > 0)
-                    Projectile.ai[2]--;
-
-                if (player.controlUseItem && Projectile.ai[2] == 0)
+                if (player.HeldItem.GetGlobalItem<ModifiersItem>().ChargerCharge > 0)
                 {
-                    SoundEngine.PlaySound(SoundID.Item67, Projectile.Center);
-
-                    float speed = 5f;
-                    int p = Projectile.NewProjectile(Projectile.GetSource_FromAI(), vec, vel * speed, ModContent.ProjectileType<CreanLaser>(), player.HeldItem.damage / 2, Projectile.knockBack, player.whoAmI, 0f, 0f, 1f);
-                    int p2 = Projectile.NewProjectile(Projectile.GetSource_FromAI(), vec, vel * speed, ModContent.ProjectileType<CreanLaser>(), player.HeldItem.damage / 2, Projectile.knockBack, player.whoAmI, 0f, 1f, -1f);
-                    Main.projectile[p].extraUpdates += TranscendenceWorld.DownedWindDragon ? 8 : 4;
-                    Main.projectile[p2].extraUpdates += TranscendenceWorld.DownedWindDragon ? 8 : 4;
-
-
-                    if (player.HeldItem.GetGlobalItem<ModifiersItem>().ChargerCharge > 0)
-                    {
-                        player.HeldItem.GetGlobalItem<ModifiersItem>().ChargerCharge -= 0.05f;
-                        player.HeldItem.GetGlobalItem<ModifiersItem>().ChargeCD = 60;
-                    }
-
-                    if (player.GetModPlayer<TranscendencePlayer>().CreanStaffClick == 0)
-                        player.GetModPlayer<TranscendencePlayer>().CreanStaffClick = 40;
-
-                    Projectile.ai[1]++;
-                    Projectile.ai[2] = player.HeldItem.useAnimation;
+                    player.HeldItem.GetGlobalItem<ModifiersItem>().ChargerCharge -= 0.05f;
+                    player.HeldItem.GetGlobalItem<ModifiersItem>().ChargeCD = 60;
                 }
+
+                if (player.GetModPlayer<TranscendencePlayer>().CreanStaffClick == 0)
+                    player.GetModPlayer<TranscendencePlayer>().CreanStaffClick = 40;
+
+                Recoil = 3f;
+                Projectile.ai[1]++;
+                Projectile.ai[2] = player.HeldItem.useAnimation;
             }
         }
     }

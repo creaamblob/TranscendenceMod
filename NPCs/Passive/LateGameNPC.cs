@@ -26,6 +26,7 @@ using TranscendenceMod.Miscannellous;
 using TranscendenceMod.Miscannellous.Biomes;
 using TranscendenceMod.Projectiles.NPCs;
 using TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss;
+using static TranscendenceMod.TranscendenceWorld;
 
 namespace TranscendenceMod.NPCs.Passive
 {
@@ -145,7 +146,7 @@ namespace TranscendenceMod.NPCs.Passive
             {
                 switch (Choice)
                 {
-                    case 0: CurrentItem = ModContent.ItemType<SunBar>(); WantedStack = 8; break;
+                    case 0: CurrentItem = ModContent.ItemType<SunburntAlloy>(); WantedStack = 8; break;
                     case 1: CurrentItem = ModContent.ItemType<MosquitoLeg>(); WantedStack = 6; break;
                     case 2: CurrentItem = ModContent.ItemType<FlowerEssence>(); WantedStack = 2; break;
                     case 3: CurrentItem = ItemID.LifeFruit; WantedStack = 3; break;
@@ -212,7 +213,6 @@ namespace TranscendenceMod.NPCs.Passive
             return new List<string>()
             {
                 "Gamma",
-                "Leo",
                 "Stara",
                 "Cosma",
                 "Luneis",
@@ -387,9 +387,6 @@ namespace TranscendenceMod.NPCs.Passive
                 dialog.Add(Language.GetTextValue("Mods.TranscendenceMod.NPCs.LateGameNPC.Dialogue.TimedialHintConstant"));
             }
 
-            if (!TranscendenceWorld.DownedHeadlessZombie && Main.rand.NextBool(2))
-                dialog.Add(Language.GetTextValue($"Mods.TranscendenceMod.NPCs.LateGameNPC.Dialogue.GenericBeheaded"));
-
             if (NPC.downedAncientCultist)
             {
                 if (Main.rand.NextBool(4))
@@ -402,10 +399,10 @@ namespace TranscendenceMod.NPCs.Passive
                 dialog.Add(Language.GetTextValue($"Mods.TranscendenceMod.NPCs.LateGameNPC.Dialogue.GenericDivineEra1"));
                 dialog.Add(Language.GetTextValue($"Mods.TranscendenceMod.NPCs.LateGameNPC.Dialogue.GenericDivineEra2"));
 
-                if (!TranscendenceWorld.DownedWindDragon)
+                if (!Downed.Contains(Bosses.Atmospheron))
                     dialog.Add(Language.GetTextValue($"Mods.TranscendenceMod.NPCs.LateGameNPC.Dialogue.GenericAtmospheron"));
 
-                if (!TranscendenceWorld.DownedSpaceBoss)
+                if (!Downed.Contains(Bosses.CelestialSeraph))
                 {
                     dialog.Add(Language.GetTextValue($"Mods.TranscendenceMod.NPCs.LateGameNPC.Dialogue.GenericSeraph1"));
                     dialog.Add(Language.GetTextValue($"Mods.TranscendenceMod.NPCs.LateGameNPC.Dialogue.GenericSeraph2"));

@@ -8,6 +8,7 @@ using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 using TranscendenceMod.Items.Modifiers;
 using TranscendenceMod.Miscannellous;
+using static TranscendenceMod.TranscendenceWorld;
 
 namespace TranscendenceMod.NPCs.Passive
 {
@@ -23,7 +24,7 @@ namespace TranscendenceMod.NPCs.Passive
         public override void SetDefaults()
         {
             /*Stats*/
-            NPC.lifeMax = 250;
+            NPC.lifeMax = 750;
             NPC.defense = 15;
             NPC.damage = 35;
             NPC.width = 34;
@@ -33,6 +34,7 @@ namespace TranscendenceMod.NPCs.Passive
             /*Colision*/
             NPC.noGravity = false;
             NPC.noTileCollide = false;
+            NPC.knockBackResist = 0f;
 
             /*Audio*/
             NPC.HitSound = SoundID.NPCHit1;
@@ -57,6 +59,9 @@ namespace TranscendenceMod.NPCs.Passive
         {
             NPC.TargetClosest(true);
             NPC.spriteDirection = NPC.direction;
+
+            NPC.homeTileX = (int)(NPC.Bottom.X / 16f);
+            NPC.homeTileY = (int)((NPC.Bottom.Y - 1.5f) / 16f);
         }
         public override List<string> SetNPCNameList()
         {
@@ -83,8 +88,8 @@ namespace TranscendenceMod.NPCs.Passive
             var npcshop = new NPCShop(Type, ShopText);
             {
                 /*Always available*/
-                TranscendenceUtils.sell(npcshop, ItemID.SnowBlock, Item.buyPrice(silver: 5));
-                TranscendenceUtils.sell(npcshop, ItemID.IceBlock, Item.buyPrice(silver: 20));
+                TranscendenceUtils.sell(npcshop, ItemID.SnowBlock, Item.buyPrice(silver: 1));
+                TranscendenceUtils.sell(npcshop, ItemID.IceBlock, Item.buyPrice(silver: 5));
                 TranscendenceUtils.sell(npcshop, ItemID.FlinxFur, Item.buyPrice(gold: 1, silver: 75));
                 TranscendenceUtils.sell(npcshop, ItemID.IceSkates, Item.buyPrice(gold: 20));
                 TranscendenceUtils.sell(npcshop, ItemID.IceCream, Item.buyPrice(gold: 2, silver: 50));
@@ -111,7 +116,7 @@ namespace TranscendenceMod.NPCs.Passive
             dialog.Add(Language.GetTextValue($"Mods.TranscendenceMod.NPCs.SnowmanNPC.Dialogue.Generic2"));
             dialog.Add(Language.GetTextValue($"Mods.TranscendenceMod.NPCs.SnowmanNPC.Dialogue.Generic3"));
 
-            if (!TranscendenceWorld.DownedFrostSerpent)
+            if (!Downed.Contains(Bosses.FrostSerpent))
                 dialog.Add(Language.GetTextValue($"Mods.TranscendenceMod.NPCs.SnowmanNPC.Dialogue.Serpent"));
 
             return dialog;

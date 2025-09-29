@@ -25,8 +25,6 @@ namespace TranscendenceMod.Items.Materials.LargeRecipes
         {
             CreateRecipe()
             .AddRecipeGroup(nameof(ItemID.TitaniumBar), 15)
-            .AddIngredient(ModContent.ItemType<SteelAlloy>(), 15)
-            .AddIngredient(ItemID.Wire, 50)
             .AddIngredient(ItemID.SoulofSight, 10)
             .AddIngredient(ItemID.SoulofMight, 10)
             .AddIngredient(ItemID.SoulofFright, 10)

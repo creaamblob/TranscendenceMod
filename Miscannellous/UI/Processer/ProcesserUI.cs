@@ -79,8 +79,8 @@ namespace TranscendenceMod.Miscannellous.UI.Processer
             PlatOre pla = new PlatOre();
             recipeBook.Append(pla);
 
-            SteelAlloys ste = new SteelAlloys();
-            recipeBook.Append(ste);
+            SunburntAlloys sba = new SunburntAlloys();
+            recipeBook.Append(sba);
 
             LunarBar lun = new LunarBar();
             recipeBook.Append(lun);
@@ -239,7 +239,7 @@ namespace TranscendenceMod.Miscannellous.UI.Processer
             Recipe(ItemID.CopperOre, ProcessRecipes.CopperOre());
             Recipe(ItemID.TinOre, ProcessRecipes.TinOre());
             Recipe(ItemID.LunarBar, ProcessRecipes.Luminite());
-            Recipe(ModContent.ItemType<SteelAlloy>(), ProcessRecipes.SteelAlloy());
+            Recipe(ModContent.ItemType<SunburntAlloy>(), ProcessRecipes.SunburntAlloy());
             Recipe(ModContent.ItemType<GalaxyAlloy>(), ProcessRecipes.GalaxyAlloy());
             Recipe(ModContent.ItemType<StarcraftedAlloy>(), ProcessRecipes.StarcraftedAlloy());
 

@@ -18,8 +18,8 @@ namespace TranscendenceMod.Projectiles.Weapons.Ranged
         }
         public override void SetDefaults()
         {
-            Projectile.width = 12;
-            Projectile.height = 14;
+            Projectile.width = 28;
+            Projectile.height = 34;
 
             Projectile.aiStyle = 1;
             AIType = ProjectileID.Stake;
@@ -64,8 +64,8 @@ namespace TranscendenceMod.Projectiles.Weapons.Ranged
                 TranscendenceUtils.DrawProjAnimated(Projectile, Color.White, Projectile.scale, $"{Texture}_Powered", Projectile.rotation, Projectile.Center, false, false, false);
                 return false;
             }*/
-            TranscendenceUtils.DrawProjAnimated(Projectile, Color.White * 0.75f, Projectile.scale, $"{Texture}", Projectile.rotation, -Projectile.Size, true, false, true);
-            TranscendenceUtils.DrawProjAnimated(Projectile, Color.White, Projectile.scale, $"{Texture}", Projectile.rotation, Projectile.Center - Projectile.Size / 2.5f, false, false, false);
+            TranscendenceUtils.DrawProjAnimated(Projectile, Color.White * 0.75f, Projectile.scale, $"{Texture}", 0, Vector2.Zero, true, false, true);
+            TranscendenceUtils.DrawProjAnimated(Projectile, Color.White, Projectile.scale, $"{Texture}", Projectile.rotation, Projectile.Center, false, false, false);
             return false;
         }
     }

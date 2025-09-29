@@ -27,13 +27,13 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.FrostSerpent
 
             Projectile.timeLeft = 450;
             Projectile.hostile = true;
-            Projectile.extraUpdates = 50;
+            Projectile.extraUpdates = 75;
 
             ProjectileID.Sets.DrawScreenCheckFluff[Type] = 3000;
         }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
-            if (targetHitbox.Distance(Projectile.Center) < (Projectile.localAI[0] * 0.33f) && Alpha > 0.75f)
+            if (targetHitbox.Distance(Projectile.Center) < (Projectile.localAI[0] * 0.275f) && Alpha > 0.75f)
                 return true;
             else return false;
         }
@@ -45,7 +45,6 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.FrostSerpent
         public override void AI()
         {
             Projectile.position = Projectile.Center;
-            
 
             //Size
             Projectile.localAI[0]++;
@@ -56,9 +55,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.FrostSerpent
         public override bool PreDraw(ref Color lightColor)
         {
             //Blatantly stolen from Seraph's Supernovas, which were blatantly stolen from Nucleus' Mineblasts
-
             SpriteBatch spriteBatch = Main.spriteBatch;
-
 
 
             //Rectangle #1
@@ -67,7 +64,6 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.FrostSerpent
             Rectangle rec = new Rectangle(x, y, (int)Projectile.localAI[0], (int)Projectile.localAI[0]);
 
             Texture2D sprite = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/GlowBloom").Value;
-
 
 
             //Request effect
@@ -89,10 +85,9 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.FrostSerpent
             Color col2 = Color.White;
 
 
-            spriteBatch.Draw(sprite, rec2, null, col * Alpha);
-
-
             //The Blast
+            spriteBatch.Draw(sprite, rec2, null, col * Alpha);
+           
             for (int i = 0; i < 3; i++)
                 spriteBatch.Draw(sprite, rec, null, col2 * Alpha);
 

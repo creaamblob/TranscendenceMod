@@ -11,6 +11,7 @@ using TranscendenceMod.Projectiles.Weapons.Magic;
 using TranscendenceMod.Projectiles;
 using System;
 using TranscendenceMod.Dusts;
+using Terraria.Audio;
 
 namespace TranscendenceMod
 {
@@ -101,20 +102,45 @@ namespace TranscendenceMod
 
             if (mp.FishTrans == 0)
             {
-                if (mp.OverloadedCore && (mp.OCoreTimer > 0 && mp.OCoreTimer < 30 || TranscendenceWorld.HyperDash.JustReleased && !Player.HasBuff(ModContent.BuffType<OverloadedHeartCD>())))
+                bool doubleLeft = Player.controlLeft && Player.releaseLeft && Player.doubleTapCardinalTimer[3] < 15 && Player.doubleTapCardinalTimer[2] == 0;
+                bool doubleRight = Player.controlRight && Player.releaseRight && Player.doubleTapCardinalTimer[2] < 15 && Player.doubleTapCardinalTimer[3] == 0;
+                if (mp.OverloadedCore && mp.HyperDashKeybind)
                 {
-                    if (TranscendenceWorld.HyperDash.JustReleased)
+                    Vector2 vel = Main.rand.NextVector2Circular(4f, 4f);
+                    int d = Dust.NewDust(Player.Center - new Vector2(64), 128, 128, mp.OCoreChargeTimer < 60 ? DustID.CrimsonTorch : DustID.TheDestroyer, vel.X, vel.Y, 0, default, 2f);
+                    Main.dust[d].noGravity = true;
+
+                    if (mp.OCoreChargeTimer == 60 && !Main.dedServ)
+                        SoundEngine.PlaySound(SoundID.MaxMana, Player.Center);
+
+                    if (++mp.OCoreChargeTimer < 60)
+                    {
                         dashDir = Player.direction == 1 ? 1 : -1;
-                    HyperDash();
+                        mp.OCoreTimer = 0;
+
+                        return;
+                    }
+                    else if (doubleLeft || doubleRight || mp.OCoreTimer > 0)
+                    {
+                        if (mp.OCoreTimer == 0)
+                        {
+                            if (doubleLeft)
+                                dashDir = -1;
+                            if (doubleRight)
+                                dashDir = 1;
+                        }
+
+                        HyperDash();
+                    }
                 }
                 else
                 {
-                    if (Player.controlRight && Player.releaseRight && Player.doubleTapCardinalTimer[2] < 15 && Player.doubleTapCardinalTimer[3] == 0 && dashType != DashType.None && Player.timeSinceLastDashStarted > dashCD || dashTimer > 0 && dashDir == 1)
+                    if (doubleRight && dashType != DashType.None && Player.timeSinceLastDashStarted > dashCD || dashTimer > 0 && dashDir == 1)
                     {
                         dashDir = 1;
                         DoDash();
                     }
-                    else if (Player.controlLeft && Player.releaseLeft && Player.doubleTapCardinalTimer[3] < 15 && Player.doubleTapCardinalTimer[2] == 0 && dashType != DashType.None && Player.timeSinceLastDashStarted > dashCD || dashTimer > 0 && dashDir == -1)
+                    else if (doubleLeft && dashType != DashType.None && Player.timeSinceLastDashStarted > dashCD || dashTimer > 0 && dashDir == -1)
                     {
                         dashDir = -1;
                         DoDash();
@@ -242,31 +268,25 @@ namespace TranscendenceMod
         {
             Player.TryGetModPlayer(out TranscendencePlayer TranscendencePlayer);
 
-
+            TranscendencePlayer.OCoreTimer++;
             Player.gravity *= 0f;
             Player.velocity.Y *= 0f;
 
             bool boss = TranscendenceUtils.BossAlive();
 
-            TranscendencePlayer.OCoreTimer++;
-            if (TranscendencePlayer.OCoreTimer > 27)
-            {
-                Player.AddBuff(ModContent.BuffType<OverloadedHeartCD>(), (boss ? 5 : 3) * 60);
-                TranscendencePlayer.OCoreTimer = 0;
-            }
-
             //Do Dash Movement
             ramTimer = 15;
             Vector2 dashvel = Player.velocity;
 
-            dashvel.X = dashDir * 32.5f;
+            dashvel.X = dashDir * 27.5f;
             if (dashTimer > (dashTime * 0.5)) dashvel *= 0.7f;
 
+            Player.direction = dashDir;
             Player.velocity.X = dashvel.X;
             Player.shadowArmor = true;
 
 
-            float size = 30f + (float)Math.Sin(TranscendencePlayer.OCoreTimer * 0.5f) * 10f;
+            float size = 30f + (float)Math.Sin(TranscendencePlayer.OCoreChargeTimer * 0.5f) * 10f;
             for (int i = 0; i < 32; i++)
             {
                 Vector2 vec = Vector2.One.RotatedBy(MathHelper.TwoPi * i / 32f) * size;

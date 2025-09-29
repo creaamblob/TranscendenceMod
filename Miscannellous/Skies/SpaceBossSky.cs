@@ -189,10 +189,8 @@ namespace TranscendenceMod.Miscannellous.Skies
 
                                 spriteBatch.Draw(star, starsPos[i], null, starsColour[i] * 0.5f, starsRot[i], star.Size() * 0.5f, (starsSize[i] / 6f), SpriteEffects.None, 0);
 
-                                spriteBatch.Draw(star, starsPos[i], null, Color.White, starsRot[i], star.Size() * 0.5f, starsSize[i] / 20f, SpriteEffects.None, 0);
-                                spriteBatch.Draw(star, starsPos[i], null, Color.White, starsRot[i], star.Size() * 0.5f, starsSize[i] / 20f, SpriteEffects.None, 0);
-
-                                spriteBatch.Draw(star2, starsPos[i], null, Color.White * 0.66f, starsRot[i] + Main.GlobalTimeWrappedHourly * 2, star2.Size() * 0.5f, starsSize[i] * 0.75f * twinkle, SpriteEffects.None, 0);
+                                spriteBatch.Draw(star, starsPos[i], null, Color.White, starsRot[i], star.Size() * 0.5f, starsSize[i] / 25f, SpriteEffects.None, 0);
+                                spriteBatch.Draw(star, starsPos[i], null, Color.White, starsRot[i], star.Size() * 0.5f, starsSize[i] / 25f, SpriteEffects.None, 0);
                             }
                             else
                             {
@@ -219,7 +217,7 @@ namespace TranscendenceMod.Miscannellous.Skies
                     spriteBatch.Begin(default, BlendState.NonPremultiplied, default, default, default, null);
                     
                     spriteBatch.Draw(TextureAssets.BlackTile.Value, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight),
-                            null, Color.Black * 0.75f * boss.skyFade);
+                            null, Color.Black * 0.66f * boss.skyFade);
 
 
                     spriteBatch.End();

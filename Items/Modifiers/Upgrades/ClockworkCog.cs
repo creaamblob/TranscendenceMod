@@ -33,7 +33,7 @@ namespace TranscendenceMod.Items.Modifiers.Upgrades
         {
             CreateRecipe()
             .AddIngredient(ItemID.Cog, 50)
-            .AddIngredient(ModContent.ItemType<SteelAlloy>(), 10)
+            .AddRecipeGroup(nameof(ItemID.TitaniumBar), 10)
             .AddIngredient(ItemID.SoulofFright, 10)
             .AddTile(TileID.Anvils)
             .Register();

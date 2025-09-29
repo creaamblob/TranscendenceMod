@@ -34,7 +34,7 @@ namespace TranscendenceMod.Items.Accessories.Offensive.EoL
         {
             CreateRecipe()
             .AddRecipeGroup(nameof(ItemID.HallowedMask))
-            .AddIngredient(ModContent.ItemType<SunBar>(), 18)
+            .AddIngredient(ModContent.ItemType<SunburntAlloy>(), 18)
             .AddIngredient(ItemID.SoulofLight, 50)
             .AddIngredient(ItemID.FragmentSolar, 50)
             .AddIngredient(ItemID.CrystalShard, 75)

@@ -25,7 +25,7 @@ namespace TranscendenceMod.Items.Modifiers
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient(ModContent.ItemType<SteelAlloy>(), 4)
+            .AddRecipeGroup(nameof(ItemID.TitaniumBar), 8)
             .AddIngredient(ModContent.ItemType<Lightning>(), 6)
             .AddIngredient(ItemID.LogicSensor_Water, 2)
             .AddIngredient(ItemID.Wire, 20)

@@ -1,6 +1,8 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
+using System.Security.Cryptography.Pkcs;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -27,6 +29,7 @@ using TranscendenceMod.Miscannellous;
 using TranscendenceMod.Miscannellous.UI;
 using TranscendenceMod.Projectiles.NPCs.Bosses.Dragon;
 using TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss;
+using static TranscendenceMod.TranscendenceWorld;
 namespace TranscendenceMod.NPCs.Boss.Dragon
 {
     [AutoloadBossHead]
@@ -37,6 +40,8 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
         public Vector2 arenaStartPos;
         Player player;
         Player local = Main.LocalPlayer;
+
+        public static int slash => ModContent.ProjectileType<DragonSlash>();
 
         static public float RotationTimer;
         static public float RotationSpeed;
@@ -83,6 +88,10 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
         public int RestDashCD;
 
         public Vector2 FlyPos;
+
+        public List<int> AttacksCompleted = new List<int>();
+        public List<int> RecentAttacks = new List<int>();
+        public int NextAttack = -1;
 
         public override void SetStaticDefaults()
         {
@@ -149,9 +158,9 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
         public bool CanAttack;
         public override bool CanHitPlayer(Player target, ref int cooldownSlot)
         {
-            cooldownSlot = ImmunityCooldownID.Bosses;
-            return CanAttack;
+            return false;
         }
+
         public override void AI()
         {
             player = Main.player[NPC.target];
@@ -161,44 +170,36 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
             NPC.TargetClosest(true);
 
             SkyManager.Instance.Activate("TranscendenceMod:DragonSky", player.Center);
-            CanAttack = true;
 
-            if (Stamina < (MaxStamina + 1))
-            {
-                int cd = ProjectileCD[0] > 1 ? 40 : 0;
-                if (++Timer_AI < (50 - cd))
-                {
-                    dashVel = NPC.DirectionTo(player.Center) * 45f;
-                    NPC.rotation = dashVel.ToRotation() + (NPC.direction == -1 ? MathHelper.Pi : 0f);
-                    
-                    NPC.velocity *= 0.8f;
-                }
-                if (Timer_AI > (60 - cd) && Timer_AI < (70 - cd))
-                {
-                    NPC.velocity = dashVel;
-
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity.RotatedBy(MathHelper.PiOver2), ModContent.ProjectileType<LightningBoss>(), 70, 2f, -1, 0, NPC.whoAmI, (Timer_AI - 60) / 15f);
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity.RotatedBy(-MathHelper.PiOver2), ModContent.ProjectileType<LightningBoss>(), 70, 2f, -1, 0, NPC.whoAmI, (Timer_AI - 60) / 15f);
-                }
-                if (Timer_AI >= (85 - cd))
-                {
-                    if (++ProjectileCD[0] > 3)
-                        ProjectileCD[0] = 0;
-                    Timer_AI = 0;
-                }
-
-                return;
-            }
 
             //This thing switches attacks and adjusts some things
-            /*if (Timer_AI > (AttackDuration + 3))
+            if (Timer_AI == 2)
+            {
+                int max = 5;
+
+                //Determine the next attack, no repeats
+                NextAttack = Main.rand.Next(1, max);
+
+
+                if (AttacksCompleted.Count >= (max - 2))
+                    AttacksCompleted.Clear();
+
+                int tries = 0;
+                while (NextAttack == NPC.ai[1] || AttacksCompleted.Count > 0 && AttacksCompleted.Contains(NextAttack) || RecentAttacks.Count > 0 && RecentAttacks.Contains(NextAttack))
+                {
+                    //Include failsafe to prevent any freezes
+                    if (++tries < 10000)
+                        NextAttack = Main.rand.Next(1, max);
+                    else break;
+                }
+            }
+
+            if (Timer_AI > (AttackDuration + 3))
             {
                 NPC.velocity = Vector2.Zero;
-                NPC.damage = contactDMG;
                 NPC.rotation = 0;
                 NPC.hide = false;
                 moveTwoAngle = 0;
-                arenaVisualSize = 0;
 
                 NPC.alpha = 0;
                 Opacity = 1f;
@@ -213,14 +214,21 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
                 RotationTimer = 0;
                 RotationSpeed = 0.25f;
                 HasArena = false;
-            }*/
+
+                NPC.ai[1] = NextAttack > 0 ? NextAttack : NPC.ai[1] + 1;
+                if (NPC.ai[1] > 0)
+                {
+                    AttacksCompleted.Add((int)NPC.ai[1]);
+                    if (RecentAttacks.Count > 2)
+                        RecentAttacks.RemoveAt(0);
+                    RecentAttacks.Add((int)NPC.ai[1]);
+                }
+            }
 
             local.AddBuff(ModContent.BuffType<InfiniteFlight>(), 1);
 
             //Projectile stuff
             ProjectileManagerer();
-
-            NPC.rotation = MathHelper.Lerp(NPC.rotation, NPC.velocity.X * 0.025f, 1f / 20f);
 
             Timer_AI++;
 
@@ -232,6 +240,9 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
                     case 0: Intro(); break;
                     case 1: Dashes(); break;
                     case 2: Tornadoes(); break;
+                    case 3: SunlightRays(); break;
+                    case 4: Roar(); break;
+                    case 5: NPC.ai[1] = 1; goto case 1;
                 }
             }
 
@@ -251,18 +262,102 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
 
         public void Intro()
         {
-            AttackDuration = 300;
+            AttackDuration = 30;
 
         }
 
         public void Dashes()
         {
-            AttackDuration = 215;
+            AttackDuration = 90;
+
+            if (Timer_AI < 45)
+            {
+                TranscendenceUtils.DustRing(NPC.Center, 20, DustID.AmberBolt, 5f, Color.White, 2f);
+                return;
+            }
+
+            if (++ProjectileCD[0] < 5)
+            {
+                dashVel = NPC.DirectionTo(player.Center) * 50f;
+                NPC.rotation = dashVel.ToRotation() + (NPC.direction == -1 ? MathHelper.Pi : 0f);
+
+                NPC.velocity *= 0.8f;
+            }
+            if (ProjectileCD[0] == 10)
+            {
+                NPC.velocity = dashVel;
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, dashVel, slash, 90, 2f, -1, 0, NPC.whoAmI);
+                SoundEngine.PlaySound(SoundID.Item71, NPC.Center);
+            }
+            if (ProjectileCD[0] >= 15)
+            {
+                Stamina++;
+                ProjectileCD[0] = 0;
+            }
         }
 
         public void Tornadoes()
         {
-            AttackDuration = 212000;
+            AttackDuration = 90;
+
+            if (Timer_AI < 30)
+            {
+                if (Timer_AI == 1)
+                {
+                    int dir = NPC.Center.X > player.Center.X ? 500 : -500;
+                    NPC.Teleport(player.Center + new Vector2(dir, 0));
+                }
+
+                return;
+            }
+
+            if (++ProjectileCD[0] % 5 == 0)
+            {
+                Vector2 vel = NPC.DirectionTo(player.Center).RotatedByRandom(0.75f);
+                float off = Main.rand.NextFloat(-175f, 175f);
+
+                float rot = vel.ToRotation();
+                Vector2 pos = NPC.Center + new Vector2(0, off).RotatedBy(rot);
+
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, vel * 25f, ModContent.ProjectileType<RainbowShot>(), 90, 2f, -1, 0, NPC.whoAmI, (ProjectileCD[0] - 30) / 60f);
+            }
+        }
+
+        public void SunlightRays()
+        {
+            AttackDuration = 100;
+
+            if (Timer_AI >= 45 && Timer_AI < 85)
+            {
+                NPC.Center = player.Center - new Vector2(0, 375);
+            }
+            if (Timer_AI >= 90)
+            {
+                NPC.velocity = new Vector2(0, 55f);
+
+                if (Timer_AI == 91)
+                {
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(0, 5), slash, 90, 2f, -1, 0, NPC.whoAmI);
+                    SoundEngine.PlaySound(SoundID.Item71, NPC.Center);
+                }
+            }
+        }
+
+        public void Roar()
+        {
+            AttackDuration = 180;
+
+            if (Timer_AI < 30)
+            {
+                TranscendenceUtils.DustRing(NPC.Center, 20, DustID.GemSapphire, 10f, Color.White, 2f);
+                return;
+            }
+
+            if (Timer_AI == 60)
+            {
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<RoarShockwave>(), 90, 2f, -1, 0, NPC.whoAmI);
+                SoundEngine.PlaySound(SoundID.DD2_BetsyScream, NPC.Center);
+            }
         }
 
         private void ProjectileManagerer()
@@ -315,10 +410,10 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
             //int lowerbody = Mod.Find<ModGore>("Gore4").Type;
 
 
-            if (TranscendenceWorld.DownedWindDragon == false)
+            if (!Downed.Contains(Bosses.Atmospheron))
             {
                 Main.NewText(Language.GetTextValue("Mods.TranscendenceMod.Messages.DragonDeath"), 50, 255, 130);
-                TranscendenceWorld.DownedWindDragon = true;
+                Downed.Add(Bosses.Atmospheron);
             }
 
             /*if (Main.netMode != NetmodeID.Server)

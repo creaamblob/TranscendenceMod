@@ -45,7 +45,7 @@ namespace TranscendenceMod.Items.Weapons.Ranged
         {
             CreateRecipe()
             .AddIngredient(ItemID.PhoenixBlaster, 1)
-            .AddIngredient(ModContent.ItemType<SunBar>(), 12)
+            .AddIngredient(ModContent.ItemType<SunburntAlloy>(), 12)
             .AddIngredient(ItemID.Feather, 12)
             .AddTile(TileID.SkyMill)
             .Register();

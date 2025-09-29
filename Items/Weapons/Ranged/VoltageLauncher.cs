@@ -156,6 +156,7 @@ namespace TranscendenceMod.Items.Weapons.Ranged
                     if (player.ownedProjectileCounts[laser] == 0)
                         Projectile.NewProjectile(Projectile.GetSource_FromAI(), vec, vel * 12, laser, damage, knockBack, player.whoAmI);
                     else player.GetModPlayer<TranscendencePlayer>().VoltageBeamTimer = 15;
+
                     CD = 15;
                     if (player.HeldItem.GetGlobalItem<ModifiersItem>().ChargerCharge > 0)
                     {

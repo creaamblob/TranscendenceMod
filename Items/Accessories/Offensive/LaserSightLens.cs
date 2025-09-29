@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TranscendenceMod.Items.Materials.LargeRecipes;
+using TranscendenceMod.Miscannellous;
 using TranscendenceMod.Miscannellous.Rarities;
 
 namespace TranscendenceMod.Items.Accessories.Offensive
@@ -26,7 +28,10 @@ namespace TranscendenceMod.Items.Accessories.Offensive
             Item.value = Item.sellPrice(gold: 5);
             Item.rare = ModContent.RarityType<Brown>();
         }
-        public override Color? GetAlpha(Color lightColor) => Color.White;
+        public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        {
+            TranscendenceUtils.DrawItemGlowmask(Item, rotation, scale, Texture);
+        }
         public override void UpdateVanity(Player player)
         {
             player.GetModPlayer<TranscendencePlayer>().NucleusLensSocial = true;

@@ -131,16 +131,19 @@ namespace TranscendenceMod.Miscannellous.UI.Processer
             };
         }
 
-        public static int[] SteelAlloy()
+        public static int[] SunburntAlloy()
         {
-            int i = ItemID.IronBar;
+            int h = ItemID.HellstoneBar;
             int c = ModContent.ItemType<CarbonBar>();
+
+            int s = ItemID.SunplateBlock;
+            int f = ItemID.SoulofFlight;
 
             return new int[] {
                 0, 0, 0, 0,
-                i, i, i, c,
-                i, c, c, c,
-                0, 0, 0, 0,
+                s, h, h, s,
+                s, c, c, s,
+                f, f, f, f,
                 2
             };
         }
@@ -153,9 +156,9 @@ namespace TranscendenceMod.Miscannellous.UI.Processer
 
             return new int[] {
                 0, l, l, 0,
-                m, v, l, l,
-                m, l, v, l,
-                v, m, m, 0,
+                l, l, l, l,
+                m, v, v, m,
+                m, m, m, m,
                 4
             };
         }
@@ -164,7 +167,7 @@ namespace TranscendenceMod.Miscannellous.UI.Processer
         public static int[] GalaxyAlloy()
         {
             int l = ItemID.LunarBar;
-            int sb = ModContent.ItemType<SunBar>();
+            int sb = ModContent.ItemType<SunburntAlloy>();
             int s = ItemID.FragmentSolar;
             int v = ItemID.FragmentVortex;
             int n = ItemID.FragmentNebula;
@@ -183,7 +186,7 @@ namespace TranscendenceMod.Miscannellous.UI.Processer
         public static int[] StarcraftedAlloy()
         {
             int o = ModContent.ItemType<ShimmerChunk>();
-            int sb = ModContent.ItemType<SunBar>();
+            int sb = ModContent.ItemType<SunburntAlloy>();
             int h = ItemID.HallowedBar;
             int g = ModContent.ItemType<GalaxyAlloy>();
 

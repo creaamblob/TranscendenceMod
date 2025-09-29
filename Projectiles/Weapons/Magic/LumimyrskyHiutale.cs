@@ -27,7 +27,7 @@ namespace TranscendenceMod.Projectiles.Weapons.Magic
             Projectile.timeLeft = 300;
             Projectile.extraUpdates = 1;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 12;
+            Projectile.localNPCHitCooldown = 10;
 
             Projectile.penetrate = 6;
 
@@ -65,7 +65,8 @@ namespace TranscendenceMod.Projectiles.Weapons.Magic
         public override Color? GetAlpha(Color lightColor) => Color.White;
         public override bool PreDraw(ref Color lightColor)
         {
-            TranscendenceUtils.BetterDrawTrailProj(Projectile, Color.Gray, Projectile.scale, $"{Texture}", 0.5f, true, 1f, Vector2.Zero, 0);
+            ProjectileID.Sets.TrailingMode[Type] = 3;
+            TranscendenceUtils.DrawTrailProj(Projectile, Color.Gray * 0.66f, Projectile.scale, $"{Texture}", true, true, 1f, Vector2.Zero);
             return base.PreDraw(ref lightColor);
         }
     }

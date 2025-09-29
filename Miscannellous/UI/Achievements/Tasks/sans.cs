@@ -18,9 +18,9 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
         public override TaskIDs type => TaskIDs.sans;
         public override bool Unlocked => Main.LocalPlayer.GetModPlayer<ModAchievementsHelper>().sansUnlock;
 
-        public override float x => -75f;
+        public override float x => -100f;
 
-        public override float y => 0f;
+        public override float y => 25f;
 
         public override string col => "d5b78a";
 

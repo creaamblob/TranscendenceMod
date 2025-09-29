@@ -39,8 +39,10 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Dragon
             TranscendenceUtils.RestartSB(spriteBatch, BlendState.Additive, null);
 
             TranscendenceUtils.DrawEntity(Projectile, col * 0.66f, Projectile.scale * 0.25f, TranscendenceMod.ASSET_PATH + "/GlowBloom", Projectile.rotation, Projectile.Center, null);
-            TranscendenceUtils.DrawEntity(Projectile, col, Projectile.scale, Texture, Projectile.rotation, Projectile.Center, null);
-            TranscendenceUtils.DrawEntity(Projectile, Color.White, Projectile.scale * 0.66f, Texture, Projectile.rotation, Projectile.Center, null);
+            for (int i = 0; i < 4; i++)
+                TranscendenceUtils.DrawEntity(Projectile, col, Projectile.scale, Texture, Projectile.rotation, Projectile.Center + new Vector2(0, 2f).RotatedBy(MathHelper.TwoPi * i / 4f), null);
+
+            TranscendenceUtils.DrawEntity(Projectile, Color.White, Projectile.scale, Texture, Projectile.rotation, Projectile.Center, null);
 
             TranscendenceUtils.RestartSB(spriteBatch, BlendState.AlphaBlend, null);
             return false;

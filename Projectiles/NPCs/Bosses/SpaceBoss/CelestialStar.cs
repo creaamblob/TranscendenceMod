@@ -16,8 +16,6 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
 {
     public class CelestialStar : ModProjectile
     {
-        public int HomeCD;
-        public int HomeCD2;
         public float ChaseSpeed = 22;
         public Vector2 pos;
         public int SegmentCount;
@@ -56,7 +54,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
 
             if (++Projectile.localAI[2] % 30 == 0)
             {
-                int d = Dust.NewDust(Projectile.Center, 1, 1, ModContent.DustType<StarDust>(), 0, 0, 0, Color.White * 0.75f, 0.75f);
+                int d = Dust.NewDust(Projectile.Center, 1, 1, ModContent.DustType<StarDust>(), 0, 0, 0, Color.Gold * 0.75f, 0.75f);
                 Main.dust[d].velocity = Vector2.Zero;
             }
 
@@ -78,17 +76,14 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             {
                 Player player = Main.player[p];
 
-                if (player.Distance(Projectile.Center) < 2500 && ++HomeCD > Main.rand.Next(4, 7) && Projectile.localAI[2] < 150)
+                if (player.Distance(Projectile.Center) < 2500 && Projectile.localAI[2] < 150 && Main.rand.NextBool(3))
                 {
                     if (player.Distance(Projectile.Center) > 250)
                         ChaseSpeed = 30f;
-                    else ChaseSpeed = MathHelper.Lerp(15f, 30f, player.Distance(Projectile.Center) / 250f);
+                    else ChaseSpeed = MathHelper.Lerp(10f, 30f, player.Distance(Projectile.Center) / 250f);
 
                     Vector2 targetVelocity = Projectile.DirectionTo(player.Center + Vector2.One.RotatedByRandom(MathHelper.TwoPi) * Main.rand.NextFloat(5f, 25f)) * ChaseSpeed;
-                    Projectile.velocity = Vector2.Lerp(Projectile.velocity, targetVelocity, 0.215f * Projectile.ai[2]);
-                    //(player.Center + player.velocity * 4 - Projectile.Center).SafeNormalize(Vector2.Zero) * ChaseSpeed * ChaseSpeed / 100f
-                    //Projectile.velocity += Vector2.Normalize(player.Center - Projectile.Center) * ChaseSpeed / 15;
-                    HomeCD = 0;
+                    Projectile.velocity = Vector2.Lerp(Projectile.velocity, targetVelocity, 0.15f * Projectile.ai[2]);
                 }
             }
         }

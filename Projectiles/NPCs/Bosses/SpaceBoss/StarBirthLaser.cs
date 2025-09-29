@@ -69,7 +69,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             Player player = Main.player[Projectile.owner];
             float reference = float.NaN;
             if (Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Center, Projectile.Center + Vector2.One.RotatedBy(rot) * Height, Projectile.scale, ref reference))
-                return true;
+                return Projectile.timeLeft >= 25;
             else return false;
         }
         public override bool? CanDamage() => Height > 180;

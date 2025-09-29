@@ -44,6 +44,7 @@ using TranscendenceMod.Projectiles.Equipment;
 using TranscendenceMod.Projectiles.NPCs.Bosses.Nucleus;
 using TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss;
 using TranscendenceMod.Tiles.TilesheetHell.Nature;
+using static TranscendenceMod.TranscendenceWorld;
 using Conditions = Terraria.GameContent.ItemDropRules.Conditions;
 
 namespace TranscendenceMod.Miscannellous.GlobalStuff
@@ -56,8 +57,8 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
     }
     public class DragonDropRule : IItemDropRuleCondition, IProvideItemConditionDescription
     {
-        public bool CanDrop(DropAttemptInfo info) => TranscendenceWorld.DownedWindDragon;
-        public bool CanShowItemDropInUI() => TranscendenceWorld.DownedWindDragon;
+        public bool CanDrop(DropAttemptInfo info) => Downed.Contains(Bosses.Atmospheron);
+        public bool CanShowItemDropInUI() => Downed.Contains(Bosses.Atmospheron);
         public string GetConditionDescription() => Language.GetTextValue("Mods.TranscendenceMod.Messages.DragonCondition");
     }
     public class TranscendenceNPC : GlobalNPC
@@ -272,9 +273,6 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
             {
                 DialogUI.SpawnDialog("Time Spent: " + (TimeSpent / 60).ToString() + "s", npc.Center, 450, Color.Red);
             }
-
-            if (npc.type == NPCID.DD2Betsy && !TranscendenceWorld.DownedOOA)
-                TranscendenceWorld.DownedOOA = true;
 
             if (npc.type == NPCID.EyeofCthulhu & !NPC.downedBoss1)
             {
@@ -492,7 +490,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
 
         public override bool PreAI(NPC npc)
         {
-            if (NPC.AnyNPCs(ModContent.NPCType<CelestialSeraph>()) && npc.aiStyle == 7)
+            if (NPC.AnyNPCs(ModContent.NPCType<CelestialSeraph>()) && npc.friendly)
             {
                 npc.Bottom = new Vector2(npc.homeTileX * 16, npc.homeTileY * 16);
                 npc.velocity = Vector2.Zero;
@@ -732,14 +730,14 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                 npc.scale = 0.75f;
             }
 
-            if (npc.type == NPCID.WaterSphere && TranscendenceWorld.DownedWindDragon)
+            if (npc.type == NPCID.WaterSphere && Downed.Contains(Bosses.Atmospheron))
             {
                 npc.dontTakeDamage = true;
                 npc.lifeMax = 1750;
                 npc.damage = 200;
             }
 
-            if (DungSkeleton(npc) && TranscendenceWorld.DownedWindDragon)
+            if (DungSkeleton(npc) && Downed.Contains(Bosses.Atmospheron))
             {
                 npc.lifeMax *= 16;
                 npc.defense *= 2;
@@ -747,14 +745,14 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                 npc.knockBackResist = 0f;
             }
 
-            if (PostPlantDungGenericSkeleton(npc) && TranscendenceWorld.DownedWindDragon)
+            if (PostPlantDungGenericSkeleton(npc) && Downed.Contains(Bosses.Atmospheron))
             {
                 npc.lifeMax *= 4;
                 npc.damage *= 3;
                 npc.knockBackResist = 0f;
             }
 
-            if (PostPlantDungSkeleton(npc) && TranscendenceWorld.DownedWindDragon)
+            if (PostPlantDungSkeleton(npc) && Downed.Contains(Bosses.Atmospheron))
             {
                 npc.lifeMax *= npc.type == NPCID.Paladin ? 4 : npc.type == NPCID.BoneLee ? 8 : 16;
                 npc.damage *= 2;

@@ -18,9 +18,9 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
         public override TaskIDs type => TaskIDs.Muramasa;
         public override bool Unlocked => Main.LocalPlayer.GetModPlayer<ModAchievementsHelper>().MuramasaUnlock;
 
-        public override float x => -50f;
+        public override float x => -125f;
 
-        public override float y => 25f;
+        public override float y => 50f;
 
         public override string col => "0074ff";
 

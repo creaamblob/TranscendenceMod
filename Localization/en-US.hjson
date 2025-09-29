@@ -52,9 +52,9 @@ Mods: {
 				DisplayName: Sunburnt Pickaxe
 			}
 
-			SunBar: {
+			SunburntAlloy: {
 				Tooltip: ""
-				DisplayName: Sunburnt Bar
+				DisplayName: Sunburnt Alloy
 			}
 
 			Shadowflame: {
@@ -250,7 +250,7 @@ Mods: {
 				Tooltip:
 					'''
 					[C/20f076:-:- Developer Item -:-]
-					[C/618090:-:- CreanBL -:-]
+					[C/618090:-:- Creanbl -:-]
 					'''
 				DisplayName: Moonlit Sea Dye
 			}
@@ -823,7 +823,7 @@ Mods: {
 
 			StarGun: {
 				DisplayName: Galactic Gun
-				Tooltip: Uses Starlite as ammo
+				Tooltip: Uses Starlite [i:TranscendenceMod/Starlite] as ammo
 			}
 
 			StarLauncher: {
@@ -831,7 +831,7 @@ Mods: {
 				Tooltip:
 					'''
 					Shoots a Gamma-Ray
-					Uses Starlite as ammo
+					Uses Starlite [i:TranscendenceMod/Starlite] as ammo
 					'''
 			}
 
@@ -840,7 +840,7 @@ Mods: {
 				Tooltip:
 					'''
 					Creates a star that erupts into condensed pillars of plasma
-					Uses Starlite as ammo
+					Uses Starlite [i:TranscendenceMod/Starlite] as ammo
 					'''
 			}
 
@@ -953,7 +953,7 @@ Mods: {
 
 			Lumimyrsky: {
 				DisplayName: Lumimyrsky
-				Tooltip: ""
+				Tooltip: Shoots magical snowflakes that close in on enemies
 			}
 
 			SeraphPetItem: {
@@ -1138,11 +1138,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			SteelAlloy: {
-				DisplayName: Steel Alloy
-				Tooltip: ""
-			}
-
 			GiantAnchor: {
 				DisplayName: Giant Anchor
 				Tooltip:
@@ -1179,7 +1174,7 @@ Mods: {
 				DisplayName: Marble Compass
 				Tooltip:
 					'''
-					Finds the furthest marble biome in your direction
+					Finds the nearest marble biome in your direction
 					Left-Click to find a location
 					'''
 			}
@@ -1665,7 +1660,7 @@ Mods: {
 				DisplayName: Corrupt Compass
 				Tooltip:
 					'''
-					Finds the furthest corrupted tile in your direction
+					Finds the nearest corrupted tile in your direction
 					Left-Click to find a location
 					'''
 			}
@@ -1674,7 +1669,7 @@ Mods: {
 				DisplayName: Crimson Compass
 				Tooltip:
 					'''
-					Finds the furthest crimson-tainted tile in your direction
+					Finds the nearest crimson-tainted tile in your direction
 					Left-Click to find a location
 					'''
 			}
@@ -1683,7 +1678,7 @@ Mods: {
 				DisplayName: Granite Compass
 				Tooltip:
 					'''
-					Finds the furthest granite biome in your direction
+					Finds the nearest granite biome in your direction
 					Left-Click to find a location
 					'''
 			}
@@ -1792,7 +1787,7 @@ Mods: {
 				Tooltip:
 					'''
 					Two drones will aid you in combat
-					Right Click to reverse the drone's spread
+					Right Click to alternate between a spread shot and a concentrated shot
 					80% chance to not consume ammo
 					'''
 			}
@@ -1801,7 +1796,7 @@ Mods: {
 				DisplayName: Meteor Compass
 				Tooltip:
 					'''
-					Finds the furthest meteorite in your direction
+					Finds the nearest meteorite in your direction
 					Left-Click to find a location
 					'''
 			}
@@ -1936,9 +1931,10 @@ Mods: {
 				Tooltip:
 					'''
 					It has a note attached to it;
-					[c/6d09a7:Congratulations and thank you for finishing the current content of the mod!]
-					[c/6d09a7:Make sure to look out for future content updates!] :)
-					[c/6d09a7:-CreanBL]
+					[c/6d09a7:Congrats and thx for finishing the current content of the mod !!] :)
+					[c/6d09a7:Make sure to look out for upcoming updates !!] [i:Heart]
+					[c/6d09a7:-Creanbl]
+					[C/526377:You're in the halfway point of Post-Moonlord now.]
 					'''
 			}
 
@@ -1948,7 +1944,7 @@ Mods: {
 					'''
 					Holding UP while submerged will transform you into a fish
 					Being a fish allows you to swim freely without drowning
-					You will return back into human form after a few seconds of not holding UP
+					You will return back into human form upon stopping holding UP
 					'''
 			}
 
@@ -2003,7 +1999,7 @@ Mods: {
 
 			SoulOfKnight: {
 				DisplayName: Soul of Knight
-				Tooltip: "'The essence of primordial machines'"
+				Tooltip: "'The essence of biomechanical machines'"
 			}
 
 			PrimeGauntlet: {
@@ -2015,8 +2011,8 @@ Mods: {
 				DisplayName: Overloaded Heart
 				Tooltip:
 					'''
-					Hold Shift to perform a Hyper Dash
-					This ability has a 2 second or 5 second cooldown depending on if a boss is alive
+					Hold Shift to charge a Hyper Dash
+					Double tap a direction when charged to Hyper Dash
 					'''
 			}
 
@@ -2280,12 +2276,12 @@ Mods: {
 			}
 
 			CreanStaff: {
-				DisplayName: Night Blue Staff of Creation
+				DisplayName: Sapphire Spark
 				Tooltip:
 					'''
 					Gains new abilities every Transcendence Mod boss defeated
 					[C/20f076:-:- Developer Item -:-]
-					[C/618090:-:- CreanBL -:-]
+					[C/618090:-:- Creanbl -:-]
 					'''
 
 				Upgrades: {
@@ -2436,7 +2432,7 @@ Mods: {
 				DisplayName: Sharkscale Boots
 				Tooltip:
 					'''
-					Melee critical strike chance increased by 15%
+					Melee critical strike chance increased by 20%
 					Movement speed increased by 20%
 					'''
 			}
@@ -2445,7 +2441,7 @@ Mods: {
 				DisplayName: Sharkscale Chestplate
 				Tooltip:
 					'''
-					Melee damage increased by 20%
+					Melee damage increased by 25%
 					Melee armor penetration increased by 15
 					'''
 			}
@@ -2454,7 +2450,7 @@ Mods: {
 				DisplayName: Sharkscale Helmet
 				Tooltip:
 					'''
-					Melee damage increased by 15%
+					Melee damage increased by 20%
 					Melee attack speed increased by 25%
 					'''
 			}
@@ -2805,6 +2801,7 @@ Mods: {
 			SummitSpear.DisplayName: Summit Spear
 			CreanCog.DisplayName: Crean Cog
 			FrostMist.DisplayName: Frost Mist
+			DragonSlash.DisplayName: Dragon Slash
 		}
 
 		SeraphAttackNames: {
@@ -2815,7 +2812,7 @@ Mods: {
 			HomingP1: Astral Purification
 			HomingP2: Absolute Purification
 			Supernova: Claymore Supernova
-			Blackhole: Null Maelstrom
+			Blackhole: Event Horizon
 			SwordSlamP2: Rending Blade of Heaven
 			NebulaMatterP2: Ultra Nebula Mantle
 			MeteorAbyss: Meteor Abyss
@@ -2870,7 +2867,7 @@ Mods: {
 
 				Snowman: {
 					DisplayName: Chilly Business
-					Tooltip: Talk to the Friendly Snowman in the underground ice biome
+					Tooltip: Talk to the friendly Snowman located within the icy caverns
 				}
 
 				CosmicNPC: {
@@ -2904,7 +2901,7 @@ Mods: {
 				}
 
 				Muramasa: {
-					DisplayName: Scars of the Catacombs
+					DisplayName: Scars of the Dungeon
 					Tooltip: Defeat the Possessed Blade located deep within the halls of the Dungeon
 				}
 
@@ -2934,12 +2931,12 @@ Mods: {
 				}
 
 				Atmospheron: {
-					DisplayName: Dragon Flayer
-					Tooltip: Defeat Atmospheron, the master of the vast overworld skies
+					DisplayName: Fast and Furious Beasts
+					Tooltip: Defeat Atmospheron, the atmospheric wyvern
 				}
 
 				PoseidonFrag: {
-					DisplayName: Secrets of the Dungeon
+					DisplayName: Secrets of the Catacombs
 					Tooltip: Brave the upgraded Dungeon and obtain a Poseidon's Fragment
 				}
 
@@ -2949,8 +2946,8 @@ Mods: {
 				}
 
 				Nucleus: {
-					DisplayName: Judgement Day
-					Tooltip: Defeat Project Nucleus, the primordial war machine
+					DisplayName: Judgment Day
+					Tooltip: Defeat 'Project 1020-CTHL Nucleus', the biomechanical war machine
 				}
 
 				Artifact: {
@@ -2959,7 +2956,7 @@ Mods: {
 				}
 
 				Seraph: {
-					DisplayName: Test of Will
+					DisplayName: ...To His strongest soldiers
 					Tooltip: Enter the Seraph's rift and survive the combat challenge
 				}
 
@@ -2976,7 +2973,7 @@ Mods: {
 						> [C/526377:You will have to use the Everglowing Tiara's lacewing transformation for the WHOLE fight]
 						> [C/526377:All of the damage must come from the sun passive attacks]
 						[C/526377:Time of the day and stage of progression doesn't matter]
-						Difficulty: [i:ManaCrystal][i:ManaCrystal][i:ManaCrystal][i:ManaCrystal][i:StarStatue] (4/5)
+						Difficulty: [i:ManaCrystal][i:ManaCrystal][i:ManaCrystal][i:ManaCrystal][i:ManaCrystal] (5/5)
 						'''
 				}
 
@@ -3083,7 +3080,7 @@ Mods: {
 
 				Post-Nucleus: {
 					1: I have observed your battle from the distance, and I must say, I am impressed.
-					2: Your combat performance against man-made forces were incredible, but it's growing at a concerning pace.
+					2: Your combat performance against man-made forces were incredible, but it is growing at a concerning pace.
 					3: As such, we must test your capabilities against something far greater.
 					4: Place the Cosmic Artifact onto the Celestial Altar and enter my pocket dimension.
 					5: Your efforts will be rewarded.
@@ -3095,7 +3092,7 @@ Mods: {
 				Intro.1: Ready to go?
 
 				Phase2: {
-					1: The next phase of the combat trial may commence.
+					1: The next phase of the combat trial may begin.
 					2: Good luck.
 				}
 
@@ -3107,9 +3104,20 @@ Mods: {
 
 				Death: {
 					1: It seems that you have won this battle.
-					2: As such, I will teleport you back to the cathedral with your rewards.
+					2: As such, I will teleport you back to where you came from with your rewards.
 					3: We will use your combat performance to its fullest potential.
 					4: May we meet again, Terrarian.
+				}
+
+				DeathLegendary: {
+					1: looks like i lost
+					2: tbh this whole fight was just an attempt at getting rid of you so you wouldnt do anything stupid
+					3: anyway take these items and gtfo
+				}
+
+				DeathRagebait: {
+					1: wow congratulations, so proud of you :)
+					2: Take your rewards and GTFO
 				}
 			}
 
@@ -3243,9 +3251,9 @@ Mods: {
 						'''
 						-[C/ff6d00:Luminous] [C/A8714D:Modifier]-
 						* [C/5c915d:Upgrades the Sunshade Egg's babies, making them larger and faster]
-						* [C/5c915d:+6,66% critical strike damage]
+						* [C/5c915d:+5% critical strike damage]
 						* [C/5c915d:+20% luminosity]
-						* [C/fe7c7c:-5% critical strike chance outside of a Solar Eclipse]
+						* [C/d8ab49:Makes you more heavy, making you fall down faster]
 						[C/586475:These effects stack with each accessory]
 						Can be applied to Accessories
 						'''

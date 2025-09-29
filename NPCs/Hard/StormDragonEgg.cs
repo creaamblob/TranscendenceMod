@@ -38,7 +38,7 @@ namespace TranscendenceMod.NPCs.Hard
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SunBar>(), 5, 1, 3));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SunburntAlloy>(), 5, 1, 3));
             npcLoot.Add(ItemDropRule.Common(ItemID.FriedEgg, 10));
             npcLoot.Add(ItemDropRule.Common(ItemID.Cloud, 2, 3, 17));
         }

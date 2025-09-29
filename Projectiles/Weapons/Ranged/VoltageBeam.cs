@@ -37,7 +37,7 @@ namespace TranscendenceMod.Projectiles.Weapons.Ranged
 
             Projectile.friendly = true;
             Projectile.ignoreWater = true;
-            Projectile.localNPCHitCooldown = 2;
+            Projectile.localNPCHitCooldown = 3;
             Projectile.usesLocalNPCImmunity = true;
         }
         public override void AI()

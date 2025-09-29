@@ -49,7 +49,7 @@ namespace TranscendenceMod.Projectiles.Weapons.Crean
 
             if (timer == 15)
                 Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Projectile.DirectionTo(Main.MouseWorld).RotatedByRandom(0.1f),
-                    ModContent.ProjectileType<CreanStargazerLaser>(), Projectile.damage, 2f, Projectile.owner, 0, Projectile.whoAmI);
+                    ModContent.ProjectileType<CreanStargazerLaser>(), Projectile.damage, 2f, Projectile.owner, 0, Projectile.whoAmI, 0.5f);
         }
         public override bool PreDraw(ref Color lightColor)
         {

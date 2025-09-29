@@ -33,8 +33,8 @@ namespace TranscendenceMod.Items.Weapons.Melee
         }
         public override void SetDefaults()
         {
-            Item.damage = 335;
-            Item.crit = 20;
+            Item.damage = 275;
+            Item.crit = 15;
             Item.DamageType = DamageClass.Melee;
 
             Item.width = 22;
@@ -44,9 +44,9 @@ namespace TranscendenceMod.Items.Weapons.Melee
             Item.useAnimation = 16;
             Item.useStyle = ItemUseStyleID.Shoot;
 
-            Item.knockBack = 2;
+            Item.knockBack = 2f;
             Item.shoot = projectile;
-            Item.shootSpeed = 7;
+            Item.shootSpeed = 6f;
 
             Item.value = Item.sellPrice(gold: 50);
             Item.rare = ModContent.RarityType<Brown>();
@@ -55,7 +55,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
 
             Item.UseSound = new SoundStyle("TranscendenceMod/Miscannellous/Assets/Sounds/Weapons/MuramasaSwing")
             {
-                Volume = 8.85f,
+                Volume = 1.85f,
                 MaxInstances = 0
             };
             Item.noUseGraphic = true;
@@ -139,7 +139,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
             Projectile.timeLeft = 38;
 
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 2;
+            Projectile.localNPCHitCooldown = 3;
             Projectile.ArmorPenetration = 25;
 
             Projectile.friendly = true;
@@ -152,7 +152,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
 
             SoundEngine.PlaySound(SoundID.NPCHit18, target.Center);
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 5; i++)
             {
                 int p = Projectile.NewProjectile(Projectile.GetSource_OnHit(target), target.Center + Vector2.One.RotatedByRandom(360) * (150 + (i * 50)), Projectile.DirectionTo(target.Center) * 4,
                 projectile, Projectile.damage, 1, player.whoAmI, 0, target.whoAmI);
@@ -167,8 +167,8 @@ namespace TranscendenceMod.Items.Weapons.Melee
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
             float reference = float.NaN;
-            if (Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Main.player[Projectile.owner].Center,
-                Projectile.Center + Projectile.velocity * (Projectile.ai[2] * (Projectile.scale * 1.75f)) * 0.275f, 24, ref reference))
+            if (Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center + Projectile.velocity * 2f,
+                Projectile.Center + Projectile.velocity * (Projectile.ai[2] * (Projectile.scale * 1.75f)) * 0.275f, 4, ref reference))
             {
                 return true;
             }
@@ -178,9 +178,6 @@ namespace TranscendenceMod.Items.Weapons.Melee
         {
             Player player = Main.player[Projectile.owner];
             player.heldProj = Projectile.whoAmI;
-
-            armRot = (player.MountedCenter - Projectile.Center).ToRotation() + MathHelper.PiOver2;
-            //player.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, armRot);
 
             if (player.HeldItem.type != ModContent.ItemType<UpgradedMuramasa>() || player.dead)
                 Projectile.Kill();
@@ -234,15 +231,6 @@ namespace TranscendenceMod.Items.Weapons.Melee
 
             float rot = Projectile.rotation + (boolean ? 0 : MathHelper.PiOver2);
             SpriteEffects spriteEffects = boolean ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-
-            //TranscendenceUtils.DrawEntity(Projectile, new Color(0f, 0.5f, 0.8f, 0f) * 0.25f, 3f, "TranscendenceMod/Miscannellous/Assets/HitEffect", 0, Projectile.Center + Projectile.velocity * Projectile.scale * 5.25f, null);
-            //TranscendenceUtils.DrawEntity(Projectile, new Color(0f, 0.2f, 0.6f, 0f), 1f, "TranscendenceMod/Miscannellous/Assets/HitEffect", 0, Projectile.Center + Projectile.velocity * Projectile.scale * 5.25f, null);
-            /*for (int i = 0; i < Projectile.oldPos.Length; i++)
-            {
-                float Fade = (Projectile.oldPos.Length - (i * 1.75f)) / (float)Projectile.oldPos.Length;
-                Main.EntitySpriteDraw(sprite2, (Projectile.oldPos[i] - (Projectile.Size * 0.25f) + Projectile.velocity * 3.15f - Main.screenPosition) + origin + new Vector2(0, Projectile.gfxOffY),
-                    null, Color.RoyalBlue * 0f * Fade, Projectile.oldRot[i] - MathHelper.PiOver2, sprite2.Size() * 0.5f, Projectile.scale * 1.33f, spriteEffects);
-            }*/
 
             Main.EntitySpriteDraw(sprite, Projectile.Center + Projectile.velocity * 3 * Projectile.scale - Main.screenPosition, null, Color.White, rot, origin,
                 Projectile.scale, spriteEffects);

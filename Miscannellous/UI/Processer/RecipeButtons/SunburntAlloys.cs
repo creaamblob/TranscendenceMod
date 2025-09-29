@@ -22,21 +22,21 @@ using TranscendenceMod.Miscannellous.UI.Processer;
 
 namespace TranscendenceMod.Miscannellous.UI.Processer.RecipeButtons
 {
-    public class SteelAlloys : BaseRecipeButton
+    public class SunburntAlloys : BaseRecipeButton
     {
-        public override int ItemType => ModContent.ItemType<SteelAlloy>();
+        public override int ItemType => ModContent.ItemType<SunburntAlloy>();
 
         public override int xMod => 0;
 
         public override int yMod => 100;
 
-        public override int resultAmount => ProcessRecipes.SteelAlloy()[16];
+        public override int resultAmount => ProcessRecipes.SunburntAlloy()[16];
 
         public override void OnClick()
         {
             for (int i = 0; i < 16; i++)
             {
-                ProcesserUI.PreviewItems[i] = ProcessRecipes.SteelAlloy()[i];
+                ProcesserUI.PreviewItems[i] = ProcessRecipes.SunburntAlloy()[i];
             }
         }
     }

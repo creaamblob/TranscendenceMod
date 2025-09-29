@@ -92,7 +92,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
                 if (Projectile.localAI[2] >= 45)
                     Projectile.ai[2] = MathHelper.Lerp(Projectile.ai[2], 0f, 1f / 20f);
 
-                rot += 0.0125f * Projectile.ai[2];
+                rot += 0.01f * Projectile.ai[2];
 
                 if (Projectile.localAI[2] > 60)
                     Projectile.ai[0] += 2;

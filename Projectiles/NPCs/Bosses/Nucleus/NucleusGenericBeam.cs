@@ -60,8 +60,11 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Nucleus
             {
                 Projectile.ai[0]++;
 
-                if (Projectile.ai[0] == 2)
-                    SoundEngine.PlaySound(ModSoundstyles.SeraphBomb);
+                if (Projectile.ai[2] == 0)
+                {
+                    SoundEngine.PlaySound(ModSoundstyles.SeraphBomb with { MaxInstances = 0});
+                    Projectile.ai[2] = 1;
+                }
 
                 if (Height < 3000)
                     Height += 100f;

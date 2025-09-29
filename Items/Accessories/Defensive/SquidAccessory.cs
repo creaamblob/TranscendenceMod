@@ -35,7 +35,7 @@ namespace TranscendenceMod.Items.Accessories.Defensive
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient(ModContent.ItemType<SteelAlloy>(), 8)
+            .AddIngredient(ItemID.HallowedBar, 8)
             .AddIngredient(ModContent.ItemType<Lightning>(), 6)
             .AddIngredient(ItemID.LogicSensor_Water, 2)
             .AddIngredient(ItemID.Wire, 10)

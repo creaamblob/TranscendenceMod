@@ -16,6 +16,7 @@ using TranscendenceMod.Projectiles.Modifiers;
 using TranscendenceMod.Projectiles.Weapons.Melee;
 using TranscendenceMod.Projectiles.Weapons.Ranged;
 using TranscendenceMod.Projectiles.Weapons.Summoner;
+using static TranscendenceMod.TranscendenceWorld;
 
 namespace TranscendenceMod.Miscannellous.GlobalStuff
 {
@@ -136,13 +137,13 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                 owner = npc2;
 
             if ((projectile.type == ProjectileID.PaladinsHammerHostile && owner.type == NPCID.Paladin ||
-                projectile.type == ProjectileID.LostSoulHostile && (owner.type == NPCID.RaggedCaster || owner.type == NPCID.RaggedCasterOpenCoat)) && TranscendenceWorld.DownedWindDragon && owner != null)
+                projectile.type == ProjectileID.LostSoulHostile && (owner.type == NPCID.RaggedCaster || owner.type == NPCID.RaggedCasterOpenCoat)) && Downed.Contains(Bosses.Atmospheron) && owner != null)
             {
                 projectile.damage *= 2;
                 projectile.velocity *= 1.75f;
             }
 
-            if (projectile.type == ProjectileID.ShadowBeamHostile && TranscendenceWorld.DownedWindDragon && owner != null && (owner.type == NPCID.Necromancer || owner.type == NPCID.NecromancerArmored))
+            if (projectile.type == ProjectileID.ShadowBeamHostile && Downed.Contains(Bosses.Atmospheron) && owner != null && (owner.type == NPCID.Necromancer || owner.type == NPCID.NecromancerArmored))
             {
                 projectile.extraUpdates = 3;
                 projectile.timeLeft *= 6;
@@ -202,7 +203,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                 Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, Main.rand.NextVector2Circular(1f, 1f), ModContent.ProjectileType<FrostMist>(), projectile.damage / 7, 0f, owner2.whoAmI);
             }
 
-            if ((projectile.type == ProjectileID.PaladinsHammerHostile && owner != null && owner.type == NPCID.Paladin) && TranscendenceWorld.DownedWindDragon)
+            if ((projectile.type == ProjectileID.PaladinsHammerHostile && owner != null && owner.type == NPCID.Paladin) && Downed.Contains(Bosses.Atmospheron))
             {
                 if (Timer == 60)
                     projectile.velocity = projectile.DirectionTo(owner.Center) * 12f;
@@ -212,7 +213,7 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                 projectile.type == ProjectileID.Shadowflames && owner != null && owner.type == NPCID.GiantCursedSkull ||
                 projectile.type == ProjectileID.BulletDeadeye && owner != null && owner.type == NPCID.TacticalSkeleton ||
                 projectile.type == ProjectileID.ShadowBeamHostile && owner != null && Timer % 15 == 0 && Timer < 60 && (owner.type == NPCID.Necromancer || owner.type == NPCID.NecromancerArmored) ||
-                projectile.type == ProjectileID.InfernoHostileBolt && (owner.type == NPCID.DiabolistRed || owner.type == NPCID.DiabolistWhite)) && TranscendenceWorld.DownedWindDragon)
+                projectile.type == ProjectileID.InfernoHostileBolt && (owner.type == NPCID.DiabolistRed || owner.type == NPCID.DiabolistWhite)) && Downed.Contains(Bosses.Atmospheron))
             {
                 if (Timer % 2 == 0 && projectile.type == ProjectileID.RocketSkeleton)
                 {

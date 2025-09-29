@@ -1,5 +1,6 @@
 using Terraria.GameContent.UI;
 using Terraria.ModLoader;
+using static TranscendenceMod.TranscendenceWorld;
 
 namespace TranscendenceMod.Miscannellous.UI
 {
@@ -10,6 +11,6 @@ namespace TranscendenceMod.Miscannellous.UI
             AddToCategory(EmoteID.Category.Dangers);
         }
 
-        public override bool IsUnlocked() => TranscendenceWorld.DownedNucleus;
+        public override bool IsUnlocked() => Downed.Contains(Bosses.ProjectNucleus);
     }
 }

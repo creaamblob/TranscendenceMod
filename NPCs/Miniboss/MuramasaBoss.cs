@@ -8,17 +8,18 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.UI.ModBrowser;
+using TranscendenceMod.Items.Accessories.Offensive;
 using TranscendenceMod.Items.Accessories.Other;
 using TranscendenceMod.Items.Materials;
+using TranscendenceMod.Items.Materials.MobDrops;
 using TranscendenceMod.Items.Weapons.Magic;
 using TranscendenceMod.Items.Weapons.Melee;
+using TranscendenceMod.Items.Weapons.Ranged;
 using TranscendenceMod.Miscannellous;
 using TranscendenceMod.Miscannellous.GlobalStuff;
 using TranscendenceMod.Projectiles.NPCs.Bosses.Muramasa;
-using TranscendenceMod.Items.Weapons.Ranged;
-using TranscendenceMod.Items.Accessories.Offensive;
-using TranscendenceMod.Items.Materials.MobDrops;
-using Terraria.ModLoader.UI.ModBrowser;
+using static TranscendenceMod.TranscendenceWorld;
 
 namespace TranscendenceMod.NPCs.Miniboss
 {
@@ -40,12 +41,12 @@ namespace TranscendenceMod.NPCs.Miniboss
         public override void SetDefaults()
         {
             /*Stats*/
-            NPC.lifeMax = TranscendenceWorld.DownedWindDragon ? 25000 : NPC.downedPlantBoss ? 8750 : 1275;
-            NPC.defense = TranscendenceWorld.DownedWindDragon ? 120 : NPC.downedPlantBoss ? 65 : 25;
-            NPC.damage = TranscendenceWorld.DownedWindDragon ? 80 : NPC.downedPlantBoss ? 60 : 40;
-            NPC.value = TranscendenceWorld.DownedWindDragon ? Item.sellPrice(gold: 12, silver: 50) : NPC.downedPlantBoss ? Item.sellPrice(gold: 7, silver: 50) : Item.sellPrice(gold: 2, silver: 50);
-            NPC.width = TranscendenceWorld.DownedWindDragon ? 58 : 64;
-            NPC.height = TranscendenceWorld.DownedWindDragon ? 58 : 64;
+            NPC.lifeMax = Downed.Contains(Bosses.Atmospheron) ? 25000 : NPC.downedPlantBoss ? 8750 : 1275;
+            NPC.defense = Downed.Contains(Bosses.Atmospheron) ? 120 : NPC.downedPlantBoss ? 65 : 25;
+            NPC.damage = Downed.Contains(Bosses.Atmospheron) ? 80 : NPC.downedPlantBoss ? 60 : 40;
+            NPC.value = Downed.Contains(Bosses.Atmospheron) ? Item.sellPrice(gold: 12, silver: 50) : NPC.downedPlantBoss ? Item.sellPrice(gold: 7, silver: 50) : Item.sellPrice(gold: 2, silver: 50);
+            NPC.width = Downed.Contains(Bosses.Atmospheron) ? 58 : 64;
+            NPC.height = Downed.Contains(Bosses.Atmospheron) ? 58 : 64;
             NPC.aiStyle = 0;
             NPC.rarity = 3;
 
@@ -283,20 +284,21 @@ namespace TranscendenceMod.NPCs.Miniboss
                 return 0f;
 
             if (spawnInfo.Player.ZoneDungeon)
-                return TranscendenceWorld.DownedMuramasaBoss ? 0.0075f : 0.025f;
+                return Downed.Contains(Bosses.Muramasa) ? 0.0075f : 0.025f;
 
             return 0f;
         }
         public override bool? CanFallThroughPlatforms() => true;
         public override bool PreKill()
         {
-            if (TranscendenceWorld.DownedMuramasaBoss == false) TranscendenceWorld.DownedMuramasaBoss = true;
+            if (!Downed.Contains(Bosses.Muramasa))
+                Downed.Add(Bosses.Muramasa);
             return base.PreKill();
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             string sprite = Texture;
-            if (TranscendenceWorld.DownedWindDragon)
+            if (Downed.Contains(Bosses.Atmospheron))
                 sprite = "TranscendenceMod/Items/Weapons/Melee/UpgradedMuramasa";
 
             if (NPC.ai[1] == 1 && Timer < 90 ||NPC.ai[1] == 2 && Timer < 60)

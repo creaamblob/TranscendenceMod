@@ -1,3 +1,4 @@
+using Iced.Intel;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -9,6 +10,7 @@ using Terraria.Graphics;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TranscendenceMod.Miscannellous;
 using TranscendenceMod.Miscannellous.GlobalStuff;
 
 namespace TranscendenceMod.Projectiles.Weapons.Crean
@@ -26,11 +28,12 @@ namespace TranscendenceMod.Projectiles.Weapons.Crean
             Projectile.aiStyle = -1;
             Projectile.width = 24;
             Projectile.height = 24;
-            Projectile.timeLeft = 1200;
+            Projectile.timeLeft = 200;
 
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Generic;
             Projectile.penetrate = -1;
+            Projectile.extraUpdates = 4;
 
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
@@ -43,20 +46,31 @@ namespace TranscendenceMod.Projectiles.Weapons.Crean
         public override bool PreDraw(ref Color lightColor)
         {
             SpriteBatch spriteBatch = Main.spriteBatch;
+            Texture2D bloom = ModContent.Request<Texture2D>(TranscendenceMod.ASSET_PATH + "/GlowBloom").Value;
+
+            spriteBatch.End();
+            spriteBatch.Begin(default, BlendState.Additive, default, default, default, null, Main.GameViewMatrix.TransformationMatrix);
+
+            for (int i = 0; i < Projectile.oldPos.Length; i++)
+            {
+                Vector2 pos = Projectile.oldPos[i] - Main.screenPosition;
+                float Fade = i / (float)Projectile.oldPos.Length;
+
+                Main.EntitySpriteDraw(bloom, pos, null, StripColors(Fade) * 0.2f, 0f, bloom.Size() * 0.375f, 0.5f, SpriteEffects.None);
+            }
 
             Asset<Texture2D> sprite2 = TextureAssets.Extra[194];
 
             MiscShaderData miscShaderData = GameShaders.Misc["LightDisc"];
             miscShaderData.UseImage1(sprite2);
             miscShaderData.UseSaturation(1f);
-            miscShaderData.UseOpacity(5f);
+            miscShaderData.UseOpacity(5f * Projectile.Opacity);
             miscShaderData.Apply();
 
             _vertexStrip.PrepareStripWithProceduralPadding(Projectile.oldPos, Projectile.oldRot, StripColors, StripWidth, -Main.screenPosition + Projectile.Size / 2);
             _vertexStrip.DrawTrail();
 
             Main.pixelShader.CurrentTechnique.Passes[0].Apply();
-
 
             spriteBatch.End();
             spriteBatch.Begin(default, BlendState.AlphaBlend, default, default, default, null, Main.GameViewMatrix.TransformationMatrix);
@@ -66,11 +80,12 @@ namespace TranscendenceMod.Projectiles.Weapons.Crean
 
         private static VertexStrip _vertexStrip = new VertexStrip();
         private Color StripColors(float progressOnStrip) =>
-            progressOnStrip < 0.05f ? Color.Transparent :
-            Projectile.ai[1] != 0f ? Main.hslToRgb(1f - progressOnStrip, 1f, 0.5f) :
-            progressOnStrip < 0.33f ? Color.Lerp(Color.Transparent, Color.White, progressOnStrip) :
-            progressOnStrip < 0.66f ? Color.Lerp(Color.White * 0.33f, Color.DeepSkyBlue, (progressOnStrip - 0.33f) * 3f) :
-            Color.Lerp(Color.DeepSkyBlue, Color.Blue, (progressOnStrip - 0.66f) * 3f);
+            (progressOnStrip < 0.05f ? Color.Transparent :
+            Projectile.ai[1] != 0f ? Main.hslToRgb(0.925f - progressOnStrip, 1f, 0.5f) :
+            progressOnStrip < 0.33f ? Color.DeepSkyBlue :
+            progressOnStrip < 0.66f ? Color.Lerp(Color.DeepSkyBlue, Color.Blue, (progressOnStrip - 0.33f) * 3f) :
+            Color.Lerp(Color.Blue, Color.Purple, (progressOnStrip - 0.66f) * 3f)) * Projectile.Opacity;
+
         private float StripWidth(float progressOnStrip) => 24f;
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
@@ -102,13 +117,23 @@ namespace TranscendenceMod.Projectiles.Weapons.Crean
         {
             Projectile.spriteDirection = (int)Projectile.velocity.ToRotation();
             Vector2 vel = Projectile.GetGlobalProjectile<TranscendenceProjectiles>().baseVel;
+            Vector2 pos = Projectile.GetGlobalProjectile<TranscendenceProjectiles>().startPos;
 
             if (Projectile.localAI[1] > 0)
                 Projectile.localAI[1]--;
 
-            //Smaller = Bigger curve
-            float multiplier = 0.1f;
-            Projectile.velocity = vel.RotatedBy(Math.Sin(++Projectile.ai[0] * Projectile.ai[2] * multiplier));
+
+            if (Projectile.timeLeft <= 100)
+                Projectile.Opacity -= 1f / 100f;
+            else
+            {
+                //Smaller = Bigger curve
+                float multiplier = 0.1f;
+                Projectile.velocity = vel.RotatedBy(Math.Sin(++Projectile.ai[0] * Projectile.ai[2] * multiplier));
+
+                return;
+            }
+            Projectile.velocity = Vector2.Lerp(Projectile.velocity, Projectile.DirectionTo(pos) * 12f, 1f - Projectile.Opacity);
         }
     }
 }

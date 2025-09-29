@@ -21,6 +21,7 @@ using TranscendenceMod.Items.Modifiers;
 using TranscendenceMod.Items.Tools.Generic.Hardmetal;
 using TranscendenceMod.Items.Weapons.Magic;
 using TranscendenceMod.Miscannellous.UI.Achievements;
+using static TranscendenceMod.TranscendenceWorld;
 
 namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
 {
@@ -34,7 +35,7 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
         public bool CosmicNPCUnlock;
         public bool TimedialUnlock;
         public bool HardmetalUnlock;
-        public bool HeadlessUnlock;
+        public bool ProcessUnlock;
         public bool VolcanicUnlock;
         public bool sansUnlock;
         public bool MuramasaUnlock;
@@ -105,12 +106,6 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
                 CompleteAchievement(TaskIDs.Hardmetal);
             }
 
-            if (TranscendenceWorld.DownedHeadlessZombie && !HeadlessUnlock)
-            {
-                HeadlessUnlock = true;
-                CompleteAchievement(TaskIDs.Headless);
-            }
-
             if (Player.HasItem(ModContent.ItemType<VolcanicRemains>()) && !VolcanicUnlock)
             {
                 VolcanicUnlock = true;
@@ -123,7 +118,7 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
                 CompleteAchievement(TaskIDs.sans);
             }
 
-            if (TranscendenceWorld.DownedMuramasaBoss && !MuramasaUnlock)
+            if (Downed.Contains(Bosses.Muramasa) && !MuramasaUnlock)
             {
                 MuramasaUnlock = true;
                 CompleteAchievement(TaskIDs.Muramasa);
@@ -147,19 +142,19 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
                 CompleteAchievement(TaskIDs.Moonlord);
             }
 
-            if (TranscendenceWorld.VoidTilesCount > 0 && !VoidBiomeUnlock)
+            if (VoidTilesCount > 0 && !VoidBiomeUnlock)
             {
                 VoidBiomeUnlock = true;
                 CompleteAchievement(TaskIDs.VoidBiome);
             }
 
-            if (TranscendenceWorld.DownedFrostSerpent && !FrostSerpentUnlock)
+            if (Downed.Contains(Bosses.FrostSerpent) && !FrostSerpentUnlock)
             {
                 FrostSerpentUnlock = true;
                 CompleteAchievement(TaskIDs.FrostSerpent);
             }
 
-            if (TranscendenceWorld.DownedWindDragon && !AtmospheronUnlock)
+            if (Downed.Contains(Bosses.Atmospheron) && !AtmospheronUnlock)
             {
                 AtmospheronUnlock = true;
                 CompleteAchievement(TaskIDs.Atmospheron);
@@ -177,7 +172,7 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
                 CompleteAchievement(TaskIDs.NucleusCaller);
             }
 
-            if (TranscendenceWorld.DownedNucleus && !NucleusUnlock2)
+            if (Downed.Contains(Bosses.ProjectNucleus) && !NucleusUnlock2)
             {
                 NucleusUnlock2 = true;
                 CompleteAchievement(TaskIDs.Nucleus);
@@ -189,7 +184,7 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
                 CompleteAchievement(TaskIDs.Artifact);
             }
 
-            if (TranscendenceWorld.DownedSpaceBoss && !SeraphUnlock)
+            if (Downed.Contains(Bosses.CelestialSeraph) && !SeraphUnlock)
             {
                 SeraphUnlock = true;
                 CompleteAchievement(TaskIDs.Seraph);
@@ -264,7 +259,7 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
 
             if (HardmetalUnlock) tag["HardmetalUnlock"] = true;
 
-            if (HeadlessUnlock) tag["HeadlessUnlock"] = true;
+            if (ProcessUnlock) tag["ProcessUnlock"] = true;
 
             if (VolcanicUnlock) tag["VolcanicUnlock"] = true;
 
@@ -322,7 +317,7 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
 
             HardmetalUnlock = tag.ContainsKey("HardmetalUnlock");
 
-            HeadlessUnlock = tag.ContainsKey("HeadlessUnlock");
+            ProcessUnlock = tag.ContainsKey("ProcessUnlock");
 
             VolcanicUnlock = tag.ContainsKey("VolcanicUnlock");
 

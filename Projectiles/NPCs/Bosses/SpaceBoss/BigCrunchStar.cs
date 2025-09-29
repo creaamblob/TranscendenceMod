@@ -48,7 +48,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
                     SoundEngine.PlaySound(new SoundStyle("TranscendenceMod/Miscannellous/Assets/Sounds/NPCs/Hurt/CelestialSeraphShield")
                     {
                         Volume = 0.33f,
-                        Pitch = 2f,
+                        Pitch = 1.5f,
                         MaxInstances = 0
                     }, Projectile.Center);
 

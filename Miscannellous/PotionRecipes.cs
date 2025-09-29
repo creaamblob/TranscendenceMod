@@ -44,7 +44,7 @@ namespace TranscendenceMod
             CraftRecipe(ItemID.SonarPotion, ItemID.VariegatedLardfish, 3);
             CraftRecipe(ItemID.TrapsightPotion, ItemID.Stinger, 3);
             CraftRecipe(ItemID.InfernoPotion, ItemID.FlarefinKoi, 3);
-            CraftRecipe(ItemID.EndurancePotion, ModContent.ItemType<SteelAlloy>(), 3);
+            CraftRecipe(ItemID.EndurancePotion, ItemID.ArmoredCavefish, 3);
             CraftRecipe(ItemID.LifeforcePotion, ItemID.PrincessFish, 3);
             CraftRecipe(ItemID.AmmoReservationPotion, ItemID.DoubleCod, 3);
             CraftRecipe(ItemID.WarmthPotion, ItemID.FrostMinnow, 3);

@@ -38,7 +38,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             if (Main.expertMode || Main.masterMode)
                 dmg *= 2;
 
-            int amount = 8;
+            int amount = 12;
             float scale = 12f;
 
             bool big = Projectile.localAI[2] == 1f;

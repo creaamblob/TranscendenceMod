@@ -50,7 +50,7 @@ namespace TranscendenceMod.Items.Tools
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<SunBar>(), 10);
+            recipe.AddIngredient(ModContent.ItemType<SunburntAlloy>(), 10);
             recipe.AddIngredient(ItemID.SunplateBlock, 12);
             recipe.AddIngredient(ItemID.Feather, 12);
             recipe.AddTile(TileID.SkyMill);

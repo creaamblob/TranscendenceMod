@@ -36,7 +36,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
 
                 dmg = (int)(dmg * 0.66f);
 
-                TranscendenceUtils.ProjectileRing(Projectile, 4, Projectile.GetSource_Death(), Projectile.Center, ModContent.ProjectileType<GenericDivineLaser>(),
+                TranscendenceUtils.ProjectileRing(Projectile, 5, Projectile.GetSource_Death(), Projectile.Center, ModContent.ProjectileType<GenericDivineLaser>(),
                     dmg, 0f, 1f, 0, Projectile.ai[1], 2f, -1, Main.rand.NextFloat(MathHelper.TwoPi));
             }
         }

@@ -45,13 +45,16 @@ namespace TranscendenceMod
         public static bool EncouteredSeraph;
         public static bool EncouteredAtmospheron;
 
-        public static bool DownedHeadlessZombie;
-        public static bool DownedMuramasaBoss;
-        public static bool DownedWindDragon;
-        public static bool DownedNucleus;
-        public static bool DownedFrostSerpent;
-        public static bool DownedSpaceBoss;
-        public static bool DownedOOA;
+        public enum Bosses : byte
+        {
+            /*Just in case*/ _, 
+            Muramasa,
+            FrostSerpent,
+            Atmospheron,
+            ProjectNucleus,
+            CelestialSeraph
+        }
+        public static List<Bosses> Downed = new List<Bosses>();
 
         public static bool ObtainedTimeDial;
 
@@ -363,7 +366,7 @@ namespace TranscendenceMod
             spikeTrap.Register();
 
             Recipe powerCell = Recipe.Create(ItemID.LihzahrdPowerCell);
-            powerCell.AddIngredient(ModContent.ItemType<SunBar>(), 6);
+            powerCell.AddIngredient(ModContent.ItemType<SunburntAlloy>(), 6);
             powerCell.AddIngredient(ItemID.Glass, 8);
             powerCell.AddIngredient(ItemID.Ectoplasm, 4);
             powerCell.AddTile(TileID.LihzahrdFurnace);
@@ -453,7 +456,7 @@ namespace TranscendenceMod
             int SpaceBiome = tasks.FindIndex(genpass => genpass.Name.Equals("Spawn Point"));
             int Magnet = tasks.FindIndex(genpass => genpass.Name.Equals("Stalac"));
             int Caves = tasks.FindIndex(genpass => genpass.Name.Equals("Surface Caves"));
-            int Church = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
+            int Structures = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
             int Shinies2 = tasks.FindIndex(genpass => genpass.Name.Equals("Larva"));
             int SunkenCata = tasks.FindIndex(genpass => genpass.Name.Equals("Larva"));
 
@@ -469,8 +472,8 @@ namespace TranscendenceMod
             if (Caves != -1)
                 tasks.Insert(Caves + 1, new CavinatorEX("Caves", 550f));
 
-            if (Church != -1)
-                tasks.Insert(Church + 1, new Temple("Church", 550f));
+            if (Structures != -1)
+                tasks.Insert(Structures + 1, new Structures("Structures", 550f));
 
             if (Shinies2 != -1)
                 tasks.Insert(Shinies2 + 1, new Ores("Shinies2", 550f));
@@ -496,12 +499,11 @@ namespace TranscendenceMod
             if (bossChecklistMod.Version < new Version(1, 6))
                 return;
 
-            Func<bool> headlessZombieSlain = () => DownedHeadlessZombie;
-            Func<bool> muramasaDestroyed = () => DownedMuramasaBoss;
-            Func<bool> serpentSlain = () => DownedFrostSerpent;
-            Func<bool> windDragonSlain = () => DownedWindDragon;
-            Func<bool> spaceBossSlain = () => DownedSpaceBoss;
-            Func<bool> nucleusDestroyed = () => DownedNucleus;
+            Func<bool> muramasaDestroyed = () => Downed.Contains(Bosses.Muramasa);
+            Func<bool> serpentSlain = () => Downed.Contains(Bosses.FrostSerpent);
+            Func<bool> windDragonSlain = () => Downed.Contains(Bosses.Atmospheron);
+            Func<bool> nucleusDestroyed = () => Downed.Contains(Bosses.ProjectNucleus);
+            Func<bool> spaceBossSlain = () => Downed.Contains(Bosses.CelestialSeraph);
 
             List<int> nucleusDropTable = new List<int>()
                 {
@@ -536,21 +538,11 @@ namespace TranscendenceMod
                 spriteBatch.Draw(sprite, new Rectangle((int)pos.X, (int)pos.Y, sprite.Width, sprite.Height), color);
             };
 
-            float headlessZombieProgression = 2.575f;
             float muramasaProgression = 5.5f;
             float frostSerpentProgression = 18.125f;
             float windDragonProgression = 18.25f;
             float nucleusProgression = 18.85f;
             float spaceBossProgression = 20.25f;
-
-            bossChecklistMod.Call("LogMiniBoss",
-                Mod,
-                "HeadlessZombie",
-                headlessZombieProgression,
-                headlessZombieSlain,
-                ModContent.NPCType<HeadlessZombie>()
-            );
-
 
             bossChecklistMod.Call("LogMiniBoss",
                 Mod,
@@ -632,7 +624,7 @@ namespace TranscendenceMod
         private bool On_Item_CanShimmer(On_Item.orig_CanShimmer orig, Item self)
         {
             if (self.type == ItemID.RodofDiscord)
-                return DownedSpaceBoss;
+                return Downed.Contains(Bosses.CelestialSeraph);
 
             return orig(self);
         }
@@ -657,14 +649,6 @@ namespace TranscendenceMod
         {
             if (NPC.AnyNPCs(ModContent.NPCType<CelestialSeraph>()))
             {
-                int area = (410 * 16);
-                int sx = SpaceTempleX;
-                if (self != null && self.active && !self.position.Between(new Vector2(sx - area, 60 * 16),
-                    new Vector2(sx + area, 390 * 16)))
-                {
-                    return true;
-                }
-
                 if (SeraphArenaActive())
                 {
                     for (int i = 0; i < 150; i++)
@@ -676,6 +660,8 @@ namespace TranscendenceMod
                         }
                     }
                 }
+
+                return false;
             }
             return orig(self, x, y);
         }
@@ -741,25 +727,14 @@ namespace TranscendenceMod
         }
         public override void OnWorldLoad()
         {
-            DownedNucleus = false;
-            DownedHeadlessZombie = false;
-            DownedFrostSerpent = false;
-            DownedMuramasaBoss = false;
-            DownedSpaceBoss = false;
-            DownedWindDragon = false;
-            DownedOOA = false;
+            Downed.Clear();
             ObtainedTimeDial = false;
             EncouteredAtmospheron = false;
             EncouteredSeraph = false;
         }
         public override void OnWorldUnload()
         {
-            DownedHeadlessZombie = false;
-            DownedFrostSerpent = false;
-            DownedMuramasaBoss = false;
-            DownedSpaceBoss = false;
-            DownedWindDragon = false;
-            DownedOOA = false;
+            Downed.Clear();
             ObtainedTimeDial = false;
             EncouteredAtmospheron = false;
             EncouteredSeraph = false;
@@ -772,26 +747,14 @@ namespace TranscendenceMod
         }
         public override void SaveWorldData(TagCompound tag)
         {
-            if (DownedHeadlessZombie) tag["DownedHeadlessZombie"] = true;
-            if (DownedFrostSerpent) tag["DownedFrostSerpent"] = true;
-            if (DownedMuramasaBoss) tag["DownedMuramasaBoss"] = true;
-            if (DownedSpaceBoss) tag["DownedSpaceBoss"] = true;
-            if (DownedWindDragon) tag["DownedWindDragon"] = true;
-            if (DownedNucleus) tag["DownedNucleus"] = true;
-            if (DownedOOA) tag["DownedOOA"] = true;
+            //tag.Add("Downed", Downed);
             if (ObtainedTimeDial) tag["ObtainedTimeDial"] = true;
             if (EncouteredSeraph) tag["EncouteredSeraph"] = true;
             if (VoidTilesCount > 0) tag["VoidTilesCount"] = VoidTilesCount;
         }
         public override void LoadWorldData(TagCompound tag)
         {
-            DownedHeadlessZombie = tag.ContainsKey("DownedHeadlessZombie");
-            DownedFrostSerpent = tag.ContainsKey("DownedFrostSerpent");
-            DownedMuramasaBoss = tag.ContainsKey("DownedMuramasaBoss");
-            DownedSpaceBoss = tag.ContainsKey("DownedSpaceBoss");
-            DownedWindDragon = tag.ContainsKey("DownedWindDragon");
-            DownedNucleus = tag.ContainsKey("DownedNucleus");
-            DownedOOA = tag.ContainsKey("DownedOOA");
+            Downed = (List<Bosses>)tag.GetList<Bosses>("Downed");
             ObtainedTimeDial = tag.ContainsKey("ObtainedTimeDial");
             EncouteredAtmospheron = tag.ContainsKey("EncouteredAtmospheron");
             EncouteredSeraph = tag.ContainsKey("EncouteredSeraph");
