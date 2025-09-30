@@ -26,7 +26,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Dragon
             Projectile.aiStyle = 1;
             AIType = ProjectileID.Bullet;
 
-            Projectile.timeLeft = 350;
+            Projectile.timeLeft = 90;
             Projectile.tileCollide = false;
             Projectile.hostile = true;
         }

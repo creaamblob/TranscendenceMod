@@ -81,7 +81,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
             float reference = float.NaN;
-            if (Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Center, Projectile.Center + Vector2.One.RotatedBy(rot) * 2000, Projectile.ai[0] * 0.5f * Projectile.scale, ref reference))
+            if (Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Center, Projectile.Center + Vector2.One.RotatedBy(rot) * 2500, Projectile.ai[0] * 0.5f * Projectile.scale, ref reference))
                 return true;
             else return false;
         }
@@ -108,7 +108,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             Vector2 posB = Center + Vector2.One.RotatedBy(rot) * 60f;
 
             Vector2 pos2 = projectile.Center + Vector2.One.RotatedBy(rot) * height;
-            Vector2 pos2B = projectile.Center + Vector2.One.RotatedBy(rot) * 3000f;
+            Vector2 pos2B = projectile.Center + Vector2.One.RotatedBy(rot) * 4250f;
             int timer = projectile.GetGlobalProjectile<TranscendenceProjectiles>().Timer;
 
             //Request the Effect

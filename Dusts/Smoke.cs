@@ -36,8 +36,9 @@ namespace TranscendenceMod.Dusts
             sb.Begin(default, BlendState.Additive, default, default, default, null, Main.GameViewMatrix.TransformationMatrix);
 
             Texture2D sprite = ModContent.Request<Texture2D>($"{Texture}").Value;
-            Vector2 origin = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);
-            sb.Draw(sprite, dust.position - new Vector2(100, 100) - Main.screenPosition, new Rectangle(0, dust.frame.Y, 250, 200), dust.color * (1 - (dust.alpha / 255f)), dust.rotation, origin, dust.scale * 0.5f, SpriteEffects.None, 0);
+            Rectangle rec = new Rectangle(0, dust.frame.Y, 250, 200);
+            Vector2 origin = rec.Size() * 0.5f;
+            sb.Draw(sprite, dust.position - Main.screenPosition, rec, dust.color * (1 - (dust.alpha / 255f)), dust.rotation, origin, dust.scale * 0.5f, SpriteEffects.None, 0);
 
             sb.End();
             sb.Begin(default, BlendState.AlphaBlend, default, default, default, null, Main.GameViewMatrix.TransformationMatrix);

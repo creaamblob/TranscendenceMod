@@ -17,9 +17,6 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Dragon
             Projectile.width = 18;
             Projectile.height = 26;
 
-            Projectile.aiStyle = 1;
-            AIType = ProjectileID.Stake;
-
             Projectile.tileCollide = false;
             Projectile.hostile = true;
             Projectile.timeLeft = 300;
@@ -27,6 +24,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Dragon
         public override void OnSpawn(IEntitySource source)
         {
             TranscendenceUtils.NoExpertProjDamage(Projectile);
+            Projectile.rotation = Projectile.velocity.ToRotation() - MathHelper.PiOver2;
         }
 
         private Color col;

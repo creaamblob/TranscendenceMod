@@ -3022,11 +3022,10 @@ Mods: {
 				BlackHole: "{0} was sucked into a blackhole."
 				SpaceBoss: "{0} experienced the unknown."
 				NohitMode1: "{0} failed the challenge at hand."
-				NohitMode2: "{0} was electrocuted."
+				NohitMode2: "{0} found the shocking truth behind no-hit runs."
 				NohitMode3: "{0} divided by zero."
 				NohitMode4: "{0} tried to reject the concept of life and death."
-				MoonlordArena: "{0} faded away into the lunar fog, never to been again..."
-				NucleusGame: "{0} was deleted from existence."
+				NucleusGame: "{0} was virtually slain."
 			}
 
 			Nucleus: {

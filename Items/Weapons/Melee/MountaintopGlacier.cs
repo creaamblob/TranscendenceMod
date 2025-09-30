@@ -96,7 +96,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
 
             Projectile.timeLeft = 64;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 4;
+            Projectile.localNPCHitCooldown = -1;
 
             Projectile.friendly = true;
             Projectile.hostile = false;
@@ -147,9 +147,15 @@ namespace TranscendenceMod.Items.Weapons.Melee
             Projectile.velocity = Projectile.velocity.RotatedBy(Timer / 40f);
             if (Projectile.timeLeft < 52)
             {
-                int d = Dust.NewDust(dustPos, 1, 1, ModContent.DustType<Smoke>(), 0, 0, 0, Color.DeepSkyBlue * 0.125f, 0.75f);
+                int d = Dust.NewDust(dustPos, 1, 1, ModContent.DustType<Smoke>(), 0, 0, 0, Color.DeepSkyBlue * 0.25f, 0.75f);
                 Main.dust[d].noGravity = true;
                 Main.dust[d].velocity = Vector2.Zero;
+
+                if (++Projectile.ai[0] % 10 == 0)
+                {
+                    Projectile.NewProjectile(Projectile.GetSource_FromAI(), dustPos, dustPos.DirectionTo(Main.MouseWorld) * 12f, ModContent.ProjectileType<GlacierSnow>(),
+                        Projectile.damage / 4, Projectile.knockBack / 2f, player.whoAmI, 0, 0, -1);
+                }
             }
 
             if (Projectile.timeLeft < 18)
@@ -171,7 +177,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
             {
                 float smear = MathHelper.Lerp(0, -MathHelper.PiOver2 * Projectile.ai[2], i / 35f) * vel;
                 Main.EntitySpriteDraw(sprite2, Projectile.Center + Projectile.velocity.RotatedBy(smear) * 6 - Main.screenPosition, null, Color.Lerp(Color.DarkGray * 0.05f, Color.Transparent, i / 35f), rot + smear, origin,
-    Projectile.scale, spriteEffects);
+                    Projectile.scale, spriteEffects);
             }
 
             Main.EntitySpriteDraw(sprite, Projectile.Center + Projectile.velocity * 6 - Main.screenPosition, null, Color.White, rot, origin,
@@ -249,7 +255,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
             if (Projectile.ai[2] == 27)
             {
                 TranscendenceUtils.ProjectileRing(Projectile, 16, Projectile.GetSource_FromAI(), dustPos,
-    ModContent.ProjectileType<GlacierSnow>(), (int)(Projectile.damage * 0.33f), 1, 2, 0, 0, 0, player.whoAmI, 0);
+                    ModContent.ProjectileType<GlacierSnow>(), (int)(Projectile.damage * 0.66f), 1, 2, 0, 0, 1, player.whoAmI, 0);
             }
 
             if (Projectile.ai[2] > 8 && Projectile.ai[2] < 33)

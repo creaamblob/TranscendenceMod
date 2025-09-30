@@ -29,13 +29,16 @@ namespace TranscendenceMod.Projectiles.Weapons.Melee
         }
         public override void AI()
         {
+            if (Projectile.timeLeft < 10)
+                Projectile.scale -= 1f / 10f;
+
+            if (Projectile.ai[2] == -1)
+                return;
+
             if (Projectile.ai[2] < 30)
                 Projectile.ai[2]++;
             
             Projectile.velocity = Vector2.Lerp(Vector2.Zero, Projectile.GetGlobalProjectile<TranscendenceProjectiles>().baseVel.RotatedBy(MathHelper.ToRadians(Projectile.ai[2] * 4)), Projectile.ai[2] / 30f);
-
-            if (Projectile.timeLeft < 10)
-                Projectile.scale -= 1f / 10f;
         }
         public override Color? GetAlpha(Color lightColor) => Color.White;
         public override bool PreKill(int timeLeft)

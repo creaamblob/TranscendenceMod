@@ -11,6 +11,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 using TranscendenceMod.Items.Accessories.Offensive;
+using TranscendenceMod.NPCs.Boss.Dragon;
 using TranscendenceMod.NPCs.Boss.FrostSerpent;
 using TranscendenceMod.NPCs.Boss.Seraph;
 
@@ -65,7 +66,7 @@ namespace TranscendenceMod.Miscannellous.UI
             int remaining = (int)(MathHelper.Lerp(240, 0, npc.life / (float)npc.lifeMax));
             int remVal = remaining / 7;
 
-            Color col = (npc.dontTakeDamage || npc.ModNPC is CelestialSeraph boss && boss.NPCFade < 0.5f) ? Color.Gray * 0.66f : Color.White;
+            Color col = (npc.dontTakeDamage || npc.ModNPC is CelestialSeraph boss && boss.NPCFade < 0.1f) ? Color.Gray * 0.66f : Color.White;
 
             Rectangle hpRecM = new Rectangle(x + 50 + (36 - remVal), y + 12, 240 - remaining - (36 - remVal), hp.Height);
             Rectangle hpRecM2 = new Rectangle(36, 0, 240 - 36, hp.Height);
@@ -99,6 +100,20 @@ namespace TranscendenceMod.Miscannellous.UI
             if (npc.ModNPC is CelestialSeraph boss2)
             {
                 text = npc.FullName + " > " + $"[C/8e34c9:{boss2.CurrentAttack}]";
+            }
+            if (npc.ModNPC is WindDragon boss3 && npc.ai[1] > 0)
+            {
+                text += " ";
+                for (int i = 0; i < boss3.Stamina; i++)
+                {
+                    Color sCol = Color.Lerp(Color.Red, Color.Lime, i / (float)boss3.MaxStamina);
+                    string hex = sCol.Hex3();
+
+                    text += $"[C/{hex}: ()]";
+                }
+
+                if (boss3.Stamina == 0)
+                    text += $"zzZz [C/fffc00:{Math.Round((180 - boss3.RestDashCD) / 60f, 1)}s] zZzz ";
             }
 
             ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font,

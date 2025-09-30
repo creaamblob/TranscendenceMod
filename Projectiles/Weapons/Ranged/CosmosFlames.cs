@@ -53,7 +53,7 @@ namespace TranscendenceMod.Projectiles
             {
                 col = Color.Lerp(Color.Lerp(new Color(1f, 0.125f, 0.25f, 0f), new Color(1f, 0.1f, 0.33f, 0f), (float)Math.Sin(Main.GlobalTimeWrappedHourly)), new Color(0.25f, 0.1f, 0.5f, 0f), i / 4f) * 0.75f;
 
-                TranscendenceUtils.DrawProjAnimated(Projectile, col * 0.75f * Projectile.Opacity * (0.35f + (i / 4f)), 0.175f + i * 0.225f * Main.rand.NextFloat(0.66f, 1f), "TranscendenceMod/Dusts/Smoke",
+                TranscendenceUtils.DrawProjAnimated(Projectile, col * 0.75f * Projectile.Opacity * (0.35f + (i / 4f)), 0.175f + i * 0.225f * Main.rand.NextFloat(0.66f, 1f), "TranscendenceMod/Miscannellous/Assets/Smoke",
                     Rotation, Projectile.Center + Projectile.velocity * -15 + Projectile.velocity * (i * 10), false, false, false);
 
                 TranscendenceUtils.DrawEntity(Projectile, new Color(1f, 0.25f, 0.65f), 0.75f + (i * 0.5f) * Main.rand.NextFloat(0.6f, 1f), "bloom", 0, Projectile.Center + Projectile.velocity * (i * 4.5f), null);

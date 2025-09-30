@@ -262,7 +262,9 @@ namespace TranscendenceMod
             }
             else
             {
-                if (++Timer % 5 == 0)
+                int cd = 5;
+
+                if (++Timer % cd == 0)
                 {
                     if (IsADialogChain && Anchor != null && Anchor.active)
                         SoundEngine.PlaySound(SoundID.Mech with { MaxInstances = 0}, Anchor.Center + Center);

@@ -31,60 +31,57 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Dragon
             Projectile.hostile = true;
             Projectile.timeLeft = 2500;
             Projectile.penetrate = -1;
-            Projectile.extraUpdates = 1;
         }
         public override void OnSpawn(IEntitySource source)
         {
             TranscendenceUtils.NoExpertProjDamage(Projectile);
             MaxRad = Projectile.timeLeft;
+            Projectile.ai[2] = 125;
         }
         public override void AI()
         {
-            Projectile.position = Projectile.Center;
             ProjectileID.Sets.DrawScreenCheckFluff[Type] = 2500;
-            
 
-            if (++Timer > 5 && Projectile.extraUpdates < 100)
+            if (Projectile.ai[0] < 1f)
+                Projectile.ai[0] += 1f / 30f;
+
+            if (++Timer > 10 && Projectile.extraUpdates < 100)
             {
-                Projectile.extraUpdates += 2;
+                Projectile.extraUpdates++;
                 Timer = 0;
             }
 
-            Projectile.width++; 
-            Projectile.height++;
-
-            Projectile.position -= Projectile.Size * 0.5f;
-            Alpha = MathHelper.Lerp(0, 2, (float)Projectile.timeLeft / (float)MaxRad);
+            Projectile.ai[2] += (8 * (1 + (1 - Projectile.ai[0])));
         }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
-            if (targetHitbox.Distance(Projectile.Center + new Vector2(Projectile.width * 0.25f, Projectile.height * 0.15f)) < (Projectile.width * 0.33f) && Projectile.timeLeft > 800)
-                return true;
+            if (targetHitbox.Distance(Projectile.Center) > Projectile.ai[2])
+                return Projectile.ai[0] >= 0.66f;
             return false;
         }
         public override bool PreDraw(ref Color lightColor)
         {
             SpriteBatch spriteBatch = Main.spriteBatch;
 
-            spriteBatch.End();
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, default, default, null, Main.GameViewMatrix.TransformationMatrix);
+            TranscendenceUtils.RestartSB(spriteBatch, BlendState.Additive, null);
 
-            string spritepath = "TranscendenceMod/Miscannellous/Assets/Perlin2";
-            Texture2D sprite = ModContent.Request<Texture2D>(spritepath).Value;
-            Color col = Color.Lerp(Color.White, Color.Gold, (float)Math.Sin(Projectile.width / 64));
+            Color col = Color.Lerp(Color.Black, Color.Red, Projectile.ai[0]) * Projectile.ai[0];
 
-            Vector2 scale = new Vector2(1.5f, 1f);
-            Vector2 drawPosition = Projectile.Center - Main.screenPosition + Projectile.Size * scale * 0.66f;
-            Rectangle drawArea = new Rectangle(0, 0, Projectile.width, Projectile.height);
+            string tex = TranscendenceMod.ASSET_PATH + "/Slash";
 
-            DrawData drawData = new DrawData(sprite, drawPosition, drawArea, col * Alpha, 0, Projectile.Size, scale, SpriteEffects.None);
+            for (int i = 0; i < 64; i++)
+            {
+                Vector2 pos = new Vector2(0, Projectile.ai[2] * (Projectile.ai[2] / 275f)).RotatedBy(MathHelper.TwoPi * i / 64f);
+                float rot = (Projectile.Center + pos).DirectionTo(Projectile.Center).ToRotation() - MathHelper.PiOver2;
+                float rot2 = (Projectile.Center + pos.RotatedBy(0.05f)).DirectionTo(Projectile.Center).ToRotation() - MathHelper.PiOver2;
 
-            GameShaders.Misc["ForceField"].UseColor(col * Alpha);
-            GameShaders.Misc["ForceField"].Apply(drawData);
-            drawData.Draw(spriteBatch);
+                TranscendenceUtils.DrawEntity(Projectile, col, (1f + (Projectile.ai[2] / 200f)) * 0.5f, tex, rot2, Projectile.Center + pos.RotatedBy(0.05f), null);
+                TranscendenceUtils.DrawEntity(Projectile, col * 0.5f, (1f + (Projectile.ai[2] / 200f)) * 3f, tex, rot, Projectile.Center + pos * 1.5f, null);
+                TranscendenceUtils.DrawEntity(Projectile, col, 1f + (Projectile.ai[2] / 200f), tex, rot, Projectile.Center + pos, null);
+            }
 
-            spriteBatch.End();
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, default, default, null, Main.GameViewMatrix.TransformationMatrix);
+            TranscendenceUtils.RestartSB(spriteBatch, BlendState.AlphaBlend, null);
+
             return false;
         }
     }
