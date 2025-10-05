@@ -55,7 +55,7 @@ namespace TranscendenceMod.Projectiles.Weapons.Melee
                 target.AddBuff(BuffID.Midas, 180);
 
             if (damageDone >= target.life && !target.SpawnedFromStatue && !target.TypeName.Contains("Dummy") && !target.friendly)
-                Item.NewItem(Projectile.GetSource_OnHit(target), target.getRect(), ItemID.CopperCoin, Main.rand.Next(1, 14));
+                Item.NewItem(Projectile.GetSource_OnHit(target), target.getRect(), ItemID.SilverCoin, Main.rand.Next(1, 14));
         }
         public override bool PreDraw(ref Color lightColor)
         {

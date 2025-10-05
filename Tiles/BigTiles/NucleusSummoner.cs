@@ -58,7 +58,7 @@ namespace TranscendenceMod.Tiles.BigTiles
             int x = i - altar.TileFrameX / 18;
             int y = j - altar.TileFrameY / 18;
             Vector2 pos = new Vector2(x + 2 / 2, y).ToWorldCoordinates() - new Vector2(0, 300 - 32);
-            Vector2 pos2 = pos - new Vector2(47 * 16, 29 * 16);
+            Vector2 pos2 = pos - new Vector2(47 * 16, 29 * 16 + 4);
             for (int l = 1; l < (58 * 2 + 2); l++)
             {
                 spriteBatch.Draw(block, pos2 + new Vector2(l * 16, 0) - Main.screenPosition, null, Color.White * 0.025f, 0f, block.Size() * 0.5f, 1f, SpriteEffects.None, 0);

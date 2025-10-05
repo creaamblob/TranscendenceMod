@@ -1754,15 +1754,6 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
             Attack = SeraphAttacks.TrackingBlades;
             CurrentAttack = Language.GetTextValue("Mods.TranscendenceMod.SeraphAttackNames.TrackingBlades");
             
-            if (Timer_AI < (AttackDuration - 60) && NPCFade > 0.5f)
-                NPCFade -= 0.5f / 60f;
-
-            if (NPCFade < 0.1f)
-                NPC.Center = player.Center - new Vector2(0, 250);
-
-            if (Timer_AI > (AttackDuration - 60) && NPCFade < 1f)
-                NPCFade += 1f / 60f;
-
             skyFade = (1f - NPCFade) * 0.75f;
 
 
@@ -1837,14 +1828,14 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
 
         public void DeathraysP3()
         {
-            AttackDuration = 960;
+            AttackDuration = 600;
             Attack = SeraphAttacks.LaserGrid;
             CurrentAttack = Language.GetTextValue("Mods.TranscendenceMod.SeraphAttackNames.LaserGrid");
 
-            if (Timer_AI < (AttackDuration - 60))
+            if (Timer_AI < (AttackDuration - 120))
             {
                 if (Timer_AI < 5)
-                    Dashpos = player.Center;
+                    ProjectileCD[2] = 1;
 
                 if (skyFade < 0.66f)
                     skyFade += 0.75f / 60f;
@@ -1852,45 +1843,32 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
             else
             {
                 if (skyFade > 0f)
-                    skyFade -= 0.75f / 60f;
-            }
-
-            if (player.Center.Y > (Dashpos.Y + 750) || player.Center.Y < (Dashpos.Y - 750))
-                Dashpos.Y = MathHelper.Lerp(Dashpos.Y, player.Center.Y, 1f / 10f);
-
-            if (Timer_AI < (AttackDuration - 60) && NPCFade > 0.5f)
-                NPCFade -= 0.5f / 60f;
-            else NPC.Center = Dashpos - new Vector2(0, 250);
-
-            if (Timer_AI > (AttackDuration - 60) && NPCFade < 1f)
-                NPCFade += 1f / 60f;
-
-            if (Timer_AI > (AttackDuration - 120))
+                    skyFade -= 0.75f / 120f;
                 return;
+            }
 
             if (Timer_AI > 60)
             {
-                if (++ProjectileCD[1] % 35 == 0)
+                if (++ProjectileCD[1] % 45 == 0)
                 {
                     float rot = Main.rand.NextFloat(MathHelper.TwoPi);
-                    for (int i = 0; i < 4; i++)
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), player.Center, Vector2.Zero, trackingSword, 100, 2f, -1, MathHelper.TwoPi * i / 4f + rot, NPC.whoAmI, ProjReverse * 3f);
+                    for (int i = 0; i < 2; i++)
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), player.Center, Vector2.Zero, trackingSword, 100, 2f, -1, MathHelper.TwoPi * i / 2f + rot, NPC.whoAmI, ProjectileCD[2] * 2.5f);
 
-                    ProjReverse = -ProjReverse;
+                    ProjectileCD[2] = -ProjectileCD[2];
                 }
             }
-
-            if (Timer_AI > 60 && ++ProjectileCD[0] % 5 == 0)
+            
+            if (Timer_AI > 60 && ++ProjectileCD[0] % 120 == 0)
             {
-                for (int i = -1650; i < 1815; i += 165)
+                float y = Main.rand.NextFloat(-375f, 375f);
+                for (int i = -1500; i < 1750; i += 250)
                 {
-                    if (i >= -165 && i <= 495)
-                        continue;
-
-                    Vector2 pos = Dashpos - new Vector2(i + (float)Math.Sin(Timer_AI * 0.0175f) * 275f, 2250);
-                    int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, new Vector2(0f, 5f), ModContent.ProjectileType<GenericDivineLaser>(), 100, 0f, -1, -60, NPC.whoAmI, 2.5f);
+                    Vector2 pos = player.Center - new Vector2(2000 * ProjReverse, i + y);
+                    int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, new Vector2(5f * ProjReverse, 0f), ModContent.ProjectileType<GenericDivineLaser>(), 100, 0f, -1, -90, NPC.whoAmI, 2.5f);
                     Main.projectile[p].extraUpdates = 2;
                 }
+                ProjReverse = -ProjReverse;
             }
         }
 
@@ -2644,8 +2622,6 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
         {
             if (item.DamageType == DamageClass.Melee)
                 modifiers.FinalDamage *= 1.25f;
-            
-            modifiers.FinalDamage *= NPCFade;
         }
 
         public override void ModifyHitByProjectile(Projectile projectile, ref NPC.HitModifiers modifiers)
@@ -2655,8 +2631,6 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
 
             if (projectile.type == ModContent.ProjectileType<ExoticRayBowTrailingShot>())
                 modifiers.FinalDamage *= 0.5f;
-
-            modifiers.FinalDamage *= NPCFade;
         }
 
         public override bool CheckDead()

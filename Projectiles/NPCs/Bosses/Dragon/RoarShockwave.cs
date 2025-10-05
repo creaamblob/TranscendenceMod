@@ -29,7 +29,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Dragon
             Projectile.tileCollide = false;
             Projectile.aiStyle = -1;
             Projectile.hostile = true;
-            Projectile.timeLeft = 2500;
+            Projectile.timeLeft = 900;
             Projectile.penetrate = -1;
         }
         public override void OnSpawn(IEntitySource source)
@@ -61,6 +61,9 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Dragon
         }
         public override bool PreDraw(ref Color lightColor)
         {
+            if (Projectile.timeLeft >= 885)
+                return false;
+
             SpriteBatch spriteBatch = Main.spriteBatch;
 
             TranscendenceUtils.RestartSB(spriteBatch, BlendState.Additive, null);
@@ -76,7 +79,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Dragon
                 float rot2 = (Projectile.Center + pos.RotatedBy(0.05f)).DirectionTo(Projectile.Center).ToRotation() - MathHelper.PiOver2;
 
                 TranscendenceUtils.DrawEntity(Projectile, col, (1f + (Projectile.ai[2] / 200f)) * 0.5f, tex, rot2, Projectile.Center + pos.RotatedBy(0.05f), null);
-                TranscendenceUtils.DrawEntity(Projectile, col * 0.5f, (1f + (Projectile.ai[2] / 200f)) * 3f, tex, rot, Projectile.Center + pos * 1.5f, null);
+                TranscendenceUtils.DrawEntity(Projectile, col * 0.5f, (1f + (Projectile.ai[2] / 200f)) * 2f, tex, rot, Projectile.Center + pos * 1.5f, null);
                 TranscendenceUtils.DrawEntity(Projectile, col, 1f + (Projectile.ai[2] / 200f), tex, rot, Projectile.Center + pos, null);
             }
 

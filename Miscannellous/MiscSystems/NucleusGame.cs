@@ -55,6 +55,10 @@ namespace TranscendenceMod.Miscanellous.MiscSystems
         public override void PreUpdate()
         {
             MaxTime = 65 * 60;
+            if (Main.expertMode)
+                MaxTime = 60 * 60;
+            if (Main.masterMode)
+                MaxTime = 55 * 60;
 
             if (!NPC.AnyNPCs(ModContent.NPCType<ProjectNucleus>()))
                 BossEdition = false;

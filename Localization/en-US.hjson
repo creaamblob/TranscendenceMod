@@ -2756,7 +2756,7 @@ Mods: {
 			MothBaby.DisplayName: Moth Baby
 			NucleusHeart.DisplayName: Nucleus Heart
 			TwistedTendril.DisplayName: Twisted Tendril
-			RainbowShot.DisplayName: Rainbow Shot
+			RainbowShot.DisplayName: Rainbow Droplet
 			FrostWave.DisplayName: Frost Wave
 			FrozenMawProj.DisplayName: Frozen Maw Proj
 			DysphoricYoyoProj.DisplayName: Dysphoric Throw
@@ -2802,6 +2802,7 @@ Mods: {
 			CreanCog.DisplayName: Crean Cog
 			FrostMist.DisplayName: Frost Mist
 			DragonSlash.DisplayName: Dragon Slash
+			MeleeTornado.DisplayName: Melee Tornado
 		}
 
 		SeraphAttackNames: {
@@ -2825,7 +2826,7 @@ Mods: {
 			TrackingBlades: Pristine, Elegant Blades
 			RemoteBlast: Impurity Revealed Within
 			SupernovaP2: Death of a Star
-			LaserGrid: Pure Holy Assault
+			LaserGrid: Scars of Purity
 		}
 
 		Achievement: {
@@ -2966,7 +2967,7 @@ Mods: {
 				}
 
 				EmpressChallenge: {
-					DisplayName: Mystic Flight
+					DisplayName: Endurance Flight
 					Tooltip:
 						'''
 						Defeat the Empress of Light under the following conditions:

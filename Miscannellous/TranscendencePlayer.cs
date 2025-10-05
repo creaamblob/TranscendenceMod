@@ -54,6 +54,7 @@ using TranscendenceMod.Projectiles.Equipment.Tools;
 using TranscendenceMod.Projectiles.Modifiers;
 using TranscendenceMod.Projectiles.NPCs.Bosses.Nucleus;
 using TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss;
+using TranscendenceMod.Projectiles.Weapons.Crean;
 using TranscendenceMod.Tiles.TilesheetHell.Nature;
 using static Terraria.Player;
 using static TranscendenceMod.TranscendenceWorld;
@@ -1457,7 +1458,7 @@ namespace TranscendenceMod
                 }
                 if (Danger && ++EverglowingSunCD % 20 == 0)
                 {
-                    Projectile.NewProjectile(Player.GetSource_FromAI(), Player.Center, Player.DirectionTo(Main.MouseWorld) * 6f, ModContent.ProjectileType<EmpressSun>(), 95, 2f, Player.whoAmI);
+                    Projectile.NewProjectile(Player.GetSource_FromAI(), Player.Center, Player.DirectionTo(Main.MouseWorld) * 6f, ModContent.ProjectileType<EmpressSun>(), 200, 2f, Player.whoAmI);
                 }
                 if (TranscendenceWorld.InfectionAccessoryKeyBind.JustPressed)
                 {

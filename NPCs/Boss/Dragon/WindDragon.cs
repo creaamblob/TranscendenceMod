@@ -109,7 +109,7 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
         public override void SetDefaults()
         {
             /*Stats*/
-            NPC.lifeMax = 625 * 1000;
+            NPC.lifeMax = 475 * 1000;
             NPC.damage = contactDMG;
             NPC.defense = 30;
             NPC.npcSlots = 8f;
@@ -124,7 +124,7 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
             /*Audio*/
             NPC.HitSound = SoundID.DD2_BetsyHurt with { Volume = 0.5f, MaxInstances = 5 };
             NPC.DeathSound = SoundID.NPCDeath1;
-            Music = MusicID.OldOnesArmy;
+            Music = MusicID.DukeFishron;
 
             NPC.aiStyle = -1;
             NPC.netUpdate = true;
@@ -157,11 +157,11 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<CelestialSeraphBag>()));
         }
         public bool CanAttack;
-        public override bool CanHitPlayer(Player target, ref int cooldownSlot)
+        public override bool CanHitPlayer(Player target, ref int cooldownSlot) => false;
+        public override void HitEffect(NPC.HitInfo hit)
         {
-            return false;
+            base.HitEffect(hit);
         }
-
         public override void AI()
         {
             player = Main.player[NPC.target];
@@ -169,14 +169,13 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
             RotationTimer += RotationSpeed;
 
             NPC.TargetClosest(true);
-
             SkyManager.Instance.Activate("TranscendenceMod:DragonSky", player.Center);
 
 
             //This thing switches attacks and adjusts some things
             if (Timer_AI == 2)
             {
-                int max = 5;
+                int max = 6;
 
                 //Determine the next attack, no repeats
                 NextAttack = Main.rand.Next(1, max);
@@ -243,7 +242,7 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
                     StunnedFrameTimer = 0;
                 }
 
-                if (++RestDashCD > 180)
+                if (++RestDashCD > 120)
                 {
                     Stamina = MaxStamina;
                 }
@@ -260,10 +259,11 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
                 {
                     case 0: Intro(); break;
                     case 1: Dashes(); break;
-                    case 2: Tornadoes(); break;
-                    case 3: SunlightRays(); break;
+                    case 2: RainbowDrizzle(); break;
+                    case 3: Slam(); break;
                     case 4: Roar(); break;
-                    case 5: NPC.ai[1] = 1; goto case 1;
+                    case 5: TornadoDash(); break;
+                    case 6: NPC.ai[1] = 1; goto case 1;
                 }
             }
 
@@ -305,7 +305,7 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
 
             if (++ProjectileCD[0] < 5)
             {
-                dashVel = NPC.DirectionTo(player.Center) * 40f;
+                dashVel = NPC.DirectionTo(player.Center) * 60f;
                 NPC.rotation = dashVel.ToRotation() + (NPC.direction == -1 ? MathHelper.Pi : 0f);
 
                 NPC.velocity *= 0.8f;
@@ -314,8 +314,8 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
             {
                 NPC.velocity = dashVel;
 
-                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, dashVel, slash, 90, 2f, -1, 0, NPC.whoAmI);
-                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<DashLaser>(), 80, 0f, -1, 0, NPC.whoAmI);
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, dashVel, slash, 120, 2f, -1, 0, NPC.whoAmI);
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<DashLaser>(), 100, 0f, -1, 0, NPC.whoAmI);
             }
             if (ProjectileCD[0] >= 15)
             {
@@ -323,7 +323,7 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
             }
         }
 
-        public void Tornadoes()
+        public void RainbowDrizzle()
         {
             AttackDuration = 80;
 
@@ -348,11 +348,11 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
 
                 SoundEngine.PlaySound(SoundID.Item85 with { MaxInstances = 0 }, pos);
                 for (int i = 0; i < 5; i++)
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, vel.RotatedByRandom(0.05f) * (25f + i), ModContent.ProjectileType<RainbowShot>(), 90, 2f, -1, 0, NPC.whoAmI, (Timer_AI - 45) / 35f);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, vel.RotatedByRandom(0.0375f) * (37.5f + i), ModContent.ProjectileType<RainbowShot>(), 100, 2f, -1, 0, NPC.whoAmI, (Timer_AI - 45) / 35f);
             }
         }
 
-        public void SunlightRays()
+        public void Slam()
         {
             AttackDuration = 98;
 
@@ -366,16 +366,16 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
 
                 if (Timer_AI == 91)
                 {
-                    int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(0, 5), slash, 90, 2f, -1, 0, NPC.whoAmI);
+                    int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(0, 5), slash, 140, 2f, -1, 0, NPC.whoAmI);
                     Main.projectile[p].scale = 8f;
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<DashLaser>(), 80, 0f, -1, 0, NPC.whoAmI);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<DashLaser>(), 100, 0f, -1, 0, NPC.whoAmI);
                 }
             }
         }
 
         public void Roar()
         {
-            AttackDuration = 120;
+            AttackDuration = 90;
 
             if (Timer_AI < 30)
             {
@@ -388,12 +388,23 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
                 return;
             }
 
-            if (Timer_AI == 60)
+            if (Timer_AI == 45)
             {
-                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<RoarShockwave>(), 90, 2f, -1, 0f, NPC.whoAmI);
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<RoarShockwave>(), 130, 2f, -1, 0f, NPC.whoAmI);
                 SoundEngine.PlaySound(SoundID.DD2_BetsyScream with { Volume = 2f}, NPC.Center);
             }
         }
+
+        public void TornadoDash()
+        {
+            AttackDuration = 130;
+
+            if (Timer_AI == 10)
+            {
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<MeleeTornado>(), 120, 2f, -1, 0f, NPC.whoAmI);
+            }
+        }
+
 
         private void ProjectileManagerer()
         {

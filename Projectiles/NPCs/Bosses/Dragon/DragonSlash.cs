@@ -23,11 +23,16 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Dragon
             Projectile.aiStyle = -1;
             Projectile.penetrate = -1;
             Projectile.timeLeft = 5;
-            Projectile.scale = 5f;
+            Projectile.scale = 6f;
 
             Projectile.hostile = true;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
+        }
+        public override void OnSpawn(IEntitySource source)
+        {
+            base.OnSpawn(source);
+            TranscendenceUtils.NoExpertProjDamage(Projectile);
         }
         public override bool PreDraw(ref Color lightColor)
         {

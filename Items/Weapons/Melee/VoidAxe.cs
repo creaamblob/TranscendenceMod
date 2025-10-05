@@ -101,7 +101,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
         }
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            modifiers.FinalDamage *= (0.1f + (ChargeTimer / 2));
+            modifiers.FinalDamage *= (0.5f + (ChargeTimer * 2.5f));
             if (ChargeTimer > 9.95) 
             {
                 Main.player[Projectile.owner].SetImmuneTimeForAllTypes(60);
@@ -114,14 +114,14 @@ namespace TranscendenceMod.Items.Weapons.Melee
             Timer = 1.8f * dir;
             Projectile.velocity = new Vector2(Main.player[Projectile.owner].direction * 3, -5);
         }
-        public override bool? CanDamage() => Released;
+        public override bool? CanDamage() => Released && !HasHitNPC;
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
             float reference = float.NaN;
             if (Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center,
                 Projectile.Center + Projectile.velocity * 10 * Projectile.scale, 16, ref reference) && Released)
             {
-                return true;
+                return !HasHitNPC;
             }
             else return false;
         }
@@ -157,7 +157,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
                 }
 
 
-                Projectile.scale = (1f + (ChargeTimer / 5f));
+                Projectile.scale = (1f + (ChargeTimer / 4f));
 
                 return;
             }

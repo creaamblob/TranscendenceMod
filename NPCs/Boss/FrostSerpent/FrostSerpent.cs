@@ -207,7 +207,7 @@ namespace TranscendenceMod.NPCs.Boss.FrostSerpent
             if (GoBackToPlayerState > 0)
                 GoBackToPlayerState--;
 
-            float speed2 = (float)Math.Sin(speed) * 140;
+            float speed2 = (float)Math.Sin(speed) * 150f;
 
             if (extraRot == 0 && Attack != SerpentAttacks.DeathAnim) NPC.rotation = NPC.velocity.ToRotation() + MathHelper.PiOver2;
             NPC npc = NPC;
@@ -290,9 +290,9 @@ namespace TranscendenceMod.NPCs.Boss.FrostSerpent
             if (Attack != SerpentAttacks.Slam && Attack != SerpentAttacks.Charges && Attack != SerpentAttacks.MultiRays && Attack != SerpentAttacks.DeathAnim)
             {
                 float changeSpeed = 0.0125f;
-                float dist = Phase == 2 ? 375f : 475f;
+                float dist = Phase == 2 ? 275f : 375f;
 
-                NPC.velocity = Vector2.Lerp(NPC.velocity, NPC.DirectionTo(player.Center + Vector2.One.RotatedBy(rot * (float)Math.Tan(rot / 20)) * dist) * (70f + (speed2 * 0.66f) * speedMult) * NPC.scale, changeSpeed * speedMult);
+                NPC.velocity = Vector2.Lerp(NPC.velocity, NPC.DirectionTo(player.Center + Vector2.One.RotatedBy(rot * (float)Math.Tan(rot / 20f)) * dist) * (70f + speed2 * speedMult) * NPC.scale, changeSpeed * speedMult);
 
                 if (NPC.Distance(player.Center) > 2500)
                 {
@@ -307,7 +307,7 @@ namespace TranscendenceMod.NPCs.Boss.FrostSerpent
             else
             {
                 Attack = SerpentAttacks.Idle;
-                int am = Phase == 2 ? 120 : 240;
+                int am = Phase == 2 ? 90 : 150;
                 if (++RestTimer > am)
                 {
                     Stamina = MaxStaminaAmount;
@@ -595,7 +595,7 @@ namespace TranscendenceMod.NPCs.Boss.FrostSerpent
                 ProjectileTimer = 0;
             }
 
-            if (ProjectileTimer < 240 && ProjectileTimer % 40 == 0)
+            if (ProjectileTimer < 240 && ProjectileTimer % 20 == 0)
             {
                 TranscendenceUtils.ProjectileRing(NPC, 2, NPC.GetSource_FromAI(), NPC.Center, Icicle, 70, 1, 2f, 1, NPC.whoAmI, 1, -1, 0);
             }

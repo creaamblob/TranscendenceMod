@@ -4,6 +4,8 @@ using ReLogic.Content;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.Drawing;
+using Terraria.ID;
 using Terraria.ModLoader;
 using TranscendenceMod.Buffs;
 using TranscendenceMod.Miscannellous;
@@ -15,12 +17,13 @@ namespace TranscendenceMod.Projectiles.Equipment
 {
     public class EmpressSun : ModProjectile
     {
+        public bool LacewingMode;
         public override string Texture => "TranscendenceMod/Miscannellous/Assets/InvisSprite";
 
         public override void SetDefaults()
         {
             Projectile.aiStyle = -1;
-            Projectile.penetrate = -1;
+            Projectile.penetrate = 1;
 
             Projectile.width = 64;
             Projectile.height = 64;
@@ -63,6 +66,9 @@ namespace TranscendenceMod.Projectiles.Equipment
 
             Projectile.velocity *= 0.9f;
             Projectile.damage = (int)(Projectile.damage * 0.9f);
+
+            SoundEngine.PlaySound(SoundID.DD2_DarkMageHealImpact with { MaxInstances = 0 }, target.Center);
+            TranscendenceUtils.ParticleOrchestra(Main.dayTime ? ParticleOrchestraType.TrueExcalibur : ParticleOrchestraType.RainbowRodHit, target.Center, Projectile.owner);
         }
 
         public override void OnSpawn(IEntitySource source)
@@ -82,7 +88,7 @@ namespace TranscendenceMod.Projectiles.Equipment
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            Projectile.velocity.Y += 0.075f;
+            Projectile.velocity.Y += 0.05f;
 
             if (Projectile.timeLeft < 120)
                 Projectile.scale = MathHelper.Lerp(Projectile.scale, 0f, 1f / 120f);

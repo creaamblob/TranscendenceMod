@@ -123,7 +123,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
             /*Audio*/
             NPC.HitSound = SoundID.NPCHit4;
             NPC.DeathSound = ModSoundstyles.SeraphBomb;
-            Music = MusicID.Boss5;
+            Music = MusicID.Boss2;
 
             NPC.aiStyle = 0;
             NPC.netUpdate = true;
@@ -183,10 +183,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
                 player.position.X -= 24 * (player.Center.X > Center.X).ToDirectionInt();
 
             if (player.Center.Y > (Center.Y + 527) || player.Center.Y < (Center.Y - 527))
-            {
                 player.position.Y -= (player.Center.Y > Center.Y).ToDirectionInt() * 24;
-                player.velocity.Y -= (player.Center.Y > Center.Y).ToDirectionInt() * 4;
-            }
 
             if (HeartSize > 0f)
                 HeartSize = MathHelper.Lerp(HeartSize, 0f, 1f / 60f);
@@ -487,10 +484,10 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
 
         public void Beams()
         {
-            AttackDuration = 265;
+            AttackDuration = 130;
             Attacks = NucleusAttacks.AimedBeams;
 
-            if (++ProjectileCD % 75 == 0 && Timer_AI > 2)
+            if (++ProjectileCD % 30 == 0 && Timer_AI > 2)
             {
                 Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.DirectionTo(player.Center) * 4f, nucleusBeam, 125, 2f, -1, -20, NPC.whoAmI);
                 Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + new Vector2(0, 62), NPC.DirectionTo(player.Center) * 2f, missile, 90, 2f, -1, -20, NPC.whoAmI);
@@ -533,7 +530,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
 
                         if (WithinLiquid > 0)
                         {
-                            for (int i = 0; i < 28; i++)
+                            for (int i = 0; i < 36; i++)
                                 Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Main.rand.NextVector2Unit(MathHelper.PiOver4, MathHelper.PiOver2) * -Main.rand.NextFloat(10f, 16f), blood, 95, 2f, -1, -20, NPC.whoAmI);
                         }
                         else Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, slam, 175, 2f, -1, -20, NPC.whoAmI);
@@ -556,7 +553,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
             Attacks = NucleusAttacks.RingBeams;
 
             if (Timer_AI == 90)
-                TranscendenceUtils.ProjectileRing(NPC, 6, NPC.GetSource_FromAI(), NPC.Center, nucleusBeam, 100, 2f, 1f, -30, NPC.whoAmI, 0, -1, Main.rand.NextFloat(MathHelper.TwoPi));
+                TranscendenceUtils.ProjectileRing(NPC, 7, NPC.GetSource_FromAI(), NPC.Center, nucleusBeam, 100, 2f, 1f, -30, NPC.whoAmI, 0, -1, Main.rand.NextFloat(MathHelper.TwoPi));
 
             if (++ProjectileCD % 45 == 0)
                 Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + new Vector2(0, 62), NPC.DirectionTo(player.Center) * 0.75f, missile, 90, 2f, -1, -20, NPC.whoAmI);
@@ -587,8 +584,8 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
 
                 if (ProjectileCD2 > 124)
                 {
-                    dashVels[3].X = MathHelper.Lerp(dashVels[3].X, player.Center.X - Center.X, 1f / 90f);
-                    dashVels[3].Y = MathHelper.Lerp(dashVels[3].Y, ProjectileCD4, 1f / 120f);
+                    dashVels[3].X = MathHelper.Lerp(dashVels[3].X, player.Center.X - Center.X, 1f / 60f);
+                    dashVels[3].Y = MathHelper.Lerp(dashVels[3].Y, ProjectileCD4, 1f / 90f);
                 }
 
                 if (ProjectileCD4 < 10)
@@ -596,7 +593,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
 
 
                 Vector2 vec = Vector2.One.RotatedBy(NPC.ai[3] + MathHelper.PiOver2) * ProjectileCD2;
-                vec.X *= 2f;
+                vec.X *= 2.5f;
 
                 float speed = 3.75f;
                 NPC.rotation = NPC.DirectionTo(Center + (new Vector2(dashVels[3].X, dashVels[3].Y) * (ProjectileCD2 / 125f)) - new Vector2(0f, 625f)).ToRotation() + MathHelper.PiOver2;
@@ -745,7 +742,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
                             continue;
 
                         Vector2 startPos = Center + randPos;
-                        Vector2 vel = new Vector2(randPos.X > 0f ? -10f : 10f, startPos.DirectionTo(player.Center).Y * 4f);
+                        Vector2 vel = new Vector2(randPos.X > 0f ? -10f : 10f, 0f);
 
                         Vector2 vec = Vector2.One.RotatedBy(MathHelper.TwoPi * i / 16f);
 

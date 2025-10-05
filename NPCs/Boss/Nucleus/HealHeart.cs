@@ -66,10 +66,13 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
             if (NPC.ai[3] > 30 && NPC.ai[3] % 45 == 0)
             {
                 if (NPC.Distance(npc.Center) < 250)
-                    NPC.velocity = NPC.DirectionTo(npc.Center) * -15f;
+                    NPC.velocity = NPC.DirectionTo(npc.Center) * -8f;
                 if (NPC.Distance(npc.Center) < 425)
                     NPC.velocity = Main.rand.NextVector2CircularEdge(15f, 15f);
-                else NPC.velocity = NPC.DirectionTo(npc.Center) * 18f;
+                else NPC.velocity = NPC.DirectionTo(npc.Center) * 8f;
+
+                if (NPC.Center.Y > (npc.Center.Y + 500) || NPC.Center.Y < (npc.Center.Y - 500))
+                    NPC.position.Y = npc.position.Y;
             }
 
             if (npc.life < (npc.lifeMax * 0.1f))

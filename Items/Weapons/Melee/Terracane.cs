@@ -38,7 +38,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 7; i++)
             {
                 Projectile.NewProjectile(source, position, velocity.RotatedByRandom(0.275f) * Main.rand.NextFloat(0.725f, 1.75f), type, damage / 2, knockback, player.whoAmI);
             }

@@ -34,6 +34,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Nucleus
         {
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 
+            Projectile.localAI[1] += 2f;
             if (Projectile.timeLeft < 15)
                 Projectile.scale = MathHelper.Lerp(Projectile.scale, 0f, 1f / 15f);
 
@@ -71,9 +72,11 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Nucleus
             spriteBatch.End();
             spriteBatch.Begin(default, BlendState.Additive, Main.DefaultSamplerState, default, default, null, Main.GameViewMatrix.TransformationMatrix);
 
+            TranscendenceUtils.DrawEntity(Projectile, col() * MathHelper.Lerp(0.5f, 0f, Projectile.localAI[1] / 120f), Projectile.scale, TranscendenceMod.ASSET_PATH + "/GlowBloom", Projectile.rotation, Projectile.Center + Projectile.velocity * Projectile.localAI[1], null);
+
             NPC npc = Main.npc[(int)Projectile.ai[1]];
             if (npc != null && npc.active && npc.ModNPC is ProjectNucleus boss)
-                TranscendenceUtils.DrawEntity(Projectile, col() * 0.375f, Projectile.scale * 1.5f + (boss.HeartSize * 2f), Texture, Projectile.rotation, Projectile.Center, null);
+                TranscendenceUtils.DrawEntity(Projectile, col() * 0.375f, Projectile.scale * 1.5f + (boss.HeartSize * 3f), Texture, Projectile.rotation, Projectile.Center, null);
 
             for (int i = 0; i < 4; i++)
                 TranscendenceUtils.DrawEntity(Projectile, Color.Lerp(col(), Color.White, i / 2f), MathHelper.Lerp(Projectile.scale, Projectile.scale * 0.4f, i / 4f), Texture, Projectile.rotation, Projectile.Center, null);

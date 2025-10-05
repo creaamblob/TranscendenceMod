@@ -5,6 +5,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TranscendenceMod.Miscannellous;
 using TranscendenceMod.Miscannellous.GlobalStuff;
 
 namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
@@ -47,6 +48,8 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
         }
         public override void OnSpawn(IEntitySource source)
         {
+            TranscendenceUtils.NoExpertProjDamage(Projectile);
+
             Center = Projectile.Center;
             rot = Projectile.velocity.ToRotation() - MathHelper.PiOver4;
             Projectile.velocity = Vector2.Zero;

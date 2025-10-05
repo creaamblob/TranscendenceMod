@@ -9,6 +9,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TranscendenceMod.Miscannellous;
+using TranscendenceMod.NPCs.Boss.Nucleus;
 
 namespace TranscendenceMod.Projectiles.NPCs.Bosses.Nucleus
 {
@@ -46,6 +47,15 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Nucleus
 
             Timer2++;
 
+            NPC npc = Main.npc[(int)Projectile.ai[1]];
+            if (npc != null && npc.active && npc.ModNPC is ProjectNucleus boss)
+            {
+                if (Projectile.Center.X > (boss.Center.X + 974) || Projectile.Center.X < (boss.Center.X - 974))
+                    Projectile.Kill();
+
+                if (Projectile.Center.Y > (boss.Center.Y + 527) || Projectile.Center.Y < (boss.Center.Y - 527))
+                    Projectile.Kill();
+            }
 
             bool InsideLiquid = false;
 

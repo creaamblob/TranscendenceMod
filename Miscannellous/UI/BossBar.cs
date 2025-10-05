@@ -113,7 +113,7 @@ namespace TranscendenceMod.Miscannellous.UI
                 }
 
                 if (boss3.Stamina == 0)
-                    text += $"zzZz [C/fffc00:{Math.Round((180 - boss3.RestDashCD) / 60f, 1)}s] zZzz ";
+                    text += $"zzZz [C/fffc00:{Math.Round((120 - boss3.RestDashCD) / 60f, 1)}s] zZzz ";
             }
 
             ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font,

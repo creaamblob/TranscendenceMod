@@ -10,6 +10,7 @@ using Terraria.ModLoader;
 using TranscendenceMod.Buffs;
 using TranscendenceMod.Miscanellous.MiscSystems;
 using TranscendenceMod.Miscannellous.GlobalStuff;
+using TranscendenceMod.NPCs.Boss.Nucleus;
 
 namespace TranscendenceMod.Projectiles.NPCs.Bosses.Nucleus
 {
@@ -61,9 +62,9 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Nucleus
                 && !Main.LocalPlayer.GetModPlayer<NucleusGame>().Active && npc.ai[1] != 99)
                 Main.LocalPlayer.AddBuff(ModContent.BuffType<MagmaBlood>(), 2);
 
-            int height = Main.masterMode ? 1100 : 950;
+            int height = 1100;
 
-            if (npc == null || !npc.active || npc.life < (npc.lifeMax * 0.1f))
+            if (npc == null || !npc.active || npc.life < (npc.lifeMax * 0.1f) || npc.type != ModContent.NPCType<ProjectNucleus>())
             {
                 if (Projectile.Center.Y < Projectile.GetGlobalProjectile<TranscendenceProjectiles>().startPos.Y)
                     Projectile.position.Y += 2f;
