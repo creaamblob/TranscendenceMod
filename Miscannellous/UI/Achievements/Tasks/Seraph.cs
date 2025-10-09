@@ -20,9 +20,9 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
         public override TaskIDs type => TaskIDs.Seraph;
         public override bool Unlocked => Main.LocalPlayer.GetModPlayer<ModAchievementsHelper>().SeraphUnlock;
 
-        public override float x => 75f;
+        public override float x => 100f;
 
-        public override float y => 50f;
+        public override float y => 75f;
 
         public override string col => "c7248f";
 

@@ -19,9 +19,9 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
         public override TaskIDs type => TaskIDs.FrostSerpent;
         public override bool Unlocked => Main.LocalPlayer.GetModPlayer<ModAchievementsHelper>().FrostSerpentUnlock;
 
-        public override float x => -50f;
+        public override float x => -25f;
 
-        public override float y => 125f;
+        public override float y => 100f;
 
         public override string col => "2764ba";
 

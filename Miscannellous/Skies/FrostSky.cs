@@ -42,32 +42,17 @@ namespace TranscendenceMod.Miscannellous.Skies
             auroraTimer += auroraTurner;
             if (auroraTimer > 2 || auroraTimer < 0) auroraTurner = -auroraTurner;
 
-            if (minDepth < maxDepth)
+            if (maxDepth >= 0 && minDepth < 0)
             {
                 Texture2D gradient = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/Gradient").Value;
 
-                if (maxDepth >= float.MaxValue && minDepth < float.MaxValue)
-                {
-                    var eff = ModContent.Request<Effect>("TranscendenceMod/Miscannellous/Assets/Shaders/Effects/SeraphTextShader", AssetRequestMode.ImmediateLoad).Value;
-                    eff.Parameters["uColor"].SetValue(new Vector3(0f, 1f, 1f));
-                    eff.Parameters["uOpacity"].SetValue(1f * fadeIn);
-                    eff.Parameters["uImageSize0"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight));
-                    eff.Parameters["uTime"].SetValue(auroraTimer * 0.075f);
-                    eff.Parameters["xChange"].SetValue(Main.GlobalTimeWrappedHourly * 0.2f);
-                    //Apply Space Textures
-                    Texture2D shaderImage = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/Perlin2").Value;
-                    eff.Parameters["uImageSize1"].SetValue(new Vector2(shaderImage.Width, shaderImage.Height * 12));
-                    Main.instance.GraphicsDevice.Textures[1] = shaderImage;
+                spriteBatch.End();
+                spriteBatch.Begin(default, BlendState.Additive, Main.DefaultSamplerState, default, default, null);
 
-                    spriteBatch.End();
-                    spriteBatch.Begin(default, BlendState.Additive, default, default, default, null);
+                spriteBatch.Draw(gradient, new Rectangle(Main.screenWidth / 2, Main.screenHeight, Main.screenWidth, Main.screenHeight * 2), null, Color.Blue * 0.375f * fadeIn, 0, gradient.Size() * 0.5f, SpriteEffects.FlipVertically, 0);
 
-                    spriteBatch.Draw(gradient, new Rectangle(0, (int)(Main.screenHeight * 0.3625f), Main.screenWidth * 2, (int)(Main.screenHeight * 0.75f)), null, Color.DeepSkyBlue * 0.75f * fadeIn, 0, gradient.Size() * 0.5f, SpriteEffects.FlipVertically, 0);
-                    spriteBatch.Draw(gradient, new Rectangle(0, (int)(Main.screenHeight * 0.9f), Main.screenWidth * 2, (int)(Main.screenHeight * 0.328f)), null, Color.DeepSkyBlue * 0.75f * fadeIn, 0, gradient.Size() * 0.5f, SpriteEffects.None, 0);
-
-                    spriteBatch.End();
-                    spriteBatch.Begin(default, BlendState.AlphaBlend, default, default, default, null);
-                }
+                spriteBatch.End();
+                spriteBatch.Begin(default, BlendState.AlphaBlend, default, default, default, null);
             }
         }
     }

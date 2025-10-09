@@ -14,6 +14,6 @@ namespace TranscendenceMod.Miscannellous.Rarities
 
             return Type;
         }
-        public override Color RarityColor => new Color(72, 75, 99);
+        public override Color RarityColor => new Color(72, 75, 99) * 1.75f;
     }
 }

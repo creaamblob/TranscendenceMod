@@ -20,12 +20,12 @@ namespace TranscendenceMod.Items.Weapons.Melee
         public override void SetStaticDefaults() => CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         public override void SetDefaults()
         {
-            Item.damage = 285;
+            Item.damage = 225;
             Item.DamageType = DamageClass.Melee;
 
             Item.width = 42;
             Item.height = 34;
-            Item.crit = 100;
+            Item.crit = 30;
 
             Item.useTime = 45;
             Item.useAnimation = 45;
@@ -101,7 +101,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
         }
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            modifiers.FinalDamage *= (0.5f + (ChargeTimer * 2.5f));
+            modifiers.FinalDamage *= (0.5f + (ChargeTimer * 1.75f));
             if (ChargeTimer > 9.95) 
             {
                 Main.player[Projectile.owner].SetImmuneTimeForAllTypes(60);

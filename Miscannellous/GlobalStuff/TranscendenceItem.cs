@@ -229,9 +229,6 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
                 || item.type == ItemID.GreenWrench || item.type == ItemID.YellowWrench || item.type == ItemID.MulticolorWrench || item.type == ItemID.ActuationRod))
                 return false;
 
-            if ((NPC.AnyNPCs(NPCID.EmpressButterfly) || NPC.AnyNPCs(NPCID.HallowBoss)) && item.type == ItemID.EmpressButterfly)
-                return false;
-
             return !player.GetModPlayer<TranscendencePlayer>().CannotUseItems;
         }
 

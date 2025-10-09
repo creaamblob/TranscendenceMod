@@ -54,7 +54,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.FrostSerpent
             }
             if (player != null && player.active)
             {
-                if (player.Distance(Projectile.Center) < 5000 && Timer2 > 20 && Timer2 < 125)
+                if (player.Distance(Projectile.Center) < 5000 && Timer2 >= 45 && Timer2 < 150)
                 {
                     if (Timer2 % 3 == 0)
                     {

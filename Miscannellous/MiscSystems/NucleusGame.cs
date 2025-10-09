@@ -54,11 +54,11 @@ namespace TranscendenceMod.Miscanellous.MiscSystems
 
         public override void PreUpdate()
         {
-            MaxTime = 65 * 60;
+            MaxTime = 55 * 60;
             if (Main.expertMode)
-                MaxTime = 60 * 60;
+                MaxTime = 45 * 60;
             if (Main.masterMode)
-                MaxTime = 55 * 60;
+                MaxTime = 35 * 60;
 
             if (!NPC.AnyNPCs(ModContent.NPCType<ProjectNucleus>()))
                 BossEdition = false;
@@ -84,7 +84,7 @@ namespace TranscendenceMod.Miscanellous.MiscSystems
 
                 if (pixel[upcomingPos] == 4)
                 {
-                    if (room >= 7 && BossEdition || room >= 15 && !BossEdition)
+                    if (room >= 5 && BossEdition || room >= 15 && !BossEdition)
                     {
                         if (BossEdition)
                         {
@@ -193,12 +193,15 @@ namespace TranscendenceMod.Miscanellous.MiscSystems
         {
             RhythmBlockTimer = 61;
 
-            if (Wait < 60)
+            if (Wait < 60 && Time >= 1)
                 return;
 
 
             if (BossEdition)
+            {
                 Player.KillMe(PlayerDeathReason.ByCustomReason(NetworkText.FromKey("Mods.TranscendenceMod.Messages.Death.NucleusGame", Player.name)), 9999, 1);
+                Active = false;
+            }
             else if (!Player.dead)
             {
                 SoundEngine.PlaySound(ModSoundstyles.SeraphBomb, Player.Center);
@@ -298,39 +301,7 @@ namespace TranscendenceMod.Miscanellous.MiscSystems
                 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2
                 }; break;
 
-                case 5: pixel = new int[]
-                {
-                2, 2, 2, 2, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 2, 2, 2, 2,
-                2, 0, 3, 3, 3, 3, 0, 0, 0, 0, 3, 3, 3, 3, 2, 2,
-                2, 0, 0, 3, 2, 3, 0, 0, 0, 0, 0, 0, 0, 3, 2, 2,
-                2, 3, 4, 3, 2, 3, 3, 3, 3, 3, 3, 3, 0, 3, 2, 2,
-                2, 3, 0, 3, 2, 3, 3, 3, 3, 3, 2, 3, 0, 3, 2, 2,
-                2, 2, 2, 2, 2, 3, 0, 0, 0, 3, 2, 3, 0, 3, 2, 2,
-                2, 2, 2, 2, 2, 3, 0, 3, 0, 3, 2, 3, 0, 3, 2, 2,
-                2, 3, 0, 3, 3, 3, 0, 3, 0, 3, 2, 3, 0, 3, 2, 2,
-                2, 0, 0, 0, 0, 0, 0, 3, 0, 3, 3, 3, 0, 3, 2, 2,
-                2, 0, 1, 0, 2, 3, 3, 2, 0, 0, 0, 0, 0, 3, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 2, 2
-                }; break;
-
-                case 6: pixel = new int[]
-                {
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-                2, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2,
-                2, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-                2, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2,
-                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-                2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 2,
-                2, 0, 0, 0, 0, 0, 0, 2, 2, 2, 3, 0, 0, 0, 0, 2,
-                2, 0, 4, 0, 3, 3, 0, 2, 2, 2, 0, 0, 0, 0, 0, 2,
-                2, 0, 0, 0, 2, 2, 0, 3, 3, 3, 0, 0, 0, 3, 3, 2,
-                2, 3, 0, 3, 2, 2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2
-                }; break;
-
-                case 7:
+                case 5:
                     {
                         if (BossEdition)
                         {
@@ -371,6 +342,38 @@ namespace TranscendenceMod.Miscanellous.MiscSystems
 
                         break;
                     }
+
+                case 6: pixel = new int[]
+                {
+                2, 2, 2, 2, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 2, 2, 2, 2,
+                2, 0, 3, 3, 3, 3, 0, 0, 0, 0, 3, 3, 3, 3, 2, 2,
+                2, 0, 0, 3, 2, 3, 0, 0, 0, 0, 0, 0, 0, 3, 2, 2,
+                2, 3, 4, 3, 2, 3, 3, 3, 3, 3, 3, 3, 0, 3, 2, 2,
+                2, 3, 0, 3, 2, 3, 3, 3, 3, 3, 2, 3, 0, 3, 2, 2,
+                2, 2, 2, 2, 2, 3, 0, 0, 0, 3, 2, 3, 0, 3, 2, 2,
+                2, 2, 2, 2, 2, 3, 0, 3, 0, 3, 2, 3, 0, 3, 2, 2,
+                2, 3, 0, 3, 3, 3, 0, 3, 0, 3, 2, 3, 0, 3, 2, 2,
+                2, 0, 0, 0, 0, 0, 0, 3, 0, 3, 3, 3, 0, 3, 2, 2,
+                2, 0, 1, 0, 2, 3, 3, 2, 0, 0, 0, 0, 0, 3, 2, 2,
+                2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 2, 2
+                }; break;
+
+                case 7: pixel = new int[]
+                {
+                2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+                2, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+                2, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2,
+                2, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+                2, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2,
+                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+                2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 2,
+                2, 0, 0, 0, 0, 0, 0, 2, 2, 2, 3, 0, 0, 0, 0, 2,
+                2, 0, 4, 0, 3, 3, 0, 2, 2, 2, 0, 0, 0, 0, 0, 2,
+                2, 0, 0, 0, 2, 2, 0, 3, 3, 3, 0, 0, 0, 3, 3, 2,
+                2, 3, 0, 3, 2, 2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 2,
+                2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2
+                }; break;
 
                 case 8: pixel = new int[]
                 {
@@ -519,7 +522,7 @@ namespace TranscendenceMod.Miscanellous.MiscSystems
         {
             Player p = Main.LocalPlayer;
 
-            if (p != null && p.active && p.TryGetModPlayer(out NucleusGame game) && game != null && (game.Active || p.GetModPlayer<TranscendencePlayer>().NucleusDeathAnim > 0))
+            if (p != null && p.active && !p.dead && p.TryGetModPlayer(out NucleusGame game) && game != null && (game.Active || p.GetModPlayer<TranscendencePlayer>().NucleusDeathAnim > 0))
             {
                 int xOff = 0;
                 int yOff = 0;
@@ -689,7 +692,7 @@ namespace TranscendenceMod.Miscanellous.MiscSystems
                 if (OperatingSystem.IsWindows())
                     font = ModContent.Request<DynamicSpriteFont>(TranscendenceMod.ASSET_PATH + "/PixelatedFont", AssetRequestMode.ImmediateLoad).Value;
 
-                int am = game.BossEdition ? 7 : 15;
+                int am = game.BossEdition ? 5 : 15;
                 string room = game.room.ToString() + "/" + $"{am} ROOM";
                 string time = (game.Time / 60).ToString() + " TIME";
                 Color flashCol = !game.BossEdition ? Color.DarkRed : new Color(Main.masterColor, Main.masterColor / 4f, 0f);

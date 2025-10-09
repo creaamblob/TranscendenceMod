@@ -12,9 +12,9 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
         public override TaskIDs type => TaskIDs.StarForge;
         public override bool Unlocked => Main.LocalPlayer.GetModPlayer<ModAchievementsHelper>().SeraphForgeUnlock;
 
-        public override float x => 100f;
+        public override float x => 75f;
 
-        public override float y => 75f;
+        public override float y => 100f;
 
         public override string col => "5a6c9a";
 

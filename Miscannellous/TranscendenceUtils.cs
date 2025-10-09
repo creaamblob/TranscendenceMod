@@ -609,6 +609,36 @@ namespace TranscendenceMod.Miscannellous
             spriteBatch.Begin(default, BlendState.AlphaBlend, Main.DefaultSamplerState, default, default, null, Main.GameViewMatrix.TransformationMatrix);
         }
 
+        public static void VeryBasicNPCOutline(NPC npc, string Texture, float dist, float r, float g, float b, float a, Vector2 vec, float scale, float rotation, float amount)
+        {
+            SpriteBatch spriteBatch = Main.spriteBatch;
+
+            var eff = ModContent.Request<Effect>("TranscendenceMod/Miscannellous/Assets/Shaders/Effects/SeraphOutlineShader", AssetRequestMode.ImmediateLoad).Value;
+            Texture2D sprite = ModContent.Request<Texture2D>(Texture).Value;
+
+            eff.Parameters["uOpacity"].SetValue(a);
+            eff.Parameters["uSaturation"].SetValue(1f);
+
+            eff.Parameters["uRotation"].SetValue(r);
+            eff.Parameters["uTime"].SetValue(g);
+            eff.Parameters["uDirection"].SetValue(b);
+
+            spriteBatch.End();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, eff, Main.GameViewMatrix.TransformationMatrix);
+
+            Vector2 origin = sprite.Size() * 0.5f;
+
+            for (int i = 0; i < amount; i++)
+            {
+                Vector2 pos = vec + Vector2.One.RotatedBy(MathHelper.TwoPi * i / 4f + Main.GlobalTimeWrappedHourly * 6) * dist;
+                if (amount == 1)
+                    pos = vec;
+                DrawEntity(npc, Color.White, scale, sprite, rotation, pos, null, origin, SpriteEffects.None);
+            }
+            spriteBatch.End();
+            spriteBatch.Begin(default, BlendState.AlphaBlend, Main.DefaultSamplerState, default, default, null, Main.GameViewMatrix.TransformationMatrix);
+        }
+
         public static void ProjectileRing(Entity entity, int circleNumProj, IEntitySource source, Vector2 position,
             int projtype, int damage, float kb, float speed, float ai0, float ai1, float ai2, int owner, float rot)
         {

@@ -464,9 +464,6 @@ namespace TranscendenceMod.Miscannellous.GlobalStuff
 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
-            if (NPC.AnyNPCs(NPCID.EmpressButterfly))
-                pool.Remove(NPCID.EmpressButterfly);
-
             if (spawnInfo.Player.InModBiome<Heaven>() || spawnInfo.Player.InModBiome<Limbo>())
                 pool.Remove(0);
 

@@ -20,9 +20,9 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
         public override TaskIDs type => TaskIDs.Atmospheron;
         public override bool Unlocked => Main.LocalPlayer.GetModPlayer<ModAchievementsHelper>().AtmospheronUnlock;
 
-        public override float x => -75f;
+        public override float x => -50f;
 
-        public override float y => 150f;
+        public override float y => 125f;
 
         public override string col => "4fdfff";
 

@@ -20,9 +20,9 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
         public override TaskIDs type => TaskIDs.NucleusCaller;
         public override bool Unlocked => Main.LocalPlayer.GetModPlayer<ModAchievementsHelper>().NucleusUnlock1;
 
-        public override float x => 0f;
+        public override float x => 25f;
 
-        public override float y => 75f;
+        public override float y => 50f;
 
         public override string col => "668086";
 

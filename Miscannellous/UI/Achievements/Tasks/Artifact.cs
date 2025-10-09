@@ -20,9 +20,9 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
         public override TaskIDs type => TaskIDs.Artifact;
         public override bool Unlocked => Main.LocalPlayer.GetModPlayer<ModAchievementsHelper>().ArtifactUnlock;
 
-        public override float x => 50f;
+        public override float x => 75f;
 
-        public override float y => 25f;
+        public override float y => 50f;
 
         public override string col => "ffa900";
 

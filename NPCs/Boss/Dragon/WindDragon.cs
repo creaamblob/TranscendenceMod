@@ -113,8 +113,7 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
             NPC.damage = contactDMG;
             NPC.defense = 30;
             NPC.npcSlots = 8f;
-            NPC.scale = 2f;
-            NPC.value = Item.buyPrice(platinum: 1);
+            NPC.value = Item.buyPrice(gold: 75);
             /*Collision*/
             NPC.width = 42;
             NPC.height = 42;

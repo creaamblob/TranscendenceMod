@@ -21,7 +21,7 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
 
         public override float x => 0f;
 
-        public override float y => 125f;
+        public override float y => -1125f;
 
         public override string col => "0e716b";
 

@@ -18,9 +18,9 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
         public override TaskIDs type => TaskIDs.Empress;
         public override bool Unlocked => Main.LocalPlayer.GetModPlayer<ModAchievementsHelper>().EmpressUnlock;
 
-        public override float x => -50f;
+        public override float x => -25f;
 
-        public override float y => 75f;
+        public override float y => 50f;
 
         public override string col => "fed059";
 

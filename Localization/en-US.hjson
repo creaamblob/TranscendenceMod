@@ -746,7 +746,7 @@ Mods: {
 				Tooltip:
 					'''
 					Has two states, a rocket launcher state and a flamethrower state
-					You shoot explosive shards in rocket launcher state and shooting downwards will make you perform a Rocket Jump
+					You shoot explosive shards in rocket launcher state and shooting downwards while holding UP will make you perform a Rocket Jump
 					While in flamethrower state, you convert gel into condensed nebula capable of shredding enemies
 					Right click to change states
 					'''
@@ -2853,7 +2853,7 @@ Mods: {
 
 				Parry: {
 					DisplayName: +PARRY
-					Tooltip: Obtain a parry from a shield
+					Tooltip: Obtain a parry from a [i:TranscendenceMod/Shield] [C/b5c1e0:Shield]
 				}
 
 				Modifier: {
@@ -2863,7 +2863,7 @@ Mods: {
 
 				ModifierBag: {
 					DisplayName: Convenient Alterations
-					Tooltip: Obtain the Magic Modifier Bag
+					Tooltip: Obtain the [i:TranscendenceMod/ModifierContainer] [C/c87d6b:Magic Modifier Bag]
 				}
 
 				Snowman: {
@@ -2878,27 +2878,27 @@ Mods: {
 
 				Timedial: {
 					DisplayName: Timeless Artifact
-					Tooltip: Combine the three Time Fragments into the Timedial
+					Tooltip: Combine the three [i:TranscendenceMod/TerrariaDial][i:TranscendenceMod/EtheriaDial][i:TranscendenceMod/ConstantDial] [C/c6a3e4:Time Fragments] into the [i:TranscendenceMod/Timedial] [C/c6a3e4:Timedial]
 				}
 
 				Hardmetal: {
 					DisplayName: Heavy Metal
-					Tooltip: Defeat the giant eye and mine Hardmetal Ore from the depths of the caverns
-				}
-
-				Headless: {
-					DisplayName: Nightmares of the Eternal Moon
-					Tooltip: Defeat the Headless Terror
+					Tooltip: Defeat the giant eye and mine [i:TranscendenceMod/HardmetalOre] [C/a1cfd2:Hardmetal Ore] from the depths of the caverns
 				}
 
 				Volcanic: {
-					DisplayName: Hot Stuff
-					Tooltip: Brave the volcanic layer and obtain Volcanic Remains
+					DisplayName: From the Depths
+					Tooltip: Brave the volcanic layer and obtain [i:TranscendenceMod/VolcanicRemains] [C/f6a84b:Volcanic Remains]
+				}
+
+				Procession: {
+					DisplayName: Procession
+					Tooltip: Craft the [i:TranscendenceMod/VolcanicRemains] [C/f6a84b:Item Processer]
 				}
 
 				sans: {
 					DisplayName: Bone Zone
-					Tooltip: Lift the Old Man's curse
+					Tooltip: Defeat Skeletron, the torment of the elderly
 				}
 
 				Muramasa: {
@@ -2907,28 +2907,23 @@ Mods: {
 				}
 
 				Wall: {
-					DisplayName: Beyond the Wall
-					Tooltip: Throw the Guide Voodoo Doll into the lava and defeat the unstoppable horror of the Underworld
+					DisplayName: Secret Behind the Wall
+					Tooltip: Throw a [i:GuideVoodooDoll] [C/9dd159:Guide Voodoo Doll] into the lava and defeat Wall of Flesh, the torture of the Underworld
 				}
 
 				Empress: {
 					DisplayName: Absolute Radiance
-					Tooltip: Defeat the Empress of Light, the false angel created by angels, for angels
+					Tooltip: Kill a [i:EmpressButterfly] [C/e5badc:Prismatic Lacewing] and defeat Empress of Light, the false angel
 				}
 
 				Moonlord: {
-					DisplayName: Primordial Rituals
-					Tooltip: Complete the Lunar Cult's ritual and defeat the lunar lord
-				}
-
-				VoidBiome: {
-					DisplayName: Tainted World
-					Tooltip: Release the Void into your land with the seeds obtained from the lunar beast
+					DisplayName: The Call of the Moon
+					Tooltip: Complete the Lunar Cult's ritual and defeat Moon Lord, the primordial beast
 				}
 
 				FrostSerpent: {
 					DisplayName: Snow Grave
-					Tooltip: Craft the Heart of the Tundra [i:TranscendenceMod/HeartOfTheTundra] and defeat the Frost Serpent
+					Tooltip: Craft the [i:TranscendenceMod/HeartOfTheTundra] [C/2cbdf5:Heart of the Tundra] and defeat Frost Serpent, the glacial construct
 				}
 
 				Atmospheron: {
@@ -2938,12 +2933,12 @@ Mods: {
 
 				PoseidonFrag: {
 					DisplayName: Secrets of the Catacombs
-					Tooltip: Brave the upgraded Dungeon and obtain a Poseidon's Fragment
+					Tooltip: Brave the upgraded Dungeon and obtain a [i:TranscendenceMod/PoseidonsTide] [C/7bb5ec:Poseidon's Fragment]
 				}
 
 				NucleusCaller: {
 					DisplayName: Advanced Technologies
-					Tooltip: Craft the Nucleus Caller
+					Tooltip: Craft the [i:TranscendenceMod/NucleusSummonerItem] [C/b90d0d:Nucleus Caller]
 				}
 
 				Nucleus: {
@@ -2953,17 +2948,17 @@ Mods: {
 
 				Artifact: {
 					DisplayName: Artifact of Immense Power
-					Tooltip: Craft the Cosmic Artifact
+					Tooltip: Craft the [i:TranscendenceMod/CosmicArtifact] [C/ec6db5:Cosmic Artifact]
 				}
 
 				Seraph: {
-					DisplayName: ...To His strongest soldiers
-					Tooltip: Enter the Seraph's rift and survive the combat challenge
+					DisplayName: ...To His strongest soldiers.
+					Tooltip: Enter the Seraph's rift and defeat Celestial Seraph, the highest of angels
 				}
 
 				StarForge: {
 					DisplayName: Forge of Gods
-					Tooltip: Craft the Starcrafted Forge
+					Tooltip: Craft the [i:TranscendenceMod/StarcraftedForgeItem] [C/ef61b7:Starcrafted Forge]
 				}
 
 				EmpressChallenge: {
@@ -3016,7 +3011,7 @@ Mods: {
 
 			Death: {
 				MagmaBlood0: "{0} was reduced to ashes by extremely hot blood."
-				MagmaBlood1: "{0} was melted by the forbidden tomato soup."
+				MagmaBlood1: "{0} swam in the forbidden tomato soup."
 				Explosion: "{0} blew up."
 				Blood: "{0} bled out."
 				FairyFire: "{0} burst into prismatic flames."
@@ -3067,20 +3062,9 @@ Mods: {
 					5: We will be observing your every step from now on.
 				}
 
-				Post-EoL: {
-					1: That dryad...
-					2: In the ancient times the dryads barely managed to defeat the Primordial Beast known as Cthulhu.
-					3: The remaining Dryads locked him up within the depths of Limbo, causing some serious damages.
-					4: As a result, Limbo has been overtaken by the Void.
-					5: We resurrected the body of one of the fallen dryads and filled her with the Divine Light, but...
-					6: She quickly managed to get away and nobody saw her ever again.
-					7: Seems like she sealed herself in a butterfly.
-					8: Interesting.
-				}
-
 				Post-Nucleus: {
 					1: I have observed your battle from the distance, and I must say, I am impressed.
-					2: Your combat performance against man-made forces were incredible, but it is growing at a concerning pace.
+					2: Your combat performance against man-made forces were incredible, but we fear that it is growing at a concerning pace.
 					3: As such, we must test your capabilities against something far greater.
 					4: Place the Cosmic Artifact onto the Celestial Altar and enter my pocket dimension.
 					5: Your efforts will be rewarded.
@@ -3104,7 +3088,7 @@ Mods: {
 
 				Death: {
 					1: It seems that you have won this battle.
-					2: As such, I will teleport you back to where you came from with your rewards.
+					2: As such, I will teleport you back to the cathedral with your rewards.
 					3: We will use your combat performance to its fullest potential.
 					4: May we meet again, Terrarian.
 				}
@@ -3893,11 +3877,6 @@ Mods: {
 				AchievementBookOffsetX: {
 					Label: Achievement Book Horizontal Offset
 					Tooltip: Determines the offset of the Achievement Book icon on the X-axis
-				}
-
-				LuminiteBarAmount: {
-					Label: Luminite Processing Amount
-					Tooltip: How many Luminite Bars will you get from processing Luminite Ore at the Metal Processer
 				}
 			}
 		}

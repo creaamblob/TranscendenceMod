@@ -42,8 +42,8 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Nucleus
         {
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 
-            if (Speed < 22.5f)
-                Speed += 1.25f;
+            if (Speed < 28.5f)
+                Speed += 1.5f;
 
             Timer2++;
 
@@ -89,7 +89,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Nucleus
                         pos = player.Center + Vector2.One.RotatedBy(Projectile.DirectionTo(player.Center).ToRotation() - MathHelper.PiOver4) * 1750;
                     }
                     Vector2 targetVelocity = Projectile.DirectionTo(pos + Vector2.One.RotatedByRandom(360) * Main.rand.Next(65, 175)) * Speed;
-                    Projectile.velocity = Vector2.Lerp(Projectile.velocity * (InsideLiquid ? 0.6f : 1f), targetVelocity, 0.0375f);
+                    Projectile.velocity = Vector2.Lerp(Projectile.velocity * (InsideLiquid ? 0.6f : 1f), targetVelocity, 0.0325f);
                     Timer = 0;
                 }
             } 

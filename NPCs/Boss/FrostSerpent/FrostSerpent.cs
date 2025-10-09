@@ -111,7 +111,7 @@ namespace TranscendenceMod.NPCs.Boss.FrostSerpent
             NPC.BossBar = ModContent.GetInstance<FrostSerpentBossBar>();
 
             NPC.friendly = false;
-            NPC.value = Item.buyPrice(platinum: 1);
+            NPC.value = Item.buyPrice(gold: 75);
         }
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
@@ -207,7 +207,7 @@ namespace TranscendenceMod.NPCs.Boss.FrostSerpent
             if (GoBackToPlayerState > 0)
                 GoBackToPlayerState--;
 
-            float speed2 = (float)Math.Sin(speed) * 150f;
+            float speed2 = (float)Math.Sin(speed) * 50f;
 
             if (extraRot == 0 && Attack != SerpentAttacks.DeathAnim) NPC.rotation = NPC.velocity.ToRotation() + MathHelper.PiOver2;
             NPC npc = NPC;
@@ -292,7 +292,9 @@ namespace TranscendenceMod.NPCs.Boss.FrostSerpent
                 float changeSpeed = 0.0125f;
                 float dist = Phase == 2 ? 275f : 375f;
 
-                NPC.velocity = Vector2.Lerp(NPC.velocity, NPC.DirectionTo(player.Center + Vector2.One.RotatedBy(rot * (float)Math.Tan(rot / 20f)) * dist) * (70f + speed2 * speedMult) * NPC.scale, changeSpeed * speedMult);
+                NPC.velocity = Vector2.Lerp(NPC.velocity, NPC.DirectionTo(player.Center + Vector2.One.RotatedBy(rot * (float)Math.Tan(rot / 20f)) * dist) * ((NPC.Distance(player.Center) * 0.1f) + speed2 * speedMult) * NPC.scale, changeSpeed * speedMult);
+                if (NPC.Distance(player.Center) < 375)
+                    NPC.velocity *= 0.95f;
 
                 if (NPC.Distance(player.Center) > 2500)
                 {
@@ -300,7 +302,7 @@ namespace TranscendenceMod.NPCs.Boss.FrostSerpent
                     GoBackToPlayerState = 60;
                 }
                 if (GoBackToPlayerState < 55 && GoBackToPlayerState > 5)
-                    NPC.velocity *= 0.95f;
+                    NPC.velocity *= 0.9f;
             }
 
             if (Stamina != 0) Timer++;
@@ -752,6 +754,12 @@ namespace TranscendenceMod.NPCs.Boss.FrostSerpent
             spriteBatch.End();
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, default, default, default, null, Main.GameViewMatrix.TransformationMatrix);
 
+            if (Attack == SerpentAttacks.Slam)
+            {
+                float alpha = ProjectileTimer / 90f;
+                TranscendenceUtils.VeryBasicNPCOutline(NPC, Texture, 2f, 1f, 1f, 1f, alpha, NPC.Center, NPC.scale, NPC.rotation, 1f);
+            }
+
             return false;
         }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
@@ -884,6 +892,12 @@ namespace TranscendenceMod.NPCs.Boss.FrostSerpent
                     TranscendenceUtils.DrawEntity(NPC, Color.DeepSkyBlue * 2f * alpha, NPC.scale * 2f, "bloom", NPC.rotation, NPC.Center, null);
                     TranscendenceUtils.DrawEntity(NPC, Color.White * alpha, NPC.scale, "bloom", NPC.rotation, NPC.Center, null);
                 }
+
+                if (boss.Attack == SerpentAttacks.Slam)
+                {
+                    float alpha = boss.ProjectileTimer / 90f;
+                    TranscendenceUtils.VeryBasicNPCOutline(NPC, Texture, 2f, 1f, 1f, 1f, alpha, NPC.Center, NPC.scale, NPC.rotation, 1f);
+                }
             }
 
             return false;
@@ -983,6 +997,12 @@ namespace TranscendenceMod.NPCs.Boss.FrostSerpent
 
                 spriteBatch.End();
                 spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, default, default, default, null, Main.GameViewMatrix.TransformationMatrix);
+
+                if (boss.Attack == SerpentAttacks.Slam)
+                {
+                    float alpha = boss.ProjectileTimer / 90f;
+                    TranscendenceUtils.VeryBasicNPCOutline(NPC, Texture, 2f, 1f, 1f, 1f, alpha, NPC.Center, NPC.scale, NPC.rotation, 1f);
+                }
             }
 
             return false;

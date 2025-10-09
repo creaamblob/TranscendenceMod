@@ -26,7 +26,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
         }
         public override void SetDefaults()
         {
-            Item.damage = 235;
+            Item.damage = 195;
             Item.crit = 20;
             Item.DamageType = DamageClass.Melee;
 
@@ -151,7 +151,7 @@ namespace TranscendenceMod.Items.Weapons.Melee
                 Main.dust[d].noGravity = true;
                 Main.dust[d].velocity = Vector2.Zero;
 
-                if (++Projectile.ai[0] % 10 == 0)
+                if (++Projectile.ai[0] % 20 == 0)
                 {
                     Projectile.NewProjectile(Projectile.GetSource_FromAI(), dustPos, dustPos.DirectionTo(Main.MouseWorld) * 12f, ModContent.ProjectileType<GlacierSnow>(),
                         Projectile.damage / 4, Projectile.knockBack / 2f, player.whoAmI, 0, 0, -1);

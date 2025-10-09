@@ -72,7 +72,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Nucleus
             spriteBatch.End();
             spriteBatch.Begin(default, BlendState.Additive, Main.DefaultSamplerState, default, default, null, Main.GameViewMatrix.TransformationMatrix);
 
-            TranscendenceUtils.DrawEntity(Projectile, col() * MathHelper.Lerp(0.5f, 0f, Projectile.localAI[1] / 120f), Projectile.scale, TranscendenceMod.ASSET_PATH + "/GlowBloom", Projectile.rotation, Projectile.Center + Projectile.velocity * Projectile.localAI[1], null);
+            TranscendenceUtils.DrawEntity(Projectile, col() * MathHelper.Lerp(0.375f, 0f, Projectile.localAI[1] / 120f), Projectile.scale, TranscendenceMod.ASSET_PATH + "/GlowBloom", Projectile.rotation, Projectile.Center + Projectile.velocity * Projectile.localAI[1], null);
 
             NPC npc = Main.npc[(int)Projectile.ai[1]];
             if (npc != null && npc.active && npc.ModNPC is ProjectNucleus boss)

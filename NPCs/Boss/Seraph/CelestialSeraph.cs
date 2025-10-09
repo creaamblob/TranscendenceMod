@@ -229,13 +229,13 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
         public override void SetDefaults()
         {
             /*Stats*/
-            NPC.lifeMax = 1275 * 1000;
+            NPC.lifeMax = 1075 * 1000;
             NPC.defense = 50;
             NPC.damage = 200;
             NPC.takenDamageMultiplier = 1;
             NPC.npcSlots = 6f;
             NPC.aiStyle = -1;
-            NPC.value = Item.buyPrice(platinum: 1, gold: 75);
+            NPC.value = Item.buyPrice(platinum: 1, gold: 25);
 
             /*Collision*/
             NPC.width = 126;
@@ -1753,8 +1753,19 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
             AttackDuration = 495;
             Attack = SeraphAttacks.TrackingBlades;
             CurrentAttack = Language.GetTextValue("Mods.TranscendenceMod.SeraphAttackNames.TrackingBlades");
-            
-            skyFade = (1f - NPCFade) * 0.75f;
+
+
+            if (Timer_AI < (AttackDuration - 120))
+            {
+                if (skyFade < 0.66f)
+                    skyFade += 0.75f / 60f;
+            }
+            else
+            {
+                if (skyFade > 0f)
+                    skyFade -= 0.75f / 120f;
+                return;
+            }
 
 
             if (Timer_AI < 45 || Timer_AI > (AttackDuration - 90))

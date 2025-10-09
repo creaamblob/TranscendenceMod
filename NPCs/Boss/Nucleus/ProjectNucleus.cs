@@ -110,11 +110,11 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
         public override void SetDefaults()
         {
             /*Stats*/
-            NPC.lifeMax = 800 * 1000;
+            NPC.lifeMax = 685 * 1000;
             NPC.damage = 150;
             NPC.defense = 50;
             NPC.npcSlots = 8f;
-            NPC.value = Item.buyPrice(platinum: 1, gold: 25);
+            NPC.value = Item.buyPrice(platinum: 1);
             /*Collision*/
             NPC.width = 188;
             NPC.height = 252;
@@ -232,8 +232,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
 
             if (Timer_AI == 2 && NPC.ai[1] != 99)
             {
-                float threshold = Main.masterMode ? 0.75f : Main.expertMode ? 0.66f : 0.5f;
-                if (NPC.life < (NPC.lifeMax * threshold) && Phase < 2)
+                if (NPC.life < (NPC.lifeMax * 0.66f) && Phase < 2)
                 {
                     SoundEngine.PlaySound(SoundID.Roar);
                     Phase = 2;
@@ -478,8 +477,8 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
             AttackDuration = 140;
             Attacks = NucleusAttacks.Homing;
 
-            if (++ProjectileCD % 30 == 0)
-                TranscendenceUtils.ProjectileRing(NPC, 4, NPC.GetSource_FromAI(), NPC.Center, missile, 95, 2f, 1f, 0f, NPC.whoAmI, 0f, -1, Main.rand.NextFloat(MathHelper.TwoPi));
+            if (++ProjectileCD % 45 == 0)
+                TranscendenceUtils.ProjectileRing(NPC, 8, NPC.GetSource_FromAI(), NPC.Center, missile, 95, 2f, 1f, 0f, NPC.whoAmI, 0f, -1, Main.rand.NextFloat(MathHelper.TwoPi));
         }
 
         public void Beams()
@@ -522,7 +521,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
                     CanDealDamage = true;
                     NPC.velocity.Y = 100f;
 
-                    if (Collision.SolidCollision(NPC.position, NPC.width, NPC.height) && NPC.position.Y > (player.position.Y - 20))
+                    if (Collision.SolidCollision(NPC.position - new Vector2(0, 150), NPC.width, NPC.height + 75) && NPC.position.Y > (player.position.Y - 20))
                     {
                         SoundEngine.PlaySound(ModSoundstyles.SeraphSpear);
 
@@ -533,7 +532,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
                             for (int i = 0; i < 36; i++)
                                 Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Main.rand.NextVector2Unit(MathHelper.PiOver4, MathHelper.PiOver2) * -Main.rand.NextFloat(10f, 16f), blood, 95, 2f, -1, -20, NPC.whoAmI);
                         }
-                        else Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, slam, 175, 2f, -1, -20, NPC.whoAmI);
+                        else Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Top, Vector2.Zero, slam, 200, 2f, -1, -20, NPC.whoAmI);
 
                         NPC.velocity.Y = 0;
                         NPC.ai[3] = 1;
@@ -553,10 +552,10 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
             Attacks = NucleusAttacks.RingBeams;
 
             if (Timer_AI == 90)
-                TranscendenceUtils.ProjectileRing(NPC, 7, NPC.GetSource_FromAI(), NPC.Center, nucleusBeam, 100, 2f, 1f, -30, NPC.whoAmI, 0, -1, Main.rand.NextFloat(MathHelper.TwoPi));
+                TranscendenceUtils.ProjectileRing(NPC, 7, NPC.GetSource_FromAI(), NPC.Center, nucleusBeam, 130, 2f, 1f, -30, NPC.whoAmI, 0, -1, Main.rand.NextFloat(MathHelper.TwoPi));
 
             if (++ProjectileCD % 45 == 0)
-                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + new Vector2(0, 62), NPC.DirectionTo(player.Center) * 0.75f, missile, 90, 2f, -1, -20, NPC.whoAmI);
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + new Vector2(0, 62), NPC.DirectionTo(player.Center) * 0.75f, missile, 110, 2f, -1, -20, NPC.whoAmI);
         }
 
         public void Swing()
@@ -609,7 +608,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
 
             if (++ProjectileCD % 3 == 0 && Timer_AI < 120)
             {
-                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Main.rand.NextVector2Circular(95f, 95f), mine, 125, 1, -1, 0, NPC.whoAmI);
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Main.rand.NextVector2Circular(95f, 95f), mine, 150, 1, -1, 0, NPC.whoAmI);
             }
         }
 
@@ -627,7 +626,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
                 for (int i = -1000; i < 1000; i += 200)
                 {
                     Vector2 pos = Center - new Vector2(i, 650);
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, new Vector2(0, 5), nucleusBeam, 100, 0f, -1, -45, NPC.whoAmI);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, new Vector2(0, 5), nucleusBeam, 130, 0f, -1, -45, NPC.whoAmI);
                 }
 
                 NPC.position.X = player.Center.X;
@@ -675,7 +674,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
 
                                         Vector2 pos = new Vector2(vec.X * 105f, vec.Y * 55f).RotatedBy(MathHelper.PiOver4 * j + vel.ToRotation() + MathHelper.Pi);
 
-                                        Projectile.NewProjectile(NPC.GetSource_FromAI(), startPos + pos, vel, heart, 110, 2f, -1, 1f, NPC.whoAmI, i);
+                                        Projectile.NewProjectile(NPC.GetSource_FromAI(), startPos + pos, vel, heart, 120, 2f, -1, 1f, NPC.whoAmI, i);
                                     }
                                 }
                             }
@@ -711,13 +710,13 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
                 }
                 else
                 {
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), (NPC.Center + new Vector2(70, 12)), (NPC.Center + new Vector2(70, 12)).DirectionTo(player.Center).RotatedBy(MathHelper.ToRadians(2f)) * 10f, plasma, 70, 2f, -1, 0, NPC.whoAmI);
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), (NPC.Center + new Vector2(-70, 12)), (NPC.Center + new Vector2(-70, 12)).DirectionTo(player.Center).RotatedBy(MathHelper.ToRadians(-2f)) * 10f, plasma, 70, 2f, -1, 0, NPC.whoAmI);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), (NPC.Center + new Vector2(70, 12)), (NPC.Center + new Vector2(70, 12)).DirectionTo(player.Center).RotatedBy(MathHelper.ToRadians(2f)) * 10f, plasma, 100, 2f, -1, 0, NPC.whoAmI);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), (NPC.Center + new Vector2(-70, 12)), (NPC.Center + new Vector2(-70, 12)).DirectionTo(player.Center).RotatedBy(MathHelper.ToRadians(-2f)) * 10f, plasma, 100, 2f, -1, 0, NPC.whoAmI);
                 }
             }
             if (ProjectileCD > 200)
             {
-                TranscendenceUtils.ProjectileRing(NPC, 8, NPC.GetSource_FromAI(), NPC.Center, missile, 85, 2f, 0.5f, 0f, NPC.whoAmI, 0f, -1, Main.rand.NextFloat(MathHelper.TwoPi));
+                TranscendenceUtils.ProjectileRing(NPC, 8, NPC.GetSource_FromAI(), NPC.Center, missile, 105, 2f, 0.5f, 0f, NPC.whoAmI, 0f, -1, Main.rand.NextFloat(MathHelper.TwoPi));
 
                 ProjectileCD3 = 0;
                 ProjectileCD = 0;
@@ -748,9 +747,9 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
 
                         float mult = 1f;
 
-                        Vector2 pos = new Vector2(vec.X * 75f, vec.Y * 35f * mult).RotatedBy(MathHelper.PiOver4 * j + vel.ToRotation() + MathHelper.Pi);
+                        Vector2 pos = new Vector2(vec.X * 75f, vec.Y * 30f * mult).RotatedBy(MathHelper.PiOver4 * j + vel.ToRotation() + MathHelper.Pi);
 
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), startPos + pos, vel, heart, 80, 2f, -1, vel.X > 0f ? 2f : 1f, NPC.whoAmI, i);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), startPos + pos, vel, heart, 95, 2f, -1, vel.X > 0f ? 2f : 1f, NPC.whoAmI, i);
                     }
                 }
             }
@@ -767,7 +766,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
             {
                 for (int i = -45; i < 90; i += 45)
                 {
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.DirectionTo(player.Center) * 14f, saw, 100, 2f, -1, 0f, NPC.whoAmI, MathHelper.ToRadians(i));
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.DirectionTo(player.Center) * 14f, saw, 110, 2f, -1, 0f, NPC.whoAmI, MathHelper.ToRadians(i));
                 }
             }
             if (ProjectileCD > 75)
