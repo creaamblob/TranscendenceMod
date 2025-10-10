@@ -53,7 +53,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
 
     public class CelestialSeraph : ModNPC
     {
-        //Wall of Text has awoken!
+        // if god was real he would have made a cute and pretty they/them celestial princess instead of a ugly and hideous man #truthnuke
         #region Numbers
         readonly int CelestialStar = ModContent.ProjectileType<CelestialStar>();
         readonly int stellarfireball = ModContent.ProjectileType<StellarFireball>();

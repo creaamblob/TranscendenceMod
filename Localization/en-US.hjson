@@ -2973,6 +2973,17 @@ Mods: {
 						'''
 				}
 
+				AtmospheronChallenge: {
+					DisplayName: Blind Nightbird
+					Tooltip:
+						'''
+						Defeat Atmospheron under the following conditions:
+						> [C/526377:You have to be under the effects of Perpetual Blindness Stew for the WHOLE fight]
+						[C/526377:Stage of progression doesn't matter]
+						Difficulty: [i:ManaCrystal][i:ManaCrystal][i:ManaCrystal][i:StarStatue][i:StarStatue] (2/5)
+						'''
+				}
+
 				NucleusChallenge: {
 					DisplayName: So Retro!
 					Tooltip:

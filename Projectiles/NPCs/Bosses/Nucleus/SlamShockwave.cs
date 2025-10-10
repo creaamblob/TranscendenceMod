@@ -35,7 +35,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Nucleus
             if (Alpha < 0.02f)
                 Projectile.Kill();
 
-            if (Projectile.ai[2] < 1850)
+            if (Projectile.ai[2] < 1250)
                 Projectile.ai[2] += 40f;
         }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)

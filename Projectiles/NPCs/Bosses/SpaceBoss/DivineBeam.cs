@@ -105,7 +105,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             Texture2D sprite = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/BloomLine3").Value;
 
             Vector2 pos = Center + Vector2.One.RotatedBy(rot) * MathHelper.Lerp(100f, 45f, width / 400f);
-            Vector2 posB = Center + Vector2.One.RotatedBy(rot) * 60f;
+            Vector2 posB = Center + Vector2.One.RotatedBy(rot) * 120f;
 
             Vector2 pos2 = projectile.Center + Vector2.One.RotatedBy(rot) * height;
             Vector2 pos2B = projectile.Center + Vector2.One.RotatedBy(rot) * 4250f;

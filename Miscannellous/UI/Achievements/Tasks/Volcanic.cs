@@ -18,9 +18,9 @@ namespace TranscendenceMod.Miscanellous.UI.Achievements.Tasks
         public override TaskIDs type => TaskIDs.Volcanic;
         public override bool Unlocked => Main.LocalPlayer.GetModPlayer<ModAchievementsHelper>().VolcanicUnlock;
 
-        public override float x => -100f;
+        public override float x => -75f;
 
-        public override float y => -25f;
+        public override float y => -50f;
 
         public override string col => "ff6700";
 
