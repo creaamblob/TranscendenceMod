@@ -21,6 +21,7 @@ using TranscendenceMod.Buffs.Items.Modifiers;
 using TranscendenceMod.Buffs.Items.Potions;
 using TranscendenceMod.Dusts;
 using TranscendenceMod.Items;
+using TranscendenceMod.Items.Accessories.Expert;
 using TranscendenceMod.Items.Accessories.Movement.Wings;
 using TranscendenceMod.Items.Accessories.Offensive.EoL;
 using TranscendenceMod.Items.Accessories.Shields;
@@ -144,6 +145,8 @@ namespace TranscendenceMod
 
         public bool FrozenMaw;
         public int FrozenMawDamage;
+
+        public bool PerfectHorseshoe;
 
         public bool NucleusLens;
         public bool NucleusLensSocial;
@@ -439,6 +442,7 @@ namespace TranscendenceMod
             RingOfBravery = false;
             FrostBite = false;
             FairerMoonlord = false;
+            PerfectHorseshoe = false;
 
             ShaderShit();
 
@@ -963,6 +967,35 @@ namespace TranscendenceMod
         {
             base.PostUpdateEquips();
 
+            if (PerfectHorseshoe)
+            {
+                Player.luck += 0.1f;
+                Player.noFallDmg = true;
+
+                if (Collision.SolidCollision(Player.position, Player.width, Player.height + 2, true) && Player.velocity.Y == 0f)
+                {
+                    Player.moveSpeed += 5f;
+                    Player.runSlowdown *= 2f;
+
+                    if (Player.velocity.X > 5f || Player.velocity.X < -5f)
+                    {
+                        if (Player.runSoundDelay <= 0)
+                        {
+                            SoundEngine.PlaySound(ModSoundstyles.Horseshoe with { PitchRange = (-0.5f, 0f), Volume = 0.75f }, Player.Bottom);
+                            Player.runSoundDelay = 20;
+                        }
+
+                        Color col = Color.Lerp(Color.SaddleBrown, Color.Gold, Main.rand.NextFloat(0f, 1f));
+                        if (Main.rand.NextBool(3))
+                            col = Main.hslToRgb(Main.rand.NextFloat(0f, 1f), 1f, 0.5f);
+
+                        if (TranscendenceWorld.Timer % 5 == 0)
+                            Dust.NewDustPerfect(Player.Bottom, ModContent.DustType<Horsespark>(),
+                                new Vector2(Player.direction * -Main.rand.NextFloat(0f, 1.5f), -Main.rand.NextFloat(0f, 5f)), 0, col, Main.rand.NextFloat(0.5f, 1f));
+                    }
+                }
+            }
+
             if (CorruptWanderingKit)
                 Player.moveSpeed *= 1.5f;
 
@@ -1010,6 +1043,15 @@ namespace TranscendenceMod
         {
             On_LegacyPlayerRenderer.DrawPlayerInternal += On_LegacyPlayerRenderer_DrawPlayerInternal1;
             On_Player.PickTile += On_Player_PickTile;
+            On_Player.SpawnFastRunParticles += On_Player_SpawnFastRunParticles;
+        }
+
+        private void On_Player_SpawnFastRunParticles(On_Player.orig_SpawnFastRunParticles orig, Player self)
+        {
+            if (PerfectHorseshoe)
+                return;
+
+            orig(self);
         }
 
         private void On_Player_PickTile(On_Player.orig_PickTile orig, Player self, int x, int y, int pickPower)

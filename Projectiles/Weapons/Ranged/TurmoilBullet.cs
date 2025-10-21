@@ -52,8 +52,6 @@ namespace TranscendenceMod.Projectiles.Weapons.Ranged
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-16f, -12f)),
-                ModContent.ProjectileType<TurmoilMiniProj>(), Projectile.damage / 5, Projectile.knockBack / 2, Main.player[Projectile.owner].whoAmI);
         }
         public override void OnKill(int timeLeft)
         {

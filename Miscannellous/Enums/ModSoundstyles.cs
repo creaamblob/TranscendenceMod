@@ -23,6 +23,8 @@ namespace TranscendenceMod
         //Items
         public static readonly SoundStyle SFtB = new SoundStyle("TranscendenceMod/Miscannellous/Assets/Sounds/Weapons/SniperRifle");
         public static readonly SoundStyle CosmoShard = new SoundStyle("TranscendenceMod/Miscannellous/Assets/Sounds/Weapons/Cosmoshard");
+        public static readonly SoundStyle Horseshoe = new SoundStyle("TranscendenceMod/Miscannellous/Assets/Sounds/Horse");
+
     }
 }
 

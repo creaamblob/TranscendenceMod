@@ -1933,7 +1933,7 @@ Mods: {
 					It has a note attached to it;
 					[c/6d09a7:Congrats and thx for finishing the current content of the mod !!] :)
 					[c/6d09a7:Make sure to look out for upcoming updates !!] [i:Heart]
-					[c/6d09a7:-Creanbl]
+					[c/6d09a7:-Creanbl★]
 					[C/526377:You're in the halfway point of Post-Moonlord now.]
 					'''
 			}
@@ -2347,6 +2347,12 @@ Mods: {
 					'''
 					Instantly kills the user upon taking damage
 					This only happens if the item is favorited
+
+					MNL:
+					Frost Serpent: 2min
+					Atmospheron: 2min
+					Project Nucleus: 2min30s (Pre-Desperation)
+					Celestial Seraph: 4min40s
 					'''
 			}
 
@@ -2473,6 +2479,17 @@ Mods: {
 			AetherRootBeer: {
 				DisplayName: Aether Root Beer
 				Tooltip: ""
+			}
+
+			PerfectHorseshoe: {
+				DisplayName: Perfect Horseshoes
+				Tooltip:
+				'''
+				Greatly increases movement speed while on ground
+				Negates fall damage
+				Brings good fortune to the wearer
+				'Why ride a horse when you can be one yourself?'
+				'''
 			}
 		}
 
@@ -2907,12 +2924,12 @@ Mods: {
 				}
 
 				Wall: {
-					DisplayName: Secret Behind the Wall
+					DisplayName: Seal Breaker
 					Tooltip: Throw a [i:GuideVoodooDoll] [C/9dd159:Guide Voodoo Doll] into the lava and defeat Wall of Flesh, the torture of the Underworld
 				}
 
 				Empress: {
-					DisplayName: Absolute Radiance
+					DisplayName: Like a Moth to the Flame
 					Tooltip: Kill a [i:EmpressButterfly] [C/e5badc:Prismatic Lacewing] and defeat Empress of Light, the false angel
 				}
 
@@ -2980,7 +2997,7 @@ Mods: {
 						Defeat Atmospheron under the following conditions:
 						> [C/526377:You have to be under the effects of Perpetual Blindness Stew for the WHOLE fight]
 						[C/526377:Stage of progression doesn't matter]
-						Difficulty: [i:ManaCrystal][i:ManaCrystal][i:ManaCrystal][i:StarStatue][i:StarStatue] (2/5)
+						Difficulty: [i:ManaCrystal][i:ManaCrystal][i:ManaCrystal][i:StarStatue][i:StarStatue] (3/5)
 						'''
 				}
 
@@ -2992,6 +3009,17 @@ Mods: {
 						> [C/526377:You will have to have the Rez 125S-T Model Laser Lens sight active for the WHOLE fight]
 						[C/526377:Stage of progression doesn't matter]
 						Difficulty: [i:ManaCrystal][i:ManaCrystal][i:StarStatue][i:StarStatue][i:StarStatue] (2/5)
+						'''
+				}
+
+				SeraphChallenge: {
+					DisplayName: Crown of Thorns
+					Tooltip:
+						'''
+						Defeat Celestial Seraph under the following conditions:
+						> [C/526377:90% of the damage in the last phase must be done with Nail Gun]
+						[C/526377:Stage of progression doesn't matter]
+						Difficulty: [i:ManaCrystal][i:ManaCrystal][i:ManaCrystal][i:StarStatue][i:StarStatue] (3/5)
 						'''
 				}
 			}
@@ -3094,7 +3122,7 @@ Mods: {
 				Phase3: {
 					1: Your capabilities have impressed me so far.
 					2: As such, I will start using some of my finer attacks now.
-					3: Do not let me down now.
+					3: Do not let us down now.
 				}
 
 				Death: {
@@ -3773,7 +3801,7 @@ Mods: {
 
 			Blind: {
 				DisplayName: Blind
-				Description: Unable to see
+				Description: The harshest punishment
 			}
 
 			DraconicFury: {

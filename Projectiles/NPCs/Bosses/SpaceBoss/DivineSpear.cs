@@ -20,7 +20,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             Projectile.width = 46;
             Projectile.height = 46;
 
-            Projectile.timeLeft = 60;
+            Projectile.timeLeft = 75;
             Projectile.aiStyle = 1;
             AIType = ProjectileID.Bullet;
 
@@ -64,7 +64,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
         }
         public override void AI()
         {
-            if (++Projectile.ai[2] % 10 == 0 && Projectile.localAI[2] == 0f)
+            if (++Projectile.ai[2] % 15 == 0 && Projectile.localAI[2] == 0f)
             {
                 Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Projectile.velocity.RotatedBy(MathHelper.PiOver2) * 4f, ModContent.ProjectileType<HolyLaserSpawner>(),
                     Projectile.damage, Projectile.knockBack, -1, 0, Projectile.ai[1]);

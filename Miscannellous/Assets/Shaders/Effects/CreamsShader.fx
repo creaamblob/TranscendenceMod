@@ -29,7 +29,7 @@ float4 Sinewave(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
     color.rgb -= float3(0.5f, 0.5f, 0.5f);
     
     if (sine > 1.05)
-        color *= (sine * 7.5);
+        color = float4(1, 1, 1, 1);
     
     color.rgb += lerp(float3(0, 0.5, 0.75) * 1.5f, float3(0, 0.5, 0.75) * 0.25f, sine);
     

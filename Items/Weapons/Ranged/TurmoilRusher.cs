@@ -28,13 +28,12 @@ namespace TranscendenceMod.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Item.DamageType = DamageClass.Ranged;
-            Item.damage = 217;
+            Item.damage = 190;
 
             Item.knockBack = 3f;
-            Item.crit = 15;
+            Item.crit = 10;
             Item.channel = true;
             Item.shootSpeed = 14f;
-
             Item.useTime = 20;
             Item.useAnimation = 20;
             Item.autoReuse = true;

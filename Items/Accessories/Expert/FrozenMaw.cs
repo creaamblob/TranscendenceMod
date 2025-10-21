@@ -25,7 +25,7 @@ namespace TranscendenceMod.Items.Accessories.Expert
             Item.knockBack = 4f;
 
             Item.expert = true;
-            Item.value = Item.buyPrice(gold: 60);
+            Item.value = Item.sellPrice(gold: 15);
         }
 
         public override bool WeaponPrefix() => false;

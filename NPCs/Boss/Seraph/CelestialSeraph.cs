@@ -689,8 +689,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
 
         private void Rain()
         {
-            CurrentAttack = Phase == 3 ? Language.GetTextValue("Mods.TranscendenceMod.SeraphAttackNames.RainP3"):
-                Phase == 2 ? Language.GetTextValue("Mods.TranscendenceMod.SeraphAttackNames.RainP2") :
+            CurrentAttack = Phase == 2 ? Language.GetTextValue("Mods.TranscendenceMod.SeraphAttackNames.RainP2") :
                 Language.GetTextValue("Mods.TranscendenceMod.SeraphAttackNames.RainP1");
 
             Attack = SeraphAttacks.StellarFirestorm;
@@ -1100,7 +1099,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
 
                 for (int i = 0; i < 4; i++)
                 {
-                    Vector2 pos = NPC.Center + Vector2.One.RotatedBy((MathHelper.TwoPi * i / 4f) + Math.Sin(RotationTimer * 1.1f)) * BoundarySize;
+                    Vector2 pos = NPC.Center + Vector2.One.RotatedBy((MathHelper.TwoPi * i / 4f) + Math.Sin(RotationTimer)) * BoundarySize;
 
                     Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, Vector2.Zero, EventHorizonproj,
                         95, 0f, -1, 0, NPC.whoAmI, 12.5f);
@@ -1655,17 +1654,13 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
 
         public void RoyalFlash()
         {
-            AttackDuration = 500;
+            AttackDuration = 180 * 4;
             Attack = SeraphAttacks.RoyalFlash;
             CurrentAttack = Language.GetTextValue("Mods.TranscendenceMod.SeraphAttackNames.RoyalFlash");
 
-
-            Vector2 pos = Vector2.SmoothStep(player.Center, NPC.Center - new Vector2(0, 84), skyFade);
+            Vector2 pos = Vector2.SmoothStep(player.Center, NPC.Center - new Vector2(0, 84), skyFade * 0.75f);
             local.GetModPlayer<TranscendencePlayer>().cameraModifier = true;
             local.GetModPlayer<TranscendencePlayer>().cameraPos = pos;
-
-            if (Timer_AI < 5)
-                ProjectileCD[1] = Main.rand.NextBool(2) ? 1 : -1;
 
             if (Timer_AI < (AttackDuration - 60))
             {
@@ -1678,14 +1673,19 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
                     skyFade -= 0.66f / 60f;
             }
 
-            if (Timer_AI > 120 && Timer_AI < (AttackDuration - 60))
+            if (Timer_AI > 120 && Timer_AI < (AttackDuration - 120))
                 ProjectileCD[0]++;
             else return;
 
-
-            if (ProjectileCD[0] > 0 && ProjectileCD[0] % 5 == 0)
+            if (ProjectileCD[0] > 0 && ProjectileCD[0] % 60 == 0)
             {
-                TranscendenceUtils.ProjectileRing(NPC, 3, NPC.GetSource_FromAI(), NPC.Center - new Vector2(0, 88), ModContent.ProjectileType<GenericDivineLaser>(), 95, 0f, 1f, -75f, NPC.whoAmI, MathHelper.Lerp(2.5f, 15f, (Timer_AI - 120) / (float)(AttackDuration - 120f)), -1, TranscendenceWorld.UniversalRotation * 2.125f * ProjectileCD[1], 2);
+                if (ProjectileCD[0] % 180 == 0)
+                {
+                    TranscendenceUtils.ProjectileRing(NPC, 4, NPC.GetSource_FromAI(), NPC.Center - new Vector2(300, 250), ModContent.ProjectileType<GenericDivineLaser>(), 95, 0f, 1f, -120f, NPC.whoAmI, 5f, -1, Main.rand.NextFloat(MathHelper.TwoPi), 1);
+                    TranscendenceUtils.ProjectileRing(NPC, 4, NPC.GetSource_FromAI(), NPC.Center - new Vector2(-300, 250), ModContent.ProjectileType<GenericDivineLaser>(), 95, 0f, 1f, -120f, NPC.whoAmI, 5f, -1, Main.rand.NextFloat(MathHelper.TwoPi), 1);
+                }
+                TranscendenceUtils.ProjectileRing(NPC, 16, NPC.GetSource_FromAI(), NPC.Center - new Vector2(0, 88), ModContent.ProjectileType<GenericDivineLaser>(), 95, 0f, 1f, -120f, NPC.whoAmI, 5f, -1, Main.rand.NextFloat(MathHelper.TwoPi), 1);
+                ProjReverse = -ProjReverse;
             }
         }
 
@@ -1839,7 +1839,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
 
         public void DeathraysP3()
         {
-            AttackDuration = 600;
+            AttackDuration = 750;
             Attack = SeraphAttacks.LaserGrid;
             CurrentAttack = Language.GetTextValue("Mods.TranscendenceMod.SeraphAttackNames.LaserGrid");
 
@@ -1876,7 +1876,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
                 for (int i = -1500; i < 1750; i += 250)
                 {
                     Vector2 pos = player.Center - new Vector2(2000 * ProjReverse, i + y);
-                    int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, new Vector2(5f * ProjReverse, 0f), ModContent.ProjectileType<GenericDivineLaser>(), 100, 0f, -1, -90, NPC.whoAmI, 2.5f);
+                    int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, new Vector2(5f * ProjReverse, 0f), ModContent.ProjectileType<GenericDivineLaser>(), 100, 0f, -1, -110, NPC.whoAmI, 3.75f);
                     Main.projectile[p].extraUpdates = 2;
                 }
                 ProjReverse = -ProjReverse;
@@ -2112,6 +2112,10 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
                     projectile.ai[0] = 1;
                 }
 
+                if (projectile.active && projectile.ModProjectile is GenericDivineLaser proj && Attack == SeraphAttacks.RoyalFlash && projectile.ai[0] <= -15)
+                {
+                    proj.rot += MathHelper.Lerp(0f, 0.0375f, projectile.ai[0] / -105f) * ProjReverse;
+                }
 
                 if (projectile.type == ModContent.ProjectileType<BigCrunchStar>() && projectile.active && Attack == SeraphAttacks.BigCrunch && projectile.ai[2] == 0)
                 {

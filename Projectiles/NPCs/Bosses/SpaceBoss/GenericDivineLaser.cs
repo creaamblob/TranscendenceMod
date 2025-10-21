@@ -54,7 +54,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
 
                 if (Projectile.localAI[1] != 1)
                 {
-                    SoundEngine.PlaySound(SoundID.Item14 with { MaxInstances = 0 });
+                    SoundEngine.PlaySound(SoundID.Item14 with { MaxInstances = 0 }, Projectile.Center);
                     Projectile.localAI[1] = 1;
                 }
 
@@ -87,7 +87,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
             float reference = float.NaN;
-            if (Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Center, Projectile.Center + Vector2.One.RotatedBy(rot) * 3000, (int)(10 * Projectile.ai[2] * Projectile.scale), ref reference))
+            if (Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Center, Projectile.Center + Vector2.One.RotatedBy(rot) * Height, (int)(10 * Projectile.ai[2] * Projectile.scale), ref reference))
                 return true;
             else return false;
         }

@@ -104,8 +104,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
 
             Texture2D sprite = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/BloomLine3").Value;
 
-            Vector2 pos = Center + Vector2.One.RotatedBy(rot) * MathHelper.Lerp(100f, 45f, width / 400f);
-            Vector2 posB = Center + Vector2.One.RotatedBy(rot) * 120f;
+            Vector2 pos = Center + Vector2.One.RotatedBy(rot) * 20f;
 
             Vector2 pos2 = projectile.Center + Vector2.One.RotatedBy(rot) * height;
             Vector2 pos2B = projectile.Center + Vector2.One.RotatedBy(rot) * 4250f;
@@ -124,12 +123,12 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
             float a = timer < 5 ? MathHelper.Lerp(0f, 1f, timer / 5f) : 1f;
 
             sb.Draw(sprite, new Rectangle(
-                    (int)(posB.X - Main.screenPosition.X), (int)(posB.Y - Main.screenPosition.Y), (int)(width * 0.75), (int)(posB.Distance(pos2B) * 2f)), null,
-                    Color.Orange * a * 0.66f, posB.DirectionTo(pos2B).ToRotation() + MathHelper.PiOver2, sprite.Size() * 0.5f, SpriteEffects.None, 0);
+                    (int)(pos.X - Main.screenPosition.X), (int)(pos.Y - Main.screenPosition.Y), (int)(width * 0.75), (int)(pos.Distance(pos2B) * 2f)), null,
+                    Color.Orange * a * 0.66f, pos.DirectionTo(pos2B).ToRotation() + MathHelper.PiOver2, sprite.Size() * 0.5f, SpriteEffects.None, 0);
 
             sb.Draw(sprite, new Rectangle(
-                (int)(posB.X - Main.screenPosition.X), (int)(posB.Y - Main.screenPosition.Y), width / 12, (int)(posB.Distance(pos2B) * 2f)), null,
-                Color.Yellow * a, posB.DirectionTo(pos2B).ToRotation() + MathHelper.PiOver2, sprite.Size() * 0.5f, SpriteEffects.None, 0);
+                (int)(pos.X - Main.screenPosition.X), (int)(pos.Y - Main.screenPosition.Y), width / 12, (int)(pos.Distance(pos2B) * 2f)), null,
+                Color.Yellow * a, pos.DirectionTo(pos2B).ToRotation() + MathHelper.PiOver2, sprite.Size() * 0.5f, SpriteEffects.None, 0);
 
 
             eff.Parameters["uImageSize0"].SetValue(shaderImage.Size());

@@ -18,7 +18,7 @@ namespace TranscendenceMod.Items.Accessories.Expert
             Item.width = 24;
             Item.height = 24;
             Item.accessory = true;
-            Item.value = Item.buyPrice(gold: 65);
+            Item.value = Item.sellPrice(gold: 15);
 
             Item.expert = true;
         }

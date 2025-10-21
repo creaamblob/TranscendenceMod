@@ -23,7 +23,7 @@ namespace TranscendenceMod.Dusts
                     dust.active = false;
             }
 
-            if (Collision.SolidCollision(dust.position - new Vector2(HitboxSize / 2f), HitboxSize, HitboxSize))
+            if (Collision.SolidCollision(dust.position - new Vector2(HitboxSize / 2f), HitboxSize, HitboxSize, true))
             {
                 dust.velocity *= 0.25f;
                 if (dust.scale < MaxGrow && dust.scale > 0.25f) dust.scale *= 1.075f;

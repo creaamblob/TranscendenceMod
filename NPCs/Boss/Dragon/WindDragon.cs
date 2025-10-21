@@ -16,6 +16,7 @@ using Terraria.ModLoader;
 using Terraria.UI.Chat;
 using TranscendenceMod.Buffs;
 using TranscendenceMod.Dusts;
+using TranscendenceMod.Items.Accessories.Expert;
 using TranscendenceMod.Items.Accessories.Movement.Wings;
 using TranscendenceMod.Items.Armor.Hats;
 using TranscendenceMod.Items.Consumables.LootBags;
@@ -152,8 +153,8 @@ namespace TranscendenceMod.NPCs.Boss.Dragon
             normalMode.OnSuccess(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<FaeTrophyItem>(), 10));
 
             npcLoot.Add(normalMode);
-            /*LootBag*/
-            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<CelestialSeraphBag>()));
+            /*LootBag (No lootbag exists atm youll get the expert mode instead)*/
+            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<PerfectHorseshoe>()));
         }
         public bool CanAttack;
         public override bool CanHitPlayer(Player target, ref int cooldownSlot) => false;
