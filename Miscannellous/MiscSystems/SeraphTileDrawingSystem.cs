@@ -8,6 +8,7 @@ using Terraria.GameContent.Drawing;
 using Terraria.Graphics.Light;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TranscendenceMod.Miscannellous;
 using TranscendenceMod.NPCs.Boss.Seraph;
 
 namespace TranscendenceMod.Miscanellous.MiscSystems
@@ -37,6 +38,8 @@ namespace TranscendenceMod.Miscanellous.MiscSystems
             On_Collision.SolidCollision_Vector2_int_int += On_Collision_SolidCollision_Vector2_int_int;
             On_Collision.SolidCollision_Vector2_int_int_bool += On_Collision_SolidCollision_Vector2_int_int_bool;
             On_Player.UpdateTouchingTiles += On_Player_UpdateTouchingTiles;
+            On_WorldGen.SolidOrSlopedTile_int_int += On_WorldGen_SolidOrSlopedTile_int_int;
+            On_WorldGen.SolidOrSlopedTile_Tile += On_WorldGen_SolidOrSlopedTile_Tile;
 
             //Drawing
             On_Main.DrawBackgroundBlackFill += On_Main_DrawBackgroundBlackFill;
@@ -79,6 +82,22 @@ namespace TranscendenceMod.Miscanellous.MiscSystems
             On_Main.IsTileBiomeSightable_int_int_ushort_short_short_refColor += On_Main_IsTileBiomeSightable_int_int_ushort_short_short_refColor;
             On_Projectile.CutTilesAt += On_Projectile_CutTilesAt;
             On_DoorOpeningHelper.LookForDoorsToOpen += On_DoorOpeningHelper_LookForDoorsToOpen;
+        }
+
+        private bool On_WorldGen_SolidOrSlopedTile_Tile(On_WorldGen.orig_SolidOrSlopedTile_Tile orig, Tile tile)
+        {
+            if (PhaseThrough)
+                return false;
+
+            return orig(tile);
+        }
+
+        private bool On_WorldGen_SolidOrSlopedTile_int_int(On_WorldGen.orig_SolidOrSlopedTile_int_int orig, int x, int y)
+        {
+            if (PhaseThrough)
+                return false;
+
+            return orig(x, y);
         }
 
         private void On_Player_UpdateTouchingTiles(On_Player.orig_UpdateTouchingTiles orig, Player self)
@@ -435,15 +454,7 @@ namespace TranscendenceMod.Miscanellous.MiscSystems
         {
             SpriteBatch spriteBatch = Main.spriteBatch;
 
-            NPC npc = null;
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                NPC n = Main.npc[i];
-                if (n != null && n.active && n.ModNPC is CelestialSeraph)
-                    npc = n;
-            }
-
-            if (PhaseThrough && npc != null && npc.active && npc.ai[1] > 1)
+            if (PhaseThrough)
             {
                 Texture2D block = ModContent.Request<Texture2D>("TranscendenceMod/Miscannellous/Assets/SeraphBoundary").Value;
 
@@ -453,16 +464,17 @@ namespace TranscendenceMod.Miscanellous.MiscSystems
                 //X
                 for (int i = 0; i < 820; i++)
                 {
-                    spriteBatch.Draw(block, pos1 + new Vector2(i * 16, 0) - Main.screenPosition, null, Color.White, 0f, block.Size() * 0.5f, 1f, SpriteEffects.None, 0);
-                    spriteBatch.Draw(block, pos1 + new Vector2(i * 16, 340 * 16) - Main.screenPosition, null, Color.White, 0f, block.Size() * 0.5f, 1f, SpriteEffects.None, 0);
+                    spriteBatch.Draw(block, pos1 + new Vector2(i * 16, 0) - Main.screenPosition, null, Color.White * 0.2f, 0f, block.Size() * 0.5f, 1f, SpriteEffects.None, 0);
+                    spriteBatch.Draw(block, pos1 + new Vector2(i * 16, 340 * 16) - Main.screenPosition, null, Color.White * 0.2f, 0f, block.Size() * 0.5f, 1f, SpriteEffects.None, 0);
                 }
 
                 //Y
                 for (int j = 0; j < 341; j++)
                 {
-                    spriteBatch.Draw(block, pos1 + new Vector2(0, j * 16) - Main.screenPosition, null, Color.White, 0f, block.Size() * 0.5f, 1f, SpriteEffects.None, 0);
-                    spriteBatch.Draw(block, pos1 + new Vector2(820 * 16, j * 16) - Main.screenPosition, null, Color.White, 0, block.Size() * 0.5f, 1f, SpriteEffects.None, 0);
+                    spriteBatch.Draw(block, pos1 + new Vector2(0, j * 16) - Main.screenPosition, null, Color.White * 0.2f, 0f, block.Size() * 0.5f, 1f, SpriteEffects.None, 0);
+                    spriteBatch.Draw(block, pos1 + new Vector2(820 * 16, j * 16) - Main.screenPosition, null, Color.White * 0.2f, 0, block.Size() * 0.5f, 1f, SpriteEffects.None, 0);
                 }
+
             }
         }
     }

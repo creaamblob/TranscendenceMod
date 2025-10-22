@@ -2484,12 +2484,12 @@ Mods: {
 			PerfectHorseshoe: {
 				DisplayName: Perfect Horseshoes
 				Tooltip:
-				'''
-				Greatly increases movement speed while on ground
-				Negates fall damage
-				Brings good fortune to the wearer
-				'Why ride a horse when you can be one yourself?'
-				'''
+					'''
+					Greatly increases movement speed while on ground
+					Negates fall damage
+					Brings good fortune to the wearer
+					'Why ride a horse when you can be one yourself?'
+					'''
 			}
 		}
 

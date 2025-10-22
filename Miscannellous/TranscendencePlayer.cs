@@ -147,6 +147,7 @@ namespace TranscendenceMod
         public int FrozenMawDamage;
 
         public bool PerfectHorseshoe;
+        public int HorseshoeBonusActive;
 
         public bool NucleusLens;
         public bool NucleusLensSocial;
@@ -445,6 +446,9 @@ namespace TranscendenceMod
             PerfectHorseshoe = false;
 
             ShaderShit();
+
+            if (HorseshoeBonusActive > 0)
+                HorseshoeBonusActive--;
 
             if (LacewingTransCD > 0)
                 LacewingTransCD--;
@@ -972,16 +976,18 @@ namespace TranscendenceMod
                 Player.luck += 0.1f;
                 Player.noFallDmg = true;
 
-                if (Collision.SolidCollision(Player.position, Player.width, Player.height + 2, true) && Player.velocity.Y == 0f)
+                if (Collision.SolidCollision(Player.position, Player.width, Player.height + 2, true) && Player.velocity.Y == 0f || HorseshoeBonusActive > 0)
                 {
-                    Player.moveSpeed += 5f;
-                    Player.runSlowdown *= 2f;
+                    Player.moveSpeed += 3.5f;
+                    Player.accRunSpeed += 12f;
+                    Player.runSlowdown *= 1.5f;
+                    Player.CancelAllBootRunVisualEffects();
 
                     if (Player.velocity.X > 5f || Player.velocity.X < -5f)
                     {
                         if (Player.runSoundDelay <= 0)
                         {
-                            SoundEngine.PlaySound(ModSoundstyles.Horseshoe with { PitchRange = (-0.5f, 0f), Volume = 0.75f }, Player.Bottom);
+                            SoundEngine.PlaySound(ModSoundstyles.Horseshoe with { PitchRange = (-0.5f, 0f) }, Player.Bottom);
                             Player.runSoundDelay = 20;
                         }
 

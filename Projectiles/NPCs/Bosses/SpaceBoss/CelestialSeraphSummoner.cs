@@ -84,6 +84,8 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss
         }
         public override bool PreKill(int timeLeft)
         {
+            float y = MathHelper.Lerp(168, 508, 0.5f);
+            Main.LocalPlayer.Teleport(new Vector2(Main.LocalPlayer.Center.X, y * 16), TeleportationStyleID.PotionOfReturn);
             NPC.NewNPC(Projectile.GetSource_Death(), (int)Projectile.Center.X, (int)Projectile.Center.Y - 500, ModContent.NPCType<CelestialSeraph>());
 
             return base.PreKill(timeLeft);

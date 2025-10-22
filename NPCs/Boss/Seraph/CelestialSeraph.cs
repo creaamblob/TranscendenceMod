@@ -46,6 +46,7 @@ using TranscendenceMod.Projectiles.NPCs.Bosses.SpaceBoss;
 using TranscendenceMod.Projectiles.Weapons;
 using static TranscendenceMod.TranscendenceWorld;
 using Conditions = Terraria.GameContent.ItemDropRules.Conditions;
+using CollisionLib;
 
 namespace TranscendenceMod.NPCs.Boss.Seraph
 {
@@ -189,6 +190,8 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
 
         public Vector2[] drawArenaPos = new Vector2[151];
         public static bool NotClassic => (Main.expertMode || Main.masterMode);
+
+        public CollisionSurface[] collisionSurfaces;
 
         private void DefaultStats()
         {
@@ -361,28 +364,62 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
             if (!HasArena && player.Distance(NPC.Center) > 2050 && Attack != SeraphAttacks.SwordSlam && Attack != SeraphAttacks.SupernovaP2 && Attack != SeraphAttacks.NebulaMatter && !player.dead)
                 Teleport(0, 600, -75);
 
-            local.AddBuff(ModContent.BuffType<InfiniteFlight>(), 1);
-
             //Projectile stuff
             ProjectileManagerer();
 
-            if (NPC.ai[1] > 1)
+
+
+            int area = (410 * 16);
+            int sx = TranscendenceWorld.SpaceTempleX;
+            if (collisionSurfaces == null || collisionSurfaces.Length < 4)
             {
-                int area = (410 * 16);
-                int sx = TranscendenceWorld.SpaceTempleX;
+                collisionSurfaces = new CollisionSurface[]
+                {
 
-                if (player.position.X < (sx - area) || player.position.X > (sx + area))
-                    player.position.X -= (player.position.X > (sx + area)).ToDirectionInt() * 24;
+                        //TopLeft to TopRight
+                        new CollisionSurface(new Vector2(sx - area, 168 * 16), new Vector2(sx + area, 168 * 16), new int[]{ 1, 1, 1, 1 }),
 
-                if (player.position.Y > ((341 + 165) * 16) || player.position.Y < (168 * 16))
-                    player.position.Y -= (player.position.Y > ((341 + 165) * 16)).ToDirectionInt() * 24;
+                        //TopLeft to BottomLeft
+                        new CollisionSurface(new Vector2(sx - area, 168 * 16), new Vector2(sx - area, 508 * 16), new int[]{ 1, 1, 1, 1 }),
+
+                        //TopRight to BottomRight
+                        new CollisionSurface(new Vector2(sx + area, 168 * 16), new Vector2(sx + area, 508 * 16), new int[]{ 1, 1, 1, 1 }),
+                        
+                        //BottomLeft to BottomRight
+                        new CollisionSurface(new Vector2(sx - area, 508 * 16), new Vector2(sx + area, 508 * 16), new int[]{ 1, 1, 1, 1 })
+
+                };
             }
 
-            //Progress attacks if the time isn't frozen
-            if (!local.HasBuff(ModContent.BuffType<SeraphTimeStop>()))
-                Timer_AI++;
+            for (int i = 0; i < 4; i++)
+            {
+                collisionSurfaces[i].Update();
+                collisionSurfaces[i].DetectGrappleHookCollision();
+            }
 
+            //Prevent Out of Bounds entry
+            if (Attack != SeraphAttacks.DeathAnim)
+            {
+                if (player.position.Y >= (505 * 16))
+                {
+                    player.GetModPlayer<TranscendencePlayer>().HorseshoeBonusActive = 5;
+                    if (player.position.Y >= (508 * 16))
+                        player.Teleport(new Vector2(player.Center.X, 503 * 16), TeleportationStyleID.PotionOfReturn);
+                }
+                if (player.position.Y <= (170 * 16))
+                    player.Teleport(new Vector2(player.Center.X, 175 * 16), TeleportationStyleID.PotionOfReturn);
+
+                if (player.position.X <= (sx - area - (2 * 16)))
+                    player.Teleport(new Vector2(sx - area + (5 * 16), player.Center.Y), TeleportationStyleID.PotionOfReturn);
+                if (player.position.X >= (sx + area + (2 * 16)))
+                    player.Teleport(new Vector2(sx + area - (5 * 16), player.Center.Y), TeleportationStyleID.PotionOfReturn);
+            }
+
+
+            Timer_AI++;
+            local.AddBuff(ModContent.BuffType<InfiniteFlight>(), 1);
             DefaultStats();
+
             //End attacks
             if (Timer_AI > (AttackDuration + 3))
             {
@@ -618,14 +655,38 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
             
             twinkleTimer += 1.5f;
 
-            if (ArenaStarsDistance > 0f && Timer_AI < 150)
-                ArenaStarsDistance -= MathHelper.Lerp(0f, 40f, Timer_AI / 150f);
+            if (ArenaStarsDistance > 0f && Timer_AI < 90)
+            {
+                ArenaStarsDistance -= MathHelper.Lerp(0f, 40f, Timer_AI / 90f);
+
+                if (Timer_AI < 10)
+                {
+                    /* Teleport the arena ring away from the pocket dimension boundaries,
+                    making it snap to the inside of the box */
+                    float paddedArea = BoundarySize * 1.25f;
+                    int area = (410 * 16);
+                    int sx = TranscendenceWorld.SpaceTempleX;
+
+                    if (arenaCenter.Y >= (508 * 16 - paddedArea))
+                        Teleport(6, (int)NPC.Center.X, 504 * 16 - paddedArea);
+
+                    if (arenaCenter.Y <= (168 * 16 + paddedArea))
+                        Teleport(6, (int)NPC.Center.X, 172 * 16 + paddedArea);
+
+                    if (arenaCenter.X >= (sx + area - paddedArea))
+                        Teleport(6, (int)(sx + area - paddedArea + 64), NPC.Center.Y);
+
+                    if (arenaCenter.X <= (sx - area + paddedArea))
+                        Teleport(6, (int)(sx - area + paddedArea + 64), NPC.Center.Y);
+                }
+
+            }
 
             if (Timer_AI > (AttackDuration - 45))
+            {
                 ArenaStarsDistance += 5f;
-
-            if (Timer_AI > (AttackDuration - 45))
                 arenaSizeShrinkAnim -= 0.0222222222222f;
+            }
 
             if (Timer_AI < 120)
             {
@@ -654,7 +715,7 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
                 }
             }
 
-            if (local.Distance(arenaCenter) > (BoundarySize * 1.5f) && Timer_AI > 30)
+            if (local.Distance(arenaCenter) > (BoundarySize * 1.5f) && Timer_AI > 120)
             {
                 local.AddBuff(ModContent.BuffType<SpaceDebuff>(), 120);
                 local.Center = local.Center.MoveTowards(arenaCenter, 20);
@@ -710,6 +771,12 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
 
             if (Timer_AI < 60) NPC.Center = NPC.Center.MoveTowards(rainPos, 30);
             else NPC.velocity = Vector2.Zero;
+
+            if (arenaCenter.Distance(player.Center) > 300)
+            {
+                arenaCenter = player.Center;
+                NPC.Center = arenaCenter - new Vector2(0, 500);
+            }
 
             if (++ProjectileCD[0] % 3 == 0)
             {
@@ -1992,19 +2059,19 @@ namespace TranscendenceMod.NPCs.Boss.Seraph
         /// <param name="posY"></param>
         public void Teleport(int TeleportStyle, int Distance, float posY)
         {
-            Vector2 pos = player.Center + new Vector2(Distance * (player.velocity.X > 0 ? 1 : player.velocity.X < 0 ? -1 : 0), posY);
+            Vector2 pos = player.Center + new Vector2(Distance * (player.velocity.X > 0f ? 1 : player.velocity.X < 0 ? -1 : 0), posY);
 
             if (TeleportStyle == 2) pos = player.Center + Vector2.One.RotatedByRandom(MathHelper.TwoPi) * Distance;
             if (TeleportStyle == 3) pos = player.Center + new Vector2(Distance, posY);
             if (TeleportStyle == 4) pos = player.Center + Vector2.One.RotatedByRandom(MathHelper.TwoPi) * (Distance * Main.rand.NextFloat(0.85f, 1.33f));
             if (TeleportStyle == 5) pos = NPC.Center + new Vector2(Distance, posY);
+            if (TeleportStyle == 6) pos = new Vector2(Distance, posY);
 
-            if (NPCFade > 0.1f)
+            if (Attack != SeraphAttacks.Intro)
             {
                 SoundEngine.PlaySound(ModSoundstyles.SeraphTeleport with
                 {
-                    Volume = 0.6f,
-                    MaxInstances = 0
+                    Volume = 0.75f,
                 }, player.Center);
 
                 int amt = (int)(NPC.Distance(pos) / 20);
