@@ -978,7 +978,7 @@ namespace TranscendenceMod
 
                 if (Collision.SolidCollision(Player.position, Player.width, Player.height + 2, true) && Player.velocity.Y == 0f || HorseshoeBonusActive > 0)
                 {
-                    Player.moveSpeed += 3.5f;
+                    Player.moveSpeed += 4f;
                     Player.accRunSpeed += 12f;
                     Player.runSlowdown *= 1.5f;
                     Player.CancelAllBootRunVisualEffects();

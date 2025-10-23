@@ -23,6 +23,7 @@ namespace TranscendenceMod.Projectiles.NPCs.Bosses.Nucleus
 
             ProjectileID.Sets.DrawScreenCheckFluff[Type] = 9000;
 
+            Projectile.penetrate = -1;
             Projectile.aiStyle = -1;
             Projectile.hostile = true;
         }

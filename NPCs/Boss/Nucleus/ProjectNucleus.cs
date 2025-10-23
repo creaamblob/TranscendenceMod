@@ -1,4 +1,5 @@
 
+using CollisionLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -157,6 +158,8 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
         }
         public override bool CanHitPlayer(Player target, ref int cooldownSlot) => CanDealDamage;
 
+                public CollisionSurface[] collisionSurfaces;
+
         public override void AI()
         {
             player = Main.player[NPC.target];
@@ -179,11 +182,44 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
             if (WithinLiquid > 0)
                 WithinLiquid--;
 
+
+
+            if (collisionSurfaces == null || collisionSurfaces.Length < 4)
+            {
+                collisionSurfaces = new CollisionSurface[]
+                {
+
+                        //TopLeft to TopRight
+                        new CollisionSurface(new Vector2(Center.X - 942, Center.Y - 495), new Vector2(Center.X + 942, Center.Y - 495), new int[]{ 1, 1, 1, 1 }),
+
+                        //TopLeft to BottomLeft
+                        new CollisionSurface(new Vector2(Center.X - 942, Center.Y - 495), new Vector2(Center.X - 942, Center.Y + 495), new int[]{ 1, 1, 1, 1 }),
+
+                        //TopRight to BottomRight
+                        new CollisionSurface(new Vector2(Center.X + 942, Center.Y - 495), new Vector2(Center.X + 942, Center.Y + 495), new int[]{ 1, 1, 1, 1 }),
+                        
+                        //BottomLeft to BottomRight
+                        new CollisionSurface(new Vector2(Center.X - 942, Center.Y + 495), new Vector2(Center.X + 942, Center.Y + 495), new int[]{ 1, 1, 1, 1 })
+
+                };
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                collisionSurfaces[i].Update();
+                collisionSurfaces[i].DetectGrappleHookCollision();
+            }
+
             if (player.Center.X > (Center.X + 974) || player.Center.X < (Center.X - 974))
                 player.position.X -= 24 * (player.Center.X > Center.X).ToDirectionInt();
 
             if (player.Center.Y > (Center.Y + 527) || player.Center.Y < (Center.Y - 527))
                 player.position.Y -= (player.Center.Y > Center.Y).ToDirectionInt() * 24;
+
+            if (player.Center.Y >= Center.Y + 470)
+                player.GetModPlayer<TranscendencePlayer>().HorseshoeBonusActive = 5;
+
+
 
             if (HeartSize > 0f)
                 HeartSize = MathHelper.Lerp(HeartSize, 0f, 1f / 60f);
@@ -521,7 +557,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
                     CanDealDamage = true;
                     NPC.velocity.Y = 100f;
 
-                    if (Collision.SolidCollision(NPC.position - new Vector2(0, 150), NPC.width, NPC.height + 75) && NPC.position.Y > (player.position.Y - 20))
+                    if (NPC.Center.Y > (Center.Y + 465) && NPC.position.Y > (player.position.Y - 20))
                     {
                         SoundEngine.PlaySound(ModSoundstyles.SeraphSpear);
 
@@ -649,7 +685,7 @@ namespace TranscendenceMod.NPCs.Boss.Nucleus
                         CanDealDamage = true;
                         NPC.velocity.Y = 40f;
 
-                        if (Collision.SolidCollision(NPC.position, NPC.width, NPC.height) && NPC.position.Y > (player.position.Y - 20))
+                        if (NPC.Center.Y > (Center.Y + 465))
                         {
                             SoundEngine.PlaySound(ModSoundstyles.SeraphSpear);
                             ScreenShake = 175f;
